@@ -13,8 +13,10 @@ mod:RegisterEventsInCombat(
 
 --TODO, actual timer for abilities. Tank swap for mortal?
 local warnFrenzy	= mod:NewSpellAnnounce(24318, 3, nil, "Tank|Healer")
-local warnGaze		= mod:NewTargetNoFilterAnnounce(24314, 2)
+local warnGaze		= mod:NewTargetNoFilterAnnounce(24314, 4)
 local warnMortal	= mod:NewTargetNoFilterAnnounce(16856, 2, nil, "Tank|Healer")
+
+local specWarnGaze	= mod:NewSpecialWarningCast(24314, nil, nil, nil, 3, 2)
 
 local timerGaze 	= mod:NewTargetTimer(6, 24314, nil, nil, nil, 3)
 local timerMortal	= mod:NewTargetTimer(5, 16856, nil, "Tank|Healer", nil, 5, nil, DBM_CORE_TANK_ICON)
@@ -24,8 +26,13 @@ do
 	function mod:SPELL_AURA_APPLIED(args)
 		--if args:IsSpellID(24314) then
 		if args.spellName == ThreateningGaze then
-			warnGaze:Show(args.destName)
 			timerGaze:Start(args.destName)
+			if args:IsPlayer() then
+				specWarnGaze:Show()
+				specWarnGaze:Play("stopcast")
+			else
+				warnGaze:Show(args.destName)
+			end
 		--elseif args:IsSpellID(24318) then
 		elseif args.spellName == Frenzy and args:IsDestTypeHostile() then
 			warnFrenzy:Show(args.destName)
@@ -37,3 +44,16 @@ do
 	end
 end
 
+--TODO, make gaze warning faster by using yell instead and combat log as backup.
+--[[
+function mod:CHAT_MSG_MONSTER_YELL(msg, mob, _, _, targetName)
+	if msg == L.GazeYell and targetName then
+		if targetName == UnitName("player") then
+			specWarnGaze:Show()
+			specWarnGaze:Play("stopcast")
+		else
+			warnGaze:Show(targetName)
+		end
+	end
+end
+--]]
