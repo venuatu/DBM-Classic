@@ -4630,9 +4630,9 @@ do
 				DBM:AddMsg(DBM_CORE_WORLDBUFF_STARTED:format(buffName, factionText, sender))
 				local timer = tonumber(time)
 				local myFaction = faction == "Both" and true or UnitFactionGroup("player") == faction
-				if timer and myFaction then
-					DBM.Bars:CreateBar(timer, buffName, 136106)
-				end
+				--if timer and myFaction then
+				--	DBM.Bars:CreateBar(timer, buffName, 136106)
+				--end
 			end
 		end
 
