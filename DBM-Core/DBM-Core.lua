@@ -7388,7 +7388,7 @@ function bossModPrototype:IsValidWarning(sourceGUID, customunitID)
 	return false
 end
 
---Skip param is used when CheckInterruptFilter is actually being used for a simpe target/focus check and nothing more.
+--force param is used when CheckInterruptFilter is actually being used for a simpe target/focus check and nothing more.
 --checkCooldown should never be passed with skip or COUNT interrupt warnings. It should be passed with any other interrupt filter
 function bossModPrototype:CheckInterruptFilter(sourceGUID, force, checkCooldown, ignoreTandF)
 	if DBM.Options.FilterInterrupt2 == "None" and not force then return true end--user doesn't want to use interrupt filter, always return true
