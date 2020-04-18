@@ -9,9 +9,6 @@ L = DBM:GetModLocalization("Venoxis")
 L:SetGeneralLocalization{
 	name = "대사제 베녹시스"
 }
-L:SetOptionLocalization{
-	RangeFrame		= "거리 창 보기"
-}
 
 -------------------
 --  Jeklik  --

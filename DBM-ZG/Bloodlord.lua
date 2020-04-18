@@ -8,7 +8,8 @@ mod:SetEncounterID(787)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED 24314 24318 16856"
+	"SPELL_AURA_APPLIED 24314 24318 16856",
+	"CHAT_MSG_MONSTER_YELL"
 )
 
 --TODO, actual timer for abilities. Tank swap for mortal?
@@ -27,11 +28,13 @@ do
 		--if args:IsSpellID(24314) then
 		if args.spellName == ThreateningGaze then
 			timerGaze:Start(args.destName)
-			if args:IsPlayer() then
-				specWarnGaze:Show()
-				specWarnGaze:Play("stopcast")
-			else
-				warnGaze:Show(args.destName)
+			if self:AntiSpam(3, args.destName) then
+				if args:IsPlayer() then
+					specWarnGaze:Show()
+					specWarnGaze:Play("stopcast")
+				else
+					warnGaze:Show(args.destName)
+				end
 			end
 		--elseif args:IsSpellID(24318) then
 		elseif args.spellName == Frenzy and args:IsDestTypeHostile() then
@@ -44,16 +47,17 @@ do
 	end
 end
 
---TODO, make gaze warning faster by using yell instead and combat log as backup.
---[[
+--Yell gives target 1.5-2 seconds faster than combat log, so we attempt to parse it first
+--Combat log is used as fallback and to start the duration timer
 function mod:CHAT_MSG_MONSTER_YELL(msg, mob, _, _, targetName)
-	if msg == L.GazeYell and targetName then
-		if targetName == UnitName("player") then
-			specWarnGaze:Show()
-			specWarnGaze:Play("stopcast")
-		else
-			warnGaze:Show(targetName)
+	if msg:find(L.GazeYell) and targetName then
+		if self:AntiSpam(3, targetName) then
+			if targetName == UnitName("player") then
+				specWarnGaze:Show()
+				specWarnGaze:Play("stopcast")
+			else
+				warnGaze:Show(targetName)
+			end
 		end
 	end
 end
---]]
