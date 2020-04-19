@@ -12,13 +12,17 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 24328 24689"
 )
 
+--TODO, get a buff check for starting initial hard mode timers
+--TODO, an infoframe showing list of players silenced by Jeklik on hard mode instead uf using a spammy timer
+--[[
+(ability.id = 24324 or ability.id = 24686 or ability.id = 24687 or ability.id = 24688 or ability.id = 24689 or ability.id = 24690) and type = "cast"
+--]]
 local warnSiphonSoon			= mod:NewSoonAnnounce(24324)
 local warnInsanity				= mod:NewTargetNoFilterAnnounce(24327, 4)
-local warnBlood					= mod:NewTargetAnnounce(24328, 2)
+local warnBlood					= mod:NewTargetAnnounce(24328, 2)--Not excempt from filter since it could be spammy
 local warnAspectOfMarli			= mod:NewTargetNoFilterAnnounce(24686, 2)
 local warnAspectOfThekal		= mod:NewSpellAnnounce(24689, 3, nil, "Tank|RemoveEnrage|Healer", 4)
-local warnAspectOfArlokk		= mod:NewTargetNoFilterAnnounce(24686, 3)
-
+local warnAspectOfArlokk		= mod:NewTargetNoFilterAnnounce(24690, 3)
 
 local specWarnBlood				= mod:NewSpecialWarningMoveAway(24328, nil, nil, nil, 1, 2)
 local specWarnAspectOfThekal	= mod:NewSpecialWarningDispel(24689, "RemoveEnrage", nil, nil, 1, 6)
@@ -26,18 +30,14 @@ local yellBlood					= mod:NewYell(24328)
 
 local timerSiphon				= mod:NewNextTimer(90, 24324, nil, nil, nil, 2)
 local timerAspectOfMarli		= mod:NewTargetTimer(6, 24686, nil, nil, nil, 5)
-local timerAspectOfMarliFirst	= mod:NewNextTimer(10, 24686, nil, nil, nil, 2)
-local timerAspectOfMarliCD		= mod:NewNextTimer(18, 24686, nil, nil, nil, 2)
-local timerAspectOfJeklik		= mod:NewTargetTimer(5, 24687, nil, nil, nil, 5)
-local timerAspectOfJeklikFirst	= mod:NewNextTimer(21, 24687, nil, nil, nil, 2)
-local timerAspectOfJeklikCD		= mod:NewNextTimer(23, 24687, nil, nil, nil, 2)
-local timerAspectOfVenoxisFirst	= mod:NewNextTimer(14, 24687, nil, nil, nil, 2)
-local timerAspectOfVenoxisCD	= mod:NewNextTimer(18, 24687, nil, nil, nil, 2)
+local timerAspectOfMarliCD		= mod:NewCDTimer(16, 24686, nil, nil, nil, 2)--16-20
+local timerAspectOfJeklik		= mod:NewTargetTimer(5, 24687, nil, false, 2, 5)--Could be spammy so off by default. Users can turn it on who want to see this
+local timerAspectOfJeklikCD		= mod:NewCDTimer(23, 24687, nil, nil, nil, 2)--23-24
+local timerAspectOfVenoxisCD	= mod:NewCDTimer(16.2, 24687, nil, nil, nil, 2)--16.2-18.3
 local timerAspectOfThekal		= mod:NewBuffActiveTimer(8, 24689, nil, "Tank|RemoveEnrage|Healer", 3, 5, nil, DBM_CORE_TANK_ICON..DBM_CORE_ENRAGE_ICON)
-local timerAspectOfThekalFirst	= mod:NewNextTimer(10, 24689, nil, nil, nil, 2)
-local timerAspectOfThekalCD		= mod:NewNextTimer(16, 24689, nil, nil, nil, 2)
+local timerAspectOfThekalCD		= mod:NewCDTimer(15.8, 24689, nil, nil, nil, 2)
 local timerAspectOfArlokk		= mod:NewTargetTimer(2, 24690, nil, nil, nil, 2)
-local timerAspectOfArlokkCD		= mod:NewNextTimer(30, 24690, nil, nil, nil, 2)
+local timerAspectOfArlokkCD		= mod:NewNextTimer(30, 24690, nil, nil, nil, 2)--Needs more data to verify it's a next timer, rest aren't
 local timerInsanity				= mod:NewTargetTimer(10, 24327, nil, nil, nil, 5)
 local timerInsanityCD			= mod:NewCDTimer(20, 24327, nil, nil, nil, 3)
 
@@ -49,11 +49,14 @@ function mod:OnCombatStart(delay)
 	enrageTimer:Start(-delay)
 	warnSiphonSoon:Schedule(80-delay)
 	timerSiphon:Start(-delay)
-	timerAspectOfMarliFirst:Start(-delay)
-	timerAspectOfJeklikCD:Start(-delay)
-	timerAspectOfVenoxisFirst:Start(-delay)
-	timerAspectOfThekalFirst:Start(-delay)
-	timerAspectOfArlokkCD:Start(-delay)
+	--Hard Mode Timers
+	--These need a buff or health check or something on hakkar to determine if he has the priest buffs, before starting these
+	--Can't just start these on all normal mode pulls
+--	timerAspectOfMarliCD:Start(10-delay)
+--	timerAspectOfThekalCD:Start(10-delay)
+--	timerAspectOfVenoxisCD:Start(14-delay)
+--	timerAspectOfJeklikCD:Start(21-delay)
+--	timerAspectOfArlokkCD:Start(30-delay)
 end
 
 function mod:OnCombatEnd()
@@ -120,18 +123,13 @@ do
 			timerAspectOfJeklik:Start(args.destName)
 		--elseif args:IsSpellID(24689) then
 		elseif args.spellName == AspectOfThekal and args:IsDestTypeHostile() then
-			if self:AntiSpam(5, "Frenzy") then
-				self:SendSync("Frenzy")
+			if self.Options.SpecWarn24689dispel then
+				specWarnAspectOfThekal:Show()
+				specWarnAspectOfThekal:Play("enrage")
+			else
+				warnAspectOfThekal:Show()
 			end
-			if self:AntiSpam(15, 2) then
-				if self.Options.SpecWarn23128dispel then
-					specWarnAspectOfThekal:Show()
-					specWarnAspectOfThekal:Play("enrage")
-				else
-					warnAspectOfThekal:Show()
-				end
-				timerAspectOfThekal:Start()
-			end
+			timerAspectOfThekal:Start()
 		--elseif args:IsSpellID(24690) then
 		elseif args.spellName == AspectOfArlokk then
 			warnAspectOfArlokk:Show(args.destName)
@@ -149,9 +147,6 @@ do
 			end
 		--elseif args:IsSpellID(24689) then
 		elseif args.spellName == AspectOfThekal and args:IsDestTypeHostile() then
-			if self:AntiSpam(5, "FrenzyStop") then
-				self:SendSync("FrenzyStop")
-			end
 			timerAspectOfThekal:Stop()
 		end
 	end
