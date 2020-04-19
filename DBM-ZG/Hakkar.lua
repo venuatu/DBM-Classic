@@ -77,7 +77,7 @@ local function IsHardMode(self)
 		if guid then
 			local cid = self:GetCIDFromGUID(guid)
 			if cid == 14834 then
-				if UnitHealthMax(UnitID) >= 1079325 then
+				if UnitHealthMax("target") >= 1079325 then
 					return true
 				end
 			end
