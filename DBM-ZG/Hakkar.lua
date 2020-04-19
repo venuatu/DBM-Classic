@@ -45,18 +45,61 @@ local enrageTimer				= mod:NewBerserkTimer(585)
 
 mod:AddRangeFrameOption(10, 24328)
 
+local function IsHardMode(self)
+	if IsInRaid() then
+		for i = 1, GetNumGroupMembers() do
+			local UnitID = "raid"..i.."target"
+			local guid = UnitGUID(UnitID)
+			if guid then
+				local cid = self:GetCIDFromGUID(guid)
+				if cid == 14834 then
+					if UnitHealthMax(UnitID) >= 1079325 then
+						return true
+					end
+				end
+			end
+		end
+	elseif IsInGroup() then
+		for i = 1, GetNumSubgroupMembers() do
+			local UnitID = "party"..i.."target"
+			local guid = UnitGUID(UnitID)
+			if guid then
+				local cid = self:GetCIDFromGUID(guid)
+				if cid == 14834 then
+					if UnitHealthMax(UnitID) >= 1079325 then
+						return true
+					end
+				end
+			end
+		end
+	else--Solo Raid?, maybe in classic TBC or classic WRATH. Future proofing the mod
+		local guid = UnitGUID("target")
+		if guid then
+			local cid = self:GetCIDFromGUID(guid)
+			if cid == 14834 then
+				if UnitHealthMax(UnitID) >= 1079325 then
+					return true
+				end
+			end
+		end
+	end
+	return false
+end
+
 function mod:OnCombatStart(delay)
 	enrageTimer:Start(-delay)
 	warnSiphonSoon:Schedule(80-delay)
 	timerSiphon:Start(-delay)
 	--Hard Mode Timers
-	--These need a buff or health check or something on hakkar to determine if he has the priest buffs, before starting these
+	--This just checks if Hakkar has 1079325 health
 	--Can't just start these on all normal mode pulls
---	timerAspectOfMarliCD:Start(10-delay)
---	timerAspectOfThekalCD:Start(10-delay)
---	timerAspectOfVenoxisCD:Start(14-delay)
---	timerAspectOfJeklikCD:Start(21-delay)
---	timerAspectOfArlokkCD:Start(30-delay)
+	if IsHardMode(self) then
+		timerAspectOfMarliCD:Start(10-delay)
+		timerAspectOfThekalCD:Start(10-delay)
+		timerAspectOfVenoxisCD:Start(14-delay)
+		timerAspectOfJeklikCD:Start(21-delay)
+		timerAspectOfArlokkCD:Start(30-delay)
+	end
 end
 
 function mod:OnCombatEnd()
