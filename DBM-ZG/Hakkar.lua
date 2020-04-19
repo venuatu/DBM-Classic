@@ -21,7 +21,7 @@ local warnAspectOfArlokk		= mod:NewTargetNoFilterAnnounce(24686, 3)
 
 
 local specWarnBlood				= mod:NewSpecialWarningMoveAway(24328, nil, nil, nil, 1, 2)
-local specAspectOfThekal		= mod:NewSpecialWarningDispel(24689, "RemoveEnrage", nil, nil, 1, 6)
+local specWarnAspectOfThekal	= mod:NewSpecialWarningDispel(24689, "RemoveEnrage", nil, nil, 1, 6)
 local yellBlood					= mod:NewYell(24328)
 
 local timerSiphon				= mod:NewNextTimer(90, 24324, nil, nil, nil, 2)
@@ -138,7 +138,7 @@ do
 			timerAspectOfArlokk:Start(args.destName)
 		end
 	end
-	
+
 	function mod:SPELL_AURA_REMOVED(args)
 		--if args.spellId == 20475 then
 		if args.spellName == CorruptedBlood then
