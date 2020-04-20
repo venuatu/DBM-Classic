@@ -134,8 +134,17 @@ function mod:OnSync(msg, targetName)
 	if msg == "Breath" and self:AntiSpam(8, 1) then
 		warnBreath:Show()
 	elseif msg == "Adrenaline" and targetName and self:AntiSpam(5, targetName) then
-		warnAdrenaline:Show(targetName)
 		timerAdrenaline:Start(targetName)
+		if targetName == UnitName("player") then
+			specWarnAdrenaline:Show()
+			specWarnAdrenaline:Play("targetyou")
+			yellAdrenaline:Yell()
+			specWarnAdrenalineOut:Schedule(15)
+			specWarnAdrenalineOut:ScheduleVoice(15, "runout")
+			yellAdrenalineFades:Countdown(20)
+		else
+			warnAdrenaline:Show(targetName)
+		end
 	elseif msg == "AdrenalineOver" and targetName then
 		timerAdrenaline:Stop(targetName)
 	end
