@@ -20,12 +20,11 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 18173"
 )
 
---TODO, Burning Adrenaline have an actual CD timer?
 local warnBreath			= mod:NewCastAnnounce(23461, 2, nil, nil, "Tank", 2)
 local warnAdrenaline		= mod:NewTargetNoFilterAnnounce(18173, 2)
 
 local specWarnAdrenaline	= mod:NewSpecialWarningYou(18173, nil, nil, nil, 1, 2)
-local specWarnAdrenalineOut	= mod:NewSpecialWarningMoveAway(18173, nil, nil, nil, 1, 2)
+local specWarnAdrenalineOut	= mod:NewSpecialWarningMoveAway(18173, nil, nil, 2, 3, 2)
 local yellAdrenaline		= mod:NewYell(18173, nil, false)
 local yellAdrenalineFades	= mod:NewShortFadesYell(18173)
 
@@ -33,7 +32,7 @@ local timerAdrenalineCD		= mod:NewCDTimer(15.7, 18173, nil, nil, nil, 3)
 local timerAdrenaline		= mod:NewTargetTimer(20, 18173, nil, nil, nil, 5)
 local timerCombatStart		= mod:NewCombatTimer(43)
 
-mod:AddSetIconOption("SetIconOnDebuffTarget", 18173, false, false, {8, 7, 6})
+mod:AddSetIconOption("SetIconOnDebuffTarget2", 18173, true, false, {8, 7, 6})
 
 mod.vb.debuffIcon = 8
 
@@ -82,7 +81,7 @@ do
 				else
 					warnAdrenaline:Show(args.destName)
 				end
-				if self.Options.SetIconOnDebuffTarget then
+				if self.Options.SetIconOnDebuffTarget2 then
 					self:SetIcon(args.destName, self.vb.debuffIcon)
 				end
 				self.vb.debuffIcon = self.vb.debuffIcon - 1
@@ -104,7 +103,7 @@ do
 				specWarnAdrenalineOut:CancelVoice()
 				yellAdrenalineFades:Cancel()
 			end
-			if self.Options.SetIconOnDebuffTarget then
+			if self.Options.SetIconOnDebuffTarget2 then
 				self:SetIcon(args.destName, 0)
 			end
 			timerAdrenaline:Stop(args.destName)
