@@ -5521,7 +5521,7 @@ do
 				DBM:Debug("DBM_CORE_WORLD_BUFFS.allianceNef detected")
 			elseif msg:find(DBM_CORE_WORLD_BUFFS.rendHead) then
 				local spellName = DBM:GetSpellInfo(16609)
-				SendWorldSync(self, "WBA", "rendBlackhand\tHorde\t"..spellName.."\t7", true)
+				SendWorldSync(self, "WBA", "rendBlackhand\tHorde\t"..spellName.."\t7")
 				DBM:Debug("DBM_CORE_WORLD_BUFFS.rendHead detected")
 			end
 		end
