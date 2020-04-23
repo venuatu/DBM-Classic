@@ -75,10 +75,10 @@ DBM_CORE_MPROFILE_DELETE_SUCCESS	= "Se ha borrado la configuración de módulo d
 DBM_CORE_MPROFILE_DELETE_SELF_ERROR	= "No se puede borrar una configuración que está actualmente en uso."
 DBM_CORE_MPROFILE_DELETE_S_ERROR	= "La configuración de origen está corrupta. Es posible que la configuración se haya borrado a medias o haya fallado por completo."
 
-DBM_CORE_NOTE_SHARE_SUCCESS			= "%s está compartiendo su nota para %s."
-DBM_CORE_NOTE_SHARE_FAIL			= "%s está intentando compartir su nota para %s. Sin embargo, el módulo asociado con esta facultad no está instalado o cargado. Si necesitas esta nota, asegúrate de que tienes el módulo asociado cargado y pídele que vuelva a compartirla."
+DBM_CORE_NOTE_SHARE_SUCCESS			= "%s está compartiendo tu nota para %s."
+DBM_CORE_NOTE_SHARE_FAIL			= "%s está intentando compartir tu nota para %s. Sin embargo, el módulo asociado con esta facultad no está instalado o cargado. Si necesitas esta nota, asegúrate de que tienes el módulo asociado cargado y pídele que vuelva a compartirla."
 
-DBM_CORE_NOTEHEADER					= "Introduce tu nota para %s. Los nombres de jugador entre '>' y '<' se mostrarán con el color de su clase. Para alertas con varias notas, sepáralas con '/'."
+DBM_CORE_NOTEHEADER					= "Introduce tu nota para %s. Los nombres de jugador entre '>' y '<' se mostrarán con el color de tu clase. Para alertas con varias notas, sepáralas con '/'."
 DBM_CORE_NOTEFOOTER					= "Haz clic en 'Aceptar' para guardar la nota o en 'Cancelar' para rechazarla."
 DBM_CORE_NOTESHAREDHEADER			= "%s está compartiendo esta nota para %s. Si la aceptas, sobrescribirá tu nota actual."
 DBM_CORE_NOTESHARED					= "Se ha enviado tu nota al grupo."
@@ -87,11 +87,15 @@ DBM_CORE_NOTESHAREERRORBLANK		= "No se puede compartir notas en blanco."
 DBM_CORE_NOTESHAREERRORGROUPFINDER	= "No se puede compartir notas en campos de batalla, buscador de bandas y buscador de grupo."
 DBM_CORE_NOTESHAREERRORALREADYOPEN	= "No se puede abrir notas compartidas con el editor de notas ya abierto."
 
+DBM_CORE_WORLDBOSS_ENGAGED			= "%s posiblemente fue atacado en tu reino con %s por ciento de salud. (Enviado por %s)"
+DBM_CORE_WORLDBOSS_DEFEATED			= "%s posiblemente fue derrotado en tu reino (Enviado por %s)."
+DBM_CORE_WORLDBUFF_STARTED			= "%s ha empezado en tu reino para la facción %s (Enviado por %s)."
+
 DBM_CORE_ALLMOD_DEFAULT_LOADED		= "Se han cargado las opciones por defecto de todos los módulos de esta estancia."
 DBM_CORE_ALLMOD_STATS_RESETED		= "Se han restaurado todas las estadísticas de este módulo."
 DBM_CORE_MOD_DEFAULT_LOADED			= "Se han cargado las opciones por defecto de este encuentro."
 
-DBM_CORE_WORLDBOSS_ENGAGED			= "Es posible que el encuentro de %s se haya iniciado en tu reino a %s de su salud máxima. (Enviado por %s.)"
+DBM_CORE_WORLDBOSS_ENGAGED			= "Es posible que el encuentro de %s se haya iniciado en tu reino a %s de tu salud máxima. (Enviado por %s.)"
 DBM_CORE_WORLDBOSS_DEFEATED			= "Es posible que %s haya sido derrotado en tu reino. (Enviado por %s.)"
 
 DBM_CORE_TIMER_FORMAT_SECS			= "%.2f |4segundo:segundos;"
@@ -581,3 +585,10 @@ DBM_LDB_CAT_OTHER		= "Otros módulos"
 
 DBM_LDB_CAT_GENERAL		= "General"
 DBM_LDB_ENABLE_BOSS_MOD	= "Habilitar módulo"
+
+DBM_CORE_WORLD_BUFFS.hordeOny		= "People of the Horde, citizens of Orgrimmar, come, gather round and celebrate a hero of the Horde"
+DBM_CORE_WORLD_BUFFS.allianceOny	= "Ciudadanos y aliados de Ventormenta, en el día de hoy, hemos hecho historia."       
+DBM_CORE_WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"
+DBM_CORE_WORLD_BUFFS.allianceNef	= "Citizens of the Alliance, the Lord of Blackrock is slain!"
+DBM_CORE_WORLD_BUFFS.zgHeart		= "Now, only one step remains to rid us of the Soulflayer's threat"  
+DBM_CORE_WORLD_BUFFS.rendHead		= "The false Warchief, Rend Blackhand, has fallen!"
