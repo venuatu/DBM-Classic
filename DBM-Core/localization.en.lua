@@ -654,7 +654,7 @@ DBM_LDB_CAT_OTHER		= "Other Boss Mods"
 DBM_LDB_CAT_GENERAL		= "General"
 DBM_LDB_ENABLE_BOSS_MOD	= "Enable boss mod"
 
---Localizers, do not copy entire table, follow same guidelines as other tables, overwrite each entry with DBM_CORE_WORLD_BUFF_TRIGGERS.hordeOny = "stuff" for example.
+--Localizers, do not copy entire table, follow same guidelines as other tables, overwrite each entry with DBM_CORE_WORLD_BUFFS.hordeOny = "stuff" for example.
 DBM_CORE_WORLD_BUFFS = {
 	hordeOny		= "People of the Horde, citizens of Orgrimmar, come, gather round and celebrate a hero of the Horde",
 	allianceOny		= "Citizens and allies of Stormwind, on this day, history has been made.",
