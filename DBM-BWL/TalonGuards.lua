@@ -69,10 +69,10 @@ local function update_vulnerability(self)
 	end
 end
 
-local function check_spell_damage(self, target, amount, spellSchool, critical)
+local function check_spell_damage(self, guid, amount, spellSchool, critical)
 	if amount > (critical and 1400 or 700) then
-		if not vulnerabilities[target] or vulnerabilities[target] ~= spellSchool then
-			vulnerabilities[target] = spellSchool
+		if not vulnerabilities[guid] or vulnerabilities[guid] ~= spellSchool then
+			vulnerabilities[guid] = spellSchool
 			update_vulnerability(self)
 		end
 	end

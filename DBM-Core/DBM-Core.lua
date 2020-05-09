@@ -4633,7 +4633,7 @@ do
 				DBM:Debug("WBA sync processing")
 				local factionText = faction == "Alliance" and FACTION_ALLIANCE or faction == "Horde" and FACTION_HORDE or DBM_CORE_BOTH
 				DBM:AddMsg(DBM_CORE_WORLDBUFF_STARTED:format(buffName, factionText, sender))
-				DBM:PlaySound(8960, true)
+				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
 				if DBM.Options.DebugMode then
 					local timer = tonumber(time)
 					if timer then
@@ -4677,7 +4677,7 @@ do
 				DBM:Debug("WBA sync processing")
 				local factionText = faction == "Alliance" and FACTION_ALLIANCE or faction == "Horde" and FACTION_HORDE or DBM_CORE_BOTH
 				DBM:AddMsg(DBM_CORE_WORLDBUFF_STARTED:format(buffName, factionText, sender))
-				DBM:PlaySound(8960, true)
+				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
 				if DBM.Options.DebugMode then
 					local timer = tonumber(time)
 					if timer then
