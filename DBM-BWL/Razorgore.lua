@@ -31,13 +31,23 @@ local specWarnFireballVolley= mod:NewSpecialWarningMoveTo(22425, false, nil, nil
 
 local timerAddsSpawn		= mod:NewTimer(47, "TimerAddsSpawn", 19879, nil, nil, 1)--Only for start of adds, not adds after the adds.
 
+mod:AddBoolOption("SpeedClearTimer", true, "timer")
+
 mod.vb.phase = 1
 mod.vb.eggsLeft = 30
+mod.vb.firstEngageTime = nil
 
 function mod:OnCombatStart(delay)
 	timerAddsSpawn:Start()
 	self.vb.phase = 1
 	self.vb.eggsLeft = 30
+	if not self.vb.firstEngageTime then
+		self.vb.firstEngageTime = GetTime()
+		if self.Options.FastestClear and self.Options.SpeedClearTimer then
+			--Custom bar creation that's bound to core, not mod, so timer doesn't stop when mod stops it's own timers
+			DBM.Bars:CreateBar(self.Options.FastestClear, DBM_SPEED_CLEAR_TIMER_TEXT)
+		end
+	end
 end
 
 do

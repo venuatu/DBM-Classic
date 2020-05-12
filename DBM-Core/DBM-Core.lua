@@ -683,6 +683,10 @@ local function strFromTime(time)
 	end
 end
 
+function DBM:strFromTime(time)
+	return strFromTime(time)
+end
+
 do
 	-- fail-safe format, replaces missing arguments with unknown
 	-- note: doesn't handle cases like %%%s correctly at the moment (should become %unknown, but becomes %%s)
@@ -3190,7 +3194,7 @@ function DBM:AddDefaultOptions(t1, t2)
 	end
 end
 
-function DBM:LoadModOptions(modId, inCombat, first)
+function DBM:LoadModOptions(modId, inCombat, first, force)
 	local oldSavedVarsName = modId:gsub("-", "").."_SavedVars"
 	local savedVarsName = modId:gsub("-", "").."_AllSavedVars"
 	local savedStatsName = modId:gsub("-", "").."_SavedStats"
@@ -3300,7 +3304,7 @@ function DBM:LoadModOptions(modId, inCombat, first)
 	--clean unused saved variables (do not work on combat load)
 	if not inCombat then
 		for id, table in pairs(savedOptions) do
-			if not existId[id] and not id:find("talent") then
+			if not existId[id] and not (id:find("talent") or id:find("FastestClear")) then
 				savedOptions[id] = nil
 			end
 		end
@@ -3952,12 +3956,13 @@ function DBM:LoadMod(mod, force)
 	else
 		self:Debug("LoadAddOn should have succeeded for "..mod.name, 2)
 		self:AddMsg(DBM_CORE_LOAD_MOD_SUCCESS:format(tostring(mod.name)))
-		self:LoadModOptions(mod.modId, InCombatLockdown(), true)
+		self:LoadModOptions(mod.modId, InCombatLockdown(), true, force)
 		if DBM_GUI then
 			DBM_GUI:UpdateModList()
 		end
-		if LastInstanceType ~= "pvp" and #inCombat == 0 and IsInGroup() then--do timer recovery only mod load
-			if not timerRequestInProgress then
+		if LastInstanceType ~= "pvp" and #inCombat == 0 then
+			force
+			if IsInGroup() and not timerRequestInProgress then--do timer recovery only mod load
 				timerRequestInProgress = true
 				-- Request timer to 3 person to prevent failure.
 				self:Unschedule(self.RequestTimers)

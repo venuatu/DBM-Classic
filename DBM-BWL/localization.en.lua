@@ -12,7 +12,8 @@ L:SetTimerLocalization{
 	TimerAddsSpawn	= "Adds spawning"
 }
 L:SetOptionLocalization{
-	TimerAddsSpawn	= "Show timer for first adds spawning"
+	TimerAddsSpawn	= "Show timer for first adds spawning",
+	SpeedClearTimer	= "Show timer for fastest clear of BWL"
 }
 L:SetMiscLocalization{
 	Phase2Emote	= "flee as the controlling power of the orb is drained.",
