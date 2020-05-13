@@ -4638,7 +4638,7 @@ do
 				local factionText = faction == "Alliance" and FACTION_ALLIANCE or faction == "Horde" and FACTION_HORDE or DBM_CORE_BOTH
 				DBM:AddMsg(DBM_CORE_WORLDBUFF_STARTED:format(buffName, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				if DBM.Options.DebugMode then
+				if DBM.Options.DebugMode or (time ~= 7 and time ~= 12) then
 					local timer = tonumber(time)
 					if timer then
 						DBM.Bars:CreateBar(timer, buffName, 136106)
@@ -9837,13 +9837,13 @@ do
 		local activeVP = self.Options.ChosenVoicePack
 		--Check if voice pack out of date
 		if activeVP ~= "None" and activeVP == value then
-			if self.VoiceVersions[value] < 8 then--Version will be bumped when new voice packs released that contain new voices.
+			if self.VoiceVersions[value] < 10 then--Version will be bumped when new voice packs released that contain new voices.
 				if not self.Options.DontShowReminders then
 					self:AddMsg(DBM_CORE_VOICE_PACK_OUTDATED)
 				end
 				SWFilterDisabed = self.VoiceVersions[value]--Set disable to version on current voice pack
 			else
-				SWFilterDisabed = 8
+				SWFilterDisabed = 10
 			end
 		end
 	end
