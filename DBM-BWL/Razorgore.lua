@@ -50,6 +50,10 @@ function mod:OnCombatStart(delay)
 	end
 end
 
+function mod:OnCombatEnd()
+	DBM:AddMsg("Reason egg counter is off a little, is because blizzard gutted combat log range. Capturing their destruction is not accurate via combat log without heavy syncing which is then also prone to errors with lag that causes eggs to be counted twice sometimes. TL/DR, egg counter is approx at best unless blizzard reverts combat log nerf in instances")
+end
+
 do
 	local fireballVolley = DBM:GetSpellInfo(22425)
 	function mod:SPELL_CAST_START(args)
