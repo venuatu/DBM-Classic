@@ -31,7 +31,7 @@ local specWarnFireballVolley= mod:NewSpecialWarningMoveTo(22425, false, nil, nil
 
 local timerAddsSpawn		= mod:NewTimer(47, "TimerAddsSpawn", 19879, nil, nil, 1)--Only for start of adds, not adds after the adds.
 
-mod:AddBoolOption("SpeedClearTimer", true, "timer")
+mod:AddSpeedClearOption("BWL", true)
 
 mod.vb.phase = 1
 mod.vb.eggsLeft = 30
