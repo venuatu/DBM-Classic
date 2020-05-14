@@ -150,11 +150,11 @@ DBM_CORE_VOICE_MISSING				= "선택한 DBM 음성팩을 찾을 수 없습니다.
 DBM_CORE_VOICE_DISABLED				= "현재 DBM 음성팩이 한 개 이상 설치되어 있지만 사용하고 있는게 없습니다. 음성팩을 사용하려면 '음성 경보' 항목에서 음성팩이 지정되어 있는지 확인하세요. 음성팩을 사용할 의사가 없으면 음성팩을 삭제하시면 이 메시지는 더이상 출력되지 않습니다"
 DBM_CORE_VOICE_COUNT_MISSING		= "초읽기 음성 %d번으로 설정된 음성/초읽기 팩을 찾을 수 없습니다. 기본 설정으로 초기화 되었습니다: %s"
 
-DBM_CORE_UPDATEREMINDER_HEADER			= "사용중인 "..DBM_DEADLY_BOSS_MODS.." 버전의 사용 기한이 지났습니다.\n Curse/Twitch, WoWI, GitHub 프로젝트 페이지 등에서 %s (%s) 버전을 다운로드 할 수 있습니다."
+DBM_CORE_UPDATEREMINDER_HEADER			= "사용중인 Deadly Boss Mods 버전의 사용 기한이 지났습니다.\n Curse/Twitch, WoWI, GitHub 프로젝트 페이지 등에서 %s (%s) 버전을 다운로드 할 수 있습니다."
 DBM_CORE_UPDATEREMINDER_HEADER_ALPHA	= "사용중인 Deadly Boss Mods ALPHA 버전의 사용 기한이 지났습니다.\n 적어도 %s 테스트 버전 이상은 사용해야 합니다. ALPHA 버전을 선택한 DBM 이용자는 최신 ALPHA 버전을 실행하는걸 권장합니다. 아니면 최신 RELEASE 버전을 사용하는 것도 좋습니다. 오래된 ALPHA 버전은 개발용인 관계로 버전 검사 기능이 제한되어 있기 때문입니다."
 DBM_CORE_UPDATEREMINDER_FOOTER			= (IsMacClient() and "Cmd-C" or "Ctrl-C").. "를 누르면 주소를 복사할 수 있습니다."
 DBM_CORE_UPDATEREMINDER_FOOTER_GENERIC	= (IsMacClient() and "Cmd-C" or "Ctrl-C").. "를 누르면 주소를 복사할 수 있습니다."
-DBM_CORE_UPDATEREMINDER_DISABLE			= "경고: 지금 사용중인 "..DBM_DEADLY_BOSS_MODS.."가 지나치게 오래되어 강제로 비활성화되며 업데이트 전까진 사용할 수 없습니다. 이는 오래되고 호환되지 않는 모드가 당신과 파티/공대원의 플레이에 악영향을 미치지 않게 하기 위함입니다."
+DBM_CORE_UPDATEREMINDER_DISABLE			= "경고: 지금 사용중인 Deadly Boss Mods가 지나치게 오래되어 강제로 비활성화되며 업데이트 전까진 사용할 수 없습니다. 이는 오래되고 호환되지 않는 모드가 당신과 파티/공대원의 플레이에 악영향을 미치지 않게 하기 위함입니다."
 --DBM_CORE_UPDATEREMINDER_NODISABLE		= "경고: 설치한 Deadly Boss Mods가 사용 기한을 지났습니다. 업데이트 알림이 꺼져있거나 해서 특정 기한을 지나면 본 메시지가 등장하는 것이며 이 알림은 끌 수 없습니다. 반드시 업데이트 하시기 바랍니다."
 DBM_CORE_UPDATEREMINDER_HOTFIX			= "지금 사용하는 DBM 버전은 이 보스 전투에서 알려진 오류를 가지고 있습니다. 이 오류는 최신 버전으로 업데이트하면 수정됩니다."
 DBM_CORE_UPDATEREMINDER_HOTFIX_ALPHA	= "지금 사용하는 DBM 버전은 이 보스 전투에서 알려진 오류를 가지고 있습니다. 이 오류는 향후 출시될 버전 (또는 최신 ALPHA 버전)에서 수정되어있을 것입니다."
