@@ -114,7 +114,7 @@ L:SetWarningLocalization{
 L:SetTimerLocalization{
 	TimerBreathCD	= "%s 쿨타임",
 	TimerBreath		= "%s 시전",
-	TimerVulnCD		= "%s 약화 쿨타임"
+	TimerVulnCD		= "약화 쿨타임"
 }
 L:SetOptionLocalization{
 	WarnBreath		= "크로마구스가 숨결 시전 시 경고 보기",
