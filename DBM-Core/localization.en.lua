@@ -642,7 +642,7 @@ DBM_CORE_ENRAGE_ICON		= "|TInterface\\AddOns\\DBM-Core\\textures\\UI-EJ-Icons.bl
 
 --LDB
 DBM_LDB_TOOLTIP_HELP1	= "Click to open DBM"
---DBM_LDB_TOOLTIP_HELP2	= "Right-click to open config menu"
+DBM_LDB_TOOLTIP_HELP2	= "Right-click to toggle Silent Mode"
 
 DBM_LDB_LOAD_MODS		= "Load boss mods"
 
