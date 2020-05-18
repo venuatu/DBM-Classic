@@ -87,7 +87,7 @@ L:SetGeneralLocalization{
 }
 L:SetMiscLocalization{
 	Bloodlord 	= "Señor sangriento Mandokir",
-	Ohgan		= "Ohgan"
+	Ohgan		= "Ohgan",
 	GazeYell	= "I'm watching you"
 }
 
