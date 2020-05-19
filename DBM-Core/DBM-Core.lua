@@ -3865,9 +3865,6 @@ do
 		end
 		-- LoadMod
 		self:LoadModsOnDemand("mapId", mapID)
-		if not self.Options.DontShowReminders then
-			self:CheckAvailableMods()
-		end
 		if DBM:HasMapRestrictions() then
 			DBM.Arrow:Hide()
 			DBMHudMap:Disable()
@@ -3882,6 +3879,9 @@ do
 			else
 				self:StopLogging()
 			end
+		end
+		if not self.Options.DontShowReminders then
+			self:CheckAvailableMods()
 		end
 	end
 	--Faster and more accurate loading for instances, but useless outside of them

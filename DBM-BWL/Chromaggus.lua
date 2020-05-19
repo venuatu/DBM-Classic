@@ -112,7 +112,9 @@ local function update_vulnerability(self)
 	timerVuln:UpdateIcon(info[3])
 	timerVuln:UpdateName(name)
 	warnVuln.icon = info[3]
-	warnVuln:Show(name)
+	if self:AntiSpam(5, name) then
+		warnVuln:Show(name)
+	end
 	lastVulnName = name
 
 	if self.Options.InfoFrame then
@@ -136,7 +138,11 @@ local function update_vulnerability(self)
 end
 
 local function check_spell_damage(self, target, amount, spellSchool, critical)
-	if amount > (critical and 1400 or 700) then
+	local cid = self:GetCIDFromGUID(target)
+	if cid ~= 14020 then
+		return
+	end
+	if amount > (critical and 1600 or 800) then
 		if not vulnerabilities[target] or vulnerabilities[target] ~= spellSchool then
 			vulnerabilities[target] = spellSchool
 			update_vulnerability(self)
@@ -153,8 +159,8 @@ local function check_target_vulns(self)
 
 	local spellId = select(10, DBM:UnitBuff("target", 22277, 22280, 22278, 22279, 22281)) or 0
 	local vulnSchool = vulnSpells[spellId]
-	if vulnSchool ~= nil then
-		return check_spell_damage(self, target, 10000, vulnSchool)
+	if vulnSchool and spellInfo[vulnSchool] then
+		return check_spell_damage(self, target, 10000, spellInfo[vulnSchool][1])
 	end
 end
 

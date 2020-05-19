@@ -33,11 +33,11 @@ local spellInfo = {
 
 local vulnSpells = {
 	--No Holy?
-	[22277] = 4,
-	[22280] = 8,
-	[22278] = 16,
-	[22279] = 32,
-	[22281] = 64,
+	[22277] = 4,--Fire
+	[22280] = 8,--Nature
+	[22278] = 16,--Frost
+	[22279] = 32,--Shadow
+	[22281] = 64,--Arcane
 }
 
 --Local Functions
@@ -70,7 +70,11 @@ local function update_vulnerability(self)
 end
 
 local function check_spell_damage(self, guid, amount, spellSchool, critical)
-	if amount > (critical and 1400 or 700) then
+	local cid = self:GetCIDFromGUID(target)
+	if cid ~= 12460 and cid ~= 12461 then
+		return
+	end
+	if amount > (critical and 1600 or 800) then
 		if not vulnerabilities[guid] or vulnerabilities[guid] ~= spellSchool then
 			vulnerabilities[guid] = spellSchool
 			update_vulnerability(self)
