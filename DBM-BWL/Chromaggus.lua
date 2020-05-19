@@ -159,8 +159,8 @@ local function check_target_vulns(self)
 
 	local spellId = select(10, DBM:UnitBuff("target", 22277, 22280, 22278, 22279, 22281)) or 0
 	local vulnSchool = vulnSpells[spellId]
-	if vulnSchool and spellInfo[vulnSchool] then
-		return check_spell_damage(self, target, 10000, spellInfo[vulnSchool][1])
+	if vulnSchool then
+		return check_spell_damage(self, target, 10000, vulnSchool)
 	end
 end
 
