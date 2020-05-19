@@ -70,7 +70,7 @@ local function update_vulnerability(self)
 end
 
 local function check_spell_damage(self, guid, amount, spellSchool, critical)
-	local cid = self:GetCIDFromGUID(target)
+	local cid = self:GetCIDFromGUID(guid)
 	if cid ~= 12460 and cid ~= 12461 then
 		return
 	end
