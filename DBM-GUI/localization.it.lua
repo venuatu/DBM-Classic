@@ -119,7 +119,7 @@ L.FillUpBars				= "Riempi la barre"
 L.ClickThrough				= "Disabilita i click sulle barre"
 
 -- Tab: Spec Warn Frame
-L.Panel_SpecWarnFrame		= "Messaggi Speciali"
+L.Panel_SpecWarnFrame		= "Avvisi Speciali di Incursione"
 L.Area_SpecWarn				= "Messaggi Speciali - Opzioni"
 L.SpecWarn_Font				= "Carattere usato per i Messaggi Speciali"
 L.SpecWarn_DemoButton		= "Esempio"
