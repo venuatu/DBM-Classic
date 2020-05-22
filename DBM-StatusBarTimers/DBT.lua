@@ -36,13 +36,11 @@
 --    * Noncommercial. You may not use this work for commercial purposes.
 --    * Share Alike. If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
 
-
 ---------------
 --  Globals  --
 ---------------
 DBT = {}
 DBT_PersistentOptions = {}
-
 
 --------------
 --  Locals  --
@@ -82,7 +80,6 @@ elseif (LOCALE_ruRU) then
 else
 	standardFont = "Fonts\\FRIZQT__.TTF"
 end
-
 
 -----------------------
 --  Default Options  --
@@ -465,7 +462,7 @@ options = {
 	},
 	Template = {
 		type = "string",
-		default = "DBTBarTemplate"
+		default = "DBMDefaultSkinTimerTemplate"
 	},
 	Skin = {
 		type = "string",
@@ -488,7 +485,6 @@ options = {
 		default = true,
 	},
 }
-
 
 --------------------------
 --  Double Linked List  --
@@ -575,7 +571,6 @@ function DLL:New()
 end
 setmetatable(DLL, {__call = DLL.New})
 
-
 -------------------------------
 --  DBT Constructor/Options  --
 -------------------------------
@@ -651,18 +646,11 @@ do
 		self.options = setmetatable(DBT_AllPersistentOptions[_G["DBM_UsedProfile"]][id], optionMT)
 		self:Rearrange()
 		DBM:Schedule(2, delaySkinCheck, self)
-		if not self.options.Font then--Fix font if it's nil
+		if not self.options.Font then -- Fix font if it's nil
 			self.options.Font = standardFont
 		end
-		--Repair options from texture conversions
-		if self.options.Texture == "Interface\\AddOns\\DBM-DefaultSkin\\textures\\default.tga" then
-			self.options.Texture = "Interface\\AddOns\\DBM-DefaultSkin\\textures\\default.blp"
-		elseif self.options.Texture == "Interface\\AddOns\\DBM-DefaultSkin\\textures\\smooth.tga" then
-			self.options.Texture = "Interface\\AddOns\\DBM-DefaultSkin\\textures\\smooth.blp"
-		elseif self.options.Texture == "Interface\\AddOns\\DBM-DefaultSkin\\textures\\glaze.tga" then
-			self.options.Texture = "Interface\\AddOns\\DBM-DefaultSkin\\textures\\glaze.blp"
-		elseif self.options.Texture == "Interface\\AddOns\\DBM-DefaultSkin\\textures\\otravi.tga" then
-			self.options.Texture = "Interface\\AddOns\\DBM-DefaultSkin\\textures\\otravi.blp"
+		if self.options.Template == "DBTBarTemplate" then -- Kill internal default template
+			self.options.Template = "DBMDefaultSkinTimerTemplate"
 		end
 	end
 
@@ -731,7 +719,6 @@ end
 function DBT:GetDefaultOption(option)
 	return self.defaultOptions[option]
 end
-
 
 -----------------------
 --  Bar Constructor  --

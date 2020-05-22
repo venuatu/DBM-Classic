@@ -1,3 +1,12 @@
+DBM_DEADLY_BOSS_MODS				= "Deadly Boss Mods"
+DBM_DBM								= "DBM"
+if C_DateAndTime and C_DateAndTime.GetCurrentCalendarTime then
+	local dateTable = C_DateAndTime.GetCurrentCalendarTime()
+	if dateTable.monthDay and dateTable.month and dateTable.monthDay == 1 and dateTable.month == 4 then
+		DBM_DEADLY_BOSS_MODS				= "Harmless Boss Mods"
+		DBM_DBM								= "HBM"
+	end
+end
 
 DBM_HOW_TO_USE_MOD					= "Welcome to DBM. Type /dbm help for a list of supported commands. To access options type /dbm in your chat to begin configuration. Load specific zones manually to configure any boss specific settings to your liking as well. DBM will setup defaults for your spec, but you may want to fine tune these."
 DBM_SILENT_REMINDER					= "Reminder: DBM is still in silent mode."
