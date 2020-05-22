@@ -3114,6 +3114,7 @@ globals = {
 	"OpenCalendar",
 	"OpenTrainer",
 	"OpeningCinematic",
+	"OptionsList_OnLoad",
 	"PartialPlayTime",
 	"PartyLFGStartBackfill",
 	"PetAbandon",
