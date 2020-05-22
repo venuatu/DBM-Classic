@@ -244,23 +244,16 @@ do
 		{ text = "SW 3", value = 3 },
 		{ text = "SW 4", value = 4 },
 		-- Inject DBMs custom media that's not available to LibSharedMedia because it uses SoundKit Id (which LSM doesn't support)
-		--{ text = "AirHorn (DBM)", value = "Interface\\AddOns\\DBM-Core\\sounds\\AirHorn.ogg" },
-		{ text = "Algalon: Beware!", value = 15391 },
-		{ text = "BB Wolf: Run Away", value = 9278 },
-		{ text = "Blizzard Raid Emote", value = 37666 },
-		{ text = "C'Thun: You Will Die!", value = 8585 },
-		{ text = "Headless Horseman: Laugh", value = 11965 },
-		{ text = "Illidan: Not Prepared", value = 11466 },
-		{ text = "Illidan: Not Prepared2", value = 68563 },
-		{ text = "Kaz'rogal: Marked", value = 11052 },
-		{ text = "Kil'Jaeden: Destruction", value = 12506 },
-		{ text = "Loatheb: I see you", value = 128466 },
-		{ text = "Lady Malande: Flee", value = 11482 },
-		{ text = "Milhouse: Light You Up", value = 49764 },
-		{ text = "Night Elf Bell", value = 11742 },
-		{ text = "PvP Flag", value = 8174 },
-		{ text = "Void Reaver: Marked", value = 11213 },
-		{ text = "Yogg Saron: Laugh", value = 15757 }
+		--{ text = "AirHorn (DBM)",			value = "Interface\\AddOns\\DBM-Core\\sounds\\AirHorn.ogg" },
+		{ text = "Algalon: Beware!",		value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\UR_Algalon_BHole01.ogg" },
+		{ text = "BB Wolf: Run Away",		value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\HoodWolfTransformPlayer01.ogg" },
+		--{ text = "Blizzard Raid Emote",	value = 37666 },
+		{ text = "Illidan: Not Prepared",	value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\BLACK_Illidan_04.ogg" },
+		{ text = "Illidan: Not Prepared2",	value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\VO_703_Illidan_Stormrage_03.ogg" },
+		{ text = "Kil'Jaeden: Destruction",	value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\KILJAEDEN02.ogg" },
+		{ text = "Loatheb: I see you",		value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\LOA_NAXX_AGGRO02.ogg" },
+		{ text = "Night Elf Bell",			value = 11742 },
+		{ text = "PvP Flag",				value = 8174 }
 	})
 	local tcolors = {
 		{ text = L.CBTGeneric, value = 0 },

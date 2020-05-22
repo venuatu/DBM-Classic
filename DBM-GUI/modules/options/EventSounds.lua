@@ -5,10 +5,10 @@ local Sounds = DBM_GUI:MixinSharedMedia3("sound", {
 		text	= L.NoSound,
 		value	= "None"
 	},
-	{
+	--[[{
 		text	= "Muradin: Charge",
 		value	= 16971 -- "Sound\\Creature\\MuradinBronzebeard\\IC_Muradin_Saurfang02.ogg"
-	}
+	}]]--
 })
 
 local eventSoundsPanel			= DBM_GUI_Frame:CreateNewPanel(L.Panel_EventSounds, "option")
@@ -91,9 +91,5 @@ VictorySoundDropdown3:SetPoint("TOPLEFT", DungeonMusicDropDown, "TOPLEFT", 0, -4
 
 local eventSoundsExtrasArea	= eventSoundsPanel:CreateArea(L.Area_EventSoundsExtras, nil, 52)
 local combineMusic			= eventSoundsExtrasArea:CreateCheckButton(L.EventMusicCombined, true, nil, "EventSoundMusicCombined")
-
-local eventSoundsFiltersArea= eventSoundsPanel:CreateArea(L.Area_EventSoundsFilters, nil, 72)
-local musicDungMythicFilter	= eventSoundsFiltersArea:CreateCheckButton(L.EventFilterDungMythicMusic, true, nil, "EventDungMusicMythicFilter")
-local musicMythicFilter		= eventSoundsFiltersArea:CreateCheckButton(L.EventFilterMythicMusic, true, nil, "EventMusicMythicFilter")
 
 eventSoundsPanel:SetMyOwnHeight()
