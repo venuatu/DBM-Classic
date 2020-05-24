@@ -39,6 +39,9 @@ DBM_CORE_BOSS_DOWN					= "¡%s ha sido derrotado en %s!"
 DBM_CORE_BOSS_DOWN_I				= "¡%s ha sido derrotado! Tienes %d victorias en total."
 DBM_CORE_BOSS_DOWN_L				= "¡%s ha sido derrotado en %s! Tu última victoria fue en %s, y tu récord actual es %s. Tienes %d victorias en total."
 DBM_CORE_BOSS_DOWN_NR				= "¡%s ha sido derrotado en %s! ¡Es un nuevo récord! (El anterior era %s). Tienes %d victorias en total."
+DBM_CORE_RAID_DOWN					= "¡%s limpiado después de %s!"
+DBM_CORE_RAID_DOWN_L				= "¡%s limpiado después de %s! Tu limpieza más rápida llevó %s."
+DBM_CORE_RAID_DOWN_NR				= "¡%s limpiado después de %s! ¡Es un nuevo récord! (El anterior era %s)"
 DBM_CORE_GUILD_BOSS_DOWN			= "¡%s ha sido derrotado por tu hermandad en %s!"
 DBM_CORE_COMBAT_ENDED_AT			= "El encuentro de %s (%s) ha terminado en %s."
 DBM_CORE_COMBAT_ENDED_AT_LONG		= "El encuentro de %s (%s) ha terminado en %s. Tienes %d derrotas en total en esta dificultad."
@@ -94,9 +97,7 @@ DBM_CORE_WORLDBUFF_STARTED			= "%s ha empezado en tu reino para la facción %s (
 DBM_CORE_ALLMOD_DEFAULT_LOADED		= "Se han cargado las opciones por defecto de todos los módulos de esta estancia."
 DBM_CORE_ALLMOD_STATS_RESETED		= "Se han restaurado todas las estadísticas de este módulo."
 DBM_CORE_MOD_DEFAULT_LOADED			= "Se han cargado las opciones por defecto de este encuentro."
-
-DBM_CORE_WORLDBOSS_ENGAGED			= "Es posible que el encuentro de %s se haya iniciado en tu reino a %s de tu salud máxima. (Enviado por %s.)"
-DBM_CORE_WORLDBOSS_DEFEATED			= "Es posible que %s haya sido derrotado en tu reino. (Enviado por %s.)"
+DBM_CORE_SOUNDKIT_MIGRATION			= "Uno o más de sus sonidos de advertencia/advertencia especiales se restablecieron a los valores predeterminados debido a incompatibilidad con el parche 8.2 y posterior (el sonido debe residir en la carpeta de la interfaz para reproducir por ruta, o usar SoundKit ID)"
 
 DBM_CORE_TIMER_FORMAT_SECS			= "%.2f |4segundo:segundos;"
 DBM_CORE_TIMER_FORMAT_MINS			= "%d |4minuto:minutos;"
@@ -157,16 +158,19 @@ DBM_CORE_UPDATEREMINDER_HEADER_ALPHA	= "Tu versión alfa de Deadly Boss Mods est
 DBM_CORE_UPDATEREMINDER_FOOTER			= "Pulsa " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  " para copiar el enlace de descarga en tu portapapeles."
 DBM_CORE_UPDATEREMINDER_FOOTER_GENERIC	= "Pulsa " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  " para copiar el enlace en tu portapapeles."
 DBM_CORE_UPDATEREMINDER_DISABLE			= "AVISO: Se ha desactivado Deadly Boss Mods porque tu versión está demasiado desfasada. Con tal de prevenir conflictos con las versiones de otros jugadores, no se podrá volver a activar DBM hasta que lo actualices."
+--DBM_CORE_UPDATEREMINDER_NODISABLE		= "WARNING: Your Deadly Boss Mods install is very out of date. While you may have disabled update notification, this message starts to appear after a certain threshold and cannot be disabled. Updating is HIGHLY recommended."
 DBM_CORE_UPDATEREMINDER_HOTFIX			= "Tu versión de DBM actual tiene errores conocidos en este encuentro. Por favor, actualiza a la última versión."
 DBM_CORE_UPDATEREMINDER_HOTFIX_ALPHA	= "Tu versión de DBM actual tiene errores conocidos en este encuentro. Estos errores serán corregidos en la próxima versión (o ya están corregidos en la última versión alfa)."
 DBM_CORE_UPDATEREMINDER_MAJORPATCH		= "AVISO: Se ha desactivado Deadly Boss Mods porque tu versión está demasiado desfasada. Como se trata de un parche de contenido importante, y con tal de prevenir conflictos con las versiones de otros jugadores, no se podrá volver a activar DBM hasta que lo actualices."
 DBM_CORE_UPDATEREMINDER_TESTVERSION		= "AVISO: Estás usando una versión de Deadly Boss Mods que no ha sido diseñada para esta versión del juego. Por favor, asegúrate de descargar la versión apropiada para tu cliente de juego desde www.deadlybossmods.com o Curse."
 DBM_CORE_VEM							= "AVISO: Estás ejecutando Deadly Boss Mods y Voice Encounter Mods a la vez. DBM no funciona correctamente con esta configuración, y por tanto no se ejecutará."
 DBM_CORE_3RDPROFILES					= "AVISO: DBM-Profiles no es compatible con esta versión de DBM. Con tal de evitar conflictos, DBM no se ejecutará hasta que borres tu DBM-Profiles actual."
+DBM_CORE_VICTORYSOUND					= "AVISO: DBM-VictorySound no es compatible con esta versión de DBM. Debe quitarse antes de que DBM pueda continuar, para evitar conflictos."
 DBM_CORE_DPMCORE						= "AVISO: Deadly PvP Mods ya no está en desarrollo y no es compatible con esta versión de DBM. Con tal de evitar conflictos, DBM no se ejecutará hasta que borres Deadly PvP Mods."
 DBM_CORE_DBMLDB							= "AVISO: DBM-LDB está ahora incluido en DBM-Core. Es recomendable que borres la carpeta 'DBM-LDB' de tu carpeta de addons."
 DBM_CORE_UPDATE_REQUIRES_RELAUNCH		= "AVISO: Esta actualización de DBM no funcionará correctamente hasta que reinicies el juego. Esta versión contiene nuevos archivos o cambios a los archivos .toc que no pueden recargarse mediante /reload. Es muy probable que DBM no funcione correctamente hasta que reinicies el juego."
 DBM_CORE_OUT_OF_DATE_NAG				= "Tu versión de Deadly Boss Mods está desfasada para este encuentro. Se recomienda que actualices DBM para no perderte ningún aviso, temporizador o indicador crucial para tu grupo de banda."
+DBM_CORE_CLASSIC_ONLY					= "AVISO: Esta versión de DBM solo debe usarse con World of Warcraft: Classic. Desinstale esta versión e instale la versión correcta de DBM para Retail WoW."
 
 DBM_CORE_MOVABLE_BAR				= "¡Muéveme!"
 
@@ -320,6 +324,7 @@ DBM_CORE_AUTO_ANNOUNCE_TEXTS.stack		= "%s en >%%s< (%%d)"
 local prewarnOption = "Mostrar aviso previo para $spell:%s"
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.you			= "Anunciar que te afecta $spell:%s"
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.target		= "Anunciar objetivos de $spell:%s"
+DBM_CORE_AUTO_ANNOUNCE_OPTIONS.targetNF		= "Anunciar objetivos de $spell:%s (ignora filtro de objetivo global)"
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.targetsource	= "Anunciar objetivos de $spell:%s (y quién lo lanza)"
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.targetcount	= "Anunciar objetivos de $spell:%s (con contador)"
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.spell		= "Mostrar aviso para $spell:%s"
@@ -330,6 +335,7 @@ DBM_CORE_AUTO_ANNOUNCE_OPTIONS.adds			= "Anunciar el número de $spell:%s restan
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast			= "Mostrar aviso cuando se esté lanzando $spell:%s"
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.soon			= prewarnOption
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.sooncount	= prewarnOption
+DBM_CORE_AUTO_ANNOUNCE_OPTIONScountdown		= "Mostrar contador de aviso previso para $spell:%s",
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn 		= prewarnOption
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.bait			= "Mostrar aviso previso para posicionar $spell:%s"
 DBM_CORE_AUTO_ANNOUNCE_OPTIONS.stage		= "Anunciar cambio a Fase %s"
@@ -441,8 +447,10 @@ DBM_CORE_AUTO_TIMER_TEXTS.next			= "Siguiente %s"
 DBM_CORE_AUTO_TIMER_TEXTS.nextcount		= "Siguiente %s (%%s)"
 DBM_CORE_AUTO_TIMER_TEXTS.nextsource	= "Siguiente %s: %%s"
 DBM_CORE_AUTO_TIMER_TEXTS.nextspecial	= "Siguiente facultad especial"
+DBM_CORE_AUTO_TIMER_TEXTS.nextspecialshort	= "Facultad especial"
 DBM_CORE_AUTO_TIMER_TEXTS.achievement	= "Logro: %s"
 DBM_CORE_AUTO_TIMER_TEXTS.stage			= "Siguiente fase"
+DBM_CORE_AUTO_TIMER_TEXTS.stageshort	= "Fase"
 DBM_CORE_AUTO_TIMER_TEXTS.adds			= "Esbirros"
 DBM_CORE_AUTO_TIMER_TEXTS.addscustom	= "Esbirros (%%s)"
 DBM_CORE_AUTO_TIMER_TEXTS.roleplay		= "Diálogo"
@@ -507,6 +515,8 @@ DBM_CORE_AUTO_RRANGE_OPTION_TEXT_SHORT	= "Mostrar marco de distancia inverso (%s
 DBM_CORE_AUTO_INFO_FRAME_OPTION_TEXT	= "Mostrar marco de información para $spell:%s"
 DBM_CORE_AUTO_INFO_FRAME_OPTION_TEXT2	= "Mostrar marco de información con una vista general del encuentro"
 DBM_CORE_AUTO_READY_CHECK_OPTION_TEXT	= "Reproducir sonido de comprobación de banda cuando se inicie el encuentro (aunque no lo tengas como objetivo)"
+DBM_CORE_AUTO_SPEEDCLEAR_OPTION_TEXT	= "Mostrar temporizador para la limpieza más rápida de %s"
+
 
 -- New special warnings
 DBM_CORE_MOVE_WARNING_BAR			= "Anuncio desplazable"
