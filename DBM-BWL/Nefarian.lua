@@ -58,15 +58,15 @@ function mod:OnCombatEnd(wipe)
 			local thisTime = GetTime() - RazorMod.vb.firstEngageTime
 			if not RazorMod.Options.FastestClear then
 				--First clear, just show current clear time
-				DBM:AddMsg(DBM_CORE_RAID_DOWN:format("BWL", DBM:strFromTime(thisTime)))
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("BWL", DBM:strFromTime(thisTime)))
 				RazorMod.Options.FastestClear = thisTime
 			elseif (RazorMod.Options.FastestClear > thisTime) then
 				--Update record time if this clear shorter than current saved record time and show users new time, compared to old time
-				DBM:AddMsg(DBM_CORE_RAID_DOWN_NR:format("BWL", DBM:strFromTime(thisTime), DBM:strFromTime(RazorMod.Options.FastestClear)))
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format("BWL", DBM:strFromTime(thisTime), DBM:strFromTime(RazorMod.Options.FastestClear)))
 				RazorMod.Options.FastestClear = thisTime
 			else
 				--Just show this clear time, and current record time (that you did NOT beat)
-				DBM:AddMsg(DBM_CORE_RAID_DOWN_L:format("BWL", DBM:strFromTime(thisTime), DBM:strFromTime(RazorMod.Options.FastestClear)))
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("BWL", DBM:strFromTime(thisTime), DBM:strFromTime(RazorMod.Options.FastestClear)))
 			end
 		end
 	end
@@ -181,7 +181,7 @@ function mod:OnSync(msg, arg)
 		elseif phase == 3 then
 			self.vb.phase = 3
 		end
-		warnPhase:Show(DBM_CORE_AUTO_ANNOUNCE_TEXTS.stage:format(arg))
+		warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(arg))
 	end
 	if not self:IsInCombat() then return end
 	if msg == "ClassCall" and arg then

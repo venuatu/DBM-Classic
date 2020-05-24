@@ -64,7 +64,7 @@ do
 			end
 			if self:AntiSpam(8, 1) then
 				if self.Options.SpecWarn22425moveto then
-					specWarnFireballVolley:Show(DBM_CORE_BREAK_LOS)
+					specWarnFireballVolley:Show(DBM_CORE_L.BREAK_LOS)
 					specWarnFireballVolley:Play("findshelter")
 				else
 					warnFireballVolley:Show()
@@ -139,7 +139,7 @@ function mod:OnSync(msg, name)
 		DBM:EndCombat(self)
 	elseif msg == "fireballVolley" and self:AntiSpam(8, 1) then
 		if self.Options.SpecWarn22425moveto then
-			specWarnFireballVolley:Show(DBM_CORE_BREAK_LOS)
+			specWarnFireballVolley:Show(DBM_CORE_L.BREAK_LOS)
 			specWarnFireballVolley:Play("findshelter")
 		else
 			warnFireballVolley:Show()

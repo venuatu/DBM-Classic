@@ -19,7 +19,7 @@ local warnHeal			= mod:NewCastAnnounce(25807, 3)
 local specWarnHeal		= mod:NewSpecialWarningInterrupt(25807, "HasInterrupt", nil, nil, 1, 2)
 
 local timerFearCD		= mod:NewCDTimer(20.5, 26580, nil, nil, nil, 2)
-local timerHeal			= mod:NewCastTimer(2, 25807, nil, nil, nil, 4, nil, DBM_CORE_INTERRUPT_ICON)
+local timerHeal			= mod:NewCastTimer(2, 25807, nil, nil, nil, 4, nil, DBM_CORE_L.INTERRUPT_ICON)
 
 function mod:OnCombatStart(delay)
 	timerFearCD:Start(10-delay)

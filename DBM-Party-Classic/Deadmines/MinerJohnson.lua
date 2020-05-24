@@ -14,7 +14,7 @@ mod:RegisterEventsInCombat(
 
 local warningPierceArmor			= mod:NewTargetNoFilterAnnounce(12097, 2)
 
-local timerPierceArmorCD			= mod:NewAITimer(180, 12097, nil, nil, nil, 5, nil, DBM_CORE_TANK_ICON)
+local timerPierceArmorCD			= mod:NewAITimer(180, 12097, nil, nil, nil, 5, nil, DBM_CORE_L.TANK_ICON)
 
 function mod:OnCombatStart(delay)
 	timerPierceArmorCD:Start(1-delay)
