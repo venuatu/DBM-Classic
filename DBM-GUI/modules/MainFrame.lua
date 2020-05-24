@@ -39,7 +39,7 @@ frameHeader:SetSize(300, 68)
 
 local frameHeaderText = frame:CreateFontString("$parentHeaderText", "ARTWORK", "GameFontNormal")
 frameHeaderText:SetPoint("TOP", frameHeader:GetName(), 0, -14)
-frameHeaderText:SetText("Deadly Boss Mods")
+frameHeaderText:SetText(DBM_GUI_Translations.MainFrame)
 
 local frameRevision = frame:CreateFontString("$parentRevision", "ARTWORK", "GameFontDisableSmall")
 frameRevision:SetPoint("BOTTOMLEFT", frame:GetName(), "BOTTOMLEFT", 20, 18)

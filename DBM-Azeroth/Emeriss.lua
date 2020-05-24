@@ -21,7 +21,7 @@ local warnNoxiousBreath			= mod:NewStackAnnounce(24818, 2, nil, "Tank")
 local specWarnSleepingFog		= mod:NewSpecialWarningDodge(24814, nil, nil, nil, 2, 2)
 --local specWarnMushroom			= mod:NewSpecialWarningYou(243451, nil, nil, nil, 1, 2)
 
---local timerNoxiousBreathCD		= mod:NewCDTimer(18.3, 24818, nil, "Tank", nil, 5, nil, DBM_CORE_TANK_ICON)--Iffy
+--local timerNoxiousBreathCD		= mod:NewCDTimer(18.3, 24818, nil, "Tank", nil, 5, nil, DBM_CORE_L.TANK_ICON)--Iffy
 local timerSleepingFogCD		= mod:NewCDTimer(15.8, 24814, nil, nil, nil, 3)
 
 --mod:AddReadyCheckOption(48620, false)

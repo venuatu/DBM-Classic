@@ -15,7 +15,7 @@ local warningEnrage					= mod:NewTargetNoFilterAnnounce(8269, 2)
 
 local specWarnWhirlwind				= mod:NewSpecialWarningRun(8989, nil, nil, nil, 4, 2)
 
-local timerWhirlwindCD				= mod:NewCDTimer(23, 8989, nil, nil, nil, 4, nil, DBM_CORE_DEADLY_ICON)
+local timerWhirlwindCD				= mod:NewCDTimer(23, 8989, nil, nil, nil, 4, nil, DBM_CORE_L.DEADLY_ICON)
 
 function mod:OnCombatStart(delay)
 	timerWhirlwindCD:Start(10.5-delay)
