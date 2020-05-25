@@ -477,7 +477,7 @@ local tinsert, tremove, twipe, tsort, tconcat = table.insert, table.remove, tabl
 local type, select = type, select
 local GetTime = GetTime
 local bband = bit.band
-local floor, mhuge, mmin, mmax = math.floor, math.huge, math.min, math.max
+local floor, ceiling, mhuge, mmin, mmax, mrandom = math.floor, math.ceil, math.huge, math.min, math.max, math.random
 local GetNumGroupMembers, GetRaidRosterInfo = GetNumGroupMembers, GetRaidRosterInfo
 local UnitName, GetUnitName = UnitName, GetUnitName
 local IsInRaid, IsInGroup, IsInInstance = IsInRaid, IsInGroup, IsInInstance
@@ -4429,10 +4429,18 @@ do
 
 	syncHandlers["GH"] = function(sender)
 		if DBM.ReleaseRevision >= DBM.HighestRelease then--Do not send version to guild if it's not up to date, since this is only used for update notifcation
-			local total, online = GetNumGuildMembers()
-			DBM:Unschedule(SendVersion, true)--Throttle so we don't needlessly send tons of comms during initial raid invites
-			local throttle = (online < 50) and 10 or (online < 100) and 15 or (online < 150) and 20 or 30
-			DBM:Schedule(throttle, SendVersion, true)--Send version if 10 seconds have past since last "Hi" sync
+			DBM:Unschedule(SendVersion, true)
+			--Throttle so we don't needlessly send tons of comms
+			--For every 50 players online, DBM has an increasingly lower chance of replying to a version check request. This is because only 3 people actually need to reply
+			--50 people or less, 100% chance anyone who saw request will reply
+			--100 people on, only 50% chance DBM users replies to request
+			--150 people on, only 33% chance a DBM user replies to request.
+			local _, online = GetNumGuildMembers()
+			local chances = online / 50
+			chances = ceiling(chances)--Round up to nearest whole number, it should never be less than 1
+			if mrandom(1, chances) == 1 then
+				DBM:Schedule(5, SendVersion, true)--Send version if 5 seconds have past since last "Hi" sync
+			end
 		end
 	end
 
