@@ -612,7 +612,7 @@ L.INSTANCE_INFO_RESULTS			= "Instance ID scan results. Note that instances might
 L.INSTANCE_INFO_SHOW_RESULTS		= "Players yet to respond: %s"
 
 L.LAG_CHECKING				= "Checking raid Latency..."
-L.LAG_HEADER					= L.DEADLY_BOSS_MODS" - Latency Results"
+L.LAG_HEADER				= L.DEADLY_BOSS_MODS .. " - Latency Results"
 L.LAG_ENTRY					= "%s: World delay [%d ms] / Home delay [%d ms]"
 L.LAG_FOOTER					= "No Response: %s"
 
