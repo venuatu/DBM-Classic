@@ -35,6 +35,7 @@ globals = {
 	"KuiNameplates",
 	"TidyPlatesThreatDBM",
 	"Plater",
+	"QuestieLoader",
 
 	-- DBM
 	"DBM_ADD",
