@@ -94,7 +94,7 @@ if L.TranslationBy then
 end
 
 local frameWebsite = frame:CreateFontString("$parentWebsite", "ARTWORK", "GameFontNormal")
-frameWebsite:SetPoint("BOTTOMLEFT", frameRevision:GetName(), "TOPLEFT", 0, 15)
+frameWebsite:SetPoint("BOTTOMLEFT", frameRevision, "TOPLEFT", 0, 15)
 frameWebsite:SetText(L.Website)
 
 local frameWebsiteButtonA = CreateFrame("Frame", nil, frame)

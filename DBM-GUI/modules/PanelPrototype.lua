@@ -1,4 +1,5 @@
 local L = DBM_GUI_L
+local CL	= DBM_CORE_L
 
 local PanelPrototype = {}
 setmetatable(PanelPrototype, {
@@ -73,7 +74,6 @@ function PanelPrototype:CreateButton(title, width, height, onclick, font)
 end
 
 function PanelPrototype:CreateColorSelect(dimension, useAlpha, alphaWidth)
-	-- TODO: Check if there's already a template for this from Blizzard?
 	local colorSelect = CreateFrame("ColorSelect", "DBM_GUI_Option_" .. self:GetNewID(), self.frame)
 	colorSelect.mytype = "colorselect"
 	colorSelect:SetSize((dimension or 128) + (useAlpha and 38 or 0), dimension or 128)
@@ -284,7 +284,7 @@ do
 				local spellId = tonumber(id)
 				local spellName = DBM:GetSpellInfo(spellId)
 				if not spellName then
-					spellName = DBM_CORE_L.UNKNOWN
+					spellName = CL.UNKNOWN
 					DBM:Debug("Spell ID does not exist: " .. spellId)
 				end
 				return ("|cff71d5ff|Hspell:%d|h%s|h|r"):format(spellId, spellName)
@@ -299,7 +299,7 @@ do
 				if not check then
 					DBM:Debug("Journal ID does not exist: " .. id)
 				end
-				local link = select(9, DBM:EJ_GetSectionInfo(tonumber(id))) or DBM_CORE_L.UNKNOWN
+				local link = select(9, DBM:EJ_GetSectionInfo(tonumber(id))) or CL.UNKNOWN
 				return link:gsub("|h%[(.*)%]|h", "|h%1|h")
 			end)
 		end
@@ -342,7 +342,7 @@ do
 		local buttonText = button:CreateFontString("$parentText", "ARTWORK", "GameFontNormal")
 		buttonText:SetPoint("LEFT", button, "RIGHT", 0, 1)
 		if name then -- Switch all checkbutton frame to SimpleHTML frame (auto wrap)
-			buttonText = CreateFrame("SimpleHTML", buttonText, button)
+			buttonText = CreateFrame("SimpleHTML", buttonText:GetName(), button)
 			buttonText:SetFontObject("GameFontNormal")
 			buttonText:SetHyperlinksEnabled(true)
 			buttonText:SetScript("OnHyperlinkEnter", function(self, data, link)
@@ -357,9 +357,9 @@ do
 					local _, contentType, contentID = strsplit(":", data)
 					if contentType == "2" then
 						local name, description = DBM:EJ_GetSectionInfo(tonumber(contentID))
-						GameTooltip:AddLine(name or DBM_CORE_L.UNKNOWN, 255, 255, 255, 0)
+						GameTooltip:AddLine(name or CL.UNKNOWN, 255, 255, 255, 0)
 						GameTooltip:AddLine(" ")
-						GameTooltip:AddLine(description or DBM_CORE_L.UNKNOWN, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
+						GameTooltip:AddLine(description or CL.UNKNOWN, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
 					end
 				end
 				GameTooltip:Show()
@@ -394,7 +394,7 @@ do
 			name = "<html><body><p>" .. name .. "</p></body></html>"
 		end
 		buttonText:SetWidth(self.frame:GetWidth() - 57 - (frame and frame:GetWidth() + frame2:GetWidth() or 0))
-		buttonText:SetText(name or DBM_CORE_L.UNKNOWN)
+		buttonText:SetText(name or CL.UNKNOWN)
 		if textLeft then
 			buttonText:ClearAllPoints()
 			buttonText:SetPoint("RIGHT", frame2 or frame or button, "LEFT")
