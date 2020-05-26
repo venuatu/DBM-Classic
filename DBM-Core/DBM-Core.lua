@@ -4646,14 +4646,15 @@ do
 			end
 		end
 
-		syncHandlers["WBA"] = function(sender, bossName, faction, buffName, time)
+		syncHandlers["WBA"] = function(sender, bossName, faction, spellId, time, ver)
 			DBM:Debug("WBA sync recieved")
-			--if not ver or not (ver == "8") then return end--Ignore old versions
+			if not ver or not (ver == "2") then return end--Ignore old versions
 			if lastBossEngage[bossName..faction] and (GetTime() - lastBossEngage[bossName..faction] < 30) then return end--We recently got a sync about this buff on this realm, so do nothing.
 			lastBossEngage[bossName..faction] = GetTime()
 			if DBM.Options.WorldBuffAlert and #inCombat == 0 then
 				DBM:Debug("WBA sync processing")
 				local factionText = faction == "Alliance" and FACTION_ALLIANCE or faction == "Horde" and FACTION_HORDE or L.BOTH
+				local buffName = DBM:GetSpellInfo(tonumber(spellId) or 0) or L.UNKNOWN
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
 				if DBM.Options.DebugMode or (time ~= 7 and time ~= 12) then
@@ -4690,17 +4691,18 @@ do
 			end
 		end
 
-		whisperSyncHandlers["WBA"] = function(sender, bossName, faction, buffName, time)
+		whisperSyncHandlers["WBA"] = function(sender, bossName, faction, spellId, time, ver)
 			DBM:Debug("WBA sync recieved")
-			--if not ver or not (ver == "8") then return end--Ignore old versions
+			if not ver or not (ver == "2") then return end--Ignore old versions
 			if lastBossEngage[bossName..faction] and (GetTime() - lastBossEngage[bossName..faction] < 30) then return end--We recently got a sync about this buff on this realm, so do nothing.
 			lastBossEngage[bossName..faction] = GetTime()
 			if DBM.Options.WorldBuffAlert and #inCombat == 0 then
 				DBM:Debug("WBA sync processing")
 				local factionText = faction == "Alliance" and FACTION_ALLIANCE or faction == "Horde" and FACTION_HORDE or L.BOTH
+				local buffName = DBM:GetSpellInfo(tonumber(spellId) or 0) or L.UNKNOWN
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				if DBM.Options.DebugMode then
+				if DBM.Options.DebugMode or (time ~= 7 and time ~= 12) then
 					local timer = tonumber(time)
 					if timer then
 						DBM.Bars:CreateBar(timer, buffName, 136106)
@@ -5537,24 +5539,19 @@ do
 		end
 		if not IsInInstance() then
 			if msg:find(L.WORLD_BUFFS.hordeOny) then
-				local spellName = DBM:GetSpellInfo(22888)
-				SendWorldSync(self, "WBA", "Onyxia\tHorde\t"..spellName.."\t15")
+				SendWorldSync(self, "WBA", "Onyxia\tHorde\t22888\t15\t2")
 				DBM:Debug("L.WORLD_BUFFS.hordeOny detected")
 			elseif msg:find(L.WORLD_BUFFS.allianceOny) then
-				local spellName = DBM:GetSpellInfo(22888)
-				SendWorldSync(self, "WBA", "Onyxia\tAlliance\t"..spellName.."\t14")
+				SendWorldSync(self, "WBA", "Onyxia\tAlliance\tt22888\t14\t2")
 				DBM:Debug("L.WORLD_BUFFS.allianceOny detected")
 			elseif msg:find(L.WORLD_BUFFS.hordeNef) then
-				local spellName = DBM:GetSpellInfo(22888)
-				SendWorldSync(self, "WBA", "Nefarian\tHorde\t"..spellName.."\t17")
+				SendWorldSync(self, "WBA", "Nefarian\tHorde\tt22888\t17\t2")
 				DBM:Debug("L.WORLD_BUFFS.hordeNef detected")
 			elseif msg:find(L.WORLD_BUFFS.allianceNef) then
-				local spellName = DBM:GetSpellInfo(22888)
-				SendWorldSync(self, "WBA", "Nefarian\tAlliance\t"..spellName.."\t15")
+				SendWorldSync(self, "WBA", "Nefarian\tAlliance\tt22888\t15\t2")
 				DBM:Debug("L.WORLD_BUFFS.allianceNef detected")
 			elseif msg:find(L.WORLD_BUFFS.rendHead) then
-				local spellName = DBM:GetSpellInfo(16609)
-				SendWorldSync(self, "WBA", "rendBlackhand\tHorde\t"..spellName.."\t7")
+				SendWorldSync(self, "WBA", "rendBlackhand\tHorde\t16609\t7\t2")
 				DBM:Debug("L.WORLD_BUFFS.rendHead detected")
 			end
 		end
@@ -5594,8 +5591,7 @@ do
 	function DBM:CHAT_MSG_MONSTER_SAY(msg)
 		if not IsInInstance() then
 			if msg:find(L.WORLD_BUFFS.zgHeart) then
-				local spellName = DBM:GetSpellInfo(24425)
-				SendWorldSync(self, "WBA", "Zandalar\tBoth\t"..spellName.."\t12")
+				SendWorldSync(self, "WBA", "Zandalar\tBoth\t24425\t12\t2")
 			end
 		end
 		return onMonsterMessage(self, "say", msg)
