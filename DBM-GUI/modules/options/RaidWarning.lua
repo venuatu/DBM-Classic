@@ -108,7 +108,7 @@ local Sounds = DBM_GUI:MixinSharedMedia3("sound", {
 	},
 	{
 		text	= "Classic",
-		value	= 11742 -- "Sound\\Doodad\\BellTollNightElf.ogg"
+		value	= 6674 -- "Sound\\Doodad\\BellTollNightElf.ogg"
 	},
 	{
 		text	= "Ding",
