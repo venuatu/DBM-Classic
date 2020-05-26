@@ -1,4 +1,4 @@
-local L = DBM_GUI_Translations
+local L = DBM_GUI_L
 
 local Sounds = DBM_GUI:MixinSharedMedia3("sound", {
 	{
@@ -89,7 +89,5 @@ local VictorySoundDropdown3 = eventSoundsGeneralArea:CreateDropdown(L.EventEngag
 end, 180)
 VictorySoundDropdown3:SetPoint("TOPLEFT", DungeonMusicDropDown, "TOPLEFT", 0, -45)
 
-local eventSoundsExtrasArea	= eventSoundsPanel:CreateArea(L.Area_EventSoundsExtras, nil, 52)
-local combineMusic			= eventSoundsExtrasArea:CreateCheckButton(L.EventMusicCombined, true, nil, "EventSoundMusicCombined")
-
-eventSoundsPanel:SetMyOwnHeight()
+local eventSoundsExtrasArea	= eventSoundsPanel:CreateArea(L.Area_EventSoundsExtras, 52)
+eventSoundsExtrasArea:CreateCheckButton(L.EventMusicCombined, true, nil, "EventSoundMusicCombined")

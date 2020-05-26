@@ -1,16 +1,27 @@
-local L		= DBM_GUI_Translations
+local L		= DBM_GUI_L
 local CL	= DBM_CORE_L
 
 local frame = DBM_GUI_OptionsFrame
 table.insert(_G["UISpecialFrames"], frame:GetName())
-frame:SetSize(800, 600)
 frame:SetFrameStrata("DIALOG")
-frame:SetPoint("CENTER")
-frame:SetMovable(true)
+if DBM.Options.GUIPoint then
+	frame:SetPoint(DBM.Options.GUIPoint, UIParent, DBM.Options.GUIPoint, DBM.Options.GUIX, DBM.Options.GUIY)
+else
+	frame:SetPoint("CENTER")
+end
+if DBM.Options.GUIWidth then
+	frame:SetSize(DBM.Options.GUIWidth, DBM.Options.GUIHeight)
+else
+	frame:SetSize(800, 600)
+end
 frame:EnableMouse(true)
+frame:SetMovable(true)
+frame:SetResizable(true)
+frame:SetClampedToScreen(true)
 frame:SetUserPlaced(true)
 frame:RegisterForDrag("LeftButton")
 frame:SetFrameLevel(frame:GetFrameLevel() + 4)
+frame:SetMinResize(800, 600)
 frame:Hide()
 frame:SetBackdrop({
 	bgFile		= "Interface\\DialogFrame\\UI-DialogBox-Background", -- 131071
@@ -32,8 +43,32 @@ frame:SetScript("OnHide", function()
 	DBM_GUI_DropDown:Hide()
 end)
 frame:SetScript("OnDragStart", frame.StartMoving)
-frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+frame:SetScript("OnDragStop", function(self)
+	frame:StopMovingOrSizing()
+	local point, _, _, x, y = self:GetPoint(1)
+	DBM.Options.GUIPoint = point
+	DBM.Options.GUIX = x
+	DBM.Options.GUIY = y
+end)
 frame.tabs = {}
+
+local frameResize = CreateFrame("Frame", nil, frame)
+frameResize:SetSize(10, 10)
+frameResize:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT")
+frameResize:EnableMouse(true)
+frameResize:SetScript("OnMouseDown", function()
+	frame:StartSizing("BOTTOMRIGHT")
+end)
+frameResize:SetScript("OnMouseUp", function()
+	frame:StopMovingOrSizing()
+	frame:UpdateMenuFrame()
+	local container = _G[frame:GetName() .. "PanelContainer"]
+	if container.displayedFrame then
+		frame:DisplayFrame(container.displayedFrame)
+	end
+	DBM.Options.GUIWidth = frame:GetWidth()
+	DBM.Options.GUIHeight = frame:GetHeight()
+end)
 
 local frameHeader = frame:CreateTexture("$parentHeader", "ARTWORK")
 frameHeader:SetPoint("TOP", 0, 12)
@@ -41,11 +76,11 @@ frameHeader:SetTexture(131080) -- "Interface\\DialogFrame\\UI-DialogBox-Header"
 frameHeader:SetSize(300, 68)
 
 local frameHeaderText = frame:CreateFontString("$parentHeaderText", "ARTWORK", "GameFontNormal")
-frameHeaderText:SetPoint("TOP", frameHeader:GetName(), 0, -14)
+frameHeaderText:SetPoint("TOP", frameHeader, 0, -14)
 frameHeaderText:SetText(L.MainFrame)
 
 local frameRevision = frame:CreateFontString("$parentRevision", "ARTWORK", "GameFontDisableSmall")
-frameRevision:SetPoint("BOTTOMLEFT", frame:GetName(), "BOTTOMLEFT", 20, 18)
+frameRevision:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 20, 18)
 if DBM.NewerVersion then
 	frameRevision:SetText(CL.DEADLY_BOSS_MODS.. " " .. DBM.DisplayVersion.. " (" .. DBM:ShowRealDate(DBM.Revision) .. "). |cffff0000Version " .. DBM.NewerVersion.. " is available.|r")
 else
@@ -53,7 +88,7 @@ else
 end
 
 local frameTranslation = frame:CreateFontString("$parentTranslation", "ARTWORK", "GameFontDisableSmall")
-frameTranslation:SetPoint("LEFT", frameRevision:GetName(), "RIGHT", 20, 0)
+frameTranslation:SetPoint("LEFT", frameRevision, "RIGHT", 20, 0)
 if L.TranslationBy then
 	frameTranslation:SetText(L.TranslationByPrefix .. L.TranslationBy)
 end
@@ -86,10 +121,10 @@ end)
 
 local frameWebsiteButton = CreateFrame("Button", "$parentWebsiteButton", frame, "UIPanelButtonTemplate")
 frameWebsiteButton:SetSize(96, 22)
-frameWebsiteButton:SetPoint("BOTTOMRIGHT", frameOkay:GetName(), "BOTTOMLEFT", -20, 0)
+frameWebsiteButton:SetPoint("BOTTOMRIGHT", frameOkay, "BOTTOMLEFT", -20, 0)
 frameWebsiteButton:SetText(L.WebsiteButton)
 frameWebsiteButton:SetScript("OnClick", function()
-	DBM:ShowUpdateReminder(nil, nil, DBM_COPY_URL_DIALOG)
+	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG)
 end)
 
 local bossMods = CreateFrame("Frame", "$parentBossMods", frame)
@@ -107,28 +142,31 @@ function OptionsList_OnLoad(self, ...)
 	end
 end
 local frameList = CreateFrame("Frame", "$parentList", frame, "OptionsFrameListTemplate")
-frameList:SetSize(205, 499)
+frameList:SetWidth(205)
 frameList:SetPoint("TOPLEFT", 22, -40)
+frameList:SetPoint("BOTTOMLEFT", frameWebsite, "BOTTOMLEFT", 0, 14)
 frameList:SetScript("OnShow", function()
 	frame:UpdateMenuFrame()
 end)
+frameList.offset = 0
 frameList:SetBackdropBorderColor(0.6, 0.6, 0.6, 1)
 frameList.buttons = {}
-for i = 1, (frameList:GetHeight() - 8) / 18 do
+for i = 1, math.floor(UIParent:GetHeight() / 18) do
 	local button = CreateFrame("Button", frameList:GetName() .. "Button" .. i, frameList)
 	button:SetHeight(18)
 	button.text = button:CreateFontString(button:GetName() .. "Text", "ARTWORK", "GameFontNormalSmall")
 	button:RegisterForClicks("LeftButtonUp")
 	button:SetScript("OnClick", function(self)
 		frame:ClearSelection()
-		frame:SelectButton(button)
+		frame.tabs[frame.tab].selection = button
+		button:LockHighlight()
 		DBM_GUI.currentViewing = self.element
 		frame:DisplayFrame(self.element)
 	end)
 	if i == 1 then
-		button:SetPoint("TOPLEFT", frameList:GetName(), 0, -8)
+		button:SetPoint("TOPLEFT", frameList, 0, -8)
 	else
-		button:SetPoint("TOPLEFT", frameList.buttons[i - 1]:GetName(), "BOTTOMLEFT")
+		button:SetPoint("TOPLEFT", frameList.buttons[i - 1], "BOTTOMLEFT")
 	end
 	local buttonHighlight = button:CreateTexture("$parentHighlight")
 	buttonHighlight:SetTexture(136809) -- "Interface\\QuestFrame\\UI-QuestLogTitleHighlight"
@@ -141,7 +179,7 @@ for i = 1, (frameList:GetHeight() - 8) / 18 do
 	local buttonToggle = CreateFrame("Button", "$parentToggle", button, "UIPanelButtonTemplate")
 	button.toggle = buttonToggle
 	buttonToggle:SetSize(14, 14)
-	buttonToggle:SetPoint("TOPLEFT", button:GetName(), "TOPLEFT", 5, -1)
+	buttonToggle:SetPoint("TOPLEFT", button, "TOPLEFT", 5, -1)
 	buttonToggle:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	buttonToggle:SetScript("OnClick", function()
 		button.element.showSub = not button.element.showSub
@@ -157,22 +195,21 @@ frameListList:SetBackdrop({
 	insets		= { left = 0, right = 0, top = 5, bottom = 5 }
 })
 frameListList:SetBackdropBorderColor(0.6, 0.6, 0.6, 0.6)
-frameListList.offset = 0
 frameListList:SetScript("OnVerticalScroll", function(self, offset)
 	local scrollbar = _G[self:GetName() .. "ScrollBar"]
 	local _, max = scrollbar:GetMinMaxValues()
 	scrollbar:SetValue(offset)
 	_G[self:GetName() .. "ScrollBarScrollUpButton"]:SetEnabled(offset ~= 0)
 	_G[self:GetName() .. "ScrollBarScrollDownButton"]:SetEnabled(scrollbar:GetValue() - max ~= 0)
-	self.offset = math.floor((offset / 18) + 0.5)
-	frame:UpdateMenuFrame(self:GetParent())
+	frameList.offset = math.floor((offset / 18) + 0.5)
+	frame:UpdateMenuFrame()
 end)
 local frameListScrollBar = _G[frameListList:GetName() .. "ScrollBar"]
 frameListScrollBar:SetMinMaxValues(0, 11)
 frameListScrollBar:SetValueStep(18)
 frameListScrollBar:SetValue(0)
 frameList:SetScript("OnMouseWheel", function(_, delta)
-	frameListScrollBar:SetValue(frameListScrollBar:GetValue() + (delta * 18))
+	frameListScrollBar:SetValue(frameListScrollBar:GetValue() - (delta * 18))
 end)
 local scrollUpButton = _G[frameListScrollBar:GetName() .. "ScrollUpButton"]
 scrollUpButton:Disable()
@@ -186,8 +223,8 @@ scrollDownButton:SetScript("OnClick", function(self)
 end)
 
 local frameContainer = CreateFrame("ScrollFrame", "$parentPanelContainer", frame)
-frameContainer:SetPoint("TOPLEFT", frameList:GetName(), "TOPRIGHT", 16, 0)
-frameContainer:SetPoint("BOTTOMLEFT", frameList:GetName(), "BOTTOMRIGHT", 16, 0)
+frameContainer:SetPoint("TOPLEFT", frameList, "TOPRIGHT", 16, 0)
+frameContainer:SetPoint("BOTTOMLEFT", frameList, "BOTTOMRIGHT", 16, 0)
 frameContainer:SetPoint("RIGHT", -22, 0)
 frameContainer:SetBackdrop({
 	edgeFile	= "Interface\\Tooltips\\UI-Tooltip-Border", -- 137057
@@ -197,7 +234,7 @@ frameContainer:SetBackdrop({
 frameContainer:SetBackdropBorderColor(0.6, 0.6, 0.6, 1)
 
 local frameContainerHeaderText = frameContainer:CreateFontString("$parentHeaderText", "BACKGROUND", "GameFontHighlightSmall")
-frameContainerHeaderText:SetPoint("BOTTOMLEFT", frame:GetName(), "TOPLEFT", 10, 1)
+frameContainerHeaderText:SetPoint("BOTTOMLEFT", frame, "TOPLEFT", 10, 1)
 
 local frameContainerFOV = CreateFrame("ScrollFrame", "$parentFOV", frameContainer, "FauxScrollFrameTemplate")
 frameContainerFOV:Hide()

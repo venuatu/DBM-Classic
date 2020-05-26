@@ -1,4 +1,4 @@
-local L = DBM_GUI_Translations
+local L = DBM_GUI_L
 
 local PanelPrototype = {}
 setmetatable(PanelPrototype, {
@@ -452,13 +452,13 @@ do
 	end
 end
 
-function PanelPrototype:CreateArea(name, width, height)
-	local area = CreateFrame("Frame", "DBM_GUI_Option_" .. self:GetNewID(), self.frame, "OptionsBoxTemplate")
+function PanelPrototype:CreateArea(name, height)
+	local area = CreateFrame("Frame", "DBM_GUI_Option_" .. self:GetNewID(), self.frame, DBM:IsAlpha() and "BackdropTemplate,OptionsBoxTemplate" or "OptionsBoxTemplate")
 	area.mytype = "area"
 	area:SetBackdropColor(0.15, 0.15, 0.15, 0.5)
 	area:SetBackdropBorderColor(0.4, 0.4, 0.4)
 	_G[area:GetName() .. "Title"]:SetText(name)
-	area:SetSize(width or self.frame:GetWidth() - 12, height or self.frame:GetHeight() - 10)
+	area:SetSize(self.frame:GetWidth() - 12, height or self.frame:GetHeight() - 10)
 	if select("#", self.frame:GetChildren()) == 1 then
 		area:SetPoint("TOPLEFT", self.frame, 5, -20)
 	else
