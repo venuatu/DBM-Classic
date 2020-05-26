@@ -5373,6 +5373,9 @@ do
 		if watchFrameRestore then
 			--ObjectiveTracker_Expand()
 			QuestWatchFrame:Show()
+			if QuestieLoader then
+				QuestieLoader:ImportModule("QuestieTracker"):Expand()
+			end
 			watchFrameRestore = false
 		end
 	end
@@ -5796,6 +5799,9 @@ do
 				if QuestWatchFrame:IsVisible() then
 					--ObjectiveTrackerFrame:Hide()
 					QuestWatchFrame:Hide()
+					if QuestieLoader then
+						QuestieLoader:ImportModule("QuestieTracker"):Collapse()
+					end
 					watchFrameRestore = true
 				end
 			end
@@ -6119,6 +6125,9 @@ do
 					--ObjectiveTrackerFrame:Show()
 					QuestWatchFrame:Show()
 					watchFrameRestore = false
+					if QuestieLoader then
+						QuestieLoader:ImportModule("QuestieTracker"):Expand()
+					end
 				end
 				if tooltipsHidden then
 					--Better or cleaner way?
