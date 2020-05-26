@@ -5546,7 +5546,7 @@ do
 				DBM:Debug("L.WORLD_BUFFS.hordeNef detected")
 			elseif msg:find(L.WORLD_BUFFS.allianceNef) then
 				local spellName = DBM:GetSpellInfo(22888)
-				SendWorldSync(self, "WBA", "Nefarian\tAlliance\t"..spellName.."\t17")
+				SendWorldSync(self, "WBA", "Nefarian\tAlliance\t"..spellName.."\t15")
 				DBM:Debug("L.WORLD_BUFFS.allianceNef detected")
 			elseif msg:find(L.WORLD_BUFFS.rendHead) then
 				local spellName = DBM:GetSpellInfo(16609)

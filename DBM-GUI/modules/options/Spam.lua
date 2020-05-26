@@ -50,7 +50,6 @@ interruptDropDown:SetPoint("TOPLEFT", FilterInterruptNote, "TOPLEFT", 0, -45)
 local spamPTArea = spamPanel:CreateArea(L.Area_PullTimer, 180)
 spamPTArea:CreateCheckButton(L.DontShowPTNoID, true, nil, "DontShowPTNoID")
 spamPTArea:CreateCheckButton(L.DontShowPT, true, nil, "DontShowPT2")
-spamPTArea:CreateCheckButton(L.DontShowPTText, true, nil, "DontShowPTText")
 local SPTCDA = spamPTArea:CreateCheckButton(L.DontPlayPTCountdown, true, nil, "DontPlayPTCountdown")
 
 local PTSlider = spamPTArea:CreateSlider(L.PT_Threshold, 1, 10, 1, 300)
