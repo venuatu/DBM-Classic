@@ -390,7 +390,7 @@ local LastInstanceMapID = -1
 local LastGroupSize = 0
 local LastInstanceType = nil
 local queuedBattlefield = {}
-local watchFrameRestore = false
+local watchFrameRestore, questieWatchRestore = false, false
 local bossHealth = {}
 local bossHealthuIdCache = {}
 local bossuIdCache = {}
@@ -5373,10 +5373,11 @@ do
 		if watchFrameRestore then
 			--ObjectiveTracker_Expand()
 			QuestWatchFrame:Show()
-			if QuestieLoader then
-				QuestieLoader:ImportModule("QuestieTracker"):Expand()
-			end
 			watchFrameRestore = false
+		end
+		if QuestieLoader and questieWatchRestore then
+			QuestieLoader:ImportModule("QuestieTracker"):Expand()
+			questieWatchRestore = false
 		end
 	end
 
@@ -5799,10 +5800,11 @@ do
 				if QuestWatchFrame:IsVisible() then
 					--ObjectiveTrackerFrame:Hide()
 					QuestWatchFrame:Hide()
-					if QuestieLoader then
-						QuestieLoader:ImportModule("QuestieTracker"):Collapse()
-					end
 					watchFrameRestore = true
+				end
+				if QuestieLoader then
+					QuestieLoader:ImportModule("QuestieTracker"):Collapse()
+					questieWatchRestore = true
 				end
 			end
 			fireEvent("DBM_Pull", mod, delay, synced, startHp)
@@ -6121,12 +6123,15 @@ do
 				self:Unschedule(checkBossHealth)
 				self:Unschedule(checkCustomBossHealth)
 				self.Arrow:Hide(true)
-				if watchFrameRestore and not InCombatLockdown() then
-					--ObjectiveTrackerFrame:Show()
-					QuestWatchFrame:Show()
-					watchFrameRestore = false
-					if QuestieLoader then
+				if not InCombatLockdown() then
+					if watchFrameRestore then
+						--ObjectiveTrackerFrame:Show()
+						QuestWatchFrame:Show()
+						watchFrameRestore = false
+					end
+					if QuestieLoader and questieWatchRestore then
 						QuestieLoader:ImportModule("QuestieTracker"):Expand()
+						questieWatchRestore = false
 					end
 				end
 				if tooltipsHidden then
