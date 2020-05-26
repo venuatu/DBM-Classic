@@ -72,8 +72,8 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.46 alpha", -- the string that is shown as version
-	ReleaseRevision = releaseDate(2020, 5, 13) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
+	DisplayVersion = "1.13.46", -- the string that is shown as version
+	ReleaseRevision = releaseDate(2020, 5, 26) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
 
@@ -4434,7 +4434,8 @@ do
 			--For every 50 players online, DBM has an increasingly lower chance of replying to a version check request. This is because only 3 people actually need to reply
 			--50 people or less, 100% chance anyone who saw request will reply
 			--100 people on, only 50% chance DBM users replies to request
-			--150 people on, only 33% chance a DBM user replies to request.
+			--150 people on, only 33% chance a DBM user replies to request
+			--1000 people online, only 5% chance a DBM user replies to request
 			local _, online = GetNumGuildMembers()
 			local chances = online / 50
 			chances = ceiling(chances)--Round up to nearest whole number, it should never be less than 1
