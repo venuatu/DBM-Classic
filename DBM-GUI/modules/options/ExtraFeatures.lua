@@ -38,7 +38,7 @@ local inviteArea			= extraFeaturesPanel:CreateArea(L.Area_Invite, 100)
 inviteArea:CreateCheckButton(L.AutoAcceptFriendInvite, true, nil, "AutoAcceptFriendInvite")
 inviteArea:CreateCheckButton(L.AutoAcceptGuildInvite, true, nil, "AutoAcceptGuildInvite")
 
-local advancedArea	= extraFeaturesPanel:CreateArea(L.Area_Advanced, nil, 100)
+local advancedArea	= extraFeaturesPanel:CreateArea(L.Area_Advanced, 100)
 advancedArea:CreateCheckButton(L.FakeBW, true, nil, "FakeBWVersion")
 advancedArea:CreateCheckButton(L.AITimer, true, nil, "AITimer")
 

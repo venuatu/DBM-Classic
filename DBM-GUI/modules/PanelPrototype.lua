@@ -13,25 +13,6 @@ function PanelPrototype:SetLastObj(obj)
 	self.lastobject = obj
 end
 
-function PanelPrototype:SetMyOwnHeight()
-	if not self.frame.mytype == "panel" then
-		return
-	end
-	local need_height = self.initheight or 20
-
-	for _, child in pairs({ self.frame:GetChildren() }) do
-		if child.mytype == "area" and child.myheight then
-			need_height = need_height + child.myheight
-		elseif child.mytype == "area" then
-			need_height = need_height + child:GetHeight() + 20
-		elseif child.myheight then
-			need_height = need_height + child.myheight
-		end
-	end
-	self.frame.actualHeight = need_height
-	self.frame:SetHeight(need_height)
-end
-
 function PanelPrototype:AutoSetDimension(additionalHeight)
 	if not self.frame.mytype == "area" then
 		return

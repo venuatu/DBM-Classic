@@ -1401,7 +1401,6 @@ do
 				v()
 			end
 		end)
-		panel:SetMyOwnHeight()
 		DBM_GUI_OptionsFrame:DisplayFrame(panel.frame, true)
 	end
 
