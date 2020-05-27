@@ -6,7 +6,7 @@ DBM.RangeCheck = {}
 --------------
 --  Locals  --
 --------------
-local L = L.L
+local L = DBM_CORE_L
 local rangeCheck = DBM.RangeCheck
 local mainFrame = CreateFrame("Frame")
 local textFrame, radarFrame, updateIcon, updateRangeFrame, initializeDropdown
