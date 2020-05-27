@@ -14,6 +14,10 @@ mod:AddNamePlateOption("NPAuraOnVulnerable", 22277)
 local vulnerabilities = {
 	-- [guid] = school
 }
+--redudnant, but fuck it, thie code in this mod is already shit
+local lastAnnounce = {
+	-- [guid] = school
+}
 
 --Constants
 local vulnMobs = {
@@ -54,18 +58,19 @@ local function update_vulnerability(self)
 	if not info then return end
 	local name = L[info[1]] or info[1]
 
-	warnVuln.icon = info[3]
-	if self:AntiSpam(3, name) then
+	if not lastAnnounce[target] or lastAnnounce[target] ~= name then
+		warnVuln.icon = info[3]
 		warnVuln:Show(name)
-	end
-	if self.Options.NPAuraOnVulnerable then
-		DBM.Nameplate:Hide(true, target, 22277, 135924)
-		DBM.Nameplate:Hide(true, target, 22277, 135808)
-		DBM.Nameplate:Hide(true, target, 22277, 136006)
-		DBM.Nameplate:Hide(true, target, 22277, 135846)
-		DBM.Nameplate:Hide(true, target, 22277, 136197)
-		DBM.Nameplate:Hide(true, target, 22277, 136096)
-		DBM.Nameplate:Show(true, target, 22277, tonumber(info[3]))
+		lastAnnounce[target] = name
+		if self.Options.NPAuraOnVulnerable then
+			DBM.Nameplate:Hide(true, target, 22277, 135924)
+			DBM.Nameplate:Hide(true, target, 22277, 135808)
+			DBM.Nameplate:Hide(true, target, 22277, 136006)
+			DBM.Nameplate:Hide(true, target, 22277, 135846)
+			DBM.Nameplate:Hide(true, target, 22277, 136197)
+			DBM.Nameplate:Hide(true, target, 22277, 136096)
+			DBM.Nameplate:Show(true, target, 22277, tonumber(info[3]))
+		end
 	end
 end
 

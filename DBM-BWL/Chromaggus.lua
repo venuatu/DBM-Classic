@@ -98,7 +98,7 @@ end
 -- in theory this should only alert on a new vulnerability on your target or when you change target
 local function update_vulnerability(self)
 	local target = UnitGUID("target")
-	local spellSchool	= vulnerabilities[target]
+	local spellSchool = vulnerabilities[target]
 	local cid = self:GetCIDFromGUID(target)
 	if not spellSchool or cid ~= 14020 then
 		return
@@ -111,28 +111,27 @@ local function update_vulnerability(self)
 	timerVuln:SetColor(info[2])
 	timerVuln:UpdateIcon(info[3])
 	timerVuln:UpdateName(name)
-	warnVuln.icon = info[3]
-	if self:AntiSpam(5, name) then
+	if not lastVulnName or lastVulnName ~= name then
+		warnVuln.icon = info[3]
 		warnVuln:Show(name)
-	end
-	lastVulnName = name
-
-	if self.Options.InfoFrame then
-		if not DBM.InfoFrame:IsShown() then
-			DBM.InfoFrame:SetHeader(L.Vuln)
-			DBM.InfoFrame:Show(1, "function", updateInfoFrame, false, false, true)
-		else
-			DBM.InfoFrame:Update()
+		lastVulnName = name
+		if self.Options.InfoFrame then
+			if not DBM.InfoFrame:IsShown() then
+				DBM.InfoFrame:SetHeader(L.Vuln)
+				DBM.InfoFrame:Show(1, "function", updateInfoFrame, false, false, true)
+			else
+				DBM.InfoFrame:Update()
+			end
 		end
-	end
-	if self.Options.NPAuraOnVulnerable then
-		DBM.Nameplate:Hide(true, target, 22277, 135924)
-		DBM.Nameplate:Hide(true, target, 22277, 135808)
-		DBM.Nameplate:Hide(true, target, 22277, 136006)
-		DBM.Nameplate:Hide(true, target, 22277, 135846)
-		DBM.Nameplate:Hide(true, target, 22277, 136197)
-		DBM.Nameplate:Hide(true, target, 22277, 136096)
-		DBM.Nameplate:Show(true, target, 22277, tonumber(info[3]))
+		if self.Options.NPAuraOnVulnerable then
+			DBM.Nameplate:Hide(true, target, 22277, 135924)
+			DBM.Nameplate:Hide(true, target, 22277, 135808)
+			DBM.Nameplate:Hide(true, target, 22277, 136006)
+			DBM.Nameplate:Hide(true, target, 22277, 135846)
+			DBM.Nameplate:Hide(true, target, 22277, 136197)
+			DBM.Nameplate:Hide(true, target, 22277, 136096)
+			DBM.Nameplate:Show(true, target, 22277, tonumber(info[3]))
+		end
 	end
 	self:UnregisterShortTermEvents()--Unregister SPELL_DAMAGE until next shimmer emote
 end
