@@ -129,7 +129,4 @@ end
 
 function mod:PLAYER_TARGET_CHANGED()
 	check_target_vulns(self)
-	if self:AntiSpam(3, 1) then--if player is a rapid target tabber (such as dotter), don't spam them
-		update_vulnerability(self)
-	end
 end
