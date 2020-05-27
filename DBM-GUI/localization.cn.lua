@@ -154,6 +154,19 @@ L.Bar7ForceLarge			= "总是使用大型计时条"
 L.Bar7CustomInline			= "使用自定义 '!' 图标"
 L.Bar7Footer				= "(测试用计时条)"
 
+--Dropdown Options
+L.CBTGeneric				= "通用"
+L.CBTAdd					= "ADD"
+L.CBTAOE					= "AOE"
+L.CBTTargeted				= "目标"
+L.CBTInterrupt				= "打断"
+L.CBTRole					= "角色"
+L.CBTPhase					= "阶段"
+L.CBTImportant				= "重要 (使用者)"
+L.CVoiceOne					= "倒数 1"
+L.CVoiceTwo					= "倒数 2"
+L.CVoiceThree				= "倒数 3"
+
 -- Tab: Timers
 L.AreaTitle_BarColors		= "按类型分类着色"
 L.AreaTitle_BarSetup 		= "计时条综合设置"
