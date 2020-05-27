@@ -72,7 +72,7 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.46", -- the string that is shown as version
+	DisplayVersion = "1.13.47 alpha", -- the string that is shown as version
 	ReleaseRevision = releaseDate(2020, 5, 27) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
@@ -4439,8 +4439,8 @@ do
 			--150 people on, only 33% chance a DBM user replies to request
 			--1000 people online, only 5% chance a DBM user replies to request
 			local _, online = GetNumGuildMembers()
-			local chances = online / 50
-			chances = ceiling(chances)--Round up to nearest whole number, it should never be less than 1
+			local chances = (online or 1) / 50
+			if chances < 1 then chances = 1 end
 			if mrandom(1, chances) == 1 then
 				DBM:Schedule(5, SendVersion, true)--Send version if 5 seconds have past since last "Hi" sync
 			end
