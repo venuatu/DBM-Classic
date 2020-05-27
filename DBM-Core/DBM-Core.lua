@@ -4657,7 +4657,7 @@ do
 				local buffName = DBM:GetSpellInfo(tonumber(spellId) or 0) or L.UNKNOWN
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				if DBM.Options.DebugMode or (time ~= 7 and time ~= 12) then
+				if DBM.Options.DebugMode or (time ~= 7 and time ~= 27) then
 					local timer = tonumber(time)
 					if timer then
 						DBM.Bars:CreateBar(timer, buffName, 136106)
@@ -4702,7 +4702,7 @@ do
 				local buffName = DBM:GetSpellInfo(tonumber(spellId) or 0) or L.UNKNOWN
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				if DBM.Options.DebugMode or (time ~= 7 and time ~= 12) then
+				if DBM.Options.DebugMode or (time ~= 7 and time ~= 27) then
 					local timer = tonumber(time)
 					if timer then
 						DBM.Bars:CreateBar(timer, buffName, 136106)
@@ -5542,13 +5542,13 @@ do
 				SendWorldSync(self, "WBA", "Onyxia\tHorde\t22888\t15\t2")
 				DBM:Debug("L.WORLD_BUFFS.hordeOny detected")
 			elseif msg:find(L.WORLD_BUFFS.allianceOny) then
-				SendWorldSync(self, "WBA", "Onyxia\tAlliance\tt22888\t14\t2")
+				SendWorldSync(self, "WBA", "Onyxia\tAlliance\tt22888\t15\t2")
 				DBM:Debug("L.WORLD_BUFFS.allianceOny detected")
 			elseif msg:find(L.WORLD_BUFFS.hordeNef) then
-				SendWorldSync(self, "WBA", "Nefarian\tHorde\tt22888\t17\t2")
+				SendWorldSync(self, "WBA", "Nefarian\tHorde\tt22888\t16\t2")
 				DBM:Debug("L.WORLD_BUFFS.hordeNef detected")
 			elseif msg:find(L.WORLD_BUFFS.allianceNef) then
-				SendWorldSync(self, "WBA", "Nefarian\tAlliance\tt22888\t15\t2")
+				SendWorldSync(self, "WBA", "Nefarian\tAlliance\tt22888\t16\t2")
 				DBM:Debug("L.WORLD_BUFFS.allianceNef detected")
 			elseif msg:find(L.WORLD_BUFFS.rendHead) then
 				SendWorldSync(self, "WBA", "rendBlackhand\tHorde\t16609\t7\t2")
@@ -5591,7 +5591,7 @@ do
 	function DBM:CHAT_MSG_MONSTER_SAY(msg)
 		if not IsInInstance() then
 			if msg:find(L.WORLD_BUFFS.zgHeart) then
-				SendWorldSync(self, "WBA", "Zandalar\tBoth\t24425\t12\t2")
+				SendWorldSync(self, "WBA", "Zandalar\tBoth\t24425\t27\t2")
 			end
 		end
 		return onMonsterMessage(self, "say", msg)
