@@ -583,7 +583,7 @@ L.DUR_FOOTER					= "未反馈此次检测的团员:%s"
 
 --LDB
 L.LDB_TOOLTIP_HELP1	= "左键 打开DBM"
-L.LDB_TOOLTIP_HELP2	= "右键 打开设置"
+L.LDB_TOOLTIP_HELP2	= "右键 打开静音"
 
 L.LDB_LOAD_MODS		= "载入首领模块"
 
