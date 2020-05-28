@@ -72,8 +72,8 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.47 alpha", -- the string that is shown as version
-	ReleaseRevision = releaseDate(2020, 5, 27) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
+	DisplayVersion = "1.13.47", -- the string that is shown as version
+	ReleaseRevision = releaseDate(2020, 5, 27, 12) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
 
@@ -444,6 +444,7 @@ local bannedMods = { -- a list of "banned" (meaning they are replaced by another
 	"DBM-Suramar",--Renamed to DBM-Nighthold
 	"DBM-KulTiras",--Merged to DBM-Azeroth-BfA
 	"DBM-Zandalar",--Merged to DBM-Azeroth-BfA
+	"DBM-SpellTimers",
 }
 
 
@@ -1353,6 +1354,11 @@ do
 			if GetAddOnEnableState(playerName, "DBM-Profiles") >= 1 then
 				self:Disable(true)
 				C_TimerAfter(15, function() AddMsg(self, L.OUTDATEDPROFILES) end)
+				return
+			end
+			if GetAddOnEnableState(playerName, "DBM-SpellTimers") >= 1 then
+				self:Disable(true)
+				C_TimerAfter(15, function() AddMsg(self, "DBM-SpellTimers is not compatible with Classic WoW, it must be disabled/removed") end)
 				return
 			end
 			if GetAddOnEnableState(playerName, "DPMCore") >= 1 then
