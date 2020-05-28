@@ -33,7 +33,6 @@
 ## X-DBM-Mod-SubCategoriesID-zhTW: 48,230,229|下層,229|上層,36,429,90,349,389,129,47,189,289,33,34,329,109,70,43,209
 ## X-DBM-Mod-SubCategoriesID-zhCN: 48,230,229|下层,229|上层,36,429,90,349,389,129,47,189,289,33,34,329,109,70,43,209
 
-
 ## X-DBM-Mod-Name: Dungeons (Classic)
 ## X-DBM-Mod-Name-deDE: Gruppe (Classic)
 ## X-DBM-Mod-Name-esES: Mazmorras (Clásico)
