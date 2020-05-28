@@ -2673,7 +2673,6 @@ do
 			DBM:AddMsg(L.UPDATEREMINDER_DISABLE)
 			return
 		end
-		local firstLoad = false
 		if not IsAddOnLoaded("DBM-GUI") then
 			local enabled = GetAddOnEnableState(playerName, "DBM-GUI")
 			if enabled == 0 then
@@ -2688,17 +2687,13 @@ do
 				end
 				return false
 			end
+			tsort(callOnLoad, function(v1, v2) return v1[2] < v2[2] end)
+			for i, v in ipairs(callOnLoad) do v[1]() end
 			if not InCombatLockdown() and not UnitAffectingCombat("player") and not IsFalling() then--We loaded in combat but still need to avoid garbage collect in combat
 				collectgarbage("collect")
 			end
-			firstLoad = true
 		end
-		DBM_GUI:ShowHide()
-		if firstLoad then
-			firstLoad = false
-			tsort(callOnLoad, function(v1, v2) return v1[2] < v2[2] end)
-			for i, v in ipairs(callOnLoad) do v[1]() end
-		end
+		return DBM_GUI:ShowHide()
 	end
 
 	function DBM:RegisterOnGuiLoadCallback(f, sort)
