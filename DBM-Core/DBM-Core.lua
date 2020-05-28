@@ -444,7 +444,6 @@ local bannedMods = { -- a list of "banned" (meaning they are replaced by another
 	"DBM-Suramar",--Renamed to DBM-Nighthold
 	"DBM-KulTiras",--Merged to DBM-Azeroth-BfA
 	"DBM-Zandalar",--Merged to DBM-Azeroth-BfA
-	"DBM-SpellTimers",
 }
 
 
@@ -1357,9 +1356,13 @@ do
 				return
 			end
 			if GetAddOnEnableState(playerName, "DBM-SpellTimers") >= 1 then
-				self:Disable(true)
-				C_TimerAfter(15, function() AddMsg(self, "DBM-SpellTimers is not compatible with Classic WoW, it must be disabled/removed") end)
-				return
+				local version = GetAddOnMetadata("DBM-SpellTimers", "Version") or "r0"
+				version = tonumber(string.sub(version, 2))
+				if version < 121 then
+					self:Disable(true)
+					C_TimerAfter(15, function() AddMsg(self, L.OUTDATEDSPELLTIMERS) end)
+					return
+				end
 			end
 			if GetAddOnEnableState(playerName, "DPMCore") >= 1 then
 				self:Disable(true)
@@ -2651,8 +2654,12 @@ do
 			return
 		end
 		if GetAddOnEnableState(playerName, "DBM-SpellTimers") >= 1 then
-			self:AddMsg("DBM-SpellTimers is not compatible with Classic WoW, it must be disabled/removed")
-			return
+			local version = GetAddOnMetadata("DBM-SpellTimers", "Version") or "r0"
+			version = tonumber(string.sub(version, 2))
+			if version < 121 then
+				self:AddMsg(L.OUTDATEDSPELLTIMERS)
+				return
+			end
 		end
 		if GetAddOnEnableState(playerName, "DPMCore") >= 1 then
 			self:AddMsg(L.DPMCORE)
@@ -4235,14 +4242,12 @@ do
 		--Cancel any existing pull timers before creating new ones, we don't want double countdowns or mismatching blizz countdown text (cause you can't call another one if one is in progress)
 		if not DBM.Options.DontShowPT2 then--and DBM.Bars:GetBar(L.TIMER_PULL)
 			dummyMod.timer:Stop()
-			--fireEvent("DBM_TimerStop", "pull")
 		end
 		dummyMod.text:Cancel()
 		if timer == 0 then return end--"/dbm pull 0" will strictly be used to cancel the pull timer (which is why we let above part of code run but not below)
 		DBM:FlashClientIcon()
 		if not DBM.Options.DontShowPT2 then
 			dummyMod.timer:Start(timer, L.TIMER_PULL)
-			--fireEvent("DBM_TimerStart", "pull", L.TIMER_PULL, timer, "132349", "utilitytimer", nil, 0)
 		end
 		if not DBM.Options.DontShowPTText then
 			if target then
