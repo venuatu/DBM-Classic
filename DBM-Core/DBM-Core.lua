@@ -72,7 +72,7 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.47", -- the string that is shown as version
+	DisplayVersion = "1.13.48 alpha", -- the string that is shown as version
 	ReleaseRevision = releaseDate(2020, 5, 27, 12) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
@@ -2648,6 +2648,10 @@ do
 		end
 		if GetAddOnEnableState(playerName, "DBM-Profiles") >= 1 then
 			self:AddMsg(L.OUTDATEDPROFILES)
+			return
+		end
+		if GetAddOnEnableState(playerName, "DBM-SpellTimers") >= 1 then
+			self:AddMsg("DBM-SpellTimers is not compatible with Classic WoW, it must be disabled/removed")
 			return
 		end
 		if GetAddOnEnableState(playerName, "DPMCore") >= 1 then
