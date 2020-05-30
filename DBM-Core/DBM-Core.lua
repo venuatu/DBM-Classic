@@ -646,7 +646,12 @@ local function SendWorldSync(self, prefix, msg, noBNet)
 		SendAddonMessage("D4C", prefix.."\t"..msg, "PARTY")
 	end
 	if IsInGuild() then
-		SendAddonMessage("D4C", prefix.."\t"..msg, "GUILD")--Even guild syncs send realm so we can keep antispam the same across realid as well.
+		local _, online = GetNumGuildMembers()
+		local chances = (online or 1) / 50
+		if chances < 1 then chances = 1 end
+		if mrandom(1, chances) == 1 then
+			SendAddonMessage("D4C", prefix.."\t"..msg, "GUILD")--Even guild syncs send realm so we can keep antispam the same across realid as well.
+		end
 	end
 	if self.Options.EnableWBSharing and not noBNet then
 		local _, numBNetOnline = BNGetNumFriends()
