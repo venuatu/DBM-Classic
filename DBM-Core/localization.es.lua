@@ -604,5 +604,5 @@ L.WORLD_BUFFS.hordeOny		= "People of the Horde, citizens of Orgrimmar, come, gat
 L.WORLD_BUFFS.allianceOny	= "Ciudadanos y aliados de Ventormenta, en el día de hoy, hemos hecho historia."
 L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"
 L.WORLD_BUFFS.allianceNef	= "¡Ciudadanos de la Alianza, el Señor de Roca Negra está muerto!"
-L.WORLD_BUFFS.zgHeart		= "Now, only one step remains to rid us of the Soulflayer's threat"
+L.WORLD_BUFFS.zgHeart		= "Ahora, solo un paso más para poder librarnos de la amenaza del Cazador de Almas"
 L.WORLD_BUFFS.rendHead		= "¡El falso Jefe de Guerra Rend Puño Negro ha caído!"
