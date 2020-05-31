@@ -458,11 +458,6 @@ local LD
 if LibStub("LibDurability", true) then
 	LD = LibStub("LibDurability")
 end
---While it's old original lib longer hard embed, if lib exists might as well still use it as a fallback
-local ThreatLib
-if LibStub("ThreatClassic-1.0", true) and WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-	ThreatLib = LibStub("ThreatClassic-1.0")
-end
 local ThreatLib2
 if LibStub("LibThreatClassic2", true) and WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
 	ThreatLib2 = LibStub("LibThreatClassic2")
@@ -491,11 +486,6 @@ local GetSpellInfo, GetDungeonInfo, GetSpellTexture, GetSpellCooldown = GetSpell
 local GetInstanceInfo = GetInstanceInfo
 local UnitDetailedThreatSituation = ThreatLib2 and function(unit, mob)
 	return ThreatLib2:UnitDetailedThreatSituation(unit, mob)
-end or function(unit, mob)
-	return false, 0--If threatlib failure (shouldn't happen, but if user screws with it, UnitDetailedThreatSituation will just fail silently with not tanking
-end
-local UnitDetailedThreatSituationOld = ThreatLib and function(unit, mob)
-	return ThreatLib:UnitDetailedThreatSituation(unit, mob)
 end or function(unit, mob)
 	return false, 0--If threatlib failure (shouldn't happen, but if user screws with it, UnitDetailedThreatSituation will just fail silently with not tanking
 end
@@ -4052,8 +4042,7 @@ do
 			self:Debug("targetMonitor: "..modId..", "..uId..", "..returnFunc, 2)
 			if not targetMonitor[uId].allowTank then
 				local tanking, status = UnitDetailedThreatSituation(uId, uId.."target")--Tanking may return 0 if npc is temporarily looking at an NPC (IE fracture) but status will still be 3 on true tank
-				local oldtanking, oldstatus = UnitDetailedThreatSituationOld(uId, uId.."target")--TODO, remove when newer threadlib adoption has increased enough
-				if tanking or (status == 3) or oldtanking or (oldstatus == 3)  then
+				if tanking or (status == 3) then
 					self:Debug("targetMonitor ending for unit without 'allowTank', ignoring target", 2)
 					return
 				end
@@ -7731,8 +7720,7 @@ do
 				for i = 0, GetNumGroupMembers() do
 					local id = (i == 0 and "target") or unitId..i
 					local tanking, status = UnitDetailedThreatSituation(id, mobuId)--Tanking may return 0 if npc is temporarily looking at an NPC (IE fracture) but status will still be 3 on true tank
-					local oldtanking, oldstatus = UnitDetailedThreatSituationOld(id, mobuId)--TODO, remove when newer threadlib adoption has increased enough
-					if (tanking or (status == 3) or oldtanking or (oldstatus == 3)) then uId = id end--Found highest threat target, make them uId
+					if tanking or (status == 3) then uId = id end--Found highest threat target, make them uId
 					if uId then break end
 				end
 				--Did not get anything useful from threat, so use who the boss was looking at, at time of cast (ie fallbackuId)
@@ -7795,8 +7783,7 @@ do
 				for i = 0, GetNumGroupMembers() do
 					local id = (i == 0 and "target") or unitId..i
 					local tanking, status = UnitDetailedThreatSituation(id, mobuId)--Tanking may return 0 if npc is temporarily looking at an NPC (IE fracture) but status will still be 3 on true tank
-					local oldtanking, oldstatus = UnitDetailedThreatSituationOld(id, mobuId)
-					if (tanking or (status == 3) or oldtanking or (oldstatus == 3)) then uId = id end--Found highest threat target, make them uId
+					if tanking or (status == 3) then uId = id end--Found highest threat target, make them uId
 					if uId then break end
 				end
 				--Did not get anything useful from threat, so use who the boss was looking at, at time of cast (ie fallbackuId)
@@ -8240,11 +8227,6 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID)
 		if tanking or (status == 3) then
 			return true
 		end
-		--Check ThreatLib second (the old non embedded one, if it exists)
-		local oldtanking, oldstatus = UnitDetailedThreatSituationOld(unit, boss)
-		if oldtanking or (oldstatus == 3) then
-			return true
-		end
 		--Non threatlib fallback
 		if UnitExists(boss) then
 			local _, targetuid = self:GetBossTarget(UnitGUID(boss), true)
@@ -8259,11 +8241,6 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID)
 			--Check ThreatLib2 first
 			local tanking, status = UnitDetailedThreatSituation(unit, unitID)
 			if tanking or (status == 3) then
-				return true
-			end
-			--Check ThreatLib second (the old non embedded one, if it exists)
-			local oldtanking, oldstatus = UnitDetailedThreatSituationOld(unit, unitID)
-			if oldtanking or (oldstatus == 3) then
 				return true
 			end
 			--Non threatlib fallback
