@@ -3838,14 +3838,18 @@ do
 			local path = "MISSING"
 			if self.Options.EventSoundDungeonBGM == "Random" then
 				local usedTable = self.Options.EventSoundMusicCombined and DBM.Music or DBM.DungeonMusic
-				local random = fastrandom(3, #usedTable)
-				path = usedTable[random].value
+				if #usedTable >= 3 then
+					local random = fastrandom(3, #usedTable)
+					path = usedTable[random].value
+				end
 			else
 				path = self.Options.EventSoundDungeonBGM
 			end
-			PlayMusic(path)
-			self.Options.musicPlaying = true
-			DBM:Debug("Starting Dungeon music with file: "..path)
+			if path ~= "MISSING" then
+				PlayMusic(path)
+				self.Options.musicPlaying = true
+				DBM:Debug("Starting Dungeon music with file: "..path)
+			end
 		end
 	end
 	local function SecondaryLoadCheck(self)
@@ -5917,14 +5921,18 @@ do
 					local path = "MISSING"
 					if self.Options.EventSoundMusic == "Random" then
 						local usedTable = self.Options.EventSoundMusicCombined and DBM.Music or DBM.BattleMusic
-						local random = fastrandom(3, #usedTable)
-						path = usedTable[random].value
+						if #usedTable >= 3 then
+							local random = fastrandom(3, #usedTable)
+							path = usedTable[random].value
+						end
 					else
 						path = self.Options.EventSoundMusic
 					end
-					PlayMusic(path)
-					self.Options.musicPlaying = true
-					DBM:Debug("Starting combat music with file: "..path)
+					if path ~= "MISSING" then
+						PlayMusic(path)
+						self.Options.musicPlaying = true
+						DBM:Debug("Starting combat music with file: "..path)
+					end
 				end
 			else
 				self:AddMsg(L.COMBAT_STATE_RECOVERED:format(difficultyText..name, strFromTime(delay)))
@@ -6035,8 +6043,10 @@ do
 					end
 					if self.Options.EventSoundWipe and self.Options.EventSoundWipe ~= "None" and self.Options.EventSoundWipe ~= "" then
 						if self.Options.EventSoundWipe == "Random" then
-							local random = fastrandom(3, #DBM.Defeat)
-							self:PlaySoundFile(DBM.Defeat[random].value)
+							if #self.Defeat >= 3 then
+								local random = fastrandom(3, #self.Defeat)
+								self:PlaySoundFile(DBM.Defeat[random].value)
+							end
 						else
 							self:PlaySoundFile(self.Options.EventSoundWipe, nil, true)
 						end
@@ -6113,8 +6123,10 @@ do
 				end
 				if self.Options.EventSoundVictory2 and self.Options.EventSoundVictory2 ~= "None" and self.Options.EventSoundVictory2 ~= "" then
 					if self.Options.EventSoundVictory2 == "Random" then
-						local random = fastrandom(3, #DBM.Victory)
-						self:PlaySoundFile(DBM.Victory[random].value)
+						if #self.Victory >= 3 then
+							local random = fastrandom(3, #self.Victory)
+							self:PlaySoundFile(self.Victory[random].value)
+						end
 					else
 						self:PlaySoundFile(self.Options.EventSoundVictory2, nil, true)
 					end
