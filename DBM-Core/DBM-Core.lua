@@ -12,7 +12,7 @@
 -- The localizations are written by:
 --    * enGB/enUS: Omegal				Twitter @MysticalOS
 --    * deDE: Ebmor						http://www.deadlybossmods.com/forum/memberlist.php?mode=viewprofile&u=79
---    * ruRU: TOM_RUS					http://www.curseforge.com/profiles/TOM_RUS/
+--    * ruRU: TOM_RUS					http://curseforge.com/profiles/TOM_RUS/
 --    * zhTW: Whyv						ultrashining@gmail.com
 --    * koKR: Elnarfim					---
 --    * zhCN: Mini Dragon				projecteurs@gmail.com

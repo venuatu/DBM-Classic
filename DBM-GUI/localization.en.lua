@@ -76,6 +76,8 @@ L.ModelSoundLong			= TOAST_DURATION_LONG
 
 L.ResizeOptions			 	= "Resize Options"
 L.Button_ResetWindowSize	= "Reset GUI window size"
+L.Editbox_WindowWidth		= "GUI window width"
+L.Editbox_WindowHeight		= "GUI window height"
 
 -- Tab: Raidwarning
 L.Tab_RaidWarning 			= "Raid Warnings"
@@ -241,7 +243,7 @@ L.SWFAll					= "when special warnings use any sound"
 L.SpecWarn_AlwaysVoice		= "Always play all spoken alerts (Even if Special Warning disabled. Useful for Raid Leader, not recommended otherwise)"
 --TODO, maybe add URLS right to GUI panel on where to acquire 3rd party voice packs?
 L.Area_GetVEM				= "Get VEM Voice Pack"
-L.VEMDownload				= "|cFF73C2FBhttps://www.curseforge.com/wow/addons/dbm-voicepack-vem|r"
+L.VEMDownload				= "|cFF73C2FBhttps://curseforge.com/wow/addons/dbm-voicepack-vem|r"
 L.Area_BrowseOtherVP		= "Browse other voice packs on curse"
 L.BrowseOtherVPs			= "|cFF73C2FBhttps://curseforge.com/wow/addons/search?search=dbm+voice|r"
 L.Area_BrowseOtherCT		= "Browse countdown packs on curse"
@@ -291,8 +293,8 @@ L.Area_SpecFilter			= "Role Filter Options"
 L.FilterTankSpec			= "Filter warnings designated for Tank role when not tank spec. (Note: Disabling this is not recommended for most users as 'taunt' warnings are now all on by default.)"
 L.FilterInterruptsHeader	= "Filter warnings for interruptable spells based on behavior preference."
 L.FilterInterrupts			= "If caster is not current target (Always)."
-L.FilterInterrupts2			= "if caster is not current target (Always) or interrupt on CD (Boss Only)"
-L.FilterInterrupts3			= "if caster is not current target (Always) or interrupt on CD (Boss & Trash)"
+L.FilterInterrupts2			= "If caster is not current target (Always) or interrupt on CD (Boss Only)"
+L.FilterInterrupts3			= "If caster is not current target (Always) or interrupt on CD (Boss & Trash)"
 L.FilterInterrupts4			= "Always filter interrupt warnings (you don't want to see them period)"
 L.FilterInterruptNoteName	= "Filter warnings for interruptable spells (with count) if warning does not contain your name in the custom note"
 L.FilterDispels				= "Filter warnings for dispelable spells if your dispel is on cooldown"
