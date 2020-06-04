@@ -147,9 +147,14 @@ function DBM_GUI_OptionsFrame:DisplayFrame(frame)
 				for _, child2 in pairs({ child:GetChildren() }) do
 					if child2.mytype == "checkbutton" then
 						local buttonText = _G[child2:GetName() .. "Text"]
-						buttonText:SetSize(child:GetWidth() - buttonText.widthPad - 57, 1) -- Classic fix: SimpleHTML needs to reset its height to 1
+						buttonText:SetWidth(child:GetWidth() - buttonText.widthPad - 57)
 						buttonText:SetText(buttonText.text)
 						if not child2.customPoint then
+							-- Classic fix: SimpleHTML needs its height reset
+							local oldPoint1, oldPoint2, oldPoint3, oldPoint4, oldPoint5 = buttonText:GetPoint()
+							buttonText:SetHeight(0)
+							buttonText:SetPoint(oldPoint1, oldPoint2, oldPoint3, oldPoint4, oldPoint5)
+							-- End classic fix
 							if lastObject and lastObject.myheight then
 								child2:SetPointOld("TOPLEFT", lastObject, "TOPLEFT", 0, -lastObject.myheight)
 							else
