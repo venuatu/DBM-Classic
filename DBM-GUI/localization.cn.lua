@@ -171,6 +171,7 @@ L.CVoiceThree				= "倒数 3"
 -- Tab: Timers
 L.AreaTitle_BarColors		= "按类型分类着色"
 L.AreaTitle_BarSetup 		= "计时条综合设置"
+L.AreaTitle_Behavior		= "计时条特性设置" --
 L.AreaTitle_BarSetupSmall 	= "小型计时条设置"
 L.AreaTitle_BarSetupHuge 	= "大型计时条设置"
 L.EnableHugeBar 			= "开启大型计时条（2号计时条）"
@@ -259,19 +260,25 @@ L.EventFilterMythicMusic	= "不要在M/M+难度下播放战斗音乐"
 
 -- Tab: Global Filter
 L.Panel_SpamFilter			= "DBM全局过滤"
-L.Area_SpamFilter_Outgoing	= "DBM全局过滤设置"
+L.Area_SpamFilter_Anounces	= "警报过滤选项"
 L.SpamBlockNoShowAnnounce	= "不显示警报或播放警报音效"
 L.SpamBlockNoShowTgtAnnounce= "不显示针对目标类型的警报或播放警报音效(上面那个优先级比这个高)"
-L.SpamBlockNoSpecWarn		= "不要显示特殊警报和特殊警报音效"
-L.SpamBlockNoSpecWarnText	= "不要显示特殊警报，但允许语音包(上面那个优先级比这个高)"
+L.SpamBlockNoSpecWarn		= "不显示特殊警报和特殊警报音效"
+L.SpamBlockNoSpecWarnText	= "不显示特殊警报，但允许语音包(上面那个优先级比这个高)"
+L.SpamBlockNoSpecWarnFlash	= "不显示特殊警报屏幕闪烁"
+L.SpamBlockNoSpecWarnSound	= "不播放特殊团队警报的声音（如果在“语音警报”面板中启用了语音包，则仍然允许语音包）"
+
+L.Area_SpamFilter_Timers	= "计时器过滤选项"
 L.SpamBlockNoShowTimers		= "不显示DBM原装计时条"
 L.SpamBlockNoShowUTimers	= "不显示用户自定生成的计时条"
+L.SpamBlockNoCountdowns		= "不要播放倒计时语音"
+
+L.Area_SpamFilter_Misc		= "全局过滤设置"
 L.SpamBlockNoSetIcon		= "不在目标上设定标记"
 L.SpamBlockNoRangeFrame		= "不显示距离雷达框体"
 L.SpamBlockNoInfoFrame		= "不显示信息框体"
 L.SpamBlockNoHudMap			= "不显示HudMap"
 L.SpamBlockNoNameplate		= "不要显示姓名面板高亮"
-L.SpamBlockNoCountdowns		= "不要播放倒计时语音"
 L.SpamBlockNoYells			= "不要再战斗中大喊"
 L.SpamBlockNoNoteSync		= "不接受别人分享的自定义注记"
 L.SpamBlockNoReminders		= "不显示任何登陆, 过期信息(不推荐)"
@@ -281,7 +288,7 @@ L.SpamBlockNoIconRestore	= "当战斗结束后不保存团队标记状态并重�
 L.SpamBlockNoRangeRestore	= "当Boss模块隐藏距离窗体时不重置窗体位置"
 
 -- Tab: Spam Filter
-L.Area_SpamFilter			= "信息过滤设置"
+L.Area_SpamFilter			= "信息过滤选项"  --
 L.DontShowFarWarnings		= "不为过远的事件显示计时条/警报"
 L.StripServerName			= "警告和计时器中不显示服务器名"
 
@@ -291,6 +298,7 @@ L.FilterInterruptsHeader	= "基于行为偏好的打断技能提示过滤"
 L.FilterInterrupts			= "如果被打断对象不是当前目标/焦点(总是)"
 L.FilterInterrupts2			= "如果被打断对象不是当前目标/焦点(总是)或者打断技能正在冷却(限Boss)"
 L.FilterInterrupts3			= "如果被打断对象不是当前目标/焦点(总是)或者打断技能正在冷却(Boss和小怪)"
+L.FilterInterrupts4			= "始终过滤打断警报 (你不想看到他们的时候)"  --
 L.FilterInterruptNoteName	= "当自定义注记内没有包含你的名字的时候，过滤掉打断提示 (带计数)"
 L.FilterDispels				= "当驱散技能在冷却时, 过滤掉驱散提示"
 L.FilterTrashWarnings		= "当进入普通或英雄副本时，过滤掉所有小怪警报"
@@ -377,4 +385,4 @@ L.SelectModProfileCopyNote	= "只复制自定义注记："
 L.SelectModProfileDelete	= "删除Boss模块设置："
 
 -- Misc
-L.FontHeight	= 20
+L.FontHeight	= 16
