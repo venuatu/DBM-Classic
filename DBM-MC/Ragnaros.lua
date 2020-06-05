@@ -71,6 +71,7 @@ function mod:OnCombatEnd(wipe)
 				--Just show this clear time, and current record time (that you did NOT beat)
 				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("MC", DBM:strFromTime(thisTime), DBM:strFromTime(firstBossMod.Options.FastestClear)))
 			end
+			firstBossMod.vb.firstEngageTime = nil
 		end
 	end
 end
