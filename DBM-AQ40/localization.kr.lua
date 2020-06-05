@@ -115,7 +115,7 @@ L:SetOptionLocalization{
 --	WarnGiantEyeTentacle	= "거대한 눈 달린 촉수 알림 보기",
 --	WarnGiantClawTentacle	= "거대한 발톱 촉수 알림 보기",
 	WarnWeakened			= "크툰 약화 알림 보기",
-	SpecWarnWeakened		= "크툰 약화 특수 경고 보기",
+	SpecWarnWeakened		= "크툰 약화 특별 경고 보기",
 	TimerEyeTentacle		= "다음 눈 달린 촉수 바 보기",
 --	TimerGiantEyeTentacle	= "다음 거대한 눈 달린 촉수 바 보기",
 --	TimerClawTentacle		= "다음 발톱 촉수 바 보기",
