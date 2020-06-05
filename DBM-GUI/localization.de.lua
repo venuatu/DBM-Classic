@@ -225,10 +225,8 @@ L.EventFilterMythicMusic	= "Spiele keine Kampfmusik auf Schwierigkeitsgrad Mythi
 
 -- Tab: Global Filter
 L.Panel_SpamFilter			= "Deaktivierung von DBM-Funktionen"
-L.Area_SpamFilter_Outgoing	= "Globale Deaktivierungs- und Filtereinstellungen für DBM"
 L.SpamBlockNoShowAnnounce	= "Zeige keinen Text und spiele keine Sounds für JEGLICHE allgemeine Meldungen"
 L.SpamBlockNoShowTgtAnnounce= "Zeige keinen Text und spiele keine Sounds für allgemeine ZIEL-Meldungen (wird durch obigen Filter überschrieben)"
-L.SpamBlockNoSpecWarn		= "Zeige keine Spezialwarnungen und spiele keine Spezialwarnungssounds"
 L.SpamBlockNoSpecWarnText	= "Zeige keinen Spezialwarnungstext, aber erlaube dennoch Sprachpacks (wird durch obigen Filter überschrieben)"
 L.SpamBlockNoShowTimers		= "Zeige keine Mod-Timer (Boss Mod/Herausforderungsmodus/Gruppensuche/Wiedererscheinen)"
 L.SpamBlockNoShowUTimers	= "Zeige keine von anderen gesendeten Timer (benutzerdefiniert/Pull/Pause)"
