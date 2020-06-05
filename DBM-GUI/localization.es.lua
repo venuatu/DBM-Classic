@@ -259,10 +259,8 @@ L.EventFilterMythicMusic	= "Desactivar música personalizada de encuentros en di
 
 -- Tab: Global Filter
 L.Panel_SpamFilter			= "Filtros globales"
-L.Area_SpamFilter_Outgoing	= "Opciones de filtros globales"
 L.SpamBlockNoShowAnnounce	= "Ocultar anuncios generales y desactivar los sonidos asociados"
 L.SpamBlockNoShowTgtAnnounce= "Ocultar anuncios generales de objetivos y desactivar los sonidos asociados (la opción anterior anula esta)"
-L.SpamBlockNoSpecWarn		= "Ocultar avisos especiales y desactivar los sonidos asociados"
 L.SpamBlockNoSpecWarnText	= "Ocultar avisos especiales pero sí reproducir sonidos de paquetes de voces (la opción anterior anula esta)"
 L.SpamBlockNoShowTimers		= "Ocultar temporizadores de módulos"
 L.SpamBlockNoShowUTimers	= "Ocultar temporizadores de usuario"
