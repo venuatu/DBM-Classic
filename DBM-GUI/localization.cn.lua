@@ -16,8 +16,12 @@ L.TranslationBy 			= "Mini_Dragon(Brilla@金色平原) 枫聖@阿什坎迪 原�
 L.Website					= "拜访我们的Discord |cFF73C2FBhttps://discord.gg/deadlybossmods|r. 在Twitter上关注 @deadlybossmods 或 @MysticalOS"
 L.WebsiteButton				= "网页"
 
-L.OTabBosses	= "模块"
-L.OTabOptions	= "选项"
+L.OTabBosses	            = "模块"--Deprecated and will be deleted once tabs no longer use this
+L.OTabRaids		            = "副本 & PVP"--Raids & PVP
+L.OTabDungeons	            = "地下城"--Dungeons only, classic doesn't have scenarios of any type, first scenario wasn't until Mists of Pandaria
+L.OTabPlugins	            = "插件"
+L.OTabOptions	            = "选项"
+L.OTabAbout		            = "关于"
 
 L.TabCategory_Options	 	= "综合设置"
 L.TabCategory_BFA	 		= "争霸艾泽拉斯"
