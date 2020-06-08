@@ -154,6 +154,7 @@ DBM.DefaultOptions = {
 	WarningShortText = true,
 	StripServerName = true,
 	ShowAllVersions = true,
+	ShowReminders = true,
 	ShowPizzaMessage = true,
 	ShowEngageMessage = true,
 	ShowDefeatMessage = true,
@@ -273,7 +274,6 @@ DBM.DefaultOptions = {
 	DontPlayCountdowns = false,
 	DontSendYells = false,
 	BlockNoteShare = false,
-	DontShowReminders = false,
 	DontShowPT2 = false,
 	DontPlayPTCountdown = false,
 	DontShowPTText = false,
@@ -388,7 +388,6 @@ local fireEvent
 local playerName = UnitName("player")
 local playerLevel = UnitLevel("player")
 local playerRealm = GetRealmName()
-local connectedServers = GetAutoCompleteRealms()
 local LastInstanceMapID = -1
 local LastGroupSize = 0
 local LastInstanceType = nil
@@ -405,8 +404,7 @@ local bossuIdFound = false
 local timerRequestInProgress = false
 local updateNotificationDisplayed = 0
 local showConstantReminder = 0
-local tooltipsHidden = false
-local SWFilterDisabed = 3
+local SWFilterDisabed = 10
 local currentSpecID, currentSpecName, currentSpecGroup
 local cSyncSender = {}
 local cSyncReceived = 0
@@ -421,7 +419,6 @@ local targetMonitor, targetMonitorFilter = {}, {}
 local statusWhisperDisabled = false
 local statusGuildDisabled = false
 local dbmToc = 0
-local UpdateChestTimer
 local breakTimerStart
 local AddMsg
 local delayedFunction
@@ -430,7 +427,7 @@ local voiceSessionDisabled = false
 local handleSync
 
 local fakeBWVersion, fakeBWHash = 9, "4bfc8af"
-local versionQueryString, versionResponseString = "Q^%d^%s", "V^%d^%s"
+local bwVersionResponseString = "V^%d^%s"
 
 local enableIcons = true -- set to false when a raid leader or a promoted player has a newer version of DBM
 
@@ -480,7 +477,7 @@ local GetNumGroupMembers, GetRaidRosterInfo = GetNumGroupMembers, GetRaidRosterI
 local UnitName, GetUnitName = UnitName, GetUnitName
 local IsInRaid, IsInGroup, IsInInstance = IsInRaid, IsInGroup, IsInInstance
 local UnitAffectingCombat, InCombatLockdown, IsFalling, IsEncounterInProgress, UnitPlayerOrPetInRaid, UnitPlayerOrPetInParty = UnitAffectingCombat, InCombatLockdown, IsFalling, IsEncounterInProgress, UnitPlayerOrPetInRaid, UnitPlayerOrPetInParty
-local UnitGUID, UnitHealth, UnitHealthMax, UnitBuff, UnitDebuff = UnitGUID, UnitHealth, UnitHealthMax, UnitBuff, UnitDebuff
+local UnitGUID, UnitHealth, UnitHealthMax, UnitBuff, UnitDebuff, UnitAura = UnitGUID, UnitHealth, UnitHealthMax, UnitBuff, UnitDebuff, UnitAura
 local UnitExists, UnitIsDead, UnitIsFriend, UnitIsUnit = UnitExists, UnitIsDead, UnitIsFriend, UnitIsUnit
 local GetSpellInfo, GetDungeonInfo, GetSpellTexture, GetSpellCooldown = GetSpellInfo, GetDungeonInfo, GetSpellTexture, GetSpellCooldown
 --local EJ_GetEncounterInfo, EJ_GetCreatureInfo, EJ_GetSectionInfo, GetSectionIconFlags = EJ_GetEncounterInfo, EJ_GetCreatureInfo, C_EncounterJournal.GetSectionInfo, C_EncounterJournal.GetSectionIconFlags
@@ -641,6 +638,7 @@ local function SendWorldSync(self, prefix, msg, noBNet)
 	end
 	if self.Options.EnableWBSharing and not noBNet then
 		local _, numBNetOnline = BNGetNumFriends()
+		local connectedServers = GetAutoCompleteRealms()
 		for i = 1, numBNetOnline do
 			local sameRealm = false
 			local presenceID, _, _, _, _, _, client, isOnline = BNGetFriendInfo(i)
@@ -1262,7 +1260,7 @@ do
 				AddMsg(DBM, L.VOICE_MISSING)
 			end
 		else
-			if not self.Options.DontShowReminders and #self.Voices > 1 then
+			if self.Options.ShowReminders and #self.Voices > 1 then
 				--At least one voice pack installed but activeVP set to "None"
 				AddMsg(DBM, L.VOICE_DISABLED)
 			end
@@ -2450,9 +2448,9 @@ do
 					SendChatMessage(chatPrefixShort..L.YOUR_VERSION_OUTDATED, "WHISPER", nil, v.name)
 				end
 			elseif self.Options.ShowAllVersions and v.displayVersion and v.bwversion then--DBM & BigWigs
-				self:AddMsg(L.VERSIONCHECK_ENTRY_TWO:format(name, "DBM "..v.displayVersion, showRealDate(v.revision), L.BIG_WIGS, versionResponseString:format(v.bwversion, v.bwhash)), false)
+				self:AddMsg(L.VERSIONCHECK_ENTRY_TWO:format(name, "DBM "..v.displayVersion, showRealDate(v.revision), L.BIG_WIGS, bwVersionResponseString:format(v.bwversion, v.bwhash)), false)
 			elseif self.Options.ShowAllVersions and not v.displayVersion and v.bwversion then--BigWigs, No DBM
-				self:AddMsg(L.VERSIONCHECK_ENTRY:format(name, L.BIG_WIGS, versionResponseString:format(v.bwversion, v.bwhash), ""), false)
+				self:AddMsg(L.VERSIONCHECK_ENTRY:format(name, L.BIG_WIGS, bwVersionResponseString:format(v.bwversion, v.bwhash), ""), false)
 			else
 				if self.Options.ShowAllVersions then
 					self:AddMsg(L.VERSIONCHECK_ENTRY_NO_DBM:format(name), false)
@@ -2755,6 +2753,7 @@ end
 --  Raid/Party Handling and Unit ID Utilities  --
 -------------------------------------------------
 do
+	local bwVersionQueryString = "Q^%d^%s"--Only used here
 	local inRaid = false
 
 	local raidGuids = {}
@@ -2787,7 +2786,7 @@ do
 			if not inRaid then
 				inRaid = true
 				sendSync("H")
-				SendAddonMessage("BigWigs", versionQueryString:format(0, fakeBWHash), IsInGroup(2) and "INSTANCE_CHAT" or "RAID")
+				SendAddonMessage("BigWigs", bwVersionQueryString:format(0, fakeBWHash), IsInGroup(2) and "INSTANCE_CHAT" or "RAID")
 				fireEvent("DBM_raidJoin", playerName)
 				if BigWigs and BigWigs.db.profile.raidicon and not self.Options.DontSetIcons and self:GetRaidRank() > 0 then--Both DBM and bigwigs have raid icon marking turned on.
 					self:AddMsg(L.BIGWIGS_ICON_CONFLICT)--Warn that one of them should be turned off to prevent conflict (which they turn off is obviously up to raid leaders preference, dbm accepts either or turned off to stop this alert)
@@ -2843,7 +2842,7 @@ do
 				-- joined a new party
 				inRaid = true
 				sendSync("H")
-				SendAddonMessage("BigWigs", versionQueryString:format(0, fakeBWHash), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
+				SendAddonMessage("BigWigs", bwVersionQueryString:format(0, fakeBWHash), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
 				fireEvent("DBM_partyJoin", playerName)
 			end
 			for i = 0, GetNumSubgroupMembers() do
@@ -3911,7 +3910,7 @@ do
 				self:StopLogging()
 			end
 		end
-		if not self.Options.DontShowReminders then
+		if self.Options.ShowReminders then
 			self:CheckAvailableMods()
 		end
 	end
@@ -3944,7 +3943,7 @@ do
 				if enabled ~= 0 then
 					self:LoadMod(v)
 				else
-					if not self.Options.DontShowReminders then
+					if self.Options.ShowReminders then
 						self:AddMsg(L.LOAD_MOD_DISABLED:format(v.name))
 					end
 				end
@@ -4164,7 +4163,7 @@ do
 				if mod and delay and (not mod.zones or mod.zones[LastInstanceMapID]) and (not mod.minSyncRevision or modRevision >= mod.minSyncRevision) then
 					DBM:StartCombat(mod, delay + lag, "SYNC from - "..sender, true, startHp, event)
 					if (mod.revision < modHFRevision) and (mod.revision > 1000) then--mod.revision because we want to compare to OUR revision not senders
-						if DBM:AntiSpam(3, "HOTFIX") and not DBM.Options.DontShowReminders then
+						if DBM:AntiSpam(3, "HOTFIX") and DBM.Options.ShowReminders then
 							--There is a newer RELEASE version of DBM out that has this mods fixes that we do not possess
 							if DBM.HighestRelease >= modHFRevision and DBM.ReleaseRevision < modHFRevision then
 								showConstantReminder = 2
@@ -4228,13 +4227,14 @@ do
 	end
 
 	local dummyMod -- dummy mod for the pull timer
-	syncHandlers["PT"] = function(sender, timer, lastMapID, target)
+	syncHandlers["PT"] = function(sender, timer, senderMapID, target)
 		if DBM.Options.DontShowUserTimers then return end
 		--local LFGTankException = IsPartyLFG() and UnitGroupRolesAssigned(sender) == "TANK"
 		if (DBM:GetRaidRank(sender) == 0 and IsInGroup()) or select(2, IsInInstance()) == "pvp" or IsEncounterInProgress() then
 			return
 		end
-		if (lastMapID and tonumber(lastMapID) ~= LastInstanceMapID) or (not lastMapID and DBM.Options.DontShowPTNoID) then return end
+		--Abort if mapID filter is enabled and sender actually sent a mapID. if no mapID is sent, it's always passed through (IE BW pull timers)
+		if DBM.Options.DontShowPTNoID and senderMapID and tonumber(senderMapID) ~= LastInstanceMapID then return end
 		timer = tonumber(timer or 0)
 		if timer > 60 or (timer > 0 and timer < 3) then
 			return
@@ -4362,7 +4362,7 @@ do
 			return
 		end
 		if DBM.Options.FakeBWVersion then
-			SendAddonMessage("BigWigs", versionResponseString:format(fakeBWVersion, fakeBWHash), IsInGroup(2) and "INSTANCE_CHAT" or IsInRaid() and "RAID" or "PARTY")
+			SendAddonMessage("BigWigs", bwVersionResponseString:format(fakeBWVersion, fakeBWHash), IsInGroup(2) and "INSTANCE_CHAT" or IsInRaid() and "RAID" or "PARTY")
 			return
 		end
 		--(Note, faker isn't to screw with bigwigs nor is theirs to screw with dbm, but rathor raid leaders who don't let people run WTF they want to run)
@@ -4422,7 +4422,7 @@ do
 					--Disable if out of date and it's a major patch.
 					elseif not testBuild and dbmToc < wowTOC then
 						updateNotificationDisplayed = 3
-						AddMsg(DBM, L.UPDATEREMINDER_MAJORPATCH)--Major patches will ALWAYS ignore DontShowReminders
+						AddMsg(DBM, L.UPDATEREMINDER_MAJORPATCH)--Major patches will ALWAYS ignore ShowReminders being disabled
 						DBM:Disable(true)
 					end
 				end
@@ -5705,6 +5705,17 @@ function checkCustomBossHealth(self, mod)
 end
 
 do
+	local tooltipsHidden = false
+	--Delayed Guild Combat sync object so we allow time for RL to disable them
+	local function delayedGCSync(modId, difficultyIndex, name, eventType, thisTime, wipeHP)
+		if not statusGuildDisabled then
+			if thisTime then--Wipe event
+				SendAddonMessage("D4C", "GCE\t"..modId.."\t7\t1\t"..thisTime.."\t"..difficultyIndex.."\t"..name.."\t"..wipeHP, "GUILD")
+			else
+				SendAddonMessage("D4C", "GCB\t"..modId.."\t4\t"..difficultyIndex.."\t"..name, "GUILD")
+			end
+		end
+	end
 	local statVarTable = {
 		--Current
 		["event5"] = "normal",
@@ -5899,8 +5910,8 @@ do
 						self:AddMsg(L.COMBAT_STARTED_IN_PROGRESS:format(difficultyText..name))
 					else
 						self:AddMsg(L.COMBAT_STARTED:format(difficultyText..name))
-						if difficultyIndex ~= 1 and (DBM:GetNumGuildPlayersInZone() >= 10) and not statusGuildDisabled and not self.Options.DisableGuildStatus then--Only send relevant content, ie raids
-							SendAddonMessage("D4C", "GCB\t"..modId.."\t4\t"..difficultyIndex.."\t"..name, "GUILD")
+						if difficultyIndex ~= 1 and (DBM:GetNumGuildPlayersInZone() >= 10) and not self.Options.DisableGuildStatus then--Only send relevant content, ie raids
+							self:Schedule(1.5, delayedGCSync, modId, difficultyIndex, name)
 						end
 					end
 				end
@@ -6046,8 +6057,8 @@ do
 				else
 					if self.Options.ShowDefeatMessage then
 						self:AddMsg(L.COMBAT_ENDED_AT_LONG:format(difficultyText..name, wipeHP, strFromTime(thisTime), totalPulls - totalKills))
-						if difficultyIndex ~= 1 and (DBM:GetNumGuildPlayersInZone() >= 10) and not statusGuildDisabled and not self.Options.DisableGuildStatus then
-							SendAddonMessage("D4C", "GCE\t"..modId.."\t7\t1\t"..strFromTime(thisTime).."\t"..difficultyIndex.."\t"..name.."\t"..wipeHP, "GUILD")
+						if difficultyIndex ~= 1 and (DBM:GetNumGuildPlayersInZone() >= 10) and not self.Options.DisableGuildStatus then
+							self:Schedule(1.5, delayedGCSync, modId, difficultyIndex, name, strFromTime(thisTime), wipeHP)
 						end
 					end
 					if self.Options.EventSoundWipe and self.Options.EventSoundWipe ~= "None" and self.Options.EventSoundWipe ~= "" then
@@ -6061,7 +6072,7 @@ do
 						end
 					end
 				end
-				if not self.Options.DontShowReminders and showConstantReminder == 2 and IsInGroup() and savedDifficulty ~= "lfr" and savedDifficulty ~= "lfr25" then
+				if self.Options.ShowReminders and showConstantReminder == 2 and IsInGroup() and savedDifficulty ~= "lfr" and savedDifficulty ~= "lfr25" then
 					showConstantReminder = 1
 					--Show message any time this is a mod that has a newer hotfix revision
 					--These people need to know the wipe could very well be their fault.
@@ -6694,7 +6705,7 @@ end
 
 do
 	function DBM:PLAYER_ENTERING_WORLD()
-		if not self.Options.DontShowReminders then
+		if self.Options.ShowReminders then
 			C_TimerAfter(25, function() if self.Options.SilentMode then self:AddMsg(L.SILENT_REMINDER) end end)
 			C_TimerAfter(30, function() if not self.Options.SettingsMessageShown then self.Options.SettingsMessageShown = true self:AddMsg(L.HOW_TO_USE_MOD) end end)
 		end
@@ -9899,7 +9910,7 @@ do
 		--Check if voice pack out of date
 		if activeVP ~= "None" and activeVP == value then
 			if self.VoiceVersions[value] < 10 then--Version will be bumped when new voice packs released that contain new voices.
-				if not self.Options.DontShowReminders then
+				if self.Options.ShowReminders then
 					self:AddMsg(L.VOICE_PACK_OUTDATED)
 				end
 				SWFilterDisabed = self.VoiceVersions[value]--Set disable to version on current voice pack
