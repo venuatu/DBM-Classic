@@ -80,7 +80,7 @@ L:SetGeneralLocalization{
 	name = "Guardias Garramortal"
 }
 L:SetWarningLocalization{
-	WarnVulnerable		= "%s Vulnerabilidad"
+	WarnVulnerable		= "Vulnerabilidad: %s"
 }
 L:SetOptionLocalization{
 	WarnVulnerable		= "Mostrar aviso de vulnerabilidades de hechizo"
@@ -104,7 +104,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnBreath		= "%s",
-	WarnVulnerable	= "%s Vulnerabilidad"
+	WarnVulnerable	= "Vulnerabilidad: %s"
 }
 L:SetTimerLocalization{
 	TimerBreathCD	= "%s TdR",
@@ -121,7 +121,7 @@ L:SetOptionLocalization{
 L:SetMiscLocalization{
 	Breath1	= "Primer aliento",
 	Breath2	= "Segundo aliento",
-	VulnEmote	= "%s flinches as its skin shimmers.",
+	VulnEmote	= "%s se estremece mientras su piel empieza a brillar.",
 	Vuln		= "Vulnerabilidad",
 	Fire		= "Fuego",
 	Nature		= "Naturaleza",
