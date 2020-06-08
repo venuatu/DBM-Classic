@@ -9,8 +9,12 @@ L.TranslationBy 			= nil -- your name here, localizers!
 L.Website					= "Visit us on discord at |cFF73C2FBhttps://discord.gg/deadlybossmods|r. Follow on twitter @deadlybossmods or @MysticalOS"
 L.WebsiteButton				= "Website"
 
-L.OTabBosses	= "Bosses"
+L.OTabBosses	= "Bosses"--Deprecated and will be deleted once tabs no longer use this
+L.OTabRaids		= "Raids & PVP"--Raids & PVP
+L.OTabDungeons	= "Dungeons"--Dungeons only, classic doesn't have scenarios of any type, first scenario wasn't until Mists of Pandaria
+L.OTabPlugins	= "Plugins"
 L.OTabOptions	= GAMEOPTIONS_MENU
+L.OTabAbout		= "About"
 
 L.TabCategory_Options	 	= "General Options"
 L.TabCategory_BFA	 		= "Battle for Azeroth"
