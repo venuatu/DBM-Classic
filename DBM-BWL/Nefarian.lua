@@ -53,7 +53,7 @@ end
 
 function mod:OnCombatEnd(wipe)
 	if not wipe then
-		DBM.Bars:CancelBar(DBM_SPEED_CLEAR_TIMER_TEXT)
+		DBM.Bars:CancelBar(L.SPEED_CLEAR_TIMER_TEXT)
 		if firstBossMod.vb.firstEngageTime then
 			local thisTime = GetTime() - firstBossMod.vb.firstEngageTime
 			if not firstBossMod.Options.FastestClear then

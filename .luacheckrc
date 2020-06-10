@@ -7,10 +7,10 @@ exclude_files = {
 ignore = {
 	"11./SLASH_.*", -- Setting an undefined (Slash handler) global variable
 	"11./BINDING_.*", -- Setting an undefined (Keybinding header) global variable
-	"11./DBM_.*", -- Setting an undefined (DBM) global variable
+--	"11./DBM_.*", -- Setting an undefined (DBM) global variable
 	"113/LE_.*", -- Accessing an undefined (Lua ENUM type) global variable
 	"113/NUM_LE_.*", -- Accessing an undefined (Lua ENUM type) global variable
-	"113/DBM_.*", -- Accessing an undefined (DBM) global variable
+--	"113/DBM_.*", -- Accessing an undefined (DBM) global variable
 	"211", -- Unused local variable
 	"211/L", -- Unused local variable "L"
 	"211/CL", -- Unused local variable "CL"
@@ -38,7 +38,9 @@ globals = {
 	"QuestieLoader",
 
 	-- DBM
+	"DBM_AllSavedOptions",
 	"DBM_BossPreview",
+	"DBM_CharSavedRevision",
 	"DBM_CORE_L",
 	"DBM_DISABLE_ZONE_DETECTION",
 	"DBM_GUI_Bosses",
@@ -50,7 +52,10 @@ globals = {
 	"DBM_GUI_OptionsFramePanelContainerFOV",
 	"DBM_GUI_L",
 	"DBM_GUI",
-	"DBM_INCOMING",
+	"DBM_MinimapIcon",
+	"DBM_UsedProfile",
+	"DBM_UseDualProfile",
+	"DBM_OPTION_SPACER",
 	"DBM",
 	"DBMHudMap",
 	"DBMInfoFrame",
