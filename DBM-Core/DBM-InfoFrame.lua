@@ -6,7 +6,7 @@ DBM.InfoFrame = {}
 --------------
 --  Locals  --
 --------------
-local L = L.L
+local L = DBM_CORE_L
 local infoFrame = DBM.InfoFrame
 local frame, initializeDropdown, currentMapId, currentEvent, createFrame
 local maxlines, modLines, maxWidth = 5, 5, 0
