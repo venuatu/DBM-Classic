@@ -7,7 +7,7 @@ mod:SetEncounterID(1111)
 mod:SetUsedIcons(1, 2, 3, 4)
 
 mod:RegisterCombat("combat")
-mod:SetModelID(16035)
+--mod:SetModelID(16035)--Renders too close
 
 mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 28169",
