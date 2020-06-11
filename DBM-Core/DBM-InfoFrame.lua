@@ -17,9 +17,9 @@ local playerName = UnitName("player")
 -------------------
 -- Local Globals --
 -------------------
-local GetRaidTargetIndex, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition = GetRaidTargetIndex, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition
+local GetRaidTargetIndex, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition, UnitIsUnit = GetRaidTargetIndex, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition, UnitIsUnit
 local select, tonumber, twipe, mfloor = select, tonumber, table.wipe, math.floor
-local RAID_CLASS_COLORS = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS-- for Phanx' Class Colors
+local RAID_CLASS_COLORS = _G["CUSTOM_CLASS_COLORS"] or RAID_CLASS_COLORS-- for Phanx' Class Colors
 
 ---------------------
 --  Dropdown Menu  --
@@ -208,10 +208,6 @@ local function sortFuncAsc(a, b)
 	return lines[a] < lines[b]
 end
 
-local function namesortFuncAsc(a, b)
-	return a < b
-end
-
 local function sortGroupId(a, b)
 	return DBM.GetGroupId(DBM, a) < DBM.GetGroupId(DBM, b)
 end
@@ -235,9 +231,14 @@ local function updateLines(preSorted)
 			table.sort(sortedLines, sortFuncDesc)
 		end
 	end
-	for i, v in ipairs(updateCallbacks) do
+	for _, v in ipairs(updateCallbacks) do
 		v(sortedLines)
 	end
+end
+
+--[[
+local function namesortFuncAsc(a, b)
+	return a < b
 end
 
 local function updateNamesortLines()
@@ -246,10 +247,11 @@ local function updateNamesortLines()
 		sortedLines[#sortedLines + 1] = i
 	end
 	table.sort(sortedLines, namesortFuncAsc)
-	for i, v in ipairs(updateCallbacks) do
+	for _, v in ipairs(updateCallbacks) do
 		v(sortedLines)
 	end
 end
+]]--
 
 local function updateLinesCustomSort(sortFunc)
 	twipe(sortedLines)
@@ -257,7 +259,7 @@ local function updateLinesCustomSort(sortFunc)
 		sortedLines[#sortedLines + 1] = i
 	end
 	table.sort(sortedLines, sortFunc)
-	for i, v in ipairs(updateCallbacks) do
+	for _, v in ipairs(updateCallbacks) do
 		v(sortedLines)
 	end
 end
@@ -644,7 +646,7 @@ end
 local function updatePlayerTargets()
 	twipe(lines)
 	local cId = value[1]
-	for uId, i in DBM:GetGroupMembers() do
+	for uId, _ in DBM:GetGroupMembers() do
 		if DBM:GetUnitCreatureId(uId .. "target") ~= cId and (UnitGroupRolesAssigned(uId) == "DAMAGER" or UnitGroupRolesAssigned(uId) == "NONE") then
 			lines[DBM:GetUnitFullName(uId)] = ""
 		end
@@ -781,7 +783,7 @@ local function onUpdate(frame, table)
 					end
 				end
 				linesShown = linesShown + 1
-				if (extraName or leftText) == playerName then--It's player.
+				if unitId and UnitIsUnit(unitId, "player") then--It's player.
 					if currentEvent == "health" or currentEvent == "playerpower" or currentEvent == "playerabsorb" or currentEvent == "playerbuff" or currentEvent == "playergooddebuff" or currentEvent == "playerbaddebuff" or currentEvent == "playerdebuffremaining" or currentEvent == "playerdebuffstacks" or currentEvent == "playerbuffremaining" or currentEvent == "playertargets" or currentEvent == "playeraggro" then--Red
 						infoFrame:SetLine(linesShown, icon or leftText, rightText, 255, 0, 0, 255, 255, 255)
 					else--Green
@@ -815,8 +817,6 @@ local function onUpdate(frame, table)
 				local _, class = UnitClass(unitId)
 				if class then
 					color = RAID_CLASS_COLORS[class]
-				else
-					color = NORMAL_FONT_COLOR
 				end
 			else
 				color = NORMAL_FONT_COLOR
@@ -825,11 +825,7 @@ local function onUpdate(frame, table)
 				local _, class = UnitClass(unitId2)
 				if class then
 					color2 = RAID_CLASS_COLORS[class]
-				else
-					color2 = NORMAL_FONT_COLOR
 				end
-			else
-				color2 = NORMAL_FONT_COLOR
 			end
 			linesShown = linesShown + 1
 			infoFrame:SetLine(linesShown, icon or leftText, rightText, color.r, color.g, color.b, color2.r, color2.g, color2.b)
