@@ -962,7 +962,7 @@ do
 				end
 				local remainingSpellIdCount = 0
 				if registeredSpellIds[event] then
-					for i, _ in pairs(registeredSpellIds[event]) do
+					for _, _ in pairs(registeredSpellIds[event]) do
 						remainingSpellIdCount = remainingSpellIdCount + 1
 					end
 				end
@@ -5663,7 +5663,7 @@ function checkWipe(self, confirm)
 				end
 			end
 		end
-		local wipe = 1 -- 0: no wipe, 1: normal wipe, 2: wipe by UnitExists check.
+		local wipe -- 0: no wipe, 1: normal wipe, 2: wipe by UnitExists check.
 		if IsEncounterInProgress() then -- Encounter Progress marked, you obviously in combat with boss. So do not Wipe
 			wipe = 0
 		elseif savedDifficulty == "worldboss" and UnitIsDeadOrGhost("player") then -- On dead or ghost, unit combat status detection would be fail. If you ghost in instance, that means wipe. But in worldboss, ghost means not wipe. So do not wipe.
@@ -5697,7 +5697,7 @@ function checkWipe(self, confirm)
 			end
 		else
 			local maxDelayTime = (savedDifficulty == "worldboss" and 15) or 5 --wait 10s more on worldboss do actual wipe.
-			for i, v in ipairs(inCombat) do
+			for _, v in ipairs(inCombat) do
 				maxDelayTime = v.combatInfo and v.combatInfo.wipeTimer and v.combatInfo.wipeTimer > maxDelayTime and v.combatInfo.wipeTimer or maxDelayTime
 			end
 			self:Schedule(maxDelayTime, checkWipe, self, true)
@@ -5707,7 +5707,7 @@ end
 
 function checkBossHealth(self)
 	if #inCombat > 0 then
-		for i, v in ipairs(inCombat) do
+		for _, v in ipairs(inCombat) do
 			if not v.multiMobPullDetection or v.mainBoss then
 				self:GetBossHP(v.mainBoss or v.combatInfo.mob or -1)
 			else
@@ -6008,7 +6008,7 @@ do
 		if dbmIsEnabled and InCombatLockdown() then
 			if cId ~= 0 and not bossHealth[cId] and bossIds[cId] and UnitAffectingCombat(uId) and not (UnitPlayerOrPetInRaid(uId) or UnitPlayerOrPetInParty(uId)) and healthCombatInitialized then -- StartCombat by UNIT_HEALTH.
 				if combatInfo[LastInstanceMapID] then
-					for i, v in ipairs(combatInfo[LastInstanceMapID]) do
+					for _, v in ipairs(combatInfo[LastInstanceMapID]) do
 						if v.mod.Options.Enabled and not v.mod.disableHealthCombat and v.type:find("combat") and (v.multiMobPullDetection and checkEntry(v.multiMobPullDetection, cId) or v.mob == cId) then
 							if v.mod.noFriendlyEngagement and UnitIsFriend("player", uId) then return end
 							-- Delay set, > 97% = 0.5 (consider as normal pulling), max dealy limited to 20s.
@@ -6053,7 +6053,7 @@ do
 			mod.inCombat = false
 			mod.blockSyncs = true
 			if mod.combatInfo.killMobs then
-				for i, v in pairs(mod.combatInfo.killMobs) do
+				for i, _ in pairs(mod.combatInfo.killMobs) do
 					mod.combatInfo.killMobs[i] = true
 				end
 			end
@@ -6109,7 +6109,7 @@ do
 					self:AddMsg(L.OUT_OF_DATE_NAG)
 				end
 				local msg
-				for k, v in pairs(autoRespondSpam) do
+				for k, _ in pairs(autoRespondSpam) do
 					if self.Options.WhisperStats then
 						msg = msg or chatPrefixShort..L.WHISPER_COMBAT_END_WIPE_STATS_AT:format(playerName, difficultyText..(name or ""), wipeHP, totalPulls - totalKills)
 					else
@@ -6138,7 +6138,7 @@ do
 				end
 				local totalKills = mod.stats[statVarTable[savedDifficulty].."Kills"]
 				if self.Options.ShowDefeatMessage then
-					local msg = ""
+					local msg
 					local thisTimeString = thisTime and strFromTime(thisTime)
 					if not mod.combatInfo.pull then--was a bad pull so we ignored thisTime, should never happen
 						msg = L.BOSS_DOWN:format(difficultyText..name, L.UNKNOWN)
@@ -6157,7 +6157,7 @@ do
 					self:Schedule(1, self.AddMsg, self, msg)
 				end
 				local msg
-				for k, v in pairs(autoRespondSpam) do
+				for k, _ in pairs(autoRespondSpam) do
 					if self.Options.WhisperStats then
 						msg = msg or chatPrefixShort..L.WHISPER_COMBAT_END_KILL_STATS:format(playerName, difficultyText..(name or ""), totalKills)
 					else
@@ -6255,7 +6255,7 @@ function DBM:OnMobKill(cId, synced)
 				self:Debug("Boss left - "..v.vb.bossLeft.."/"..v.numBoss, 2)
 			end
 			local allMobsDown = true
-			for j, k in pairs(v.combatInfo.killMobs) do
+			for _, k in pairs(v.combatInfo.killMobs) do
 				if k then
 					allMobsDown = false
 					break
@@ -6579,14 +6579,14 @@ do
 
 	function DBM:RequestTimers(requestNum)
 		twipe(sortMe)
-		for i, v in pairs(raid) do
+		for _, v in pairs(raid) do
 			tinsert(sortMe, v)
 		end
 		tsort(sortMe, sort)
 		self:Debug("RequestTimers Running", 2)
 		local selectedClient
 		local listNum = 0
-		for i, v in ipairs(sortMe) do
+		for _, v in ipairs(sortMe) do
 			-- If selectedClient player's realm is not same with your's, timer recovery by selectedClient not works at all.
 			-- SendAddonMessage target channel is "WHISPER" and target player is other realm, no msg sends at all. At same realm, message sending works fine. (Maybe bliz bug or SendAddonMessage function restriction?)
 			if v.name ~= playerName and UnitIsConnected(v.id) and (not UnitIsGhost(v.id)) and UnitRealmRelationship(v.id) ~= 2 and (GetTime() - (clientUsed[v.name] or 0)) > 10 then
@@ -6617,7 +6617,7 @@ do
 	function DBM:ReceiveTimerInfo(sender, mod, timeLeft, totalTime, id, ...)
 		if requestedFrom[sender] and (GetTime() - requestTime) < 5 then
 			local lag = select(4, GetNetStats()) / 1000
-			for i, v in ipairs(mod.timers) do
+			for _, v in ipairs(mod.timers) do
 				if v.id == id then
 					v:Start(totalTime, ...)
 					v:Update(totalTime - timeLeft + lag, totalTime, ...)
@@ -6665,7 +6665,7 @@ do
 			return
 		end
 		local mod
-		for i, v in ipairs(inCombat) do
+		for _, v in ipairs(inCombat) do
 			mod = not v.isCustomMod and v
 		end
 		mod = mod or inCombat[1]
@@ -6708,7 +6708,7 @@ function DBM:SendCombatInfo(mod, target)
 end
 
 function DBM:SendTimerInfo(mod, target)
-	for i, v in ipairs(mod.timers) do
+	for _, v in ipairs(mod.timers) do
 		--Pass on any timer that has no type, or has one that isn't an ai timer
 		if not v.type or v.type and v.type ~= "ai" then
 			for _, uId in ipairs(v.startedTimers) do
@@ -6828,7 +6828,7 @@ do
 				savedDifficulty, difficultyText, difficultyIndex, LastGroupSize = DBM:GetCurrentInstanceDifficulty()
 			end
 			local mod
-			for i, v in ipairs(inCombat) do
+			for _, v in ipairs(inCombat) do
 				mod = not v.isCustomMod and v
 			end
 			mod = mod or inCombat[1]
@@ -6847,7 +6847,7 @@ do
 				savedDifficulty, difficultyText, difficultyIndex, LastGroupSize = DBM:GetCurrentInstanceDifficulty()
 			end
 			local mod
-			for i, v in ipairs(inCombat) do
+			for _, v in ipairs(inCombat) do
 				mod = not v.isCustomMod and v
 			end
 			mod = mod or inCombat[1]
@@ -7235,7 +7235,7 @@ do
 			},
 			mt
 		)
-		for i, v in ipairs(self.AddOns) do
+		for _, v in ipairs(self.AddOns) do
 			if v.modId == modId then
 				obj.addon = v
 				break
@@ -7303,7 +7303,7 @@ function bossModPrototype:SetZone(...)
 	if select("#", ...) == 0 then
 		self.zones = {}
 		if self.addon and self.addon.mapId then
-			for i, v in ipairs(self.addon.mapId) do
+			for _, v in ipairs(self.addon.mapId) do
 				self.zones[v] = true
 			end
 		end
@@ -7335,7 +7335,7 @@ function bossModPrototype:DisableMod()
 end
 
 function bossModPrototype:Stop()
-	for i, v in ipairs(self.timers) do
+	for _, v in ipairs(self.timers) do
 		v:Stop()
 	end
 	self:Unschedule()
@@ -7579,7 +7579,7 @@ do
 			bossuIdCache[guid] = bossuid
 		end
 		if name then return name, uid, bossuid end
-		for i, uId in ipairs(bossTargetuIds) do
+		for _, uId in ipairs(bossTargetuIds) do
 			if UnitGUID(uId) == guid then
 				bossuid = uId
 				name = DBM:GetUnitFullName(uId.."target")
@@ -7636,7 +7636,7 @@ do
 				name, uid, bossuid = getBossTarget(UnitGUID(cacheuid), scanOnlyBoss)
 			else
 				local found = false
-				for i, uId in ipairs(bossTargetuIds) do
+				for _, uId in ipairs(bossTargetuIds) do
 					if self:GetUnitCreatureId(uId) == cidOrGuid then
 						found = true
 						bossuIdCache[cidOrGuid] = uId
@@ -7864,7 +7864,7 @@ do
 			end
 			if uId then--Now we have a valid uId
 				if UnitIsUnit(uId, "player") then return true end--If "player" is target, avoid doing any complicated stuff
-				local inRange = 0
+				local inRange
 				if not UnitIsPlayer(uId) then
 					local inRange2, checkedRange = UnitInRange(uId)--43
 					if checkedRange then--checkedRange only returns true if api worked, so if we get false, true then we are not near npc
@@ -10170,7 +10170,7 @@ do
 			if not bar then
 				return false, "error" -- creating the timer failed somehow, maybe hit the hard-coded timer limit of 15
 			end
-			local msg = ""
+			local msg
 			if self.type and not self.text then
 				msg = pformat(self.mod:GetLocalizedTimerText(self.type, self.spellId, self.name), ...)
 			else
@@ -10920,7 +10920,7 @@ end
 function bossModPrototype:AddInfoFrameOption(spellId, default, optionVersion)
 	local oVersion = ""
 	if optionVersion then
-		optionVersion = tostring(optionVersion)
+		oVersion = tostring(optionVersion)
 	end
 	self.DefaultOptions["InfoFrame"..oVersion] = (default == nil) or default
 	if default and type(default) == "string" then
@@ -11119,7 +11119,7 @@ function bossModPrototype:RegisterCombat(cType, ...)
 	end
 	-- use pull-mobs as kill mobs by default, can be overriden by RegisterKill
 	if self.multiMobPullDetection then
-		for i, v in ipairs(self.multiMobPullDetection) do
+		for _, v in ipairs(self.multiMobPullDetection) do
 			info.killMobs = info.killMobs or {}
 			info.killMobs[v] = true
 		end
@@ -11467,7 +11467,7 @@ do
 			else
 				icon = startIcon or 1
 			end
-			for i, v in ipairs(iconSortTable[scanID]) do
+			for _, v in ipairs(iconSortTable[scanID]) do
 				if not self.iconRestore[v] then
 					local oldIcon = self:GetIcon(v) or 0
 					self.iconRestore[v] = oldIcon
