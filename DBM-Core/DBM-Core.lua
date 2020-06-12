@@ -504,7 +504,7 @@ local RAID_CLASS_COLORS = _G["CUSTOM_CLASS_COLORS"] or RAID_CLASS_COLORS-- for P
 -- checks if a given value is in an array
 -- returns true if it finds the value, false otherwise
 local function checkEntry(t, val)
-	for i, v in ipairs(t) do
+	for _, v in ipairs(t) do
 		if v == val then
 			return true
 		end
@@ -513,7 +513,7 @@ local function checkEntry(t, val)
 end
 
 local function findEntry(t, val)
-	for i, v in ipairs(t) do
+	for _, v in ipairs(t) do
 		if v and val and val:find(v) then
 			return true
 		end
@@ -825,7 +825,7 @@ do
 			isUnitEvent = false -- not actually a real unit id for this function...
 		end
 		if not registeredEvents[event] or not dbmIsEnabled then return end
-		for i, v in ipairs(registeredEvents[event]) do
+		for _, v in ipairs(registeredEvents[event]) do
 			local zones = v.zones
 			local handler = v[event]
 			local modEvents = v.registeredUnitEvents
@@ -962,7 +962,7 @@ do
 				end
 				local remainingSpellIdCount = 0
 				if registeredSpellIds[event] then
-					for i, v in pairs(registeredSpellIds[event]) do
+					for i, _ in pairs(registeredSpellIds[event]) do
 						remainingSpellIdCount = remainingSpellIdCount + 1
 					end
 				end
@@ -1048,7 +1048,7 @@ do
 	end
 
 	local function findRealEvent(t, val)
-		for i, v in ipairs(t) do
+		for _, v in ipairs(t) do
 			local event = strsplit(" ", v)
 			if event == val then
 				return v
@@ -1325,7 +1325,7 @@ do
 		if modname == "DBM-Core" and not isLoaded then
 			dbmToc = tonumber(GetAddOnMetadata("DBM-Core", "X-Min-Interface"))
 			isLoaded = true
-			for i, v in ipairs(onLoadCallbacks) do
+			for _, v in ipairs(onLoadCallbacks) do
 				xpcall(v, geterrorhandler())
 			end
 			onLoadCallbacks = nil
@@ -1430,7 +1430,7 @@ do
 							end
 							if self.AddOns[#self.AddOns].subTabs then
 								local subTabs = self.AddOns[#self.AddOns].subTabs
-								for k, v in ipairs(subTabs) do
+								for k, _ in ipairs(subTabs) do
 									--Ugly hack to inject custom string text into auto localized zone name sub cats
 									if subTabs[k]:find("|") then
 										local id, nameModifier = strsplit("|", subTabs[k])
@@ -1594,7 +1594,7 @@ do
 
 	function fireEvent(event, ...)
 		if not callbacks[event] then return end
-		for i, v in ipairs(callbacks[event]) do
+		for _, v in ipairs(callbacks[event]) do
 			local ok, err = pcall(v, event, ...)
 			if not ok then DBM:AddMsg(("Error while executing callback %s for event %s: %s"):format(tostring(v), tostring(event), err)) end
 		end
@@ -2088,15 +2088,15 @@ do
 		elseif cmd == "unlock" or cmd == "move" then
 			DBM.Bars:ShowMovableBar()
 		elseif cmd == "help2" then
-			for i, v in ipairs(L.SLASHCMD_HELP2) do DBM:AddMsg(v) end
+			for _, v in ipairs(L.SLASHCMD_HELP2) do DBM:AddMsg(v) end
 		elseif cmd == "help" then
-			for i, v in ipairs(L.SLASHCMD_HELP) do DBM:AddMsg(v) end
+			for _, v in ipairs(L.SLASHCMD_HELP) do DBM:AddMsg(v) end
 		elseif cmd:sub(1, 13) == "timer endloop" then
 			DBM:CreatePizzaTimer(time, "", nil, nil, nil, true)
 		elseif cmd:sub(1, 5) == "timer" then
 			local time, text = msg:match("^%w+ ([%d:]+) (.+)$")
 			if not (time and text) then
-				for i, v in ipairs(L.TIMER_USAGE) do DBM:AddMsg(v) end
+				for _, v in ipairs(L.TIMER_USAGE) do DBM:AddMsg(v) end
 				return
 			end
 			local min, sec = string.split(":", time)
@@ -2194,7 +2194,7 @@ do
 			end
 			local hudType, target, duration = string.split(" ", msg:sub(4):trim())
 			if hudType == "" then
-				for i, v in ipairs(L.HUD_USAGE) do
+				for _, v in ipairs(L.HUD_USAGE) do
 					DBM:AddMsg(v)
 				end
 				return
@@ -2203,7 +2203,7 @@ do
 			local success = false
 			if type(hudType) == "string" and hudType:trim() ~= "" then
 				if hudType:upper() == "HIDE" then
-					for name, points in pairs(trackedHudMarkers) do
+					for name, _ in pairs(trackedHudMarkers) do
 						DBMHudMap:FreeEncounterMarkerByTarget(12345, name)
 						trackedHudMarkers[name] = nil
 					end
@@ -2312,7 +2312,7 @@ do
 				end
 			end
 			if not success then
-				for i, v in ipairs(L.ARROW_ERROR_USAGE) do
+				for _, v in ipairs(L.ARROW_ERROR_USAGE) do
 					DBM:AddMsg(v)
 				end
 			end
@@ -2432,13 +2432,13 @@ do
 	end
 
 	function DBM:ShowVersions(notify)
-		for i, v in pairs(raid) do
+		for _, v in pairs(raid) do
 			tinsert(sortMe, v)
 		end
 		tsort(sortMe, sort)
 		twipe(OutdatedUsers)
 		self:AddMsg(L.VERSIONCHECK_HEADER)
-		for i, v in ipairs(sortMe) do
+		for _, v in ipairs(sortMe) do
 			local name = v.name
 			local playerColor = RAID_CLASS_COLORS[DBM:GetRaidClass(name)]
 			if playerColor then
@@ -2506,12 +2506,12 @@ do
 		return (v1.worldlag or 0) < (v2.worldlag or 0)
 	end
 	function DBM:ShowLag()
-		for i, v in pairs(raid) do
+		for _, v in pairs(raid) do
 			tinsert(sortLag, v)
 		end
 		tsort(sortLag, sortit)
 		self:AddMsg(L.LAG_HEADER)
-		for i, v in ipairs(sortLag) do
+		for _, v in ipairs(sortLag) do
 			local name = v.name
 			local playerColor = RAID_CLASS_COLORS[DBM:GetRaidClass(name)]
 			if playerColor then
@@ -2552,12 +2552,12 @@ do
 		return (v1.worldlag or 0) < (v2.worldlag or 0)
 	end
 	function DBM:ShowDurability()
-		for i, v in pairs(raid) do
+		for _, v in pairs(raid) do
 			tinsert(sortDur, v)
 		end
 		tsort(sortDur, sortit)
 		self:AddMsg(L.DUR_HEADER)
-		for i, v in ipairs(sortDur) do
+		for _, v in ipairs(sortDur) do
 			local name = v.name
 			local playerColor = RAID_CLASS_COLORS[DBM:GetRaidClass(name)]
 			if playerColor then
@@ -2698,9 +2698,8 @@ do
 		end
 		DBM_GUI:ShowHide()
 		if firstLoad then
-			firstLoad = false
 			tsort(callOnLoad, function(v1, v2) return v1[2] < v2[2] end)
-			for i, v in ipairs(callOnLoad) do v[1]() end
+			for _, v in ipairs(callOnLoad) do v[1]() end
 		end
 	end
 
@@ -3255,7 +3254,7 @@ function DBM:LoadModOptions(modId, inCombat, first, force)
 	local savedOptions = _G[savedVarsName][fullname] or {}
 	local savedStats = _G[savedStatsName] or {}
 	local existId = {}
-	for i, id in ipairs(DBM.ModLists[modId]) do
+	for _, id in ipairs(DBM.ModLists[modId]) do
 		existId[id] = true
 		-- init
 		if not savedOptions[id] then savedOptions[id] = {} end
@@ -3294,7 +3293,7 @@ function DBM:LoadModOptions(modId, inCombat, first, force)
 			end
 			--clean unused saved variables (do not work on combat load)
 			if not inCombat then
-				for option, optionValue in pairs(savedOptions[id][profileNum]) do
+				for option, _ in pairs(savedOptions[id][profileNum]) do
 					if mod.DefaultOptions[option] == nil then
 						savedOptions[id][profileNum][option] = nil
 					elseif mod.DefaultOptions[option] and (type(mod.DefaultOptions[option]) == "table") then--recover broken dropdown option
@@ -3351,12 +3350,12 @@ function DBM:LoadModOptions(modId, inCombat, first, force)
 	end
 	--clean unused saved variables (do not work on combat load)
 	if not inCombat then
-		for id, table in pairs(savedOptions) do
+		for id, _ in pairs(savedOptions) do
 			if not existId[id] and not (id:find("talent") or id:find("FastestClear")) then
 				savedOptions[id] = nil
 			end
 		end
-		for id, table in pairs(savedStats) do
+		for id, _ in pairs(savedStats) do
 			if not existId[id] then
 				savedStats[id] = nil
 			end
@@ -3378,7 +3377,7 @@ function DBM:SpecChanged(force)
 	if not force and not DBM_UseDualProfile then return end
 	--Load Options again.
 	self:Debug("SpecChanged fired", 2)
-	for modId, idTable in pairs(self.ModLists) do
+	for modId, _ in pairs(self.ModLists) do
 		self:LoadModOptions(modId)
 	end
 end
@@ -3403,7 +3402,7 @@ function DBM:LoadAllModDefaultOption(modId)
 	local profileNum = playerLevel > 9 and DBM_UseDualProfile and currentSpecGroup or 0
 	-- prevent nil table error
 	if not _G[savedVarsName] then _G[savedVarsName] = {} end
-	for i, id in ipairs(self.ModLists[modId]) do
+	for _, id in ipairs(self.ModLists[modId]) do
 		-- prevent nil table error
 		if not _G[savedVarsName][fullname][id] then _G[savedVarsName][fullname][id] = {} end
 		-- actual do load default option
@@ -3491,7 +3490,7 @@ function DBM:CopyAllModOption(modId, sourceName, sourceProfile)
 		return
 	end
 	local targetOptions = _G[savedVarsName][targetName] or {}
-	for i, id in ipairs(self.ModLists[modId]) do
+	for _, id in ipairs(self.ModLists[modId]) do
 		-- check source is exist
 		if not _G[savedVarsName][sourceName][id] then
 			self:AddMsg(L.MPROFILE_COPY_S_ERROR)
@@ -3552,7 +3551,7 @@ function DBM:CopyAllModTypeOption(modId, sourceName, sourceProfile, Type)
 		return
 	end
 	local targetOptions = _G[savedVarsName][targetName] or {}
-	for i, id in ipairs(self.ModLists[modId]) do
+	for _, id in ipairs(self.ModLists[modId]) do
 		-- check source is exist
 		if not _G[savedVarsName][sourceName][id] then
 			self:AddMsg(L.MPROFILE_COPYS_S_ERROR)
@@ -3608,7 +3607,7 @@ function DBM:DeleteAllModOption(modId, name, profile)
 		self:AddMsg(L.MPROFILE_DELETE_S_ERROR)
 		return
 	end
-	for i, id in ipairs(self.ModLists[modId]) do
+	for _, id in ipairs(self.ModLists[modId]) do
 		-- prevent nil table error
 		if not _G[savedVarsName][name][id] then
 			self:AddMsg(L.MPROFILE_DELETE_S_ERROR)
@@ -3628,7 +3627,7 @@ function DBM:ClearAllStats(modId)
 	local savedStatsName = modId:gsub("-", "").."_SavedStats"
 	-- prevent nil table error
 	if not _G[savedStatsName] then _G[savedStatsName] = {} end
-	for i, id in ipairs(self.ModLists[modId]) do
+	for _, id in ipairs(self.ModLists[modId]) do
 		local mod = self:GetModByName(id)
 		-- prevent nil table error
 		local defaultStats = {}
@@ -3670,10 +3669,6 @@ do
 			usedProfile = "Default"
 		end
 		DBM_UsedProfile = usedProfile
-		--migrate old options
-		if DBM_SavedOptions and not DBM_AllSavedOptions[usedProfile] then
-			DBM_AllSavedOptions[usedProfile] = DBM_SavedOptions
-		end
 		self.Options = DBM_AllSavedOptions[usedProfile] or {}
 		dbmIsEnabled = true
 		self:AddDefaultOptions(self.Options, self.DefaultOptions)
@@ -3957,7 +3952,7 @@ do
 
 	function DBM:LoadModsOnDemand(checkTable, checkValue)
 		self:Debug("LoadModsOnDemand fired")
-		for i, v in ipairs(self.AddOns) do
+		for _, v in ipairs(self.AddOns) do
 			local modTable = v[checkTable]
 			local enabled = GetAddOnEnableState(playerName, v.modId)
 			--self:Debug(v.modId.." is "..enabled, 2)
@@ -4050,7 +4045,7 @@ do
 			for bosscId, addon in pairs(loadcIds) do
 				local enabled = GetAddOnEnableState(playerName, addon)
 				if cId and bosscId and cId == bosscId and not IsAddOnLoaded(addon) and enabled ~= 0 then
-					for i, v in ipairs(DBM.AddOns) do
+					for _, v in ipairs(DBM.AddOns) do
 						if v.modId == addon then
 							DBM:LoadMod(v, true)
 							break
@@ -4650,7 +4645,7 @@ do
 			if not ver or not (ver == "3") then return end--Ignore old versions
 			if DBM:AntiSpam(10, "GCB") then
 				if IsInInstance() then return end--Simple filter, if you are inside an instance, just filter it, if not in instance, good to go.
-				difficulty = tonumber(difficulty)
+				--difficulty = tonumber(difficulty)--Will be used in WoTLK
 				modId = tonumber(modId)
 				local bossName = modId and EJ_GetEncounterInfo and EJ_GetEncounterInfo(modId) or name or L.UNKNOWN
 				DBM:AddMsg(L.GUILD_COMBAT_STARTED:format(bossName))
@@ -4662,7 +4657,7 @@ do
 			if not ver or not (ver == "6") then return end--Ignore old versions
 			if DBM:AntiSpam(5, "GCE") then
 				if IsInInstance() then return end--Simple filter, if you are inside an instance, just filter it, if not in instance, good to go.
-				difficulty = tonumber(difficulty)
+				--difficulty = tonumber(difficulty)--Will be used in WoTLK
 				modId = tonumber(modId)
 				local bossName = modId and EJ_GetEncounterInfo and EJ_GetEncounterInfo(modId) or name or L.UNKNOWN
 				if wipe == "1" then
@@ -4827,7 +4822,7 @@ do
 			-- TODO: you could catch some localized instances by observing IDs if there are multiple players with the same instance ID but a different name ;) (not that useful if you are trying to get a fresh instance)
 			DBM:AddMsg(L.INSTANCE_INFO_RESULTS, false)
 			DBM:AddMsg("---", false)
-			for i, v in pairs(results.data) do
+			for _, v in pairs(results.data) do
 				resultCount = resultCount + 1
 				DBM:AddMsg(L.INSTANCE_INFO_DETAIL_HEADER:format(v.name, (results.difftext[v.diff] or v.diff)), false)
 				for id, r in pairs(v.ids) do
@@ -4887,7 +4882,7 @@ do
 			local sent = 0
 			local denied = 0
 			local away = 0
-			for k, v in pairs(results.responses) do
+			for _, v in pairs(results.responses) do
 				numResponses = numResponses + 1
 				if v == "Data" or v == "NoData" then
 					sent = sent + 1
@@ -4902,7 +4897,7 @@ do
 
 		local function getNumDBMUsers() -- without ourselves
 			local r = 0
-			for i, v in pairs(raid) do
+			for _, v in pairs(raid) do
 				if v.revision and v.name ~= playerName and UnitIsConnected(v.id) then
 					r = r + 1
 				end
@@ -4923,7 +4918,7 @@ do
 							tinsert(noResponse, (GetRaidRosterInfo(i)))
 						end
 					end
-					for i, v in pairs(results.responses) do
+					for i, _ in pairs(results.responses) do
 						removeEntry(noResponse, i)
 					end
 
@@ -5388,7 +5383,7 @@ do
 		lastCombatStarted = GetTime()
 		if not combatInitialized then return end
 		if dbmIsEnabled and combatInfo[LastInstanceMapID] then
-			for i, v in ipairs(combatInfo[LastInstanceMapID]) do
+			for _, v in ipairs(combatInfo[LastInstanceMapID]) do
 				if v.type:find("combat") and not v.noRegenDetection then
 					if v.multiMobPullDetection then
 						for _, mob in ipairs(v.multiMobPullDetection) do
@@ -5452,7 +5447,7 @@ do
 		if timerRequestInProgress then return end--do not start ieeu combat if timer request is progressing. (not to break Timer Recovery stuff)
 		if dbmIsEnabled and combatInfo[LastInstanceMapID] then
 			self:Debug("INSTANCE_ENCOUNTER_ENGAGE_UNIT event fired for zoneId"..LastInstanceMapID, 3)
-			for i, v in ipairs(combatInfo[LastInstanceMapID]) do
+			for _, v in ipairs(combatInfo[LastInstanceMapID]) do
 				if v.type:find("combat") and isBossEngaged(v.multiMobPullDetection or v.mob) then
 					self:StartCombat(v.mod, 0, "IEEU")
 				end
@@ -5477,7 +5472,7 @@ do
 		self:Debug("ENCOUNTER_START event fired: "..encounterID.." "..name.." "..difficulty.." "..size)
 		if dbmIsEnabled then
 			if combatInfo[LastInstanceMapID] then
-				for i, v in ipairs(combatInfo[LastInstanceMapID]) do
+				for _, v in ipairs(combatInfo[LastInstanceMapID]) do
 					if not v.noESDetection then
 						if v.multiEncounterPullDetection then
 							for _, eId in ipairs(v.multiEncounterPullDetection) do
@@ -5545,7 +5540,7 @@ do
 	end
 
 	local function checkExpressionList(exp, str)
-		for i, v in ipairs(exp) do
+		for _, v in ipairs(exp) do
 			if str:match(v) then
 				return true
 			end
@@ -5557,7 +5552,7 @@ do
 	local function onMonsterMessage(self, type, msg)
 		-- pull detection
 		if dbmIsEnabled and combatInfo[LastInstanceMapID] then
-			for i, v in ipairs(combatInfo[LastInstanceMapID]) do
+			for _, v in ipairs(combatInfo[LastInstanceMapID]) do
 				if v.type == type and checkEntry(v.msgs, msg) or v.type == type .. "_regex" and checkExpressionList(v.msgs, msg) then
 					self:StartCombat(v.mod, 0, "MONSTER_MESSAGE")
 				elseif v.type == "combat_" .. type .. "find" and findEntry(v.msgs, msg) or v.type == "combat_" .. type and checkEntry(v.msgs, msg) then
