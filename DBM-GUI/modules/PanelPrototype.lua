@@ -219,7 +219,7 @@ do
 		{ text = "Illidan: Not Prepared2",	value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\VO_703_Illidan_Stormrage_03.ogg" },
 		{ text = "Kil'Jaeden: Destruction",	value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\KILJAEDEN02.ogg" },
 		{ text = "Loatheb: I see you",		value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\LOA_NAXX_AGGRO02.ogg" },
-		{ text = "Night Elf Bell",			value = 11742 },
+		{ text = "Night Elf Bell",			value = 6674 },
 		{ text = "PvP Flag",				value = 8174 }
 	})
 	local tcolors = {
