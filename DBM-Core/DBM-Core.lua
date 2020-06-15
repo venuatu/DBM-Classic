@@ -8325,24 +8325,23 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID)
 				end
 			end
 		end
-		--Check group targets if no boss unitIDs found, but we have a bossGUID
+		--Check group targets if no boss unitIDs found and bossGUID passed.
+		--This allows IsTanking to be used in situations boss UnitIds don't exist (which is pretty much everywhere in classic)
 		if bossGUID then
-			if IsInRaid() then
-				for i = 1, GetNumGroupMembers() do
-					if UnitGUID("raid"..i.."target") == bossGUID then
-						local _, targetuid = self:GetBossTarget(bossGUID, true)
-						if UnitIsUnit("raid"..i.."target", targetuid) then
-							return true
-						end
+			local groupType = (IsInRaid() and "raid") or "party"
+			for i = 0, GetNumGroupMembers() do
+				local unitID = (i == 0 and "target") or groupType..i.."target"
+				local guid = UnitGUID(unitID)
+				if guid and guid == bossGUID then
+					--Check threat first
+					local tanking, status = UnitDetailedThreatSituation(unit, unitID)
+					if tanking or (status == 3) then
+						return true
 					end
-				end
-			elseif IsInGroup() then
-				for i = 1, GetNumSubgroupMembers() do
-					if UnitGUID("party"..i.."target") == bossGUID then
-						local _, targetuid = self:GetBossTarget(bossGUID, true)
-						if UnitIsUnit("party"..i.."target", targetuid) then
-							return true
-						end
+					--Non threat fallback
+					local _, targetuid = self:GetBossTarget(bossGUID, true)
+					if UnitIsUnit(unit, targetuid) then
+						return true
 					end
 				end
 			end
