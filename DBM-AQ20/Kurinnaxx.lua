@@ -75,9 +75,6 @@ do
 		--if args.spellId == 25646 then
 		if args.spellName == MortalWound then
 			timerWound:Stop(args.destName)
-		--elseif args.spellId == 25656 then
-		elseif args.spellName == SandTrap then
-			timerSandTrap:Stop(args.destName)
 		end
 	end
 end
