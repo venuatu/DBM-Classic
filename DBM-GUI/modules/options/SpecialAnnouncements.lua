@@ -151,6 +151,8 @@ local Sounds = DBM_GUI:MixinSharedMedia3("sound", {
 	{ text = "Loatheb: I see you", value = "Interface\\AddOns\\DBM-Core\\sounds\\ClassicSupport\\LOA_NAXX_AGGRO02.ogg" },
 	{ text = "Night Elf Bell", value = 6674 },
 	{ text = "PvP Flag", value = 8174 },
+	--{ text = "Void Reaver: Marked", value = 11213 },--Enable in TBC
+	--{ text = "Yogg Saron: Laugh", value = 15757 },--Enable in Wrath
 })
 
 local specWarnOne = specPanel:CreateArea(L.SpecialWarnHeader1)

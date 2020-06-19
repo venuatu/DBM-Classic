@@ -13,6 +13,7 @@ mod:RegisterEventsInCombat(
 )
 
 --Energize is mode boss goes in during Summon Mana Fiend Phase
+--TODO, update timrs on mana drains/etc
 --TODO, verify if arcane eruption wll always be the same
 --"Arcane Eruption-25672-npc:15340 = pull:325.8", -- [1]
 local warnEnergize		= mod:NewSpellAnnounce(25685, 3)

@@ -72,7 +72,7 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.50 alpha", -- the string that is shown as version
+	DisplayVersion = "1.13.50", -- the string that is shown as version
 	ReleaseRevision = releaseDate(2020, 6, 12) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
@@ -738,11 +738,29 @@ do
 	end
 
 	function argsMT.__index:IsPlayer()
-		return bband(args.destFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) ~= 0 and bband(args.destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0
+		--If blizzard ever removes sourceFlags, this will automatically switch to fallback
+		if args.destFlags and COMBATLOG_OBJECT_AFFILIATION_MINE then
+			return bband(args.destFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) ~= 0 and bband(args.destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0
+		else
+			if raid[args.destName] then--Unit in group, friendly
+				return true
+			else
+				return false
+			end
+		end
 	end
 
 	function argsMT.__index:IsPlayerSource()
-		return bband(args.sourceFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) ~= 0 and bband(args.sourceFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0
+		--If blizzard ever removes sourceFlags, this will automatically switch to fallback
+		if args.sourceFlags and COMBATLOG_OBJECT_AFFILIATION_MINE then
+			return bband(args.sourceFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) ~= 0 and bband(args.sourceFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0
+		else
+			if raid[args.sourceName] then
+				return true
+			else
+				return false
+			end
+		end
 	end
 
 	function argsMT.__index:IsNPC()
@@ -8296,12 +8314,12 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID)
 	end
 	--Prefer main target first
 	if boss then--Only checking one bossID as requested
-		--Check ThreatLib2 first
+		--Check threat first
 		local tanking, status = UnitDetailedThreatSituation(unit, boss)
 		if tanking or (status == 3) then
 			return true
 		end
-		--Non threatlib fallback
+		--Non threat fallback
 		if UnitExists(boss) then
 			local _, targetuid = self:GetBossTarget(UnitGUID(boss), true)
 			if UnitIsUnit(unit, targetuid) then
@@ -8312,12 +8330,12 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID)
 		--Check all of them if one isn't defined
 		for i = 1, 5 do
 			local unitID = "boss"..i
-			--Check ThreatLib2 first
+			--Check threat first
 			local tanking, status = UnitDetailedThreatSituation(unit, unitID)
 			if tanking or (status == 3) then
 				return true
 			end
-			--Non threatlib fallback
+			--Non threat fallback
 			if UnitExists(unitID) then
 				local _, targetuid = self:GetBossTarget(UnitGUID(unitID), true)
 				if UnitIsUnit(unit, targetuid) then
@@ -8352,6 +8370,7 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID)
 		if GetPartyAssignment("MAINTANK", unit, 1) then
 			return true
 		end
+		--Not supported until WoTLK, so off the table on Classic and TBC
 		--if UnitGroupRolesAssigned(unit) == "TANK" then
 		--	return true
 		--end
