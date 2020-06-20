@@ -72,7 +72,7 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.50", -- the string that is shown as version
+	DisplayVersion = "1.13.51 alpha", -- the string that is shown as version
 	ReleaseRevision = releaseDate(2020, 6, 12) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
@@ -2742,7 +2742,7 @@ do
 
 		function dataBroker.OnClick(self, button)
 			if IsShiftKeyDown() then return end
-			if button == "RightButton" then
+			if IsAltKeyDown() then
 				DBM.Options.SilentMode = DBM.Options.SilentMode == false and true or false
 				DBM:AddMsg("SilentMode is " .. (DBM.Options.SilentMode and "ON" or "OFF"))
 			else
