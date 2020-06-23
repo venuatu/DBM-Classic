@@ -73,21 +73,9 @@ do
 			timerCounterSpellCD:Start()
 		--elseif args.spellId == 23138 then
 		elseif spellName == Gate then
-			self:SendSync("Teleport", args.sourceName)
-			if self:AntiSpam(5, 1) then
-				specWarnGate:Show(args.sourceName)
-				specWarnGate:Play("tauntboss")
-				timerGateCD:Start()
-			end
+			specWarnGate:Show(args.sourceName)
+			specWarnGate:Play("tauntboss")
+			timerGateCD:Start()
 		end
-	end
-end
-
-function mod:OnSync(msg, targetName)
-	if not self:IsInCombat() then return end
-	if msg == "Teleport" and targetName and self:AntiSpam(5, 1) then
-		specWarnGate:Show(targetName)
-		specWarnGate:Play("tauntboss")
-		timerGateCD:Start()
 	end
 end
