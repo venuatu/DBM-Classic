@@ -20,6 +20,7 @@
 ## X-DBM-Mod-MapID: 309
 localization.en.lua
 localization.es.lua
+localization.fr.lua
 localization.kr.lua
 localization.mx.lua
 localization.br.lua
