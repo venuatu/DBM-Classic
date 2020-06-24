@@ -457,10 +457,6 @@ local LD
 if LibStub("LibDurability", true) then
 	LD = LibStub("LibDurability")
 end
-local ThreatLib2
-if LibStub("LibThreatClassic2", true) and WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-	ThreatLib2 = LibStub("LibThreatClassic2")
-end
 
 --------------------------------------------------------
 --  Cache frequently used global variables in locals  --
@@ -483,10 +479,8 @@ local UnitExists, UnitIsDead, UnitIsFriend, UnitIsUnit = UnitExists, UnitIsDead,
 local GetSpellInfo, GetDungeonInfo, GetSpellTexture, GetSpellCooldown = GetSpellInfo, GetDungeonInfo, GetSpellTexture, GetSpellCooldown
 --local EJ_GetEncounterInfo, EJ_GetCreatureInfo, EJ_GetSectionInfo, GetSectionIconFlags = EJ_GetEncounterInfo, EJ_GetCreatureInfo, C_EncounterJournal.GetSectionInfo, C_EncounterJournal.GetSectionIconFlags
 local GetInstanceInfo = GetInstanceInfo
-local UnitDetailedThreatSituation = UnitDetailedThreatSituation or ThreatLib2 and function(unit, mob)
-	return ThreatLib2:UnitDetailedThreatSituation(unit, mob)
-end or function(unit, mob)
-	return false, 0--If threatlib failure (shouldn't happen, but if user screws with it, UnitDetailedThreatSituation will just fail silently with not tanking
+local UnitDetailedThreatSituation = UnitDetailedThreatSituation or function(unit, mob)
+	return false, 0--TODO, remove blank function backup in 1.13.5
 end
 local UnitIsGroupLeader, UnitIsGroupAssistant = UnitIsGroupLeader, UnitIsGroupAssistant
 local PlaySoundFile, PlaySound = PlaySoundFile, PlaySound

@@ -19,6 +19,34 @@ local warnVulnerable	= mod:NewAnnounce("WarnVulnerable", 3, "132866")
 local timerCyclone		= mod:NewTargetTimer(10, 25189, nil, nil, nil, 3)
 local timerVulnerable	= mod:NewTimer(45, "TimerVulnerable", "132866", nil, nil, 6)
 
+local firstBossMod = DBM:GetModByName("Kurinnaxx")
+
+--function mod:OnCombatStart(delay, yellTriggered)
+
+--end
+
+function mod:OnCombatEnd(wipe)
+	if not wipe then
+		DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
+		if firstBossMod.vb.firstEngageTime then
+			local thisTime = GetTime() - firstBossMod.vb.firstEngageTime
+			if not firstBossMod.Options.FastestClear then
+				--First clear, just show current clear time
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("AQ20", DBM:strFromTime(thisTime)))
+				firstBossMod.Options.FastestClear = thisTime
+			elseif (firstBossMod.Options.FastestClear > thisTime) then
+				--Update record time if this clear shorter than current saved record time and show users new time, compared to old time
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format("AQ20", DBM:strFromTime(thisTime), DBM:strFromTime(firstBossMod.Options.FastestClear)))
+				firstBossMod.Options.FastestClear = thisTime
+			else
+				--Just show this clear time, and current record time (that you did NOT beat)
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("AQ20", DBM:strFromTime(thisTime), DBM:strFromTime(firstBossMod.Options.FastestClear)))
+			end
+			firstBossMod.vb.firstEngageTime = nil
+		end
+	end
+end
+
 do
 	local StrengthofOssirian, EnvelopingWinds = DBM:GetSpellInfo(25176), DBM:GetSpellInfo(25189)
 	local FireWeak, FrostWeak, NatureWeak, ArcaneWeak, ShadowWeak = DBM:GetSpellInfo(25177), DBM:GetSpellInfo(25178), DBM:GetSpellInfo(25180), DBM:GetSpellInfo(25181), DBM:GetSpellInfo(25183)
