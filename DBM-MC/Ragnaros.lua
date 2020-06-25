@@ -38,7 +38,7 @@ mod:AddRangeFrameOption("10", nil, "-Melee")
 mod.vb.addLeft = 0
 mod.vb.ragnarosEmerged = true
 local addsGuidCheck = {}
-local firstBossMod = DBM:GetModByName("Lucifron")
+local firstBossMod = DBM:GetModByName("MCTrash")
 
 function mod:OnCombatStart(delay)
 	table.wipe(addsGuidCheck)

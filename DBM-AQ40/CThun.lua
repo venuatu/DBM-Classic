@@ -32,7 +32,7 @@ local timerWeakened			= mod:NewTimer(45, "TimerWeakened")
 mod:AddBoolOption("RangeFrame", true)
 
 mod.vb.phase = 1
-local firstBossMod = DBM:GetModByName("Skeram")
+local firstBossMod = DBM:GetModByName("AQ40Trash")
 
 function mod:OnCombatStart(delay)
 	self.vb.phase = 1
@@ -54,7 +54,10 @@ function mod:OnCombatEnd(wipe)
 		DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
 		if firstBossMod.vb.firstEngageTime then
 			local thisTime = GetTime() - firstBossMod.vb.firstEngageTime
-			if not firstBossMod.Options.FastestClear then
+			--Not an eligable speed run, since all 3 optional bosses weren't defeated
+			if not firstBossMod.vb.OuroDefeated or not firstBossMod.vb.OuroDefeated or not firstBossMod.vb.OuroDefeated then
+				DBM:AddMsg(L.NotValid:format(DBM:strFromTime(thisTime)))
+			elseif not firstBossMod.Options.FastestClear then
 				--First clear, just show current clear time
 				DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("AQ40", DBM:strFromTime(thisTime)))
 				firstBossMod.Options.FastestClear = thisTime

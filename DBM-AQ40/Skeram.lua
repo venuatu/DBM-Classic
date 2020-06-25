@@ -25,24 +25,15 @@ local warnSummonSoon	= mod:NewSoonAnnounce(747, 2)
 local timerMindControl	= mod:NewBuffActiveTimer(20, 785, nil, nil, nil, 3)
 
 mod:AddSetIconOption("SetIconOnMC", 785, true, false, {4, 5, 6, 7, 8})
-mod:AddSpeedClearOption("AQ40", true)
 
 local MCTargets = {}
 mod.vb.splitCount = 0
 mod.vb.MCIcon = 8
-mod.vb.firstEngageTime = nil
 
 function mod:OnCombatStart(delay)
 	self.vb.splitCount = 0
 	table.wipe(MCTargets)
 	self.vb.MCIcon = 8
-	if not self.vb.firstEngageTime then
-		self.vb.firstEngageTime = GetTime()
-		if self.Options.FastestClear and self.Options.SpeedClearTimer then
-			--Custom bar creation that's bound to core, not mod, so timer doesn't stop when mod stops it's own timers
-			DBM.Bars:CreateBar(self.Options.FastestClear, DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
-		end
-	end
 end
 
 local function warnMCTargets(self)

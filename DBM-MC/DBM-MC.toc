@@ -41,3 +41,4 @@ Sulfuron.lua
 Golemagg.lua
 Majordomo.lua
 Ragnaros.lua
+MCTrash.lua

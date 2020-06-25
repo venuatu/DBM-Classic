@@ -37,3 +37,4 @@ Huhuran.lua
 Ouro.lua
 TwinEmps.lua
 CThun.lua
+AQ40Trash.lua
