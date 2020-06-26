@@ -31,6 +31,7 @@ localization.br.lua
 localization.kr.lua
 localization.tw.lua
 localization.cn.lua
+MCTrash.lua
 Lucifron.lua
 Magmadar.lua
 Gehennas.lua
@@ -41,4 +42,3 @@ Sulfuron.lua
 Golemagg.lua
 Majordomo.lua
 Ragnaros.lua
-MCTrash.lua
