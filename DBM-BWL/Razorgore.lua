@@ -14,7 +14,7 @@ mod:SetWipeTime(180)--guesswork
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 22425",
-	"SPELL_CAST_SUCCESS 23040",
+	"SPELL_CAST_SUCCESS 23040 19873",
 	"SPELL_AURA_APPLIED 23023",
 	"CHAT_MSG_MONSTER_EMOTE",
 	"CHAT_MSG_MONSTER_YELL",
@@ -73,6 +73,7 @@ do
 			warnPhase2:Show()
 			self.vb.phase = 2
 		--This may not be accurate, it depends on how large expanded combat log range is
+		--elseif args.spellId == 19873 then
 		elseif args.spellName == destroyEgg then
 			self.vb.eggsLeft = self.vb.eggsLeft - 1
 			warnEggsLeft:Show(string.format("%d/%d",30-self.vb.eggsLeft,30))
