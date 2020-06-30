@@ -815,7 +815,7 @@ do
 		else
 			if raid[args.destName] then--Unit in group, friendly
 				return false
-			else
+			else--Could still fail for pets since they wouldn't be in raid nor is there GUID stored
 				return true
 			end
 		end

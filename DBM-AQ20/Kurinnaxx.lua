@@ -76,7 +76,7 @@ do
 				warnWound:Show(args.destName, amount)
 			end
 		--elseif args.spellId == 26527 then
-		elseif args.spellName == Frenzy then
+		elseif args.spellName == Frenzy and args:IsDestTypeHostile() then
 			warnFrenzy:Show(args.destName)
 		end
 	end
