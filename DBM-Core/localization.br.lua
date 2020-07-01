@@ -293,16 +293,17 @@ L.NO_DEBUFF							= "Não %s"--For use in places like info frame where you put "
 L.ALLY								= "Aliado"--Such as "Move to Ally"
 L.ADD								= "Lacaio"--A fight Add as in "boss spawned extra adds"
 L.ADDS								= "Lacaios"
-L.BIG_ADD							= "Big Add"
+L.BIG_ADD							= "Lacaio grande"
 L.BOSS								= "Chefe"
-L.ROOM_EDGE							= "Room Edge"
-L.FAR_AWAY							= "Far Away"
-L.BREAK_LOS							= "Break LOS"
-L.SAFE								= "Safe"
-L.SHIELD							= "Shield"
-L.PILLAR							= "Pillar"
-L.INCOMING							= "%s Incoming"
+L.ROOM_EDGE							= "Borda da sala"
+L.FAR_AWAY							= "Tão distante"
+L.BREAK_LOS							= "Quebrar a visão"
+L.SAFE								= "Seguro"
+L.SHIELD							= "Escudo"
+L.PILLAR							= "Pilar"
+L.INCOMING							= "%s Entrada"
 
+L.BREAK_USAGE						= "Intervalo não pode demorar mais de 60 minutos. Verifique se você está inserindo o tempo em minutos e não em segundos."
 L.BREAK_START				= "Intervalo começando agora -- você tem %s!"
 L.BREAK_MIN					= "Intervalo encerra-se em %s minuto(s)!"
 L.BREAK_SEC					= "Intervalo encerra-se em %s segundos!"
@@ -310,44 +311,32 @@ L.TIMER_BREAK				= "Intervalo!"
 L.ANNOUNCE_BREAK_OVER		= "O intervalo acabou"
 
 L.TIMER_PULL					= "Puxando em"
-L.ANNOUNCE_PULL				= "Puxando em %d seg"
+L.ANNOUNCE_PULL				= "Puxando em %d seg. (Enviado por %s)"
 L.ANNOUNCE_PULL_NOW			= "Puxando agora!"
+L.ANNOUNCE_PULL_TARGET				= "Puxando %s em %d seg. (Enviado por %s)"
+L.ANNOUNCE_PULL_NOW_TARGET			= "Puxando %s agora!"
+L.GEAR_WARNING						= "Aviso: Verifique a engrenagem. O seu ilvl equipado é %d inferior ao saco ilvl"
+L.GEAR_WARNING_WEAPON				= "Aviso: Verifique se sua arma está equipada corretamente."
+L.GEAR_FISHING_POLE					= "Vara de pescar"
 
 L.ACHIEVEMENT_TIMER_SPEED_KILL = "Vitória mais rápida."
 
--- Auto-generated Timer Localizations
-L.AUTO_TIMER_TEXTS.target		= "%s: >%%s<"
-L.AUTO_TIMER_TEXTS.cast			= "%s"
-L.AUTO_TIMER_TEXTS.active		= "%s acaba" --Buff/Debuff/event on boss
-L.AUTO_TIMER_TEXTS.fades			= "%s desvanece" --Buff/Debuff on players
-L.AUTO_TIMER_TEXTS.cd			= "%s recarrega"
-L.AUTO_TIMER_TEXTS.cdcount		= "%s recarrega (%%s)"
-L.AUTO_TIMER_TEXTS.cdsource		= "%s recarrega: >%%s<"
-L.AUTO_TIMER_TEXTS.next			= "Próx. %s"
-L.AUTO_TIMER_TEXTS.nextcount		= "Próx. %s (%%s)"
-L.AUTO_TIMER_TEXTS.nextsource	= "Próx %s: >%%s<"
-L.AUTO_TIMER_TEXTS.achievement	= "%s"
-
-L.AUTO_TIMER_OPTIONS.target		= "Exibir cronógrafo para a penalidade $spell:%s"
-L.AUTO_TIMER_OPTIONS.cast		= "Exibir cronógrafo para lançar $spell:%s"
-L.AUTO_TIMER_OPTIONS.active		= "Exibir cronógrafo para a duração de $spell:%s"
-L.AUTO_TIMER_OPTIONS.fades		= "Exibir cronógrafo para quando $spell:%s desvanecerá dos jogadores"
-L.AUTO_TIMER_OPTIONS.cd			= "Exibir cronógrafo para recarga de $spell:%s"
-L.AUTO_TIMER_OPTIONS.cdcount		= "Exibir cronógrafo para recarga de $spell:%s"
-L.AUTO_TIMER_OPTIONS.cdsource	= "Exibir cronógrafo para recarga de $spell:%s"
-L.AUTO_TIMER_OPTIONS.next		= "Exibir cronógrafo para o próximo $spell:%s"
-L.AUTO_TIMER_OPTIONS.nextcount	= "Exibir cronógrafo para o próximo $spell:%s"
-L.AUTO_TIMER_OPTIONS.nextsource	= "Exibir cronógrafo para o próximo $spell:%s"
-L.AUTO_TIMER_OPTIONS.achievement	= "Exibir cronógrafo para %s"
-
 -- Auto-generated Warning Localizations
-L.AUTO_ANNOUNCE_TEXTS.target			= "%s em >%%s<"
+L.AUTO_ANNOUNCE_TEXTS.you			= "%s em VOCÊ"
+L.AUTO_ANNOUNCE_TEXTS.target		= "%s em >%%s<"
+L.AUTO_ANNOUNCE_TEXTS.targetsource 	= ">%%s< lançar %s em >%%s<",
 L.AUTO_ANNOUNCE_TEXTS.targetcount	= "%s (%%s) em >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.spell			= "%s"
+L.AUTO_ANNOUNCE_TEXTS.ends			= "%s acaba", --Buff/Debuff/event on boss
+L.AUTO_ANNOUNCE_TEXTS.endtarget		= "%s acaba: >%%s<",
+L.AUTO_ANNOUNCE_TEXTS.fades			= "%s desvanece",
 L.AUTO_ANNOUNCE_TEXTS.adds			= "%s restantes: %%d"
 L.AUTO_ANNOUNCE_TEXTS.cast			= "Lançando %s: %.1f seg"
 L.AUTO_ANNOUNCE_TEXTS.soon			= "%s em breve"
+L.AUTO_ANNOUNCE_TEXTS.sooncount 	= "%s (%%s) em breve",
+L.AUTO_ANNOUNCE_TEXTS.countdown		= "%s em %%ds"
 L.AUTO_ANNOUNCE_TEXTS.prewarn		= "%s em %s"
+L.AUTO_ANNOUNCE_TEXTS.bait			= "%s em breve - isca agora"
 L.AUTO_ANNOUNCE_TEXTS.stage			= "Fase %s"
 L.AUTO_ANNOUNCE_TEXTS.prestage		= "Fase %s em breve"
 L.AUTO_ANNOUNCE_TEXTS.count			= "%s (%%s)"
@@ -355,34 +344,26 @@ L.AUTO_ANNOUNCE_TEXTS.stack			= "%s em >%%s< (%%d)"
 
 local prewarnOption = "Exibir aviso antecipado para $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.target		= "Anunciar alvos de $spell:%s"
-L.AUTO_ANNOUNCE_OPTIONS.targetcount	= "Anunciar alvos de $spell:%s"
+L.AUTO_ANNOUNCE_OPTIONS.targetNF	= "Anunciar alvos de $spell:%s (ignora o filtro de alvo global)"
+L.AUTO_ANNOUNCE_OPTIONS.targetsource = "Anunciar alvos de $spell:%s (com fonte)"
+L.AUTO_ANNOUNCE_OPTIONS.targetcount	= "Anunciar alvos de $spell:%s (com contagem)"
 L.AUTO_ANNOUNCE_OPTIONS.spell		= "Exibir aviso para $spell:%s"
-L.AUTO_ANNOUNCE_OPTIONS.adds			= "Announce how many $spell:%s remain"
-L.AUTO_ANNOUNCE_OPTIONS.cast			= "Exibir aviso quando $spell:%s está sendo lançado"
-L.AUTO_ANNOUNCE_OPTIONS.soon			= prewarnOption
+L.AUTO_ANNOUNCE_OPTIONS.ends		= "Exibir aviso quando $spell:%s terminou"
+L.AUTO_ANNOUNCE_OPTIONS.endstarget 	= "Exibir aviso quando $spell:%s terminou"
+L.AUTO_ANNOUNCE_OPTIONS.adds		= "Anunciar quantas $spell:%s restantes"
+L.AUTO_ANNOUNCE_OPTIONS.cast		= "Exibir aviso quando $spell:%s está sendo lançado"
+L.AUTO_ANNOUNCE_OPTIONS.soon		= prewarnOption
+L.AUTO_ANNOUNCE_OPTIONS.sooncount	= prewarnOption
+L.AUTO_ANNOUNCE_OPTIONS.countdown	= "Exibir spam de contagem regressiva antes do aviso para $spell:%s",
 L.AUTO_ANNOUNCE_OPTIONS.prewarn		= prewarnOption
+L.AUTO_ANNOUNCE_OPTIONS.bait		= "Mostrar aviso antecipado (isca) para $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.stage		= "Anunciar Fase %s"
-L.AUTO_ANNOUNCE_OPTIONS.prestage		= "Mostrar aviso antecipado para a Fase %s"
+L.AUTO_ANNOUNCE_OPTIONS.stagechange = "Anunciar mudanças de fase"
+L.AUTO_ANNOUNCE_OPTIONS.prestage		= "Exibir aviso antecipado para a Fase %s"
 L.AUTO_ANNOUNCE_OPTIONS.count		= "Exibir aviso para $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.stack		= "Anunciar empilhamento de $spell:%s"
 
--- Auto-generated Special Warning Localizations
-L.AUTO_SPEC_WARN_OPTIONS.spell 		= "Exibir aviso especial para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.dispel 		= "Exibir aviso especial para remover/roubar $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.interrupt	= "Exibir aviso especial para interromper $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.you 		= "Exibir aviso especial quando você é afetado por $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.youcount 	= L.AUTO_SPEC_WARN_OPTIONS.you--FIXME, Translate needed
-L.AUTO_SPEC_WARN_OPTIONS.target 		= "Exibir aviso especial quando alguém é afetador por $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.close 		= "Exibir aviso especial quando alguém próximo de você é afetado por $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.move 		= "Exibir aviso especial quando você é afetado por $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.dodge 		= L.AUTO_SPEC_WARN_OPTIONS.move--FIXME (this is a temp until localized properly as a dodge warning)
-L.AUTO_SPEC_WARN_OPTIONS.run 		= "Exibir aviso especial para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.cast 		= "Exibir aviso especial para o lançamento de $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.stack 		= "Exibir aviso especial para pilha >=%d de $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.switch		= "Exibir aviso especial para mudar de alvo para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.switchcount = L.AUTO_SPEC_WARN_OPTIONS.switch--FIXME, Translate needed
-L.AUTO_SPEC_WARN_OPTIONS.interruptcount = L.AUTO_SPEC_WARN_OPTIONS.interrupt--FIXME, Translate needed
-
+-- Start Back here (Note to self)
 L.AUTO_SPEC_WARN_TEXTS.spell		= "%s!"
 L.AUTO_SPEC_WARN_TEXTS.dispel	= "%s em >%%s< - remova agora"
 L.AUTO_SPEC_WARN_TEXTS.interrupt	= "%s - interrompa >%%s<"
@@ -400,6 +381,55 @@ L.AUTO_SPEC_WARN_TEXTS.stack		= "%s (%%d)"
 L.AUTO_SPEC_WARN_TEXTS.switch	= "%s - mude de alvo"
 L.AUTO_SPEC_WARN_TEXTS.switchcount	= "%s - mude de alvo (%%s)"
 
+
+-- Auto-generated Timer Localizations
+L.AUTO_TIMER_TEXTS.target		= "%s: >%%s<"
+L.AUTO_TIMER_TEXTS.targetcount	= "%s (%%s) em >%%s<"
+L.AUTO_TIMER_TEXTS.spell		= "%s"
+L.AUTO_TIMER_TEXTS.ends			= "%s acaba" --Buff/Debuff/event on boss
+L.AUTO_TIMER_TEXTS.endtarget	= "%s acaba: >%%s<"
+L.AUTO_TIMER_TEXTS.fades		= "%s desvanece", --Buff/Debuff on players
+L.AUTO_TIMER_TEXTS.adds			= "%s remanescente: %%d"
+L.AUTO_TIMER_TEXTS.cast			= "Lançar %s: %.1f seg"
+L.AUTO_TIMER_TEXTS.soon			= "%s em breve"
+L.AUTO_TIMER_TEXTS.prewarn		= "%s em %s"
+L.AUTO_TIMER_TEXTS.cd			= "%s recarrega"
+L.AUTO_TIMER_TEXTS.cdcount		= "%s recarrega (%%s)"
+L.AUTO_TIMER_TEXTS.cdsource		= "%s recarrega: >%%s<"
+L.AUTO_TIMER_TEXTS.next			= "Próx. %s",
+L.AUTO_TIMER_TEXTS.nextcount		= "Próx. %s (%%s)",
+L.AUTO_TIMER_TEXTS.nextsource	= "Próx %s: >%%s<",
+L.AUTO_TIMER_TEXTS.achievement	= "%s",
+
+L.AUTO_TIMER_OPTIONS.target		= "Exibir cronógrafo para a penalidade $spell:%s"
+L.AUTO_TIMER_OPTIONS.cast		= "Exibir cronógrafo para lançar $spell:%s"
+L.AUTO_TIMER_OPTIONS.active		= "Exibir cronógrafo para a duração de $spell:%s"
+L.AUTO_TIMER_OPTIONS.fades		= "Exibir cronógrafo para quando $spell:%s desvanecerá dos jogadores"
+L.AUTO_TIMER_OPTIONS.cd			= "Exibir cronógrafo para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.cdcount		= "Exibir cronógrafo para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.cdsource	= "Exibir cronógrafo para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.next		= "Exibir cronógrafo para o próximo $spell:%s"
+L.AUTO_TIMER_OPTIONS.nextcount	= "Exibir cronógrafo para o próximo $spell:%s"
+L.AUTO_TIMER_OPTIONS.nextsource	= "Exibir cronógrafo para o próximo $spell:%s"
+L.AUTO_TIMER_OPTIONS.achievement	= "Exibir cronógrafo para %s"
+
+
+-- Auto-generated Special Warning Localizations
+L.AUTO_SPEC_WARN_OPTIONS.spell 		= "Exibir aviso especial para $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.dispel 		= "Exibir aviso especial para remover/roubar $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.interrupt	= "Exibir aviso especial para interromper $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.you 		= "Exibir aviso especial quando você é afetado por $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.youcount 	= L.AUTO_SPEC_WARN_OPTIONS.you--FIXME, Translate needed
+L.AUTO_SPEC_WARN_OPTIONS.target 		= "Exibir aviso especial quando alguém é afetador por $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.close 		= "Exibir aviso especial quando alguém próximo de você é afetado por $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.move 		= "Exibir aviso especial quando você é afetado por $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.dodge 		= L.AUTO_SPEC_WARN_OPTIONS.move--FIXME (this is a temp until localized properly as a dodge warning)
+L.AUTO_SPEC_WARN_OPTIONS.run 		= "Exibir aviso especial para $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.cast 		= "Exibir aviso especial para o lançamento de $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.stack 		= "Exibir aviso especial para pilha >=%d de $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.switch		= "Exibir aviso especial para mudar de alvo para $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.switchcount = L.AUTO_SPEC_WARN_OPTIONS.switch--FIXME, Translate needed
+L.AUTO_SPEC_WARN_OPTIONS.interruptcount = L.AUTO_SPEC_WARN_OPTIONS.interrupt--FIXME, Translate needed
 
 L.AUTO_ICONS_OPTION_TEXT		= "Colocar ícones nos alvos de $spell:%s"
 L.AUTO_ICONS_OPTION_TEXT2		= "Set icons on $spell:%s"
