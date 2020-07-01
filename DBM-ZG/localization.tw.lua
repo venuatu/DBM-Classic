@@ -25,7 +25,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("Marli")
 
 L:SetGeneralLocalization{
-	name = "高階祭司瑪爾裏"
+	name = "高階祭司瑪俐"
 }
 
 -------------------
@@ -65,7 +65,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("Arlokk")
 
 L:SetGeneralLocalization{
-	name = "高階祭司娅爾羅"
+	name = "高階祭司阿洛克"
 }
 
 -------------------
