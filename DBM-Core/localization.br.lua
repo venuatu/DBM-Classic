@@ -324,7 +324,7 @@ L.ACHIEVEMENT_TIMER_SPEED_KILL = "Vitória mais rápida."
 -- Auto-generated Warning Localizations
 L.AUTO_ANNOUNCE_TEXTS.you			= "%s em VOCÊ"
 L.AUTO_ANNOUNCE_TEXTS.target		= "%s em >%%s<"
-L.AUTO_ANNOUNCE_TEXTS.targetsource 	= ">%%s< lançar %s em >%%s<",
+L.AUTO_ANNOUNCE_TEXTS.targetsource 	= ">%%s< lançar %s em >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetcount	= "%s (%%s) em >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.spell			= "%s"
 L.AUTO_ANNOUNCE_TEXTS.ends			= "%s acaba", --Buff/Debuff/event on boss
