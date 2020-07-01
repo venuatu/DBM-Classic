@@ -396,8 +396,8 @@ L.AUTO_TIMER_TEXTS.prewarn		= "%s em %s"
 L.AUTO_TIMER_TEXTS.cd			= "%s recarrega"
 L.AUTO_TIMER_TEXTS.cdcount		= "%s recarrega (%%s)"
 L.AUTO_TIMER_TEXTS.cdsource		= "%s recarrega: >%%s<"
-L.AUTO_TIMER_TEXTS.next			= "Próx. %s",
-L.AUTO_TIMER_TEXTS.nextcount		= "Próx. %s (%%s)"
+L.AUTO_TIMER_TEXTS.next			= "Próx. %s"
+L.AUTO_TIMER_TEXTS.nextcount	= "Próx. %s (%%s)"
 L.AUTO_TIMER_TEXTS.nextsource	= "Próx %s: >%%s<"
 L.AUTO_TIMER_TEXTS.achievement	= "%s"
 
