@@ -446,6 +446,6 @@ L.INSTANCE_INFO_SHOW_RESULTS		= "Jogadores que ainda não responderam: %s\n|HDBM
 L.WORLD_BUFFS.hordeOny		= "People of the Horde, citizens of Orgrimmar, come, gather round and celebrate a hero of the Horde"
 L.WORLD_BUFFS.allianceOny	= "Cidadãos e aliados de Ventobravo, no dia de hoje, fez-se história."
 L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"
-L.WORLD_BUFFS.allianceNef	= "Citizens of the Alliance, the Lord of Blackrock is slain!"
+L.WORLD_BUFFS.allianceNef	= "Cidadãos da Aliança, o Senhor da Rocha Negra foi derrubado!"
 L.WORLD_BUFFS.zgHeart		= "Now, only one step remains to rid us of the Soulflayer's threat"
 L.WORLD_BUFFS.rendHead		= "The false Warchief, Rend Blackhand, has fallen!"
