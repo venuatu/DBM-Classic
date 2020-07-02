@@ -460,13 +460,13 @@ L.AUTO_TIMER_TEXTS.casesourceshort = "%s: %%s"
 L.AUTO_TIMER_TEXTS.active		= "%s acaba"
 L.AUTO_TIMER_TEXTS.fades		= "%s desvanece"
 L.AUTO_TIMER_TEXTS.ai			= "%s AI"
-L.AUTO_TIMER_TEXTS.cd			= "%s recarrega"
+L.AUTO_TIMER_TEXTS.cd			= "%s recarga"
 L.AUTO_TIMER_TEXTS.cdshort		= "~%s (%%s)"
-L.AUTO_TIMER_TEXTS.cdcount		= "%s recarrega (%%s)"
+L.AUTO_TIMER_TEXTS.cdcount		= "%s recarga (%%s)"
 L.AUTO_TIMER_TEXTS.cdcountshort	= "~%s (%%s)"
-L.AUTO_TIMER_TEXTS.cdsource		= "%s recarrega: >%%s<"
+L.AUTO_TIMER_TEXTS.cdsource		= "%s recarga: >%%s<"
 L.AUTO_TIMER_TEXTS.cdsourceshort = "~%s: >%%s<"
-L.AUTO_TIMER_TEXTS.cdspecial	= "Recarrega especial"
+L.AUTO_TIMER_TEXTS.cdspecial	= "Recarga especial"
 L.AUTO_TIMER_TEXTS.cdspecialshort "~Especial"
 L.AUTO_TIMER_TEXTS.next			= "Próx. %s"
 L.AUTO_TIMER_TEXTS.nextshort	= "%s"
@@ -485,37 +485,92 @@ L.AUTO_TIMER_TEXTS.addscustom	= "Lacaios em breve (%%s)"
 L.AUTO_TIMER_TEXTS.addscustomshort = "Lacaios (%%s)"
 L.AUTO_TIMER_TEXTS.roleplay		= "Encenação"
 
--- Continue here
 L.AUTO_TIMER_OPTIONS.target		= "Exibir cronômetro para a penalidade $spell:%s"
 L.AUTO_TIMER_OPTIONS.cast		= "Exibir cronômetro para lançar $spell:%s"
+L.AUTO_TIMER_OPTIONS.castcoun	= "Exibir cronômetro (com contagem) para lançar $spell:%s"
+L.AUTO_TIMER_OPTIONS.castsource = "Exibir cronômetro (com fonte) para lançar $spell:%s"
 L.AUTO_TIMER_OPTIONS.active		= "Exibir cronômetro para a duração de $spell:%s"
 L.AUTO_TIMER_OPTIONS.fades		= "Exibir cronômetro para quando $spell:%s desvanecerá dos jogadores"
+L.AUTO_TIMER_OPTIONS.ai			= "Exibir cronômetro AI para recarga de $spell:%s"
 L.AUTO_TIMER_OPTIONS.cd			= "Exibir cronômetro para recarga de $spell:%s"
-L.AUTO_TIMER_OPTIONS.cdcount		= "Exibir cronômetro para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.cdcount	= "Exibir cronômetro para recarga de $spell:%s"
 L.AUTO_TIMER_OPTIONS.cdsource	= "Exibir cronômetro para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.cdspecial	= "Exibir cronômetro para recarga de habilidade especial"
 L.AUTO_TIMER_OPTIONS.next		= "Exibir cronômetro para o próximo $spell:%s"
 L.AUTO_TIMER_OPTIONS.nextcount	= "Exibir cronômetro para o próximo $spell:%s"
 L.AUTO_TIMER_OPTIONS.nextsource	= "Exibir cronômetro para o próximo $spell:%s"
-L.AUTO_TIMER_OPTIONS.achievement	= "Exibir cronômetro para %s"
+L.AUTO_TIMER_OPTIONS.nextspecial = "Exibir cronômetro para a próxima recarga de habilidade"
+L.AUTO_TIMER_OPTIONS.stage		= "Exibir cronômetro para a próxima fase"
+L.AUTO_TIMER_OPTIONS.adds		= "Exibir cronômetro para os lacaios em breve"
+L.AUTO_TIMER_OPTIONS.addscustom	= "Exibir cronômetro para os lacaios em breve"
+L.AUTO_TIMER_OPTIONS.roleplay	= "Exibir cronômetro para duração do encenação"
 
+L.AUTO_ICONS_OPTION_TEXT			= "Colocar ícones nos alvos de $spell:%s"
+L.AUTO_ICONS_OPTION_TEXT2			= "Set icons on $spell:%s"
+L.AUTO_ARROW_OPTION_TEXT			= "Exibir a seta do " .. L.DBM .. " para avançar em direção ao alvo afetado por $spell:%s"
+L.AUTO_ARROW_OPTION_TEXT2			= "Exibir a seta do " .. L.DBM .. " para afastar-se do alvo afetado por $spell:%s"
+L.AUTO_ARROW_OPTION_TEXT3			= "Exibir a seta do " .. L.DBM .. " para avançar para um local específico para $spell:%s"
+L.AUTO_VOICE_OPTION_TEXT			= "Reproduzir alertas falados para $spell:%s"
+L.AUTO_VOICE2_OPTION_TEXT			= "Reproduzir alertas falados para mudanças de fase"
+L.AUTO_VOICE3_OPTION_TEXT			= "Reproduzir alertas falados para lacaios em breve"
+L.AUTO_VOICE4_OPTION_TEXT			= "Reproduzir alertas falados para coisas ruins no chão"
+L.AUTO_COUNTDOWN_OPTION_TEXT		= "Tocar som de contagem regressiva para $spell:%s"
+L.AUTO_COUNTDOWN_OPTION_TEXT2		= "Tocar som de contagem regressiva para quando $spell:%s desvanece"
+L.AUTO_COUNTOUT_OPTION_TEXT			= "Tocar som de contagem regressiva para duração de $spell:%s"
 
+L.AUTO_YELL_OPTION_TEXT.shortyell	= "Gritar quando você é afetado por $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.yell		= "Gritar (com nome do jogador) quando você é afetado por $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.count		= "Gritar (com contagem) quando você é afetado por $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.fade		= "Gritar (com contagem regressiva e nome do feitiço) quando $spell:%s desvanece"
+L.AUTO_YELL_OPTION_TEXT.shortfade	= "Gritar (com contagem regressiva) quando $spell:%s desvanece"
+L.AUTO_YELL_OPTION_TEXT.iconfade	= "Gritar (com contagem regressiva e ícone) quando $spell:%s desvanece"
+L.AUTO_YELL_OPTION_TEXT.position	= "Gritar (com posição) quando você é afetado por $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.combo		= "Gritar (com texto personalizado) quando você é afetado por $spell:%s e outros feitiços ao mesmo tempo"
 
+L.AUTO_YELL_ANNOUNCE_TEXT.shortyell	= "%s"
+L.AUTO_YELL_ANNOUNCE_TEXT.yell		= "%s em " .. UnitName("player") .. "!"
+L.AUTO_YELL_ANNOUNCE_TEXT.count		= "%s em " .. UnitName("player") .. " (%%d)"
+L.AUTO_YELL_ANNOUNCE_TEXT.fade		= "%s desvanece em %%d"
+L.AUTO_YELL_ANNOUNCE_TEXT.shortfade	= "%%d"
+L.AUTO_YELL_ANNOUNCE_TEXT.iconfade	= "{rt%%2$d}%%1$d"
+L.AUTO_YELL_ANNOUNCE_TEXT.position	= "%s %%s em {rt%%d}"..UnitName("player").."{rt%%d}"
+L.AUTO_YELL_ANNOUNCE_TEXT.combo		= "%s e %%s"
 
-L.AUTO_ICONS_OPTION_TEXT		= "Colocar ícones nos alvos de $spell:%s"
-L.AUTO_ICONS_OPTION_TEXT2		= "Set icons on $spell:%s"
-L.AUTO_SOUND_OPTION_TEXT		= "Tocar som \"Fuja garotinha\" para $spell:%s"
-L.AUTO_COUNTDOWN_OPTION_TEXT	= "Tocar som de contagem regressiva para $spell:%s"
-L.AUTO_COUNTOUT_OPTION_TEXT	= "Tocar som de contagem regressiva para duração de $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.yell		= "Gritar quando você é afetado por $spell:%s"
-L.AUTO_YELL_ANNOUNCE_TEXT.yell	= "%s em " .. UnitName("player") .. "!"
-
+L.AUTO_YELL_CUSTOM_POSITION			= "{rt%d}%s{"--Doesn't need translating. Has no strings
+L.AUTO_YELL_CUSTOM_POSITION2		= "{rt%d}%s{rt%d}"--Doesn't need translating. Has no strings
+L.AUTO_YELL_CUSTOM_FADE				= "%s desvanece"
+L.AUTO_HUD_OPTION_TEXT				= "Exibir HudMap para $spell:%s (Retirado)"
+L.AUTO_HUD_OPTION_TEXT_MULTI		= "Exibir HudMap para vários mecânicos (Retirado)"
+L.AUTO_NAMEPLATE_OPTION_TEXT		= "Exibir auras da placa de identificação para $spell:%s"
+L.AUTO_RANGE_OPTION_TEXT			= "Exibir quadro de alcance (%s) para $spell:%s"--string used for range so we can use things like "5/2" as a value for that field
+L.AUTO_RANGE_OPTION_TEXT_SHORT		= "Exibir quadro de alcance (%s)"--For when a range frame is just used for more than one thing
+L.AUTO_RRANGE_OPTION_TEXT			= "Exibir quadro reverso (%s) para $spell:%s"--Reverse range frame (green when players in range, red when not)
+L.AUTO_RRANGE_OPTION_TEXT_SHORT		= "Exibir quadro reverso (%s)"
+L.AUTO_INFO_FRAME_OPTION_TEXT		= "Exibir quadro de informações para $spell:%s"
+L.AUTO_INFO_FRAME_OPTION_TEXT2		= "Exibir quadro de informações para a visão geral do encontro"
+L.AUTO_READY_CHECK_OPTION_TEXT		= "Tocar som de verificação pronto quando o chefe é puxado (mesmo que não seja direcionado)"
+L.AUTO_SPEEDCLEAR_OPTION_TEXT		= "Exibir cronômetro para uma limpeza mais rápida %s"
 
 -- New special warnings
+L.MOVE_WARNING_BAR					= "Anunciar móvel"
+L.MOVE_WARNING_MESSAGE				= "Obrigado por usar " .. L.DEADLY_BOSS_MODS
 L.MOVE_SPECIAL_WARNING_BAR	= "Aviso especial móvel"
 L.MOVE_SPECIAL_WARNING_TEXT	= "Aviso especial"
 
-
-L.RANGE_CHECK_ZONE_UNSUPPORTED	= "Medição de distância de %d metros não suportada nessa zona.\nAs distâncias suportadas são 10, 11, 15 e 28 metros."
+L.HUD_INVALID_TYPE					= "Tipo de HUD inválido definido"
+L.HUD_INVALID_TARGET				= "Nenhum alvo válido fornecido para o HUD"
+L.HUD_INVALID_SELF					= "Não é possível usar-se como alvo para HUD"
+L.HUD_INVALID_ICON					= "Não é possível usar o método icon para HUD em um alvo sem ícone"
+L.HUD_SUCCESS						= "HUD bem sucedido iniciado com seus parâmetros. Isso será cancelado após %s, ou ligando '/dbm hud hide'."
+L.HUD_USAGE	= {
+	 L.DBM .. "-HudMap usage:",
+	"-----------------",
+	"/dbm hud <tipo> <alvo> <duração>: Cria um HUD que aponta para um jogador pela duração desejada",
+	"Tipos válidos: seta, ponto, vermelho, azul, verde, amarelo, ícone (requer um alvo com ícone de ataque)",
+	"Alvos válidos: alvo, foco, <jogador>",
+	"Durações válidas: qualquer número (em segundos). Se deixado em branco, 20 minutos serão usados.",
+	"/dbm hud hide: desativa objetos HUD gerados pelo usuário"
+}
 
 L.ARROW_MOVABLE					= "Seta móvel"
 L.ARROW_ERROR_USAGE	= {
@@ -527,6 +582,9 @@ L.ARROW_ERROR_USAGE	= {
 }
 
 L.SPEED_KILL_TIMER_TEXT	= "Vitória em tempo recorde"
+L.SPEED_CLEAR_TIMER_TEXT			= "Limpeza mais rápida"
+L.COMBAT_RES_TIMER_TEXT				= "Próxima recarga CR"
+L.TIMER_RESPAWN						= "%s Respawn"
 
 L.REQ_INSTANCE_ID_PERMISSION		= "%s solicitou suas IDs de instância e progresso atuais.\nVocê deseja enviar essa informação para %s? Ele(a) poderá requisitar essa informação durante a sessão atual (i. e. até que você reconecte)."
 L.ERROR_NO_RAID					= "Você precisa estar em um grupo de raide para utilizar essa funcionalidade."
@@ -541,7 +599,38 @@ L.INSTANCE_INFO_STATS_DENIED		= "Negou a solicitação: %s"
 L.INSTANCE_INFO_STATS_AWAY		= "Ausente: %s"
 L.INSTANCE_INFO_STATS_NO_RESPONSE	= "Não possui uma versão recente do DBM instalada: %s"
 L.INSTANCE_INFO_RESULTS			= "Resultados da busca por  IDs de raid. Note que instâncias podem aparecer mais de uma vez, se houver jogadores com clientes de WoW em outra língua."
-L.INSTANCE_INFO_SHOW_RESULTS		= "Jogadores que ainda não responderam: %s\n|HDBM:showRaidIdResults|h|cff3588ff[Exibir resultados agora]|r|h"
+--L.INSTANCE_INFO_SHOW_RESULTS		= "Jogadores que ainda não responderam: %s\n|HDBM:showRaidIdResults|h|cff3588ff[Exibir resultados agora]|r|h"
+L.INSTANCE_INFO_SHOW_RESULTS		= "Jogadores que ainda não responderam: %s"
+
+L.LAG_CHECKING						= "Verificando a latência da raide..."
+L.LAG_HEADER						= L.DEADLY_BOSS_MODS .. " - Resultados de latência"
+L.LAG_ENTRY							= "%s: Latência mundial [%d ms] / Latência em casa [%d ms]"
+L.LAG_FOOTER						= "Sem resposta: %s"
+
+L.DUR_CHECKING						= "Verificando a durabilidade da raide..."
+L.DUR_HEADER						= L.DEADLY_BOSS_MODS .. " - Resultados de durabilidade"
+L.DUR_ENTRY							= "%s: Durabilidade [%d percent] / quebrada [%s]"
+L.LAG_FOOTER						= "Sem resposta: %s"
+
+--LDB
+L.LDB_TOOLTIP_HELP1					= "Clique para abrir " .. L.DBM
+L.LDB_TOOLTIP_HELP2					= "Alt-clique para alternar o modo silencioso"
+L.SILENTMODE_IS                     = "Modo silencioso é "
+
+L.LDB_LOAD_MODS						= "Carregar mods de chefe"
+
+L.LDB_CAT_BFA						= "Battle for Azeroth"
+L.LDB_CAT_LEG						= "Legion"
+L.LDB_CAT_WOD						= "Warlords of Draenor"
+L.LDB_CAT_MOP						= "Mists of Pandaria"
+L.LDB_CAT_CATA						= "Cataclysm"
+L.LDB_CAT_WOTLK						= "Wrath of the Lich King"
+L.LDB_CAT_BC						= "Burning Crusade"
+L.LDB_CAT_CLASSIC 					= "Clássico"
+L.LDB_CAT_OTHER						= "Outros mods de chefe"
+
+L.LDB_CAT_GENERAL					= "Geral"
+L.LDB_ENABLE_BOSS_MOD				= "Ativar mods de chefe"
 
 L.WORLD_BUFFS.hordeOny		= "People of the Horde, citizens of Orgrimmar, come, gather round and celebrate a hero of the Horde"
 L.WORLD_BUFFS.allianceOny	= "Cidadãos e aliados de Ventobravo, no dia de hoje, fez-se história."
