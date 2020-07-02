@@ -58,7 +58,7 @@ L.GUILD_BOSS_DOWN			= "%s foi derrotado pela guild após %s!"
 L.COMBAT_ENDED_AT			= "Combate contra %s (%s) encerrado após %s."
 L.COMBAT_ENDED_AT_LONG		= "Combate contra %s (%s) encerrado após %s. Você tem um total de %d derrotas nessa dificuldade."
 L.GUILD_COMBAT_ENDED_AT		= "Guild foi derrotada por %s (%s) após %s."
-L.COMBAT_STATE_RECOVERED		= "Luta contra %s começou %s atrás, reajustando cronógrafos..."
+L.COMBAT_STATE_RECOVERED		= "Luta contra %s começou %s atrás, reajustando cronômetros..."
 L.TRANSCRIPTOR_LOG_START		= "Gravação do Transcritor começou."
 L.TRANSCRIPTOR_LOG_END		= "Gravação do Transcritor finalizado."
 
@@ -130,9 +130,9 @@ L.GENERIC_WARNING_OTHERS		= "e mais um"
 L.GENERIC_WARNING_OTHERS2	= "e %d outros"
 L.GENERIC_WARNING_BERSERK	= "Frenético em %s %s"
 L.GENERIC_TIMER_BERSERK		= "Frenético"
-L.OPTION_TIMER_BERSERK		= "Exibir cronógrafo para $spell:26662"
+L.OPTION_TIMER_BERSERK		= "Exibir cronômetro para $spell:26662"
 L.GENERIC_TIMER_COMBAT		= "Combate começou"
-L.OPTION_TIMER_COMBAT		= "Exibir cronógrafo para começo do combate"
+L.OPTION_TIMER_COMBAT		= "Exibir cronômetro para começo do combate"
 L.BAD								= "Inválido"
 
 L.OPTION_CATEGORY_TIMERS		= "Barras"
@@ -192,8 +192,8 @@ L.UPDATEREMINDER_NOTAGAIN	= "Exibir pop-up quando houver uma nova versão dispon
 
 L.MOVABLE_BAR				= "Arraste-me!"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h te enviou um cronógrafo do DBM: '%2$s'\n|HDBM:cancel:%2$s:nil|h|cff3588ff[Cancelar esse cronógrafo]|r|h  |HDBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorar cronógrafos de %1$s]|r|h"
-L.PIZZA_CONFIRM_IGNORE			= "Você tem certeza de que realmente deseja ignorar cronógrafos de %s até o fim desta sessão?"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h te enviou um cronômetro do DBM: '%2$s'\n|HDBM:cancel:%2$s:nil|h|cff3588ff[Cancelar esse cronômetro]|r|h  |HDBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorar cronômetros de %1$s]|r|h"
+L.PIZZA_CONFIRM_IGNORE			= "Você tem certeza de que realmente deseja ignorar cronômetros de %s até o fim desta sessão?"
 L.PIZZA_ERROR_USAGE				= "Uso: /dbm [broadcast] timer <tempo> <texto>"
 
 --L.MINIMAP_TOOLTIP_HEADER (Same as English locales)
@@ -240,7 +240,7 @@ L.LFG_INVITE						= "Aceitar convite"
 
 L.SLASHCMD_HELP				= {
 	"Comandos disponíveis:",
-	"/dbm unlock: Exibe uma barra de cronógrafo móvel. (ou: move).",
+	"/dbm unlock: Exibe uma barra de cronômetro móvel. (ou: move).",
 	"/range <number> or /distance <number>: Shows range frame. /rrange or /rdistance to reverse colors.",--Translate
 	"/dbm timer: Starts a custom DBM timer, see '/dbm timer' for details.",--Translate
 	"/dbm arrow: Exibe a seta do DBM, veja /dbm arrow help para detalhes.",
@@ -251,8 +251,8 @@ L.SLASHCMD_HELP2				= {
 	"Comandos disponíveis:",
 	"/dbm version: Realiza uma checagem de versão de toda a raid. (ou: ver).",
 	"/dbm version2: Realiza uma checagem de versão de toda a raid e sussurra para avisando os membros que estão desatualizados (alias: ver2).",
-	"/dbm break <min>: Inicia um cronógrafo de intervalo de <min> minutos. Dá a todos os integrantes da raid um cronógrafo de intervalo (requer status de líder/guia).",
-	"/dbm pull <seg>: Dispara um cronógrafo para iniciar a luta em <seg> segundos. Dá a todos os integrantes da raid um cronógrafo para iniciar a luta (requer status de líder/guia).",
+	"/dbm break <min>: Inicia um cronômetro de intervalo de <min> minutos. Dá a todos os integrantes da raid um cronômetro de intervalo (requer status de líder/guia).",
+	"/dbm pull <seg>: Dispara um cronômetro para iniciar a luta em <seg> segundos. Dá a todos os integrantes da raid um cronômetro para iniciar a luta (requer status de líder/guia).",
 	"/dbm lockout: Pergunta a todos os membros da raid, por seus vínculos de raid (ou: lockouts, ids) (requer status de líder/guia).."
 }
 --Translate all of these
@@ -449,37 +449,54 @@ L.AUTO_SPEC_WARN_OPTIONS.gtfo		= "Exibir aviso especial para sair de coisas ruin
 L.AUTO_SPEC_WARN_OPTIONS.adds		= "Exibir aviso especial para mudar de alvo para lacaios entrantes"
 L.AUTO_SPEC_WARN_OPTIONS.addscustom	= "Exibir aviso especial para lacaios entrantes"
 L.AUTO_SPEC_WARN_OPTIONS.targetchange	= "Exibir aviso especial para alterações de alvo prioritário"
--- START BACK HERE (note to self)
+
 -- Auto-generated Timer Localizations
 L.AUTO_TIMER_TEXTS.target		= "%s: >%%s<"
-L.AUTO_TIMER_TEXTS.targetcount	= "%s (%%s) em >%%s<"
-L.AUTO_TIMER_TEXTS.spell		= "%s"
-L.AUTO_TIMER_TEXTS.ends			= "%s acaba" --Buff/Debuff/event on boss
-L.AUTO_TIMER_TEXTS.endtarget	= "%s acaba: >%%s<"
-L.AUTO_TIMER_TEXTS.fades		= "%s desvanece" --Buff/Debuff on players
-L.AUTO_TIMER_TEXTS.adds			= "%s remanescente: %%d"
-L.AUTO_TIMER_TEXTS.cast			= "Lançar %s: %.1f seg"
-L.AUTO_TIMER_TEXTS.soon			= "%s em breve"
-L.AUTO_TIMER_TEXTS.prewarn		= "%s em %s"
+L.AUTO_TIMER_TEXTS.cast			= "%s"
+L.AUTO_TIMER_TEXTS.castshort	= "%s "
+L.AUTO_TIMER_TEXTS.castcountshort = "%s (%%s)"
+L.AUTO_TIMER_TEXTS.castsource 	= "%s: %%s"
+L.AUTO_TIMER_TEXTS.casesourceshort = "%s: %%s"
+L.AUTO_TIMER_TEXTS.active		= "%s acaba"
+L.AUTO_TIMER_TEXTS.fades		= "%s desvanece"
+L.AUTO_TIMER_TEXTS.ai			= "%s AI"
 L.AUTO_TIMER_TEXTS.cd			= "%s recarrega"
+L.AUTO_TIMER_TEXTS.cdshort		= "~%s (%%s)"
 L.AUTO_TIMER_TEXTS.cdcount		= "%s recarrega (%%s)"
+L.AUTO_TIMER_TEXTS.cdcountshort	= "~%s (%%s)"
 L.AUTO_TIMER_TEXTS.cdsource		= "%s recarrega: >%%s<"
+L.AUTO_TIMER_TEXTS.cdsourceshort = "~%s: >%%s<"
+L.AUTO_TIMER_TEXTS.cdspecial	= "Recarrega especial"
+L.AUTO_TIMER_TEXTS.cdspecialshort "~Especial"
 L.AUTO_TIMER_TEXTS.next			= "Próx. %s"
+L.AUTO_TIMER_TEXTS.nextshort	= "%s"
 L.AUTO_TIMER_TEXTS.nextcount	= "Próx. %s (%%s)"
-L.AUTO_TIMER_TEXTS.nextsource	= "Próx %s: >%%s<"
+L.AUTO_TIMER_TEXTS.nextcountshort = "%s (%%s)"
+L.AUTO_TIMER_TEXTS.nextsource	= "Próx. %s: >%%s<"
+L.AUTO_TIMER_TEXTS.nextsourceshort = "%s: %%s"
+L.AUTO_TIMER_TEXTS.nextspecial	= "Próx. especial"
+L.AUTO_TIMER_TEXTS.nextspecialshort = "Especial"
 L.AUTO_TIMER_TEXTS.achievement	= "%s"
+L.AUTO_TIMER_TEXTS.stage		= "Próx. Fase"
+L.AUTO_TIMER_TEXTS.stageshort	= "Fase"
+L.AUTO_TIMER_TEXTS.adds			= "Lacaios em breve"
+L.AUTO_TIMER_TEXTS.addsshort	= "Lacaios"
+L.AUTO_TIMER_TEXTS.addscustom	= "Lacaios em breve (%%s)"
+L.AUTO_TIMER_TEXTS.addscustomshort = "Lacaios (%%s)"
+L.AUTO_TIMER_TEXTS.roleplay		= "Encenação"
 
-L.AUTO_TIMER_OPTIONS.target		= "Exibir cronógrafo para a penalidade $spell:%s"
-L.AUTO_TIMER_OPTIONS.cast		= "Exibir cronógrafo para lançar $spell:%s"
-L.AUTO_TIMER_OPTIONS.active		= "Exibir cronógrafo para a duração de $spell:%s"
-L.AUTO_TIMER_OPTIONS.fades		= "Exibir cronógrafo para quando $spell:%s desvanecerá dos jogadores"
-L.AUTO_TIMER_OPTIONS.cd			= "Exibir cronógrafo para recarga de $spell:%s"
-L.AUTO_TIMER_OPTIONS.cdcount		= "Exibir cronógrafo para recarga de $spell:%s"
-L.AUTO_TIMER_OPTIONS.cdsource	= "Exibir cronógrafo para recarga de $spell:%s"
-L.AUTO_TIMER_OPTIONS.next		= "Exibir cronógrafo para o próximo $spell:%s"
-L.AUTO_TIMER_OPTIONS.nextcount	= "Exibir cronógrafo para o próximo $spell:%s"
-L.AUTO_TIMER_OPTIONS.nextsource	= "Exibir cronógrafo para o próximo $spell:%s"
-L.AUTO_TIMER_OPTIONS.achievement	= "Exibir cronógrafo para %s"
+-- Continue here
+L.AUTO_TIMER_OPTIONS.target		= "Exibir cronômetro para a penalidade $spell:%s"
+L.AUTO_TIMER_OPTIONS.cast		= "Exibir cronômetro para lançar $spell:%s"
+L.AUTO_TIMER_OPTIONS.active		= "Exibir cronômetro para a duração de $spell:%s"
+L.AUTO_TIMER_OPTIONS.fades		= "Exibir cronômetro para quando $spell:%s desvanecerá dos jogadores"
+L.AUTO_TIMER_OPTIONS.cd			= "Exibir cronômetro para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.cdcount		= "Exibir cronômetro para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.cdsource	= "Exibir cronômetro para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.next		= "Exibir cronômetro para o próximo $spell:%s"
+L.AUTO_TIMER_OPTIONS.nextcount	= "Exibir cronômetro para o próximo $spell:%s"
+L.AUTO_TIMER_OPTIONS.nextsource	= "Exibir cronômetro para o próximo $spell:%s"
+L.AUTO_TIMER_OPTIONS.achievement	= "Exibir cronômetro para %s"
 
 
 
