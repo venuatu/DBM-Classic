@@ -13,14 +13,14 @@ L:SetTimerLocalization{
 	TimerAddsSpawn	= "Primeiros lacaios"
 }
 L:SetOptionLocalization{
-	TimerAddsSpawn	= "Mostrar cronômetro para quando os primeiros lacaios aparecerem"
+	TimerAddsSpawn	= "Exibir cronômetro para quando os primeiros lacaios aparecerem"
 }
 L:SetMiscLocalization{
-	Phase2Emote	= "huyen mientras se consume el poder del orbe.",
-	YellEgg1	= "¡Pagarás por obligarme a hacer esto!",
-	YellEgg2	= "¡Idiotas! ¡Esos huevos son más valiosos que los vuestros!",
-	YellEgg3	= "¡No, otro no! ¡Haré que os corten la cabeza por esta atrocidad!",
-	YellPull	= "¡Tenemos intrusos en El Criadero! ¡Haced sonar la alarma! ¡Proteged los huevos a toda costa!"
+	Phase2Emote	= "fogem à medida que o poder do orbe é drenado.",
+	YellEgg1	= "Vocês pagarão caro por me forçarem a fazer isso!",
+	YellEgg2	= "Tolos! Esses ovos são mais preciosos do que vocês imaginam!",
+	YellEgg3	= "Não! Mais um, não! Cortarei suas cabeças por esta atrocidade!",
+	YellPull	= "Invasores violaram a incubadora! Soem o alarme! Protejam os ovos a todo custo!"
 }
 -------------------
 --  Vaelastrasz  --
@@ -32,7 +32,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization{
-	Event				= "¡Demasiado tarde, amigos! La corrupción de Nefarius me ha vencido... No... No puedo controlarme."
+	Event				= "É tarde demais, meus amigos! A corrupção de Nefarius se espalhou... não consigo... me controlar."
 }
 -----------------
 --  Broodlord  --
@@ -44,7 +44,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization{
-	Pull	= "None of your kind should be here!  You've doomed only yourselves!"
+	Pull	= "Nenhum de vocês deveria estar aqui! Vocês condenaram somente a si mesmos!"
 }
 
 ---------------
@@ -87,7 +87,7 @@ L:SetWarningLocalization{
 	WarnVulnerable		= "Vulnerabilidade: %s"
 }
 L:SetOptionLocalization{
-	WarnVulnerable		= "Mostrar aviso de vulnerabilidades de feitiços"
+	WarnVulnerable		= "Exibir aviso de vulnerabilidades de feitiços"
 }
 L:SetMiscLocalization{
 	Fire		= "Fogo",
@@ -116,16 +116,16 @@ L:SetTimerLocalization{
 	TimerVulnCD		= "Recarga de Vulnerabilidade"
 }
 L:SetOptionLocalization{
-	WarnBreath		= "Mostrar aviso quando Cromaggus lançar uma das suas respirações",
-	WarnVulnerable	= "Mostrar cronômetro para recarga da respiração",
-	TimerBreathCD	= "Mostrar recarga da respiração",
-	TimerBreath		= "Mostrar lançamento da respiração",
-	TimerVulnCD		= "Mostrar recarga de Vulnerabilidade"
+	WarnBreath		= "Exibir aviso quando Cromaggus lançar uma das suas respirações",
+	WarnVulnerable	= "Exibir cronômetro para recarga da respiração",
+	TimerBreathCD	= "Exibir recarga da respiração",
+	TimerBreath		= "Exibir lançamento da respiração",
+	TimerVulnCD		= "Exibir recarga de Vulnerabilidade"
 }
 L:SetMiscLocalization{
 	Breath1	= "Primeira respiração",
 	Breath2	= "Segunda respiração",
-	VulnEmote	= "%s se estremece mientras su piel empieza a brillar.",
+	VulnEmote	= "%s tem espasmos à medida que sua pele começa a brilhar.",
 	Vuln		= "Vulnerabilidade",
 	Fire		= "Fogo",
 	Nature		= "Natureza",
@@ -154,26 +154,23 @@ L:SetTimerLocalization{
 	TimerClassCall		= "Chamada de %s finalizada"
 }
 L:SetOptionLocalization{
-	TimerClassCall		= "Mostrar cronômetro para duração da chamada em cada classe",
+	TimerClassCall		= "Exibir cronômetro para duração da chamada em cada classe",
 	WarnAddsLeft		= "Anunciar as mortes restantes até a Fase 2",
-	WarnClassCall		= "Mostrar aviso para chamadas de classe",
-	specwarnClassCall	= "Mostrar aviso especial quando afetado por chamada em classe"
+	WarnClassCall		= "Exibir aviso para chamadas de classe",
+	specwarnClassCall	= "Exibir aviso especial quando afetado por chamada em classe"
 --	WarnPhase			= "Anunciar mudanças de fase"
 }
 L:SetMiscLocalization{
-	YellP1		= "¡Que comiencen los juegos!",
-	YellP2		= "Bien hecho, esbirros. La valentía de los mortales empieza a menguar. Ahora, ¡veamos cómo se enfrentan al verdadero Señor de la Cubre de Roca Negra!",
-	YellP3		= "¡Imposible! ¡Levantaos, esbirros! ¡Servid a vuestro maestro una vez más!",
-	YellShaman	= "¡Chamanes, mostradme lo que pueden hacer vuestros tótems!",
-	YellPaladin	= "Paladines... He oído que tenéis muchas vidas. Demostrádmelo.",
-	YellDruid	= "Los druidas y vuestro estúpido poder de cambiar de forma. ¡Veámoslo en acción!",
-	YellPriest	= "¡Sacerdotes! Si vais a seguir curando de esa forma, ¡podíamos hacerlo más interesante!",
-	YellWarrior	= "¡Vamos guerreros, sé que podéis golpear más fuerte que eso! ¡Veámoslo!",
-	YellRogue	= "¿Pícaros? ¡Dejad de esconderos y enfrentaos a mí!",
-	YellWarlock	= "Brujos... No deberíais estar jugando con magia que no comprendéis. ¿Veis lo que pasa?",
-	YellHunter	= "¡Cazadores y vuestras molestas cerbatanas!",
-	YellMage	= "¡Magos también? Deberíais tener más cuidado cuando jugáis con la magia..."
---	YellDK		= "¡Caballeros de la Muerte... venid aquí!",
---	YellMonk	= "Monjes, ¿no os mareáis con tanta vuelta?",
---	YellDH		= "¿Cazadores de demonios? Qué raro eso de taparos los ojos así. ¿No os cuesta ver lo que tenéis alrededor?"--Demon Hunter call; I know this hasn't been implemented yet in DBM, but I added it just in case.
+	YellP1		= "Que comecem os jogos!",
+	YellP2		= "Muito bem, meus lacaios. A coragem dos mortais começa a vacilar! Agora vejamos como eles enfrentarão o verdadeiro Senhor dos Rocha Negra!!!",
+	YellP3		= "Impossível! Ergam-se, meus lacaios! Sirvam ao seu mestre mais uma vez!",
+	YellShaman	= "¡Chamanes, mostradme lo que pueden hacer vuestros tótems!", --needs localization
+	YellPaladin	= "Paladines... He oído que tenéis muchas vidas. Demostrádmelo.", --needs localization
+	YellDruid	= "Los druidas y vuestro estúpido poder de cambiar de forma. ¡Veámoslo en acción!", --needs localization
+	YellPriest	= "Sacerdotes! Se vocês continuarem a curar desse jeito, acho que podemos tornar as coisas um pouquinho mais interessantes!",
+	YellWarrior	= "Guerreiros, sei que vocês conseguem bater mais forte que isso! Vamos!",
+	YellRogue	= "Ladinos? Parem de se esconder e venham me enfrentar!",
+	YellWarlock	= "Bruxos, vocês não deveriam brincar com magias que não compreendem. Viram só o que acontece?",
+	YellHunter	= "Caçadores e seus irritantes atiradores de ervilhas!",
+	YellMage	= "¡Magos también? Deberíais tener más cuidado cuando jugáis con la magia..." --needs localization
 }
