@@ -25,6 +25,7 @@ local firstBossMod = DBM:GetModByName("Kurinnaxx")
 
 --end
 
+--[[
 function mod:OnCombatEnd(wipe)
 	if not wipe then
 		DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
@@ -46,6 +47,7 @@ function mod:OnCombatEnd(wipe)
 		end
 	end
 end
+--]]
 
 do
 	local StrengthofOssirian, EnvelopingWinds = DBM:GetSpellInfo(25176), DBM:GetSpellInfo(25189)

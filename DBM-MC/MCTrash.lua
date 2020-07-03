@@ -36,7 +36,7 @@ do
 				self.vb.firstEngageTime = GetTime()
 				if self.Options.FastestClear and self.Options.SpeedClearTimer then
 					--Custom bar creation that's bound to core, not mod, so timer doesn't stop when mod stops it's own timers
-					DBM.Bars:CreateBar(self.Options.FastestClear, DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
+					DBM.Bars:CreateBar(self.Options.FastestClear, DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT, "136106")
 				end
 				self:SendSync("MCStarted", self.vb.firstEngageTime)--Also sync engage time
 			end
