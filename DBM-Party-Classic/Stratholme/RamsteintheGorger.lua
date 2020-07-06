@@ -22,6 +22,12 @@ function mod:OnCombatStart(delay)
 	timerTrampleCD:Start(1-delay)
 end
 
+function mod:OnCombatEnd(wipe, isSecondRun)
+	if not wipe and not isSecondRun then
+		--do things
+	end
+end
+
 do
 	local Knockout, Trample = DBM:GetSpellInfo(17307), DBM:GetSpellInfo(5568)
 	function mod:SPELL_CAST_SUCCESS(args)
