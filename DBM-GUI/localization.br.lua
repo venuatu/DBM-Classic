@@ -9,9 +9,15 @@ L.MainFrame = "Deadly Boss Mods"
 L.TranslationBy 			= "GlitterStorm @ Azralon"
 
 L.OTabBosses	= "Chefes"
+L.OTabRaids		= "Raide"--Raids & PVP
+L.OTabDungeons	= "Party/Só"--1-5 person content (Dungeons, MoP Scenarios, World Events, Brawlers, Proving Grounds, Visions, Torghast, etc)
+L.OTabPlugins	= "Core Plugins"
 L.OTabOptions	= "Opções"
+L.OTabAbout		= "Sobre"
 
 L.TabCategory_Options	 	= "Opções Gerais"
+L.TabCategory_BFA	 		= "Battle for Azeroth"
+L.TabCategory_LEG	 		= "Legion"
 L.TabCategory_WOD	 		= "Warlords of Draenor"
 L.TabCategory_MOP	 		= "Mists of Pandaria"
 L.TabCategory_CATA	 		= "Cataclysm"
@@ -50,18 +56,20 @@ L.Statistic_Kills			= "Vitórias:"
 L.Statistic_Wipes			= "Derrotas:"
 L.Statistic_Incompletes		= "Incompletos:"--Para cenários, TODO, encontrar um jeito limpo de substituir derrotas por estatística incompleto para mods de cenário
 L.Statistic_BestKill		= "Melhor tempo:"
-
+L.Statistic_BestRank		= "Melhor classificação:"
 -- Tab: General Core Options
 L.General 					= "Opções gerais do DBM"
 L.EnableMiniMapIcon			= "Exibir botão no mini-mapa"
-L.UseMasterVolume			= "Utilizar canal principal de áudio para reproduzir arquivos de som."
+L.UseSoundChannel			= "Definir o canal de áudio usado pelo DBM para reproduzir sons de alerta"
+L.UseMasterChannel			= "Canal de áudio principal."
+L.UseDialogChannel			= "Canal de áudio de diálogo."
+L.UseSFXChannel				= "Canal de áudio Efeitos Sonoros (SFX)."
 L.Latency_Text				= "Definir latência máxima de sincronização: %d"
--- Tab: General Timer Options
-L.TimerGeneral 				= "Opções gerais do temporizador do DBM"
-L.SKT_Enabled				= "Sempre mostrar um temporizador de sua vitória recorde (Sobrepõe a opção do chefe específico)"
-L.ChallengeTimerOptions		= "Colocar opção para temporizador de melhor tempo em modo desafio"
-L.ChallengeTimerPersonal	= "Pessoal"
-L.ChallengeTimerRealm		= "Reino"
+
+L.Button_RangeFrame			= "Exibir/esconder quadro de distância"
+L.Button_RangeRadar			= "Exibir/esconder radar de distância" -- Não existe no en.lua
+L.Button_InfoFrame			= "Exibir/esconder quadro de informações"
+L.Button_TestBars			= "Iniciar barras de teste"
 
 L.ModelOptions				= "Opções do Visualizador de Modelos 3D"
 L.EnableModels				= "Habilitar modelos 3D nas opções de chefe"
@@ -69,11 +77,16 @@ L.ModelSoundOptions			= "Definir opção de som para o visualizador de modelos"
 L.ModelSoundShort			= "Curto"
 L.ModelSoundLong			= "Longo"
 
-L.Button_RangeFrame			= "Exibir/esconder quadro de distância"
-L.Button_RangeRadar			= "Exibir/esconder radar de distância" -- Não existe no en.lua
-L.Button_InfoFrame			= "Exibir/esconder quadro de informações"
-L.Button_TestBars			= "Iniciar barras de teste"
-
+L.ResizeOptions			 	= "Opções de redimensionamento"
+L.Button_ResetWindowSize	= "Redefinir o tamanho da janela da GUI"
+L.Editbox_WindowWidth		= "Largura da janela da GUI"
+L.Editbox_WindowHeight		= "Altura da janela da GUI"
+-- Tab: General Timer Options
+L.TimerGeneral 				= "Opções gerais do temporizador do DBM"
+L.SKT_Enabled				= "Sempre mostrar um temporizador de sua vitória recorde (Sobrepõe a opção do chefe específico)"
+L.ChallengeTimerOptions		= "Colocar opção para temporizador de melhor tempo em modo desafio"
+L.ChallengeTimerPersonal	= "Pessoal"
+L.ChallengeTimerRealm		= "Reino"
 -- Tab: Raidwarning
 L.Tab_RaidWarning 			= "Avisos de Raid"
 L.RaidWarning_Header		= "Opções de Avisos de Raid"
