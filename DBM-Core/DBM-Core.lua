@@ -72,8 +72,8 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.52 alpha", -- the string that is shown as version
-	ReleaseRevision = releaseDate(2020, 6, 23) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
+	DisplayVersion = "1.13.52", -- the string that is shown as version
+	ReleaseRevision = releaseDate(2020, 7, 7) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
 
@@ -479,9 +479,7 @@ local UnitExists, UnitIsDead, UnitIsFriend, UnitIsUnit = UnitExists, UnitIsDead,
 local GetSpellInfo, GetDungeonInfo, GetSpellTexture, GetSpellCooldown = GetSpellInfo, GetDungeonInfo, GetSpellTexture, GetSpellCooldown
 --local EJ_GetEncounterInfo, EJ_GetCreatureInfo, EJ_GetSectionInfo, GetSectionIconFlags = EJ_GetEncounterInfo, EJ_GetCreatureInfo, C_EncounterJournal.GetSectionInfo, C_EncounterJournal.GetSectionIconFlags
 local GetInstanceInfo = GetInstanceInfo
-local UnitDetailedThreatSituation = UnitDetailedThreatSituation or function(unit, mob)
-	return false, 0--TODO, remove blank function backup in 1.13.5
-end
+local UnitDetailedThreatSituation = UnitDetailedThreatSituation
 local UnitIsGroupLeader, UnitIsGroupAssistant = UnitIsGroupLeader, UnitIsGroupAssistant
 local PlaySoundFile, PlaySound = PlaySoundFile, PlaySound
 local Ambiguate = Ambiguate
