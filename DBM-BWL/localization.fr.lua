@@ -10,10 +10,10 @@ L:SetGeneralLocalization{
 	name = "Tranchetripe l'Indompté"
 }
 L:SetTimerLocalization{
-	TimerAddsSpawn	= "Adds spawning"
+	TimerAddsSpawn	= "Premiers serviteurs"
 }
 L:SetOptionLocalization{
-	TimerAddsSpawn	= "Show timer for first adds spawning"
+	TimerAddsSpawn	= "Afficher le timer pour les premiers serviteurs"
 }
 L:SetMiscLocalization{
 	Phase2Emote	= "flee as the controlling power of the orb is drained.",
@@ -85,18 +85,18 @@ L:SetGeneralLocalization{
 	name = "Gardes Griffemort"
 }
 L:SetWarningLocalization{
-	WarnVulnerable		= "%s Vulnerability"
+	WarnVulnerable		= "%s Vulnérabilité"
 }
 L:SetOptionLocalization{
-	WarnVulnerable		= "Show warning for spell vulnerabilities"
+	WarnVulnerable		= "Afficher un avertissement pour les vulnérabilités des sorts"
 }
 L:SetMiscLocalization{
-	Fire		= "Fire",
+	Fire		= "Feu",
 	Nature		= "Nature",
-	Frost		= "Frost",
-	Shadow		= "Shadow",
-	Arcane		= "Arcane",
-	Holy		= "Holy"
+	Frost		= "Givre",
+	Shadow		= "Ombre",
+	Arcane		= "Arcanes",
+	Holy		= "Sacré"
 }
 
 
@@ -110,30 +110,30 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnBreath		= "%s",
-	WarnVulnerable	= "%s Vulnerability"
+	WarnVulnerable	= "%s Vulnérabilité"
 }
 L:SetTimerLocalization{
-	TimerBreathCD	= "%s CD",
-	TimerBreath		= "%s cast",
-	TimerVulnCD		= "Vulnerability CD"
+	TimerBreathCD	= "%s recharge",
+	TimerBreath		= "%s lancement",
+	TimerVulnCD		= "Recharge de Vulnérabilité"
 }
 L:SetOptionLocalization{
-	WarnBreath		= "Show warning when Chromaggus casts one of his Breaths",
-	WarnVulnerable	= "Show warning for spell vulnerabilities",
-	TimerBreathCD	= "Show Breath CD",
-	TimerBreath		= "Show Breath cast",
-	TimerVulnCD		= "Show Vulnerability CD"
+	WarnBreath		= "Afficher un avertissement lorsque Chromaggus lance un de ses souffles",
+	WarnVulnerable	= "Afficher un avertissement pour les vulnérabilités des sorts",
+	TimerBreathCD	= "Afficher le temps de recharge de souffle",
+	TimerBreath		= "Afficher le lancement du souffle",
+	TimerVulnCD		= "Afficher le temps de recharge de vulnérabilité"
 }
 L:SetMiscLocalization{
-	Breath1		= "First Breath",
-	Breath2		= "Second Breath",
+	Breath1		= "Premier souffle",
+	Breath2		= "Deuxième souffle",
 	VulnEmote	= "%s flinches as its skin shimmers.",
-	Fire		= "Fire",
+	Fire		= "Feu",
 	Nature		= "Nature",
-	Frost		= "Frost",
-	Shadow		= "Shadow",
-	Arcane		= "Arcane",
-	Holy		= "Holy"
+	Frost		= "Givre",
+	Shadow		= "Ombre",
+	Arcane		= "Arcanes",
+	Holy		= "Sacré"
 }
 
 ----------------
@@ -145,16 +145,16 @@ L:SetGeneralLocalization{
 	name = "Nefarian"
 }
 L:SetWarningLocalization{
-	WarnAddsLeft		= "%d kills remaining",
-	WarnClassCall		= "%s call"
+	WarnAddsLeft		= "%d éliminations restantes",
+	WarnClassCall		= "%s appel"
 }
 L:SetTimerLocalization{
-	TimerClassCall		= "%s call ends"
+	TimerClassCall		= "L'appel de %s termine"
 }
 L:SetOptionLocalization{
-	TimerClassCall		= "Show timer for class call duration",
-	WarnAddsLeft		= "Announce kills remaining until Stage 2 is triggered",
-	WarnClassCall		= "Announce class calls"
+	TimerClassCall		= "Afficher le timer pour la durée de l'appel en classe",
+	WarnAddsLeft		= "Annoncer les éliminations restantes jusqu'au déclenchement de la phase 2",
+	WarnClassCall		= "Annoncer les appels de classe"
 }
 L:SetMiscLocalization{
     YellP1			= "Que les jeux commencent !",
