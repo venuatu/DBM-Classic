@@ -16,11 +16,11 @@ L:SetOptionLocalization{
 	TimerAddsSpawn	= "Afficher le timer pour les premiers serviteurs"
 }
 L:SetMiscLocalization{
-	Phase2Emote	= "flee as the controlling power of the orb is drained.",
-	YellEgg1 = "Vous allez payer pour m’avoir forcé à faire ça !",
-	YellEgg2 = "Imbéciles ! Vous n’avez pas idée de la valeur de ces œufs !",
-	YellEgg3 = "Non, pas un autre ! J’aurai vos têtes pour venger cette atrocité !",
-	YellPull = "La chambre des œufs est envahie ! Sonnez l’alarme ! Protégez les œufs à tout prix !\r\n"--Yes this yell actually has a return and new line in it. as grabbed by transcriptor
+	Phase2Emote	= "s'enfuit car le contrôle de l'orbe s'affaiblit.",
+	YellEgg1 = "Vous allez payer pour m'avoir forcé à faire ça !",
+	YellEgg2 = "Imbéciles ! Vous n'avez pas idée de la valeur de ces œufs !",
+	YellEgg3 = "Non, pas un autre ! J'aurai vos têtes pour venger cette atrocité !",
+	YellPull = "La chambre des œufs est envahie ! Sonnez l'alarme ! Protégez les œufs à tout prix !"
 }
 -------------------
 --  Vaelastrasz  --
@@ -32,7 +32,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization{
-	Event				= "Too late, friends! Nefarius' corruption has taken hold...I cannot...control myself."
+	Event				= "Trop tard, mes amis ! La corruption de Nefarius s'empare de moi… Je ne peux plus… me contrôler."
 }
 -----------------
 --  Broodlord  --
@@ -44,7 +44,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization{
-	Pull	= "None of your kind should be here!  You've doomed only yourselves!"
+	Pull	= "Aucun membre de votre espèce ne devrait être ici ! Vous vous êtes condamnés vous-mêmes !"
 }
 
 ---------------
@@ -85,7 +85,7 @@ L:SetGeneralLocalization{
 	name = "Gardes Griffemort"
 }
 L:SetWarningLocalization{
-	WarnVulnerable		= "%s Vulnérabilité"
+	WarnVulnerable		= "Vulnérabilité: %s"
 }
 L:SetOptionLocalization{
 	WarnVulnerable		= "Afficher un avertissement pour les vulnérabilités des sorts"
@@ -110,7 +110,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnBreath		= "%s",
-	WarnVulnerable	= "%s Vulnérabilité"
+	WarnVulnerable	= "Vulnérabilité: %s"
 }
 L:SetTimerLocalization{
 	TimerBreathCD	= "%s recharge",
@@ -127,7 +127,7 @@ L:SetOptionLocalization{
 L:SetMiscLocalization{
 	Breath1		= "Premier souffle",
 	Breath2		= "Deuxième souffle",
-	VulnEmote	= "%s flinches as its skin shimmers.",
+	VulnEmote	= "%s grimace lorsque sa peau se met à briller.",
 	Fire		= "Feu",
 	Nature		= "Nature",
 	Frost		= "Givre",
