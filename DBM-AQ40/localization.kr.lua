@@ -16,7 +16,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("ThreeBugs")
 
 L:SetGeneralLocalization{
-	name = "벌레 무리"
+	name = "벌레 3형제"
 }
 L:SetMiscLocalization{
 	Yauj	= "공주 야우즈",
@@ -47,7 +47,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("Viscidus")
 
 L:SetGeneralLocalization{
-	name = "비시두스"
+	name = "비시디우스"
 }
 L:SetWarningLocalization{
 	WarnFreeze	= "빙결 : %d/3",
