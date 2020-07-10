@@ -85,7 +85,7 @@ L:SetGeneralLocalization{
 	name = "Gardes Griffemort"
 }
 L:SetWarningLocalization{
-	WarnVulnerable		= "Vulnérabilité: %s"
+	WarnVulnerable		= "Vulnérabilité : %s"
 }
 L:SetOptionLocalization{
 	WarnVulnerable		= "Afficher un avertissement pour les vulnérabilités des sorts"
@@ -110,7 +110,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnBreath		= "%s",
-	WarnVulnerable	= "Vulnérabilité: %s"
+	WarnVulnerable	= "Vulnérabilité : %s"
 }
 L:SetTimerLocalization{
 	TimerBreathCD	= "%s recharge",
@@ -145,8 +145,9 @@ L:SetGeneralLocalization{
 	name = "Nefarian"
 }
 L:SetWarningLocalization{
-	WarnAddsLeft		= "%d éliminations restantes",
-	WarnClassCall		= "%s appel"
+	WarnAddsLeft		= "%d restants",
+	WarnClassCall		= "L'appel de %s",
+	specwarnClassCall	= "Votre appel de classe !"
 }
 L:SetTimerLocalization{
 	TimerClassCall		= "L'appel de %s termine"
@@ -154,7 +155,8 @@ L:SetTimerLocalization{
 L:SetOptionLocalization{
 	TimerClassCall		= "Afficher le timer pour la durée de l'appel en classe",
 	WarnAddsLeft		= "Annoncer les éliminations restantes jusqu'au déclenchement de la phase 2",
-	WarnClassCall		= "Annoncer les appels de classe"
+	WarnClassCall		= "Annoncer les appels de classe",
+	specwarnClassCall	= "Afficher un avertissement spécial lorsque vous êtes affecté par un appel de classe"
 }
 L:SetMiscLocalization{
     YellP1			= "Que les jeux commencent !",
