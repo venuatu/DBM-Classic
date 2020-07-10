@@ -4713,11 +4713,9 @@ do
 				local buffName, _, buffIcon = DBM:GetSpellInfo(tonumber(spellId) or 0)
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName or L.UNKNOWN, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				if DBM.Options.DebugMode or (time ~= 7 and time ~= 27) then
-					local timer = tonumber(time)
-					if timer then
-						DBM.Bars:CreateBar(timer, buffName or L.UNKNOWN, buffIcon or 136106)
-					end
+				if time then
+					time = tonumber(time)
+					DBM.Bars:CreateBar(time, buffName or L.UNKNOWN, buffIcon or 136106)
 				end
 			end
 		end
@@ -4758,11 +4756,9 @@ do
 				local buffName, _, buffIcon = DBM:GetSpellInfo(tonumber(spellId) or 0)
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName or L.UNKNOWN, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				if DBM.Options.DebugMode or (time ~= 7 and time ~= 27) then
-					local timer = tonumber(time)
-					if timer then
-						DBM.Bars:CreateBar(timer, buffName or L.UNKNOWN, buffIcon or 136106)
-					end
+				if time then
+					time = tonumber(time)
+					DBM.Bars:CreateBar(time, buffName or L.UNKNOWN, buffIcon or 136106)
 				end
 			end
 		end
