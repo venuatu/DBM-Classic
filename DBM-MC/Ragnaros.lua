@@ -30,7 +30,6 @@ local warnEmerge		= mod:NewAnnounce("WarnEmerge", 2, "Interface\\AddOns\\DBM-Cor
 local timerWrathRag		= mod:NewCDTimer(25, 20566, nil, nil, nil, 2, nil, DBM_CORE_L.IMPORTANT_ICON, nil, mod:IsMelee() and 1, 4)--25-31.6
 local timerSubmerge		= mod:NewTimer(180, "TimerSubmerge", "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendBurrow.blp", nil, nil, 6, nil, nil, 1, 5)
 local timerEmerge		= mod:NewTimer(90, "TimerEmerge", "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendUnBurrow.blp", nil, nil, 6, nil, nil, 1, 5)
---local timerCombatStart	= mod:NewCombatTimer(73)
 local timerCombatStart	= mod:NewTimer(73, "timerCombatStart", "132349", nil, nil, nil, nil, nil, 1, 3)
 
 mod:AddRangeFrameOption("18", nil, "-Melee")
@@ -58,18 +57,18 @@ function mod:OnCombatEnd(wipe)
 	if not wipe then
 		DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
 		if firstBossMod.vb.firstEngageTime then
-			local thisTime = GetTime() - firstBossMod.vb.firstEngageTime
-			if not firstBossMod.Options.FastestClear then
+			local thisTime = GetServerTime() - firstBossMod.vb.firstEngageTime
+			if not firstBossMod.Options.FastestClear2 then
 				--First clear, just show current clear time
 				DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("MC", DBM:strFromTime(thisTime)))
-				firstBossMod.Options.FastestClear = thisTime
-			elseif (firstBossMod.Options.FastestClear > thisTime) then
+				firstBossMod.Options.FastestClear2 = thisTime
+			elseif (firstBossMod.Options.FastestClear2 > thisTime) then
 				--Update record time if this clear shorter than current saved record time and show users new time, compared to old time
-				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format("MC", DBM:strFromTime(thisTime), DBM:strFromTime(firstBossMod.Options.FastestClear)))
-				firstBossMod.Options.FastestClear = thisTime
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format("MC", DBM:strFromTime(thisTime), DBM:strFromTime(firstBossMod.Options.FastestClear2)))
+				firstBossMod.Options.FastestClear2 = thisTime
 			else
 				--Just show this clear time, and current record time (that you did NOT beat)
-				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("MC", DBM:strFromTime(thisTime), DBM:strFromTime(firstBossMod.Options.FastestClear)))
+				DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("MC", DBM:strFromTime(thisTime), DBM:strFromTime(firstBossMod.Options.FastestClear2)))
 			end
 			firstBossMod.vb.firstEngageTime = nil
 		end

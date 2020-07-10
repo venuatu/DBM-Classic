@@ -55,7 +55,7 @@ function mod:OnCombatEnd(wipe)
 	if not wipe then
 		DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
 		if firstBossMod.vb.firstEngageTime then
-			local thisTime = GetTime() - firstBossMod.vb.firstEngageTime
+			local thisTime = GetServerTime() - firstBossMod.vb.firstEngageTime
 			if not firstBossMod.Options.FastestClear then
 				--First clear, just show current clear time
 				DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("BWL", DBM:strFromTime(thisTime)))
