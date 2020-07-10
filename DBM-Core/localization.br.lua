@@ -637,4 +637,6 @@ L.WORLD_BUFFS.allianceOny	= "Cidadãos e aliados de Ventobravo, no dia de hoje, 
 L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"
 L.WORLD_BUFFS.allianceNef	= "Cidadãos da Aliança, o Senhor da Rocha Negra foi derrubado!"
 L.WORLD_BUFFS.zgHeart		= "Agora só falta um passo para nos livrarmos do Esfolador de Almas"
+L.WORLD_BUFFS.zgHeartBooty	= "The Blood God, the Soulflayer, has been defeated!  We are imperiled no longer!"
+L.WORLD_BUFFS.zgHeartYojamba	= "Iniciem o ritual, meus servos. Temos que banir o coração de Hakkar de volta para o vórtice!"
 L.WORLD_BUFFS.rendHead		= "The false Warchief, Rend Blackhand, has fallen!"
