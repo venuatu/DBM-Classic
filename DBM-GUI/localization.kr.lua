@@ -325,7 +325,7 @@ L.RaidCombat				= "전투중 차단 (보스만)"
 
 -- Tab: Privacy
 L.Tab_Privacy 				= "사생활 보호"
-L.WhisperMessages			= "자동 응답/메시지 공유 설정"
+L.Area_WhisperMessages			= "자동 응답/메시지 공유 설정"
 L.AutoRespond 				= "전투중 귓속말 자동 응답"
 L.WhisperStats 				= "귓속말 응답에 처치/전멸 통계 포함"
 L.DisableStatusWhisper 		= "전체 공격대의 귓속말 응답을 끕니다. (파티/공대장 권한 필요) 레이드에만 적용됩니다"
