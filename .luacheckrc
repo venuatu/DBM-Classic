@@ -37,7 +37,6 @@ globals = {
 	"DBM_GUI_Frame",
 	"DBM_OPTION_SPACER",
 	"DBM",
-	"DBMHudMap",
 	"DBT",
 	"LOCALE_koKR",
 	"LOCALE_ruRU",
