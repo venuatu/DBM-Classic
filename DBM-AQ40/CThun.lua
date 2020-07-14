@@ -29,7 +29,7 @@ local timerEyeTentacle		= mod:NewTimer(45, "TimerEyeTentacle", nil, nil, nil, 1)
 --local timerGiantClawTentacle = mod:NewTimer(60, "TimerGiantClawTentacle", nil, nil, nil, 1)
 local timerWeakened			= mod:NewTimer(45, "TimerWeakened")
 
-mod:AddBoolOption("RangeFrame", true)
+mod:AddRangeFrameOption("10")
 
 mod.vb.phase = 1
 local firstBossMod = DBM:GetModByName("AQ40Trash")
