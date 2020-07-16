@@ -158,9 +158,14 @@ function mod:OnSync(msg, guid)
 		--The timer between yell/summon start and ragnaros being attackable is variable, but time between domo death and him being attackable is not.
 		--As such, we start lowest timer of that variation on the RP start, but adjust timer if it's less than 10 seconds at time domo dies
 		local remaining = timerCombatStart:GetRemaining()
-		if remaining < 10 then
-			local adjust = 10 - remaining
-			timerCombatStart:AddTime(adjust)
+		if remaining then
+			if remaining < 10 then
+				local adjust = 10 - remaining
+				timerCombatStart:AddTime(adjust)
+			elseif remaining > 10 then
+				local adjust = remaining - 10
+				timerCombatStart:RemoveTime(adjust)
+			end
 		end
 	end
 end

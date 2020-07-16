@@ -7,7 +7,7 @@ local L
 L = DBM:GetModLocalization("Razorgore")
 
 L:SetGeneralLocalization{
-	name = "Feuerkralle der Ungezähmte"
+	name = "Razorgore der Ungezähmte"
 }
 L:SetTimerLocalization{
 	TimerAddsSpawn	= "Adds erscheinen"
@@ -17,9 +17,9 @@ L:SetOptionLocalization{
 }
 L:SetMiscLocalization{
 	Phase2Emote	= "flieht während die kontrollierenden Kräfte der Kugel schwinden.",
-  YellEgg1 = "You'll pay for forcing me to do this!", -- needs localized resource
-  YellEgg2 = "Fools! These eggs are more precious than you know!", -- needs localized resource
-  YellEgg3 = "No - not another one! I'll have your heads for this atrocity!", -- needs localized resource
+  YellEgg1 = "Ihr werdet dafür bezahlen, dass Ihr mich zu soetwas gezwungen habt!",
+  YellEgg2 = "Narren! Diese Eier sind weit wertvoller als Ihr glaubt!",
+  YellEgg3 = "Nein - nicht noch einer! Für diese Gräueltat werdet Ihr mit Euren Köpfen bezahlen!",
 	YellPull 	= "Eindringlinge sind in die Brutstätte vorgestoßen! Schlagt Alarm! Beschützt die Eier um jeden Preis!"
 }
 -------------------
