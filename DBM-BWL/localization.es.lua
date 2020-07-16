@@ -44,7 +44,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization{
-	Pull	= "None of your kind should be here!  You've doomed only yourselves!"
+	Pull	= "¡Ninguno de los vuestros debería estar aquí! ¡Os habéis condenado vosotros mismos!"
 }
 
 ---------------
