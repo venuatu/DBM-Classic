@@ -18,7 +18,7 @@ local playerName = UnitName("player")
 -- Local Globals --
 -------------------
 local GetRaidTargetIndex, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition, UnitIsUnit = GetRaidTargetIndex, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition, UnitIsUnit
-local select, tonumber, twipe, mfloor = select, tonumber, table.wipe, math.floor
+local select, tonumber, twipe, mfloor, mmax = select, tonumber, table.wipe, math.floor, math.max
 local RAID_CLASS_COLORS = _G["CUSTOM_CLASS_COLORS"] or RAID_CLASS_COLORS-- for Phanx' Class Colors
 
 ---------------------
