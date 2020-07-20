@@ -406,7 +406,7 @@ L.AUTO_SPEC_WARN_TEXTS.adds			= "Lacaios em breve - mude de alvo"
 L.AUTO_SPEC_WARN_TEXTS.addscustom	= "Lacaios em breve - %%s"
 L.AUTO_SPEC_WARN_TEXTS.targetchange	= "Alteração de alvo - mude para %%s"
 
--- Auto-generated Special Warning Localizations
+--Auto-generated Special Warning Localizations
 L.AUTO_SPEC_WARN_OPTIONS.spell 		= "Exibir aviso especial para $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.ends		= "Exibir aviso especial quando $spell:%s terminou"
 L.AUTO_SPEC_WARN_OPTIONS.fades		= "Exibir aviso especial quando $spell:%s desvanece"
@@ -450,7 +450,7 @@ L.AUTO_SPEC_WARN_OPTIONS.adds		= "Exibir aviso especial para mudar de alvo para 
 L.AUTO_SPEC_WARN_OPTIONS.addscustom	= "Exibir aviso especial para lacaios entrantes"
 L.AUTO_SPEC_WARN_OPTIONS.targetchange	= "Exibir aviso especial para alterações de alvo prioritário"
 
--- Auto-generated Timer Localizations
+--Auto-generated Timer Localizations
 L.AUTO_TIMER_TEXTS.target		= "%s: >%%s<"
 L.AUTO_TIMER_TEXTS.cast			= "%s"
 L.AUTO_TIMER_TEXTS.castshort	= "%s "
@@ -551,7 +551,7 @@ L.AUTO_INFO_FRAME_OPTION_TEXT2		= "Exibir quadro de informações para a visão 
 L.AUTO_READY_CHECK_OPTION_TEXT		= "Tocar som de verificação pronto quando o chefe é puxado (mesmo que não seja direcionado)"
 L.AUTO_SPEEDCLEAR_OPTION_TEXT		= "Exibir cronômetro para uma limpeza mais rápida %s"
 
--- New special warnings
+--New special warnings
 L.MOVE_WARNING_BAR					= "Anunciar móvel"
 L.MOVE_WARNING_MESSAGE				= "Obrigado por usar " .. L.DEADLY_BOSS_MODS
 L.MOVE_SPECIAL_WARNING_BAR	= "Aviso especial móvel"
