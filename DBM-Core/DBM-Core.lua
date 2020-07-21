@@ -7744,7 +7744,7 @@ do
 		--Do scan
 		if targetname and targetname ~= L.UNKNOWN and (not targetFilter or (targetFilter and targetFilter ~= targetname)) then
 			if not IsInGroup() then scanTimes = 1 end--Solo, no reason to keep scanning, give faster warning. But only if first scan is actually a valid target, which is why i have this check HERE
-			if (isEnemyScan and UnitIsFriend("player", targetuid) or self:IsTanking(targetuid, bossuid, nil, nil, nil, true)) and not isFinalScan then--On player scan, ignore tanks. On enemy scan, ignore friendly player.
+			if (isEnemyScan and UnitIsFriend("player", targetuid) or self:IsTanking(targetuid, bossuid)) and not isFinalScan then--On player scan, ignore tanks. On enemy scan, ignore friendly player.
 				if targetScanCount[cidOrGuid] < scanTimes then--Make sure no infinite loop.
 					self:ScheduleMethod(scanInterval, "BossTargetScanner", cidOrGuid, returnFunc, scanInterval, scanTimes, scanOnlyBoss, isEnemyScan, nil, targetFilter, tankFilter)--Scan multiple times to be sure it's not on something other then tank (or friend on enemy scan).
 				else--Go final scan.
@@ -7753,7 +7753,7 @@ do
 			else--Scan success. (or failed to detect right target.) But some spells can be used on tanks, anyway warns tank if player scan. (enemy scan block it)
 				targetScanCount[cidOrGuid] = nil--Reset count for later use.
 				self:UnscheduleMethod("BossTargetScanner", cidOrGuid, returnFunc)--Unschedule all checks just to be sure none are running, we are done.
-				if (tankFilter and self:IsTanking(targetuid, bossuid, nil, nil, nil, true)) or (isFinalScan and isEnemyScan) then return end--If enemyScan and playerDetected, return nothing
+				if (tankFilter and self:IsTanking(targetuid, bossuid)) or (isFinalScan and isEnemyScan) then return end--If enemyScan and playerDetected, return nothing
 				local scanningTime = (targetScanCount[cidOrGuid] or 1) * scanInterval
 				self[returnFunc](self, targetname, targetuid, bossuid, scanningTime)--Return results to warning function with all variables.
 			end
@@ -7773,7 +7773,7 @@ do
 			cidOrGuid = cidOrGuid or mod.creatureId
 			scanInterval = scanInterval or 0.1
 			local targetname, targetuid, bossuid = mod:GetBossTarget(cidOrGuid, scanOnlyBoss)
-			if targetname and (includeTank or not mod:IsTanking(targetuid, bossuid, nil, nil, nil, true)) then
+			if targetname and (includeTank or not mod:IsTanking(targetuid, bossuid)) then
 				mod[returnFunc](mod, targetname, targetuid, bossuid)
 			end
 			DBM:Schedule(scanInterval, repeatedScanner, cidOrGuid, returnFunc, scanInterval, scanOnlyBoss, includeTank, mod)
@@ -8300,7 +8300,7 @@ function bossModPrototype:UnitClass(uId)
 	return playerClass--else return "player"
 end
 
-function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID, noTarget)
+function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID, includeTarget)
 	if isName then--Passed combat log name, so pull unit ID
 		unit = DBM:GetRaidUnitId(unit)
 	end
@@ -8316,10 +8316,12 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID,
 			return true
 		end
 		--Non threat fallback
-		if UnitExists(boss) then
-			local _, targetuid = self:GetBossTarget(UnitGUID(boss), true)
-			if UnitIsUnit(unit, targetuid) then
-				return true
+		if includeTarget then
+			if UnitExists(unitID) then
+				local _, targetuid = self:GetBossTarget(guid, true)
+				if UnitIsUnit(unit, targetuid) then
+					return true
+				end
 			end
 		end
 	else
@@ -8335,7 +8337,7 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID,
 					return true
 				end
 				--Non threat fallback
-				if not noTarget then
+				if includeTarget then
 					if UnitExists(unitID) then
 						local _, targetuid = self:GetBossTarget(guid, true)
 						if UnitIsUnit(unit, targetuid) then
@@ -8359,7 +8361,7 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID,
 						return true
 					end
 					--Non threat fallback
-					if not noTarget then
+					if includeTarget then
 						local _, targetuid = self:GetBossTarget(guid, true)
 						if UnitIsUnit(unit, targetuid) then
 							return true
