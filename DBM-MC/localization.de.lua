@@ -79,7 +79,13 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("Majordomo")
 
 L:SetGeneralLocalization{
-	name = "Majordomus Exekutus"
+	name = "Majordomus Executus"
+}
+L:SetTimerLocalization{
+	timerShieldCD		= "Nächster Schild"
+}
+L:SetOptionLocalization{
+	timerShieldCD		= "Zeige Zeit für den nächsten Schadenschild/Magiereflexion"
 }
 
 ----------------
