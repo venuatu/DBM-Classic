@@ -8316,7 +8316,8 @@ function bossModPrototype:IsTanking(unit, boss, isName, onlyRequested, bossGUID,
 			return true
 		end
 		--Non threat fallback
-		if includeTarget and UnitExists(unitID) then
+		local guid = UnitGUID(unitID)
+		if includeTarget and UnitExists(boss) then
 			local _, targetuid = self:GetBossTarget(guid, true)
 			if UnitIsUnit(unit, targetuid) then
 				return true
