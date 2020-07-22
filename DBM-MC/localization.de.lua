@@ -82,7 +82,7 @@ L:SetGeneralLocalization{
 	name = "Majordomus Executus"
 }
 L:SetTimerLocalization{
-	timerShieldCD		= "Nächster Schild"
+	timerShieldCD		= "Nächstes Schild"
 }
 L:SetOptionLocalization{
 	timerShieldCD		= "Zeige Zeit für den nächsten Schadenschild/Magiereflexion"
