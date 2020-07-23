@@ -566,6 +566,6 @@ L.WORLD_BUFFS.allianceOny	= "Ciudadanos y aliados de Ventormenta, en el día de 
 L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"    --needs translation
 L.WORLD_BUFFS.allianceNef	= "Angehörige der Allianz, der Herrscher des Blackrocks wurde besiegt!"
 L.WORLD_BUFFS.zgHeart		= "Nun ist nur noch ein letzter Schritt nötig, um uns von der Bedrohung des Seelenschinders zu befreien"
-L.WORLD_BUFFS.zgHeartBooty	= "¡El Dios de la Sangre, el Cazador de Almas, ha sido derrotado! ¡Ya no corremos peligro!"-- needs translation
+L.WORLD_BUFFS.zgHeartBooty	= "Der Blutgott, der Seelenschinder, wurde besiegt! Wir werden nicht länger unterdrückt!"
 L.WORLD_BUFFS.zgHeartYojamba= "Beginnt mit dem Ritual, meine Diener. Wir müssen das Herz von Hakkar wieder in das Nichts verbannen!"
 L.WORLD_BUFFS.rendHead		= "¡El falso Jefe de Guerra Rend Puño Negro ha caído!" --needs translation
