@@ -172,7 +172,7 @@ L:SetMiscLocalization{
 	YellRogue	= "¿Pícaros? ¡Dejad de esconderos y enfrentaos a mí!",
 	YellWarlock	= "Brujos... No deberíais estar jugando con magia que no comprendéis. ¿Veis lo que pasa?",
 	YellHunter	= "¡Cazadores y vuestras molestas cerbatanas!",
-	YellMage	= "¡Magos también? Deberíais tener más cuidado cuando jugáis con la magia..."
+	YellMage	= "¿Magos también? Deberíais tener más cuidado cuando jugáis con la magia..."
 --	YellDK		= "¡Caballeros de la Muerte... venid aquí!",
 --	YellMonk	= "Monjes, ¿no os mareáis con tanta vuelta?",
 --	YellDH		= "¿Cazadores de demonios? Qué raro eso de taparos los ojos así. ¿No os cuesta ver lo que tenéis alrededor?"--Demon Hunter call; I know this hasn't been implemented yet in DBM, but I added it just in case.
