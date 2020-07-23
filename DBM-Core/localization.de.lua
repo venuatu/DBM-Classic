@@ -84,18 +84,18 @@ L.NOTE_SHARE_FAIL			= "%s hat versucht eine Notiz mit dir für %s zu teilen. Ein
 L.NOTEHEADER					= "Gib deine Notiz für %s hier ein. Umschließe Spielernamen mit >< für Klassenfarben. Trenne Notizen mit '/' bei Alarmen mit mehreren Notizen."
 L.NOTEFOOTER					= "'OK' um die Änderungen zu akzeptieren, sonst 'Abbrechen'"
 L.NOTESHAREDHEADER			= "%s hat die Notiz unten für %s geteilt. Falls du sie akzeptierst, wird deine derzeitige Notiz überschrieben."
-L.NOTESHARED					= "Deine Notiz wurde an die Gruppe gesendet."
-L.NOTESHAREERRORSOLO			= "Einsam? Du solltest keine Notizen mit dir selbst teilen."
+L.NOTESHARED				= "Deine Notiz wurde an die Gruppe gesendet."
+L.NOTESHAREERRORSOLO		= "Einsam? Du solltest keine Notizen mit dir selbst teilen."
 L.NOTESHAREERRORBLANK		= "Leere Notizen können nicht geteilt werden."
 L.NOTESHAREERRORGROUPFINDER	= "In automatischen Gruppen der Gruppensuche können keine Notizen geteilt werden."
 L.NOTESHAREERRORALREADYOPEN	= "Die geteilte Notiz kann nicht geöffnet werden während der Notizeditor bereits geöffnet ist, damit die gerade von dir bearbeitete Notiz nicht verloren geht."
 
 L.ALLMOD_DEFAULT_LOADED		= "Standardeinstellungen für alle Mods dieser Instanz geladen."
 L.ALLMOD_STATS_RESETED		= "Alle Mod-Statistiken wurden zurückgesetzt."
-L.MOD_DEFAULT_LOADED			= "Standardeinstellungen für diesen Kampf geladen."
+L.MOD_DEFAULT_LOADED		= "Standardeinstellungen für diesen Kampf geladen."
 
 L.WORLDBOSS_ENGAGED			= "Kampf gegen %s wurde möglicherweise auf deinem Realm bei %s Prozent Leben begonnen. (gesendet von %s)"
-L.WORLDBOSS_DEFEATED			= "%s wurde möglichweise auf deinem Realm besiegt. (gesendet von %s)"
+L.WORLDBOSS_DEFEATED		= "%s wurde möglichweise auf deinem Realm besiegt. (gesendet von %s)"
 
 L.TIMER_FORMAT_SECS			= "%.2f |4Sekunde:Sekunden;"
 L.TIMER_FORMAT_MINS			= "%d |4Minute:Minuten;"
@@ -564,8 +564,8 @@ L.LDB_ENABLE_BOSS_MOD	= "Aktiviere Boss Mod"
 L.WORLD_BUFFS.hordeOny		= "Miembros de la Horda, ciudadanos de Orgrimmar, vengan y reúnanse para homenajear un hecho heroico" --needs translation
 L.WORLD_BUFFS.allianceOny	= "Ciudadanos y aliados de Ventormenta, en el día de hoy, hemos hecho historia."  --needs translation
 L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"    --needs translation
-L.WORLD_BUFFS.allianceNef	= "Angehörige der Allianz, der Herrscher des Blackrocks wurde besiegt!"     
-L.WORLD_BUFFS.zgHeart		= "Nun ist nur noch ein letzter Schritt nötig, um uns von der Bedrohung des Seelenschinders zu befreien" 
-L.WORLD_BUFFS.zgHeartBooty	= "¡El Dios de la Sangre, el Cazador de Almas, ha sido derrotado! ¡Ya no corremos peligro!"   -- needs translation
-L.WORLD_BUFFS.zgHeartYojamba	= "Beginnt mit dem Ritual, meine Diener. Wir müssen das Herz von Hakkar wieder in das Nichts verbannen!"    
+L.WORLD_BUFFS.allianceNef	= "Angehörige der Allianz, der Herrscher des Blackrocks wurde besiegt!"
+L.WORLD_BUFFS.zgHeart		= "Nun ist nur noch ein letzter Schritt nötig, um uns von der Bedrohung des Seelenschinders zu befreien"
+L.WORLD_BUFFS.zgHeartBooty	= "¡El Dios de la Sangre, el Cazador de Almas, ha sido derrotado! ¡Ya no corremos peligro!"-- needs translation
+L.WORLD_BUFFS.zgHeartYojamba= "Beginnt mit dem Ritual, meine Diener. Wir müssen das Herz von Hakkar wieder in das Nichts verbannen!"
 L.WORLD_BUFFS.rendHead		= "¡El falso Jefe de Guerra Rend Puño Negro ha caído!" --needs translation
