@@ -562,10 +562,10 @@ L.LDB_CAT_GENERAL		= "Allgemein"
 L.LDB_ENABLE_BOSS_MOD	= "Aktiviere Boss Mod"
 
 L.WORLD_BUFFS.hordeOny		= "Miembros de la Horda, ciudadanos de Orgrimmar, vengan y reúnanse para homenajear un hecho heroico" --needs translation
-L.WORLD_BUFFS.allianceOny	= "Ciudadanos y aliados de Ventormenta, en el día de hoy, hemos hecho historia."  --needs translation
+L.WORLD_BUFFS.allianceOny	= "Bürger und Verbündete Stormwinds, am heutigen Tage ist Geschichte geschrieben worden."
 L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"    --needs translation
 L.WORLD_BUFFS.allianceNef	= "Angehörige der Allianz, der Herrscher des Blackrocks wurde besiegt!"
 L.WORLD_BUFFS.zgHeart		= "Nun ist nur noch ein letzter Schritt nötig, um uns von der Bedrohung des Seelenschinders zu befreien"
 L.WORLD_BUFFS.zgHeartBooty	= "Der Blutgott, der Seelenschinder, wurde besiegt! Wir werden nicht länger unterdrückt!"
 L.WORLD_BUFFS.zgHeartYojamba= "Beginnt mit dem Ritual, meine Diener. Wir müssen das Herz von Hakkar wieder in das Nichts verbannen!"
-L.WORLD_BUFFS.rendHead		= "¡El falso Jefe de Guerra Rend Puño Negro ha caído!" --needs translation
+L.WORLD_BUFFS.rendHead		= "Rend Blackhand, der falsche Kriegshäuptling, ist gefallen!"
