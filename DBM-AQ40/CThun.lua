@@ -101,6 +101,7 @@ function mod:UNIT_DIED(args)
 	if cid == 15589 then
 		self.vb.phase = 2
 		warnPhase2:Show()
+		timerDarkGlareCD:Stop()
 		self:UnscheduleMethod("EyeTentacle")
 		self:UnscheduleMethod("DarkGlare")
 	end
