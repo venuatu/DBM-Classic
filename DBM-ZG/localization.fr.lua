@@ -47,7 +47,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	WarnSimulKill	= "Annoncez le premier serviteur mort",
-	TimerSimulKill	= "Montre le timer pour la résurrection des prêtres"
+	TimerSimulKill	= "Montre le chronomètre pour la résurrection des prêtres"
 })
 
 L:SetMiscLocalization({
