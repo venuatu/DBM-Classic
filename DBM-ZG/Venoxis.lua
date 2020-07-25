@@ -99,7 +99,7 @@ do
 end
 
 function mod:UNIT_HEALTH(uId)
-	if not self.vb.prewarn_Phase2 and UnitHealth(uId) / UnitHealthMax(uId) <= 0.53 then
+	if not self.vb.prewarn_Phase2 and self:GetUnitCreatureId(uId) == 14507 and UnitHealth(uId) / UnitHealthMax(uId) <= 0.53 then
 		self.vb.prewarn_Phase2 = true
 		prewarnPhase2:Show()
 	end
