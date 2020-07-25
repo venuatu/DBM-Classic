@@ -97,18 +97,18 @@ L:SetGeneralLocalization{
 	name = "Ragnaros"
 }
 L:SetWarningLocalization{
-	WarnSubmerge		= "Submergir",
-	WarnEmerge			= "Emergir"
+	WarnSubmerge		= "Submersão",
+	WarnEmerge			= "Emersão"
 }
 L:SetTimerLocalization{
-	TimerSubmerge		= "Submergir",
-	TimerEmerge			= "Emergir",
+	TimerSubmerge		= "Submersão",
+	TimerEmerge			= "Emersão",
 }
 L:SetOptionLocalization{
-	WarnSubmerge		= "Mostrar aviso para submergir",
-	TimerSubmerge		= "Mostrar cronômetro para submergir",
-	WarnEmerge			= "Mostrar aviso para emergir",
-	TimerEmerge			= "Mostrar cronômetro para emergir",
+	WarnSubmerge		= "Mostrar aviso para submersão",
+	TimerSubmerge		= "Mostrar cronômetro para submersão",
+	WarnEmerge			= "Mostrar aviso para emersão",
+	TimerEmerge			= "Mostrar cronômetro para emersão",
 }
 L:SetMiscLocalization{
 	Submerge	= "VENHAM, MEUS SERVOS! DEFENDAM SEU SENHOR!",
