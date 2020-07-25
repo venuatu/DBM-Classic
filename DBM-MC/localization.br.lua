@@ -114,3 +114,12 @@ L:SetMiscLocalization{
 	Submerge	= "VENHAM, MEUS SERVOS! DEFENDAM SEU SENHOR!",
 	Pull		= "Vermes abusados! Vocês se precipitaram para suas mortes! Vejam agora, o amo se agita!"
 }
+
+-----------------
+--  MC: Trash  --
+-----------------
+L = DBM:GetModLocalization("MCTrash")
+
+L:SetGeneralLocalization{
+	name = "ND: Lixo"
+}
