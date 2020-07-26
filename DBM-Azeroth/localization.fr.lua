@@ -9,7 +9,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization({
-	Pull		= "For the Legion! For Kil'Jaeden!"
+	Pull		= "Pour la Légion ! Pour Kil'Jaeden !"
 })
 
 -- Azuregos (Azshara)
@@ -20,7 +20,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization({
-	Pull		= "This place is under my protection. The mysteries of the arcane shall remain inviolate."
+	Pull		= "Cet endroit est sous ma protection. Les secrets de l'arcane resteront inviolés."
 })
 
 -- Taerar (Ashenvale)
