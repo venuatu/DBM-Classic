@@ -18,7 +18,7 @@ local warnEyeTentacle		= mod:NewAnnounce("WarnEyeTentacle", 2, 126)
 --local warnGiantClawTentacle	= mod:NewAnnounce("WarnGiantClawTentacle", 3, 26391)
 local warnPhase2			= mod:NewPhaseAnnounce(2)
 
-local specWarnDarkGlare		= mod:NewSpecialWarningSpell(26029, nil, nil, nil, 3, 2)--Dodge?
+local specWarnDarkGlare		= mod:NewSpecialWarningDodge(26029, nil, nil, nil, 3, 2)
 local specWarnWeakened		= mod:NewSpecialWarning("SpecWarnWeakened", nil, nil, nil, 2, 2, nil, 28598)
 
 local timerDarkGlareCD		= mod:NewNextTimer(86, 26029)
