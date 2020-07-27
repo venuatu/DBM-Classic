@@ -85,7 +85,7 @@ L:SetTimerLocalization{
 	timerShieldCD		= "Bouclier suivant"
 }
 L:SetOptionLocalization{
-	timerShieldCD		= "Afficher le chronomètre pour le prochain bouclier de dégâts / Renvoi de la magie"
+	timerShieldCD		= "Afficher le timer pour le prochain bouclier de dégâts / Renvoi de la magie"
 }
 
 ----------------
@@ -106,9 +106,9 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	WarnSubmerge		= "Afficher un avertissement pour submergé",
-	TimerSubmerge		= "Afficher le chronomètre pour submergé",
+	TimerSubmerge		= "Afficher le timer pour submergé",
 	WarnEmerge			= "Afficher un avertissement pour émergé",
-	TimerEmerge			= "Afficher le chronomètre pour émergé",
+	TimerEmerge			= "Afficher le timer pour émergé",
 }
 L:SetMiscLocalization{
 	Submerge	= "VENEZ, MES SERVITEURS ! DÉFENDEZ VOTRE MAÎTRE !",
