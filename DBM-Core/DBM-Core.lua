@@ -10605,6 +10605,7 @@ do
 			end
 		end
 		spellName = spellName or tostring(spellId)
+		local timerTextValue
 		if timerText then
 			--If timertext is a number, accept it as a secondary auto translate spellid
 			if DBM.Options.ShortTimerText and type(timerText) == "number" then
