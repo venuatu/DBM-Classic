@@ -114,7 +114,7 @@ L:SetOptionLocalization{
 }
 L:SetMiscLocalization{
 	Eye			= "Ojo de C'Thun",
-	Weakened 	= "está débil!"
+	Weakened 	= "está débil!",
 	NotValid	= "AQ40 parcialmente limpiado. Quedan %s jefes opcionales."
 }
 ----------------
