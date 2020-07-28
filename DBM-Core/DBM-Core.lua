@@ -5440,10 +5440,13 @@ do
 			QuestWatchFrame:Show()
 			watchFrameRestore = false
 		end
-		local QuestieTracker = _G["QuestieTracker"]
-		if QuestieTracker and questieWatchRestore and QuestieTracker.Enable then
-			QuestieTracker:Enable()
-			questieWatchRestore = false
+		local QuestieLoader = _G["QuestieLoader"]
+		if QuestieLoader then
+			local QuestieTracker = _G["QuestieTracker"] or QuestieLoader:ImportModule("QuestieTracker")--Might be a global in some versions, but not a global in others
+			if QuestieTracker and questieWatchRestore and QuestieTracker.Enable then
+				QuestieTracker:Enable()
+				questieWatchRestore = false
+			end
 		end
 	end
 
@@ -5884,14 +5887,18 @@ do
 					QuestWatchFrame:Hide()
 					watchFrameRestore = true
 				end
-				local QuestieTracker, Questie = _G["QuestieTracker"], _G["Questie"]
-				if QuestieTracker and Questie.db.global.trackerEnabled then
-					--Will only hide questie tracker if it's not already hidden.
-					--Not compatible with older versions of questie since IsExpanded is a new public api
-					--Nil check present though so it'll fail silently on old questie versions, no errors
-					if QuestieTracker.Disable then
-						QuestieTracker:Disable()
-						questieWatchRestore = true
+				local QuestieLoader = _G["QuestieLoader"]
+				if QuestieLoader then
+					local QuestieTracker = _G["QuestieTracker"] or QuestieLoader:ImportModule("QuestieTracker")--Might be a global in some versions, but not a global in others
+					local Questie = _G["Questie"] or QuestieLoader:ImportModule("Questie")
+					if QuestieTracker and Questie and Questie.db.global.trackerEnabled then
+						--Will only hide questie tracker if it's not already hidden.
+						--Not compatible with older versions of questie since IsExpanded is a new public api
+						--Nil check present though so it'll fail silently on old questie versions, no errors
+						if QuestieTracker.Disable then
+							QuestieTracker:Disable()
+							questieWatchRestore = true
+						end
 					end
 				end
 			end
@@ -6227,10 +6234,13 @@ do
 						QuestWatchFrame:Show()
 						watchFrameRestore = false
 					end
-					local QuestieTracker = _G["QuestieTracker"]
-					if QuestieTracker and questieWatchRestore and QuestieTracker.Enable then
-						QuestieTracker:Enable()
-						questieWatchRestore = false
+					local QuestieLoader = _G["QuestieLoader"]
+					if QuestieLoader then
+						local QuestieTracker = _G["QuestieTracker"] or QuestieLoader:ImportModule("QuestieTracker")--Might be a global in some versions, but not a global in others
+						if QuestieTracker and questieWatchRestore and QuestieTracker.Enable then
+							QuestieTracker:Enable()
+							questieWatchRestore = false
+						end
 					end
 				end
 				if tooltipsHidden then
