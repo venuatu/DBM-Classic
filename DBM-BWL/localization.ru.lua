@@ -152,6 +152,7 @@ L:SetGeneralLocalization{
 	name = "Нефариан"
 }
 L:SetWarningLocalization{
+	WarnAddsLeft		= "Осталось %d убийств",
 	WarnClassCallSoon	= "Скоро вызов класса",
 	WarnClassCall		= "Дебафф на %s",
 	WarnPhaseSoon		= "Скоро фаза %s",
