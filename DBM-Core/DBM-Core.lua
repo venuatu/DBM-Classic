@@ -5891,14 +5891,10 @@ do
 				if QuestieLoader then
 					local QuestieTracker = _G["QuestieTracker"] or QuestieLoader:ImportModule("QuestieTracker")--Might be a global in some versions, but not a global in others
 					local Questie = _G["Questie"] or QuestieLoader:ImportModule("Questie")
-					if QuestieTracker and Questie and Questie.db.global.trackerEnabled then
+					if QuestieTracker and Questie and Questie.db.global.trackerEnabled and QuestieTracker.Disable then
 						--Will only hide questie tracker if it's not already hidden.
-						--Not compatible with older versions of questie since IsExpanded is a new public api
-						--Nil check present though so it'll fail silently on old questie versions, no errors
-						if QuestieTracker.Disable then
-							QuestieTracker:Disable()
-							questieWatchRestore = true
-						end
+						QuestieTracker:Disable()
+						questieWatchRestore = true
 					end
 				end
 			end
