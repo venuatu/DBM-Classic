@@ -5440,9 +5440,9 @@ do
 			QuestWatchFrame:Show()
 			watchFrameRestore = false
 		end
-		local QuestieLoader = _G["QuestieLoader"]
-		if QuestieLoader and questieWatchRestore then
-			QuestieLoader:ImportModule("QuestieTracker"):Expand()
+		local QuestieTracker = _G["QuestieTracker"]
+		if QuestieTracker and questieWatchRestore and QuestieTracker.Enable then
+			QuestieTracker:Enable()
 			questieWatchRestore = false
 		end
 	end
@@ -5884,7 +5884,7 @@ do
 					QuestWatchFrame:Hide()
 					watchFrameRestore = true
 				end
-				local QuestieTracker = _G["QuestieTracker"]
+				local QuestieTracker, Questie = _G["QuestieTracker"], _G["Questie"]
 				if QuestieTracker and Questie.db.global.trackerEnabled then
 					--Will only hide questie tracker if it's not already hidden.
 					--Not compatible with older versions of questie since IsExpanded is a new public api
@@ -6228,7 +6228,7 @@ do
 						watchFrameRestore = false
 					end
 					local QuestieTracker = _G["QuestieTracker"]
-					if QuestieTracker and questieWatchRestore then
+					if QuestieTracker and questieWatchRestore and QuestieTracker.Enable then
 						QuestieTracker:Enable()
 						questieWatchRestore = false
 					end
