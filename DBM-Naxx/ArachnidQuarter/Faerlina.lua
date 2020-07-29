@@ -40,7 +40,7 @@ do
 			warnEnrageNow:Show()
 			self.vb.enraged = true
 			--if self:IsTanking("player", "boss1", nil, true) then
-			if self:IsTanking(nil, nil, UnitName("player"), nil, args.destGUID) then--Basically, HAS to be bosses current target
+			if self:IsTanking("player", nil, nil, nil, args.destGUID) then--Basically, HAS to be bosses current target
 				specWarnEnrage:Show()
 				specWarnEnrage:Play("defensive")
 			else

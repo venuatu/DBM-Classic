@@ -44,7 +44,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization{
-	Pull	= "Euresgleichen sollte nicht hier sein! Ich werde Euch vernichten!"
+	Pull	= "Eures Gleichen sollte nicht hier sein! Ich werde Euch vernichten!"
 }
 
 ---------------
@@ -157,16 +157,16 @@ L:SetOptionLocalization{
 	specwarnClassCall = "Zeige besondere Warnung wenn Du von einem Klassenruf betroffen bist"
 }
 L:SetMiscLocalization{
-	YellP1		= "Let the games begin!",
-	YellP2		= "Sehr gut, meine Diener. Der Mut der Sterblichen scheint zu schwinden! Nun lasst uns sehen, wie sie sich gegen den wahren Herrscher des Schwarzfels behaupten werden!",
-	YellP3		= "Unmöglich! Erhebt Euch, meine Diener! Kämpft erneut für Euren Meister!",
+	YellP1		= "Lasst die Spiele beginnen!",
+	YellP2		= "Sehr gut, meine Diener. Der Mut der Sterblichen scheint zu schwinden! Nun lasst uns sehen, wie sie sich gegen den wahren Herrscher des Blackrock behaupten werden!",
+	YellP3		= "Unmöglich! Erhebt euch meine Diener! Kämpft erneut für Euren Meister!",
 	YellShaman	= "Schamane, zeigt mir was eure Totems können!",
 	YellPaladin	= "Paladine... ich habe gehört, dass Ihr viele Leben habt. Zeigt es mir.",
 	YellDruid	= "Druiden und ihre lächerliche Gestaltwandlung. Zeigt mal was Ihr könnt!",
 	YellPriest	= "Priester! Wenn Ihr weiterhin so heilt, können wir es auch gerne etwas interessanter gestalten!",
 	YellWarrior	= "Krieger, Ich bin mir sicher, dass ihr kräftiger als das zuschlagen könnt!",
 	YellRogue	= "Schurken? Kommt aus den Schatten und zeigt Euch!",
-	YellWarlock	= "Hexenmeister, Ihr solltet nicht mit Magie spielen, die Ihr nicht versteht. Seht Ihr was ich meine?",--needs to be verified (wowhead-captured translation)
+	YellWarlock	= "Hexenmeister, Ihr solltet nicht mit Magie spielen, die Ihr nicht versteht. Seht Ihr was ich meine?",
 	YellHunter	= "Jäger und ihre lästigen Knallbüchsen!",
 	YellMage	= "Auch Magier? Ihr solltet vorsichtiger sein, wenn Ihr mit Magie spielt...",
 	YellDK		= "Todesritter... kommt hierher!",
