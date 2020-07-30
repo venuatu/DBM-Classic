@@ -73,7 +73,7 @@ function mod:DarkGlare()
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
-	if msg:find(L.Weakened) then
+	if msg == L.Weakened or msg:find(L.Weakened) then
 		specWarnWeakened:Show()
 		specWarnWeakened:Play("targetchange")
 		timerWeakened:Start()
