@@ -24,14 +24,14 @@ L:SetOptionLocalization{
 	WarnWave	= "Afficher l'annonce pour la prochaine vague entrante"
 }
 L:SetMiscLocalization{
-	Wave12		= "They come now. Try not to get yourself killed, young blood.",
-	Wave12Alt	= "Remember, Rajaxx, when I said I'd kill you last?",
-	Wave3		= "The time of our retribution is at hand! Let darkness reign in the hearts of our enemies!",
-	Wave4		= "No longer will we wait behind barred doors and walls of stone! No longer will our vengeance be denied! The dragons themselves will tremble before our wrath!",
-	Wave5		= "Fear is for the enemy! Fear and death!",
-	Wave6		= "Staghelm will whimper and beg for his life, just as his whelp of a son did! One thousand years of injustice will end this day!",
-	Wave7		= "Fandral! Your time has come! Go and hide in the Emerald Dream and pray we never find you!",
-	Wave8		= "Impudent fool! I will kill you myself!"
+	Wave12		= "Ils arrivent. Essayez de ne pas vous faire tuer, bleusaille.",
+	Wave12Alt	= "Alors, Rajaxx, tu te souviens que j’avais dit que je te tuerais le dernier ?",
+	Wave3		= "L’heure de notre vengeance sonne enfin ! Que les ténèbres règnent dans le cœur de nos ennemis !",
+	Wave4		= "C’en est fini d’attendre derrière des portes fermées et des murs de pierre ! Nous ne serons pas privés de notre vengeance ! Les dragons eux-mêmes trembleront devant notre courroux !",
+	Wave5		= "La peur est pour l’ennemi ! La peur et la mort !",
+	Wave6		= "Forteramure pleurnichera pour avoir la vie sauve, comme l’a fait son morveux de fils ! En ce jour, mille ans d’injustice s’achèvent !",
+	Wave7		= "Fandral ! Ton heure est venue ! Va te cacher dans le Rêve d’Emeraude, et prie pour que nous ne te trouvions jamais !",
+	Wave8		= "Imbécile imprudent ! Je vais te tuer moi-même !"
 }
 
 ----------
@@ -62,7 +62,7 @@ L:SetOptionLocalization{
 	WarnDismember	= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.spell:format(96)
 }
 L:SetMiscLocalization{
-	PursueEmote 	= "%s sets eyes on %s!"
+	PursueEmote 	= "%s pose ses yeux sur %s!"
 }
 
 -------------
