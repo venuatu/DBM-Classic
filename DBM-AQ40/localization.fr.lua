@@ -51,20 +51,20 @@ L:SetGeneralLocalization{
 	name = "Viscidus"
 }
 L:SetWarningLocalization{
-	WarnFreeze	= "Gel: %d/3",
-	WarnShatter	= "Shatter: %d/3"
+	WarnFreeze	= "Gel : %d/3",
+	WarnShatter	= "Briser : %d/3"
 }
 L:SetOptionLocalization{
 	WarnFreeze	= "Annoncer l'état de Gel",
-	WarnShatter	= "Announce Shatter status" -- check after emote
+	WarnShatter	= "Annoncer l'état de Briser"
 }
 L:SetMiscLocalization{
-	Slow	= "begins to slow",
-	Freezing= "is freezing up",
-	Frozen	= "is frozen solid",
-	Phase4 	= "begins to crack",
-	Phase5 	= "looks ready to shatter",
-	Phase6 	= "Explodes."
+	Slow	= "commence à ralentir !",
+	Freezing= "est gelé !",
+	Frozen	= "est congelé !",
+	Phase4 	= "commence à se briser !",
+	Phase5 	= "semble prêt à se briser !",
+	Phase6 	= "explose !"
 }
 -------------
 -- Huhuran --
@@ -97,22 +97,22 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "Tentacule oculaire",
-	SpecWarnWeakened		= "C'Thun Weaken!"
+	SpecWarnWeakened		= "C'Thun est affaibli !"
 }
 L:SetTimerLocalization{
 	TimerEyeTentacle		= "Prochain Tentacule oculaire",
-	TimerWeakened			= "Weaken ends"
+	TimerWeakened			= "Affaibli terminé"
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Afficher l'avertissement pour Tentacule oculaire",
-	SpecWarnWeakened		= "Show special warning when boss weaken",
+	SpecWarnWeakened		= "Afficher un avertissement spécial lorsque le boss s'affaiblit",
 	TimerEyeTentacle		= "Afficher le timer pour le prochain Tentacule oculaire",
-	TimerWeakened			= "Show timer for boss weaken duration",
+	TimerWeakened			= "Afficher le timer pour la durée d'affaiblissement du boss",
 	RangeFrame				= "Afficher le cadre de portée (10 m)"
 }
 L:SetMiscLocalization{
 	Eye			= "Œil de C'Thun",
-	Weakened 	= "weaken",
+	Weakened 	= "affaibli",
 	NotValid	= "AQ40 partiellement effacé. %s bosses optionnels restent."
 }
 ----------------
