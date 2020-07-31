@@ -10,7 +10,7 @@ mod.isTrashMod = true
 
 mod:RegisterEvents(
 	"ENCOUNTER_END",
-	"SPELL_AURA_APPLIED 22997",
+	"SPELL_AURA_APPLIED 22997 25698",
 	"SPELL_AURA_REMOVED 22997",
 	"SPELL_MISSED"
 )
@@ -128,12 +128,14 @@ function mod:ENCOUNTER_END(encounterID, _, _, _, success)
 	end
 end
 
-do-- Anubisath Plague - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
-	local warnPlague                    = mod:NewTargetAnnounce(22997, 2)--Not excempt from filter since it could be spammy
+do-- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
+	local warnPlague                    = mod:NewTargetAnnounce(22997, 2)
 	local specWarnPlague                = mod:NewSpecialWarningMoveAway(22997, nil, nil, nil, 1, 2)
 	local yellPlague                    = mod:NewYell(22997)
+	local specWarnExplode               = mod:NewSpecialWarningMove(25698, nil, nil, nil, 1, 2)
 
 	local Plague = DBM:GetSpellInfo(22997)
+	local Explode = DBM:GetSpellInfo(25698)
 
 	-- aura applied didn't seem to catch the reflects and other buffs
 	function mod:SPELL_AURA_APPLIED(args)
@@ -148,6 +150,8 @@ do-- Anubisath Plague - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
 			else
 				warnPlague:Show(args.destName)
 			end
+		elseif args.spellName == Explode then
+			specWarnExplode:Show(args.destName)
 		end
 	end
 
@@ -163,6 +167,7 @@ end
 do-- Anubisath Reflect - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
 	local ShadowFrostReflect 			= DBM:GetSpellInfo(19595)
 	local FireArcaneReflect 			= DBM:GetSpellInfo(13022)
+
 	local specWarnShadowFrostReflect    = mod:NewSpecialWarningReflect(19595)
 	local specWarnFireArcaneReflect     = mod:NewSpecialWarningReflect(13022)
 
