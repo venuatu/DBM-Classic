@@ -11,12 +11,52 @@ mod.isTrashMod = true
 mod:RegisterEvents(
 	"SPELL_AURA_APPLIED 22997",
 	"SPELL_AURA_REMOVED 22997",
+	"UNIT_TARGET",
 	"SPELL_MISSED"
 )
 
 mod:AddRangeFrameOption(10, 22997)
 
+local meteorSyncFunction
 local eventsRegistered = false
+
+mod:AddSetIconOption("SetIconOnMeteorTarget", 26558, false, false, {2})
+
+do-- Anubisath Meteor - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
+	local warnMeteor                    = mod:NewTargetNoFilterAnnounce(26558, 2)
+	local specWarnMeteor                = mod:NewSpecialWarningSoak(26558, nil, nil, nil, 1, 2)
+	function mod:UNIT_TARGET(name)
+		-- DBM:Debug(string.format("meteor watch: %s", name), 3)
+		if name == "target" then
+			local cid = self:GetCIDFromGUID(UnitGUID("target"))
+			-- DBM:Debug(string.format("meteor watch: %s %s", name, cid), 3)
+			if cid == 15277 or cid == 15355 then-- defenders 40 or guardians 20
+				local threat = UnitThreatSituation("targettarget", "target")
+				local target = UnitName("targettarget")
+				DBM:Debug(string.format("meteor watch: '%s' '%s' '%s'", name, cid, threat), 3)
+				if threat <= 0 then
+					DBM:Debug(string.format("meteor from UNIT_TARGET on %s", target), 3)
+					self:SendSync("Meteor", target)
+				end
+			end
+		end
+	end
+
+	meteorSyncFunction = function(self, msg, target)
+		if msg == "Meteor" and self:AntiSpam(2, "Meteor") then
+			DBM:Debug(string.format("meteor from sync on %s", target), 3)
+			local myName = UnitName('player')
+			if target == myName then
+				specWarnMeteor:Show()
+			else
+				warnMeteor:Show(target)
+			end
+			if self.Options.SetIconOnMeteorTarget then
+				self:SetIcon(target, 2)
+			end
+		end
+	end
+end
 
 do-- Anubisath Plague - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
 	local warnPlague                    = mod:NewTargetAnnounce(22997, 2)--Not excempt from filter since it could be spammy
