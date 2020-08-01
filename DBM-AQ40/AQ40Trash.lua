@@ -10,7 +10,7 @@ mod.isTrashMod = true
 
 mod:RegisterEvents(
 	"ENCOUNTER_END",
-	"SPELL_AURA_APPLIED 22997 25698",
+	"SPELL_AURA_APPLIED 22997 25698 26079",
 	"SPELL_AURA_REMOVED 22997",
 	"SPELL_MISSED"
 )
@@ -133,9 +133,11 @@ do-- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash
 	local specWarnPlague                = mod:NewSpecialWarningMoveAway(22997, nil, nil, nil, 1, 2)
 	local yellPlague                    = mod:NewYell(22997)
 	local specWarnExplode               = mod:NewSpecialWarningRun(25698, nil, nil, nil, 4, 2)
+	local warnCauseInsanity             = mod:NewTargetNoFilterAnnounce(26079, 2)
 
 	local Plague = DBM:GetSpellInfo(22997)
 	local Explode = DBM:GetSpellInfo(25698)
+	local CauseInsanity = DBM:GetSpellInfo(26079)-- aq40 only mind control - qiraji brainwasher/mindslayer
 
 	-- aura applied didn't seem to catch the reflects and other buffs
 	function mod:SPELL_AURA_APPLIED(args)
@@ -153,6 +155,8 @@ do-- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash
 		elseif args.spellName == Explode then
 			specWarnExplode:Show()
 			specWarnExplode:Play("justrun")
+		elseif args.spellName == CauseInsanity then
+			warnCauseInsanity:CombinedShow(0.75, args.destName)
 		end
 	end
 
