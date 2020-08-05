@@ -3,7 +3,6 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetModelID(15347)-- Anubisath Sentinel
-mod:SetZone()
 mod:SetMinSyncRevision(20200804000000)--2020, 8, 04
 
 mod.isTrashMod = true
