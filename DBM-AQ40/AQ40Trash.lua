@@ -102,7 +102,7 @@ end
 function mod:ENCOUNTER_END(encounterID, _, _, _, success)
 	if success == 0 then return end--wipe
 	--All the required bosses for the raid to be full cleared.
-	if encounterID == 710 or encounterID == 713 or encounterID == 716 or encounterID == 717 or encounterId == 714 then
+	if encounterID == 710 or encounterID == 713 or encounterID == 716 or encounterID == 717 or encounterID == 714 then
 		self.vb.requiredBosses = self.vb.requiredBosses + 1
 		if self.vb.requiredBosses == 5 then
 			DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
