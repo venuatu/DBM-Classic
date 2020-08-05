@@ -4,6 +4,8 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(15589, 15727)
 mod:SetEncounterID(717)
+mod:SetMinSyncRevision(20200804000000)--2020, 8, 04
+
 mod:RegisterCombat("combat")
 mod:SetWipeTime(25)
 
@@ -52,8 +54,8 @@ function mod:OnCombatEnd(wipe, isSecondRun)
 	end
 	--Only run on second run, to ensure trash mod has had enough time to update requiredBosses
 	if not wipe and isSecondRun and firstBossMod.vb.firstEngageTime and firstBossMod.Options.SpeedClearTimer then
-		if firstBossMod.vb.requiredBosses < 4 then
-			DBM:AddMsg(L.NotValid:format(4 - firstBossMod.vb.requiredBosses .. "/3"))
+		if firstBossMod.vb.requiredBosses < 5 then
+			DBM:AddMsg(L.NotValid:format(5 - firstBossMod.vb.requiredBosses .. "/4"))
 		end
 	end
 end
@@ -86,6 +88,7 @@ function mod:UNIT_DIED(args)
 		self.vb.phase = 2
 		warnPhase2:Show()
 		timerDarkGlareCD:Stop()
+		timerEyeTentacle:Stop()
 		self:UnscheduleMethod("EyeTentacle")
 		self:UnscheduleMethod("DarkGlare")
 	end
