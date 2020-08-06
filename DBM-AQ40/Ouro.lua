@@ -86,6 +86,7 @@ do
 		if args.spellName == SummonOuroMounds and not self.vb.Berserked then
 			timerBlastCD:Stop()
 			timerSweepCD:Stop()
+			timerSubmerge:Stop()
 			warnSubmerge:Show()
 			timerEmerge:Start()
 			self:ScheduleMethod(30, "Emerge")
