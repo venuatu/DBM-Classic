@@ -127,7 +127,7 @@ L:SetWarningLocalization{
 	WarnEmerge			= "Emerge"
 }
 L:SetTimerLocalization{
-	TimerSubmerge		= "Submerge",
+	TimerSubmerge		= "Submerge (Max)",
 	TimerEmerge			= "Emerge"
 }
 L:SetOptionLocalization{
