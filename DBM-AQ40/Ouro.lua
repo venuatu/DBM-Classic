@@ -59,6 +59,7 @@ do
 		if args.spellName == Berserk and args:IsDestTypeHostile() then
 			self.vb.Berserked = true
 			warnBerserk:Show()
+			timerSubmerge:Stop()
 		end
 	end
 end
