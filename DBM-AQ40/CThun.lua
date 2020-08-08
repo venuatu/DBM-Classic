@@ -76,9 +76,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if msg == L.Weakened or msg:find(L.Weakened) then
-		specWarnWeakened:Show()
-		specWarnWeakened:Play("targetchange")
-		timerWeakened:Start()
+		self:SendSync("Weakened")
 	end
 end
 
@@ -91,5 +89,14 @@ function mod:UNIT_DIED(args)
 		timerEyeTentacle:Stop()
 		self:UnscheduleMethod("EyeTentacle")
 		self:UnscheduleMethod("DarkGlare")
+	end
+end
+
+function mod:OnSync(msg)
+	if not self:IsInCombat() then return end
+	if msg == "Weakened" then
+		specWarnWeakened:Show()
+		specWarnWeakened:Play("targetchange")
+		timerWeakened:Start()
 	end
 end
