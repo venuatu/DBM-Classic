@@ -5,8 +5,9 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(15263)
 mod:SetEncounterID(709)
 mod:SetModelID(15345)
-mod:RegisterCombat("combat")
 mod:SetUsedIcons(4, 5, 6, 7, 8)
+
+mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 785",

@@ -5,11 +5,13 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(15589, 15727)
 mod:SetEncounterID(717)
 mod:SetMinSyncRevision(20200804000000)--2020, 8, 04
+mod:SetUsedIcons(1)
 
 mod:RegisterCombat("combat")
 mod:SetWipeTime(25)
 
 mod:RegisterEventsInCombat(
+	"SPELL_CAST_START 26134",
 	"CHAT_MSG_MONSTER_EMOTE",
 	"UNIT_DIED"
 )
@@ -22,6 +24,8 @@ local warnPhase2			= mod:NewPhaseAnnounce(2)
 
 local specWarnDarkGlare		= mod:NewSpecialWarningDodge(26029, nil, nil, nil, 3, 2)
 local specWarnWeakened		= mod:NewSpecialWarning("SpecWarnWeakened", nil, nil, nil, 2, 2, nil, 28598)
+local specWarnEyeBeam		= mod:NewSpecialWarningYou(26134, nil, nil, nil, 1, 2)
+local yellEyeBeam			= mod:NewYell(26134)
 
 local timerDarkGlareCD		= mod:NewNextTimer(86, 26029)
 local timerDarkGlare		= mod:NewBuffActiveTimer(39, 26029)
@@ -32,6 +36,7 @@ local timerEyeTentacle		= mod:NewTimer(45, "TimerEyeTentacle", 126, nil, nil, 1)
 local timerWeakened			= mod:NewTimer(45, "TimerWeakened", 28598)
 
 mod:AddRangeFrameOption("10")
+mod:AddSetIconOption("SetIconOnEyeBeam", 26134, true, false, {1})
 
 mod.vb.phase = 1
 local firstBossMod = DBM:GetModByName("AQ40Trash")
@@ -72,6 +77,28 @@ function mod:DarkGlare()
 	timerDarkGlare:Start()
 	timerDarkGlareCD:Start()
 	self:ScheduleMethod(86, "DarkGlare")
+end
+
+do
+	local EyeBeam = DBM:GetSpellInfo(26134)
+	function mod:EyeBeamTarget(targetname, uId)
+		if not targetname then return end
+		if targetname == UnitName("player") then
+			specWarnEyeBeam:Show()
+			specWarnEyeBeam:Play("targetyou")
+			yellEyeBeam:Yell()
+		end
+		if self.Options.SetIconOnEyeBeam then
+			self:SetIcon(targetname, 1, 3)
+		end
+	end
+
+	function mod:SPELL_CAST_START(args)
+		local spellName = args.spellName
+		if spellName == EyeBeam and args:IsSrcTypeHostile() then
+			self:BossTargetScanner(args.sourceGUID, "EyeBeamTarget", 0.1, 8)
+		end
+	end
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
