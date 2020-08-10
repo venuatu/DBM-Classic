@@ -101,7 +101,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "眼球触须",
-	SpecWarnWeakened		= "克苏恩变得虚弱了!"
+	SpecWarnWeakened		= "克苏恩的力量被削弱了！"
 }
 L:SetTimerLocalization{
 	TimerEyeTentacle		= "下一次眼球触须",
@@ -117,7 +117,7 @@ L:SetOptionLocalization{
 }
 L:SetMiscLocalization{
 	Eye			= "克苏恩之眼",
-	Weakened 	= "变弱了",
+	Weakened 	= "削弱了",
     NotValid	= "AQ40 击杀信息： %s 首领未击杀。"
 }
 ----------------
