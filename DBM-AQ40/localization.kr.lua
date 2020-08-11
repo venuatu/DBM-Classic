@@ -127,12 +127,12 @@ L:SetWarningLocalization{
 	WarnEmerge			= "등장",
 }
 L:SetTimerLocalization{
-	TimerSubmerge		= "잠수",
+	TimerSubmerge		= "강제 잠수",
 	TimerEmerge			= "등장"
 }
 L:SetOptionLocalization{
 	WarnSubmerge		= "잠수 경고 보기",
-	TimerSubmerge		= "잠수 타이머 바 보기",
+	TimerSubmerge		= "잠수가 강제로 될 때 타이머 바를 표시합니다. 알림: 아우로는 현재 대상이 평타 사거리에 있더라도 여전히 아무때나 잠수를 할 수 있습니다.",
 	WarnEmerge			= "등장 경고 보기",
 	TimerEmerge			= "등장 타이머 바 보기"
 }
