@@ -86,8 +86,8 @@ do
 		--elseif args.spellId == 26051 then
 		elseif args.spellName == Frenzy and args:IsDestTypeHostile() then
 			if self.Options.SpecWarn26051dispel then
-				specWarnEnrage:Show(args.destName)
-				specWarnEnrage:Play("enrage")
+				specWarnFrenzy:Show(args.destName)
+				specWarnFrenzy:Play("enrage")
 			else
 				warnFrenzy:Show(args.destName)
 			end
