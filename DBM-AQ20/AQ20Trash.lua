@@ -21,7 +21,7 @@ do-- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash
 	local warnPlague                    = mod:NewTargetAnnounce(22997, 2)
 	local specWarnPlague                = mod:NewSpecialWarningMoveAway(22997, nil, nil, nil, 1, 2)
 	local yellPlague                    = mod:NewYell(22997)
-	local specWarnExplode               = mod:NewSpecialWarningRun(25698, nil, nil, nil, 4, 2)
+	local specWarnExplode               = mod:NewSpecialWarningRun(25698, false, nil, 2, 4, 2)
 	local warnCauseInsanity             = mod:NewTargetNoFilterAnnounce(26079, 2)
 
 	local Plague = DBM:GetSpellInfo(22997)
@@ -70,10 +70,10 @@ do-- Anubisath Reflect - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
 	local playerGUID = UnitGUID("player")
 	function mod:SPELL_MISSED(sourceGUID, _, _, _, destGUID, destName, _, _, _, _, spellSchool, missType)
 		if (missType == "REFLECT" or missType == "DEFLECT") and sourceGUID == playerGUID then
-			if spellSchool == 32 or spellSchool == 16 then
+			if (spellSchool == 32 or spellSchool == 16) and self:AntiSpam(3, 1) then
 				specWarnShadowFrostReflect:Show(destName)
 				specWarnShadowFrostReflect:Play("stopattack")
-			elseif spellSchool == 4 or spellSchool == 64 then
+			elseif (spellSchool == 4 or spellSchool == 64) and self:AntiSpam(3, 2) then
 				specWarnFireArcaneReflect:Show(destName)
 				specWarnFireArcaneReflect:Play("stopattack")
 			end
