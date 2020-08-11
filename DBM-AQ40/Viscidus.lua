@@ -18,7 +18,7 @@ mod:RegisterEventsInCombat(
 --TODO, melee hit counter on infoframe (x number of melee hits to shatter)
 local warnFreeze		= mod:NewAnnounce("WarnFreeze", 2, 16350)
 local warnShatter		= mod:NewAnnounce("WarnShatter", 2, 12982)
-local specWarnGTFO	= mod:NewSpecialWarningGTFO(25989, nil, nil, nil, 1, 8)
+local specWarnGTFO		= mod:NewSpecialWarningGTFO(25989, nil, nil, nil, 1, 8)
 
 local timerFrozen		= mod:NewBuffActiveTimer(30, 25937, nil, nil, nil, 6)
 
