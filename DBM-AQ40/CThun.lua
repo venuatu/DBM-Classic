@@ -28,7 +28,7 @@ local specWarnEyeBeam		= mod:NewSpecialWarningYou(26134, nil, nil, nil, 1, 2)
 local yellEyeBeam			= mod:NewYell(26134)
 
 local timerDarkGlareCD		= mod:NewNextTimer(86, 26029)
-local timerDarkGlare		= mod:NewBuffActiveTimer(39, 26029)
+local timerDarkGlare		= mod:NewBuffActiveTimer(37, 26029)
 local timerEyeTentacle		= mod:NewTimer(45, "TimerEyeTentacle", 126, nil, nil, 1)
 --local timerGiantEyeTentacle	= mod:NewTimer(60, "TimerGiantEyeTentacle", 26391, nil, nil, 1)
 --local timerClawTentacle		= mod:NewTimer(11, "TimerClawTentacle", 26391, nil, nil, 1)
