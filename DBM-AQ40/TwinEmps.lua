@@ -32,7 +32,7 @@ function mod:OnCombatStart(delay)
 	--timerStrikeCD:Start(14.2-delay)
 	berserkTimer:Start()
 	timerTeleport:Start(-delay)
-	DBM:AddMsg("Teleport has a 30-41 cooldown window. DBM displays 30 second timer and then displays the window timer in negative on full bar. This is not bugged, just under explained. This is me explaining it")
+	DBM:AddMsg("Teleport has a 29.2-41 cooldown window. DBM displays 30 second timer and then displays the window timer in negative on full bar. This is not bugged, just under explained. This is me explaining it")
 end
 
 --pull:30.6, 35.2, 37.8, 40.1, 36.5, 36.6, 37.7, 31.9, 31.7, 38.8, 32.9, 30.4, 40.2, 30.6, 37.6, 35.4, 32.9, 34.2, 35.3, 36.5, 30.4, 29.2, 34.3, 32.8, 40.0, 35.4, 36.5, 35.3

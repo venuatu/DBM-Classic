@@ -17,7 +17,7 @@ local warnEnrageSoon	= mod:NewSoonAnnounce(8269, 2)
 local warnEnrage		= mod:NewSpellAnnounce(8269, 4)
 local warnWhirlwind		= mod:NewSpellAnnounce(26083, 3)
 
-local specWarnWhirlwind	= mod:NewSpecialWarningRun(26083, nil, nil, 2, 4, 2)
+local specWarnWhirlwind	= mod:NewSpecialWarningRun(26083, false, nil, nil, 4, 2)
 
 mod.vb.prewarn_enrage = false
 
