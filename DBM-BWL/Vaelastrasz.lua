@@ -20,7 +20,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 18173"
 )
 
-local warnBreath			= mod:NewCastAnnounce(23461, 2, nil, nil, "Tank", 2)
+local warnBreath			= mod:NewCastAnnounce(23461, 2, nil, nil, "Tank", 3)
 local warnAdrenaline		= mod:NewTargetNoFilterAnnounce(18173, 2)
 
 local specWarnAdrenaline	= mod:NewSpecialWarningYou(18173, nil, nil, nil, 1, 2)

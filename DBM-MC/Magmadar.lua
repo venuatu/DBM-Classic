@@ -20,7 +20,7 @@ mod:RegisterEventsInCombat(
  or ability.id = 19428 and type = "applydebuff"
 --]]
 local warnPanic			= mod:NewSpellAnnounce(19408, 2)
-local warnEnrage		= mod:NewTargetNoFilterAnnounce(19451, 3, nil , "Healer|Tank|RemoveEnrage")
+local warnEnrage		= mod:NewTargetNoFilterAnnounce(19451, 3, nil , "Healer|Tank|RemoveEnrage", 2)
 local warnConflagration	= mod:NewTargetNoFilterAnnounce(19428, 2, nil , false)
 
 local specWarnEnrage	= mod:NewSpecialWarningDispel(19451, "RemoveEnrage", nil, nil, 1, 6)

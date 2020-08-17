@@ -15,7 +15,7 @@ mod:RegisterEventsInCombat(
 )
 
 --TODO, maybe taunt special warnings for classic version when it matters more.
-local warnNoxiousBreath			= mod:NewStackAnnounce(24818, 2, nil, "Tank")
+local warnNoxiousBreath			= mod:NewStackAnnounce(24818, 2, nil, "Tank", 2)
 --local warningLightningWave		= mod:NewSpellAnnounce(24819, 3)
 
 local specWarnSleepingFog		= mod:NewSpecialWarningDodge(24814, nil, nil, nil, 2, 2)
