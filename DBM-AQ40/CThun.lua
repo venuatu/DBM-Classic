@@ -4,7 +4,8 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(15589, 15727)
 mod:SetEncounterID(717)
-mod:SetMinSyncRevision(20200804000000)--2020, 8, 04
+mod:SetHotfixNoticeRev(20200817000000)--2020, 8, 17
+mod:SetMinSyncRevision(20200817000000)--2020, 8, 17
 mod:SetUsedIcons(1)
 
 mod:RegisterCombat("combat")
@@ -189,7 +190,7 @@ do
 	 end
 
 	function ResourceTracker:CalculatePercentageChange(value)
- 	  return self.percentage - math.abs(math.floor((tonumber(value) or 0)/self.max))
+		return self.percentage - math.abs(math.floor((tonumber(value) or 0)/self.max))
 	end
 
 	function mod:OnSync(msg, event, spawnUid, health, maxHealth)
