@@ -112,6 +112,7 @@ L:SetOptionLocalization{
 L:SetMiscLocalization{
 	Stomach		= "Stomach of C'Thun",
 	Eye			= "Eye of C'Thun",
+	FleshTent	= "Flesh Tentacle",--Localized so it shows on frame in users language, not senders
 	Weakened 	= "weaken",
 	NotValid	= "AQ40 partially cleared. %s optional bosses remain."
 }
