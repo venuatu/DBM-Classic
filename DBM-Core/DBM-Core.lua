@@ -8029,6 +8029,7 @@ do
 			["MagicDispeller"] = (IsSpellKnown(23922) or IsSpellKnown(23923) or IsSpellKnown(23924) or IsSpellKnown(23925)) and true or false,--Shield Slam
 		},
 		["DRUID1"] = {	--Balance Druid
+			["Healer"] = true,
 			["Dps"] = true,
 			["Ranged"] = true,
 			["RangedDps"] = true,
@@ -8038,6 +8039,7 @@ do
 			["RemoveCurse"] = true,
 		},
 		["DRUID2"] = { --Feral Druid
+			["Healer"] = true,
 			["Dps"] = true,
 			["Tank"] = true,
 			["Melee"] = true,
@@ -8317,10 +8319,14 @@ do
 			DBM:SetCurrentSpecInfo()
 		end
 		if specRoleTable[currentSpecID]["Healer"] then
-			return true
-		else
-			return false
+			if playerClass == "DRUID" then
+				-- not in form (moonkin for balance, cat/bear for ferals)
+				return GetShapeshiftFormID() == nil
+			else
+				return true
+			end
 		end
+		return false
 	end
 end
 
