@@ -224,10 +224,10 @@ do
 				DBM.InfoFrame:Hide()
 			end
 
-		elseif (msg == COMMS.TENTACLES) and spawnUid and health then
+		elseif (msg == COMMS.TENTACLES) and spawnUid then
 			spawnUid = tonumber(spawnUid)
 			if not spawnUid then return end
-			if (event == COMMS.CREATE) and maxHealth then
+			if (event == COMMS.CREATE) and maxHealth and health then
 				health = tonumber(health) or 0
 				maxHealth = tonumber(maxHealth) or 0
 
@@ -238,7 +238,7 @@ do
 					self.vb.fleshTentacles[spawnUid] = ResourceTracker.new(L.FleshTent, maxHealth)
 				end
 				self.vb.fleshTentacles[spawnUid]:Update(health)
-			elseif (event == COMMS.UPDATE) then
+			elseif (event == COMMS.UPDATE) and health then
 				health = tonumber(health)
 				if not health then return end
 				if self.vb.fleshTentacles[spawnUid] then
