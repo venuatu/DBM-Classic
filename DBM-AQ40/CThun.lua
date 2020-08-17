@@ -49,7 +49,7 @@ mod.vb.fleshTentacles = {}
 
 function mod:OnCombatStart(delay)
 	self.vb.phase = 1
-	timerEyeTentacle:Start(9-delay) -- Combatlog told me, the first Claw Tentacle spawn in 00:00:09, but need more test.
+	timerClawTentacle:Start(9-delay) -- Combatlog told me, the first Claw Tentacle spawn in 00:00:09, but need more test.
 	timerEyeTentacle:Start(45-delay)
 	timerDarkGlareCD:Start(48-delay)
 	self:ScheduleMethod(48-delay, "DarkGlare")
