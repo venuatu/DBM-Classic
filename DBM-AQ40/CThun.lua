@@ -111,7 +111,7 @@ do
 	function mod:SPELL_CAST_SUCCESS(args)
 		local spellName = args.spellName
 		if spellName == Birth then
-			 local cid = self:GetCIDFromGUID(args.destGUID)
+			 local cid = self:GetCIDFromGUID(args.sourceGUID)
 			 if self:AntiSpam(5, cid) then--Throttle multiple spawn within 5 seconds
 				if cid == 15726 then--Eye Tentacle
 					timerEyeTentacle:Stop()
