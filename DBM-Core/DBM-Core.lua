@@ -7995,6 +7995,7 @@ do
 			["HasImmunity"] = true,
 		},
 		["PALADIN3"] = {	--Retribution Paladin
+			["Tank"] = true,
 			["Dps"] = true,
 			["Melee"] = true,
 			["MeleeDps"] = true,
@@ -8008,6 +8009,7 @@ do
 		},
 		["WARRIOR1"] = {	--Arms Warrior
 			["Dps"] = true,
+			["Tank"] = true,
 			["Melee"] = true,
 			["MeleeDps"] = true,
 			["Physical"] = true,
@@ -8266,16 +8268,22 @@ do
 		end
 	end
 
+	-- if we catch someone in a tank stance keep sending them warnings
+	local playerIsTank = false
+
 	function bossModPrototype:IsTank()
 		--IsTanking already handles external calls, no need here.
 		if not currentSpecID then
 			DBM:SetCurrentSpecInfo()
 		end
 		if specRoleTable[currentSpecID]["Tank"] then
-			return true
-		else
-			return false
+			-- 17 defensive stance, 5487 bear form, 9634 dire bear, 25780 righteous fury
+			if playerIsTank or GetShapeshiftFormID() == 17 or DBM:UnitBuff('player', 5487, 9634) then
+				playerIsTank = true
+				return true
+			end
 		end
+		return false
 	end
 
 	function bossModPrototype:IsDps(uId)
