@@ -12,6 +12,7 @@ mod:SetWipeTime(25)
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 26134",
+	"SPELL_CAST_SUCCESS 26586",
 	"CHAT_MSG_MONSTER_EMOTE",
 	"UNIT_DIED"
 )
@@ -65,12 +66,6 @@ function mod:OnCombatEnd(wipe, isSecondRun)
 	end
 end
 
-function mod:EyeTentacle()
-	warnEyeTentacle:Show()
-	timerEyeTentacle:Start()
-	self:ScheduleMethod(45, "EyeTentacle")
-end
-
 function mod:DarkGlare()
 	specWarnDarkGlare:Show()
 	specWarnDarkGlare:Play("laserrun")--Or "watchstep" ?
@@ -102,6 +97,24 @@ do
 	end
 end
 
+do
+	local Birth = DBM:GetSpellInfo(26586)
+	function mod:SPELL_CAST_SUCCESS(args)
+		local spellName = args.spellName
+		if spellName == Birth then
+			 local cid = self:GetCIDFromGUID(args.destGUID)
+			 if self:AntiSpam(5, cid) then--Throttle multiple spawn within 5 seconds
+				if cid == 15726 then--Eye Tentacle
+					timerEyeTentacle:Stop()
+					warnEyeTentacle:Show()
+					timerEyeTentacle:Start(self.vb.phase == 2 and 30 or 45)
+				end
+				--TODO, add Giant Tentacle or any other tentacles?
+			end
+		end
+	end
+end
+
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if msg == L.Weakened or msg:find(L.Weakened) then
 		self:SendSync("Weakened")
@@ -115,7 +128,7 @@ function mod:UNIT_DIED(args)
 		warnPhase2:Show()
 		timerDarkGlareCD:Stop()
 		timerEyeTentacle:Stop()
-		self:UnscheduleMethod("EyeTentacle")
+		timerEyeTentacle:Start(40)
 		self:UnscheduleMethod("DarkGlare")
 	end
 end
@@ -126,5 +139,6 @@ function mod:OnSync(msg)
 		specWarnWeakened:Show()
 		specWarnWeakened:Play("targetchange")
 		timerWeakened:Start()
+		timerEyeTentacle:Start(85)
 	end
 end
