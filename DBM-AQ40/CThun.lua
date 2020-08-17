@@ -47,7 +47,6 @@ function mod:OnCombatStart(delay)
 	--timerClawTentacle:Start(-delay)
 	timerEyeTentacle:Start(45-delay)
 	timerDarkGlareCD:Start(48-delay)
-	self:ScheduleMethod(45-delay, "EyeTentacle")
 	self:ScheduleMethod(48-delay, "DarkGlare")
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Show(10)
