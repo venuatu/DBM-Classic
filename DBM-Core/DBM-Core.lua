@@ -657,6 +657,37 @@ local function SendWorldSync(self, prefix, msg, noBNet)
 	end
 end
 
+local function hasRecentlyEngaged(key)
+	return lastBossEngage[key] and (GetTime() - lastBossEngage[key] < 30)
+end
+
+local function SendWorldBuffSync(self, bossName, faction, spellId, time, ver)
+	local absoluteTime = GetServerTime() + time
+	local msg = strjoin("\t", "WBA", bossName, faction, spellId, absoluteTime, ver)
+	local delay = random()-- a random delay between 0 - 1 seconds
+	self:Schedule(delay, function ()
+		local channels = ''
+		if IsInRaid() then
+			if not hasRecentlyEngaged("RAID"..bossName..faction) then
+				SendAddonMessage("D4C", msg, "RAID")
+				channels = channels .. "RAID "
+			end
+		elseif IsInGroup(1) then
+			if not hasRecentlyEngaged("PARTY"..bossName..faction) then
+				SendAddonMessage("D4C", msg, "PARTY")
+				channels = channels .. "PARTY "
+			end
+		end
+		if IsInGuild() then
+			if not hasRecentlyEngaged("GUILD"..bossName..faction) then
+				SendAddonMessage("D4C", msg, "GUILD")
+				channels = channels .. "GUILD "
+			end
+		end
+		DBM:DebugConcat("WBA send" , delay, bossName, channels)
+	end)
+end
+
 local function strFromTime(time)
 	if type(time) ~= "number" then time = 0 end
 	time = floor(time*100)/100
@@ -4637,7 +4668,7 @@ do
 			inspopup:Show()
 		end
 
-		syncHandlers["IR"] = function(sender)
+		syncHandlers["IR"] = function(sender, channel)
 			if DBM:GetRaidRank(sender) == 0 or sender == playerName then
 				return
 			end
@@ -4662,7 +4693,7 @@ do
 			end
 		end
 
-		syncHandlers["IRE"] = function(sender)
+		syncHandlers["IRE"] = function(sender, channel)
 			local popup = inspopup:IsShown()
 			if popup and savedSender == sender then -- found the popup with the correct data
 				savedSender = nil
@@ -4671,7 +4702,7 @@ do
 			end
 		end
 
-		syncHandlers["GCB"] = function(sender, modId, ver, difficulty, name)
+		syncHandlers["GCB"] = function(sender, channel, modId, ver, difficulty, name)
 			if not DBM.Options.ShowGuildMessages or not difficulty then return end
 			if not ver or not (ver == "3") then return end--Ignore old versions
 			if DBM:AntiSpam(10, "GCB") then
@@ -4683,7 +4714,7 @@ do
 			end
 		end
 
-		syncHandlers["GCE"] = function(sender, modId, ver, wipe, time, difficulty, name, wipeHP)
+		syncHandlers["GCE"] = function(sender, channel, modId, ver, wipe, time, difficulty, name, wipeHP)
 			if not DBM.Options.ShowGuildMessages or not difficulty then return end
 			if not ver or not (ver == "6") then return end--Ignore old versions
 			if DBM:AntiSpam(5, "GCE") then
@@ -4699,9 +4730,9 @@ do
 			end
 		end
 
-		syncHandlers["WBE"] = function(sender, modId, realm, health, ver, name)
+		syncHandlers["WBE"] = function(sender, channel, modId, realm, health, ver, name)
 			if not ver or not (ver == "8") then return end--Ignore old versions
-			if lastBossEngage[modId..realm] and (GetTime() - lastBossEngage[modId..realm] < 30) then return end--We recently got a sync about this boss on this realm, so do nothing.
+			if hasRecentlyEngaged(modId..realm) then return end--We recently got a sync about this boss on this realm, so do nothing.
 			lastBossEngage[modId..realm] = GetTime()
 			if realm == playerRealm and DBM.Options.WorldBossAlert and not IsEncounterInProgress() then
 				modId = tonumber(modId)--If it fails to convert into number, this makes it nil
@@ -4710,7 +4741,7 @@ do
 			end
 		end
 
-		syncHandlers["WBD"] = function(sender, modId, realm, ver, name)
+		syncHandlers["WBD"] = function(sender, channel, modId, realm, ver, name)
 			if not ver or not (ver == "8") then return end--Ignore old versions
 			if lastBossDefeat[modId..realm] and (GetTime() - lastBossDefeat[modId..realm] < 30) then return end
 			lastBossDefeat[modId..realm] = GetTime()
@@ -4721,18 +4752,19 @@ do
 			end
 		end
 
-		syncHandlers["WBA"] = function(sender, bossName, faction, spellId, time, ver)
-			DBM:Debug("WBA sync recieved")
-			if not ver or not (ver == "4") then return end--Ignore old versions
-			if lastBossEngage[bossName..faction] and (GetTime() - lastBossEngage[bossName..faction] < 30) then return end--We recently got a sync about this buff on this realm, so do nothing.
+		syncHandlers["WBA"] = function(sender, channel, bossName, faction, spellId, time, ver)
+			DBM:DebugConcat("WBA sync received", channel, sender, bossName, faction, time, ver)
+			if not ver or not (ver == "5") then return end--Ignore old versions
+			lastBossEngage[channel..bossName..faction] = GetTime()
+			if hasRecentlyEngaged(bossName..faction) then return end--We recently got a sync about this buff on this realm, so do nothing.
 			lastBossEngage[bossName..faction] = GetTime()
 			if DBM.Options.WorldBuffAlert and #inCombat == 0 then
-				DBM:Debug("WBA sync processing")
+				time = tonumber(time) - GetServerTime()
+				DBM:DebugConcat("WBA sync processing", bossName, faction, time)
 				local factionText = faction == "Alliance" and FACTION_ALLIANCE or faction == "Horde" and FACTION_HORDE or L.BOTH
 				local buffName, _, buffIcon = DBM:GetSpellInfo(tonumber(spellId) or 0)
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName or L.UNKNOWN, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				time = tonumber(time)
 				if time then
 					DBM.Bars:CreateBar(time, buffName or L.UNKNOWN, buffIcon or 136106)
 				end
@@ -4740,9 +4772,9 @@ do
 		end
 
 		--YAY duplicate code (to handle all world boss/buff stuff for whisper handler)
-		whisperSyncHandlers["WBE"] = function(sender, modId, realm, health, ver, name)
+		whisperSyncHandlers["WBE"] = function(sender, channel, modId, realm, health, ver, name)
 			if not ver or not (ver == "8") then return end--Ignore old versions
-			if lastBossEngage[modId..realm] and (GetTime() - lastBossEngage[modId..realm] < 30) then return end
+			if hasRecentlyEngaged(modId..realm) then return end
 			lastBossEngage[modId..realm] = GetTime()
 			if realm == playerRealm and DBM.Options.WorldBossAlert and #inCombat == 0 then
 				local _, toonName = BNGetGameAccountInfo(sender)
@@ -4752,7 +4784,7 @@ do
 			end
 		end
 
-		whisperSyncHandlers["WBD"] = function(sender, modId, realm, ver, name)
+		whisperSyncHandlers["WBD"] = function(sender, channel, modId, realm, ver, name)
 			if not ver or not (ver == "8") then return end--Ignore old versions
 			if lastBossDefeat[modId..realm] and (GetTime() - lastBossDefeat[modId..realm] < 30) then return end
 			lastBossDefeat[modId..realm] = GetTime()
@@ -4764,18 +4796,19 @@ do
 			end
 		end
 
-		whisperSyncHandlers["WBA"] = function(sender, bossName, faction, spellId, time, ver)
-			DBM:Debug("WBA sync recieved")
-			if not ver or not (ver == "4") then return end--Ignore old versions
-			if lastBossEngage[bossName..faction] and (GetTime() - lastBossEngage[bossName..faction] < 30) then return end--We recently got a sync about this buff on this realm, so do nothing.
+		whisperSyncHandlers["WBA"] = function(sender, channel, bossName, faction, spellId, time, ver)
+			DBM:DebugConcat("WBA sync received", channel, sender, bossName, faction, time, ver)
+			if not ver or not (ver == "5") then return end--Ignore old versions
+			lastBossEngage[channel..bossName..faction] = GetTime()
+			if hasRecentlyEngaged(bossName..faction) then return end--We recently got a sync about this buff on this realm, so do nothing.
 			lastBossEngage[bossName..faction] = GetTime()
 			if DBM.Options.WorldBuffAlert and #inCombat == 0 then
-				DBM:Debug("WBA sync processing")
+				time = tonumber(time) - GetServerTime()
+				DBM:DebugConcat("WBA sync processing", bossName, faction, time)
 				local factionText = faction == "Alliance" and FACTION_ALLIANCE or faction == "Horde" and FACTION_HORDE or L.BOTH
 				local buffName, _, buffIcon = DBM:GetSpellInfo(tonumber(spellId) or 0)
 				DBM:AddMsg(L.WORLDBUFF_STARTED:format(buffName or L.UNKNOWN, factionText, sender))
 				DBM:PlaySound(DBM.Options.RaidWarningSound, true)
-				time = tonumber(time)
 				if time then
 					DBM.Bars:CreateBar(time, buffName or L.UNKNOWN, buffIcon or 136106)
 				end
@@ -4790,7 +4823,7 @@ do
 
 		local updateInstanceInfo, showResults
 
-		whisperSyncHandlers["II"] = function(sender, result, name, id, diff, maxPlayers, progress, textDiff)
+		whisperSyncHandlers["II"] = function(sender, channel, result, name, id, diff, maxPlayers, progress, textDiff)
 			if GetTime() - lastRequest > 62 or not results then
 				return
 			end
@@ -4987,7 +5020,7 @@ do
 		end
 	end
 
-	whisperSyncHandlers["RT"] = function(sender)
+	whisperSyncHandlers["RT"] = function(sender, channel)
 		if UnitInBattleground("player") then
 			DBM:SendPVPTimers(sender)
 		else
@@ -4995,7 +5028,7 @@ do
 		end
 	end
 
-	whisperSyncHandlers["CI"] = function(sender, mod, time)
+	whisperSyncHandlers["CI"] = function(sender, channel, mod, time)
 		mod = DBM:GetModByName(mod or "")
 		time = tonumber(time or 0)
 		if mod and time then
@@ -5003,7 +5036,7 @@ do
 		end
 	end
 
-	whisperSyncHandlers["TI"] = function(sender, mod, timeLeft, totalTime, id, ...)
+	whisperSyncHandlers["TI"] = function(sender, channel, mod, timeLeft, totalTime, id, ...)
 		mod = DBM:GetModByName(mod or "")
 		timeLeft = tonumber(timeLeft or 0)
 		totalTime = tonumber(totalTime or 0)
@@ -5012,7 +5045,7 @@ do
 		end
 	end
 
-	whisperSyncHandlers["VI"] = function(sender, mod, name, value)
+	whisperSyncHandlers["VI"] = function(sender, channel, mod, name, value)
 		mod = DBM:GetModByName(mod or "")
 		value = tonumber(value) or value
 		if mod and name and value then
@@ -5035,13 +5068,14 @@ do
 			handler = syncHandlers[prefix]
 		end
 		if handler then
-			return handler(sender, ...)
+			return handler(sender, channel, ...)
 		end
 	end
 
 	function DBM:CHAT_MSG_ADDON(prefix, msg, channel, sender)
 		if prefix == "D4C" and msg and (channel == "PARTY" or channel == "RAID" or channel == "INSTANCE_CHAT" or channel == "WHISPER" or channel == "GUILD") then
 			sender = Ambiguate(sender, "none")
+			DBM:DebugConcat("Sync", channel, sender, ": ", msg)
 			handleSync(channel, sender, strsplit("\t", msg))
 		elseif prefix == "BigWigs" and msg and (channel == "PARTY" or channel == "RAID" or channel == "INSTANCE_CHAT") then
 			local bwPrefix, bwMsg, extra = strsplit("^", msg)
@@ -5616,28 +5650,28 @@ do
 		end
 		if not IsInInstance() then
 			if msg:find(L.WORLD_BUFFS.hordeOny) then
-				SendWorldSync(self, "WBA", "Onyxia\tHorde\t22888\t15\t4")
+				SendWorldBuffSync(self, "Onyxia", "Horde", "22888", 15, 5)
 				DBM:Debug("L.WORLD_BUFFS.hordeOny detected")
 			elseif msg:find(L.WORLD_BUFFS.allianceOny) then
-				SendWorldSync(self, "WBA", "Onyxia\tAlliance\t22888\t15\t4")
+				SendWorldBuffSync(self, "Onyxia", "Alliance", "22888", 15, 5)
 				DBM:Debug("L.WORLD_BUFFS.allianceOny detected")
 			elseif msg:find(L.WORLD_BUFFS.hordeNef) then
-				SendWorldSync(self, "WBA", "Nefarian\tHorde\t22888\t16\t4")
+				SendWorldBuffSync(self, "Nefarian", "Horde", "22888", 16, 5)
 				DBM:Debug("L.WORLD_BUFFS.hordeNef detected")
 			elseif msg:find(L.WORLD_BUFFS.allianceNef) then
-				SendWorldSync(self, "WBA", "Nefarian\tAlliance\t22888\t16\t4")
+				SendWorldBuffSync(self, "Nefarian", "Alliance", "22888", 16, 5)
 				DBM:Debug("L.WORLD_BUFFS.allianceNef detected")
 			elseif msg:find(L.WORLD_BUFFS.rendHead) then
-				SendWorldSync(self, "WBA", "rendBlackhand\tHorde\t16609\t7\t4")
+				SendWorldBuffSync(self, "rendBlackhand", "Horde", "16609", 7, 5)
 				DBM:Debug("L.WORLD_BUFFS.rendHead detected")
 			elseif msg:find(L.WORLD_BUFFS.zgHeartYojamba) then
 				-- zg buff transcripts https://gist.github.com/venuatu/18174f0e98759f83b9834574371b8d20
 				-- 28.58, 28.67, 27.77, 29.39, 28.67, 29.03, 28.12, 28.19, 29.61
-				SendWorldSync(self, "WBA", "Zandalar\tBoth\t24425\t28\t4")
+				SendWorldBuffSync(self, "Zandalar", "Both", "24425", 28, 5)
 				DBM:Debug("L.WORLD_BUFFS.zgHeartYojamba detected")
 			elseif msg:find(L.WORLD_BUFFS.zgHeartBooty) then
 				-- 48.7, 49.76, 50.64, 49.42, 49.8, 50.67, 50.94, 51.06
-				SendWorldSync(self, "WBA", "Zandalar\tBoth\t24425\t49\t4")
+				SendWorldBuffSync(self, "Zandalar", "Both", "24425", 49, 5)
 				DBM:Debug("L.WORLD_BUFFS.zgHeartBooty detected")
 			end
 		end
@@ -5678,7 +5712,7 @@ do
 		if not IsInInstance() then
 			if msg:find(L.WORLD_BUFFS.zgHeart) then
 				-- 51.01 51.82 51.85 51.53
-				SendWorldSync(self, "WBA", "Zandalar\tBoth\t24425\t51\t4")
+				SendWorldBuffSync(self, "Zandalar", "Both", "24425", 51, 5)
 			end
 		end
 		return onMonsterMessage(self, "say", msg)
@@ -7016,6 +7050,27 @@ function DBM:Debug(text, level)
 		frame:AddMessage("|cffff7d0aDBM Debug:|r "..text, 1, 1, 1)
 		fireEvent("DBM_Debug", text, level)
 	end
+end
+
+function DBM:DebugConcat(level, ...)
+	if not self.Options or not self.Options.DebugMode then return end
+	local args, n
+	if type(level) == 'number' then
+		n = select('#', ...)
+		args = {...}
+	else
+		n = select('#', ...) + 1
+		args = {level, ...}
+		level = 1
+	end
+	local text = ''
+	for i = 1, n do
+		if i > 1 and i < n+1 then
+			text = text .. ' '
+		end
+		text = text .. tostring(args[i])
+	end
+	DBM:Debug(text, level)
 end
 
 do
