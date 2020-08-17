@@ -102,10 +102,10 @@ L:SetWarningLocalization{
 	SpecWarnWeakened		= "C'Thun Weaken!"
 }
 L:SetTimerLocalization{
-	TimerEyeTentacle		= "Next Eye Tentacle",
-	TimerClawTentacle		= "Next Claw Tentacle",
-	TimerGiantEyeTentacle	= "Next Giant Eye Tentacle",
-	TimerGiantClawTentacle	= "Next Giant Claw Tentacle",
+	TimerEyeTentacle		= "Eye Tentacle",
+	TimerClawTentacle		= "Claw Tentacle",
+	TimerGiantEyeTentacle	= "Giant Eye Tentacle",
+	TimerGiantClawTentacle	= "Giant Claw Tentacle",
 	TimerWeakened			= "Weaken ends"
 }
 L:SetOptionLocalization{

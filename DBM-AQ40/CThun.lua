@@ -19,24 +19,24 @@ mod:RegisterEventsInCombat(
 	"UNIT_HEALTH mouseover target"
 )
 
-local warnEyeTentacle		= mod:NewAnnounce("WarnEyeTentacle", 2, 126)
-local warnClawTentacle		= mod:NewAnnounce("WarnClawTentacle", 2, 26391)
-local warnGiantEyeTentacle	= mod:NewAnnounce("WarnGiantEyeTentacle", 3, 26391)
-local warnGiantClawTentacle	= mod:NewAnnounce("WarnGiantClawTentacle", 3, 26391)
-local warnPhase2			= mod:NewPhaseAnnounce(2)
+local warnEyeTentacle			= mod:NewAnnounce("WarnEyeTentacle", 2, 126)
+local warnClawTentacle			= mod:NewAnnounce("WarnClawTentacle", 2, 26391)
+local warnGiantEyeTentacle		= mod:NewAnnounce("WarnGiantEyeTentacle", 3, 126)
+local warnGiantClawTentacle		= mod:NewAnnounce("WarnGiantClawTentacle", 3, 26391)
+local warnPhase2				= mod:NewPhaseAnnounce(2)
 
-local specWarnDarkGlare		= mod:NewSpecialWarningDodge(26029, nil, nil, nil, 3, 2)
-local specWarnWeakened		= mod:NewSpecialWarning("SpecWarnWeakened", nil, nil, nil, 2, 2, nil, 28598)
-local specWarnEyeBeam		= mod:NewSpecialWarningYou(26134, nil, nil, nil, 1, 2)
-local yellEyeBeam			= mod:NewYell(26134)
+local specWarnDarkGlare			= mod:NewSpecialWarningDodge(26029, nil, nil, nil, 3, 2)
+local specWarnWeakened			= mod:NewSpecialWarning("SpecWarnWeakened", nil, nil, nil, 2, 2, nil, 28598)
+local specWarnEyeBeam			= mod:NewSpecialWarningYou(26134, nil, nil, nil, 1, 2)
+local yellEyeBeam				= mod:NewYell(26134)
 
-local timerDarkGlareCD		= mod:NewNextTimer(86, 26029)
-local timerDarkGlare		= mod:NewBuffActiveTimer(37, 26029)
-local timerEyeTentacle		= mod:NewTimer(45, "TimerEyeTentacle", 126, nil, nil, 1)
-local timerGiantEyeTentacle	= mod:NewTimer(60, "TimerGiantEyeTentacle", 26391, nil, nil, 1)
-local timerClawTentacle		= mod:NewTimer(8, "TimerClawTentacle", 26391, nil, nil, 1) -- every 8 seconds
-local timerGiantClawTentacle = mod:NewTimer(60, "TimerGiantClawTentacle", 26391, nil, nil, 1)
-local timerWeakened			= mod:NewTimer(45, "TimerWeakened", 28598)
+local timerDarkGlareCD			= mod:NewNextTimer(86, 26029)
+local timerDarkGlare			= mod:NewBuffActiveTimer(37, 26029)
+local timerEyeTentacle			= mod:NewTimer(45, "TimerEyeTentacle", 126, nil, nil, 1)
+local timerGiantEyeTentacle		= mod:NewTimer(60, "TimerGiantEyeTentacle", 126, nil, nil, 1)
+local timerClawTentacle			= mod:NewTimer(8, "TimerClawTentacle", 26391, nil, nil, 1) -- every 8 seconds
+local timerGiantClawTentacle	= mod:NewTimer(60, "TimerGiantClawTentacle", 26391, nil, nil, 1)
+local timerWeakened				= mod:NewTimer(45, "TimerWeakened", 28598)
 
 mod:AddRangeFrameOption("10")
 mod:AddSetIconOption("SetIconOnEyeBeam", 26134, true, false, {1})
