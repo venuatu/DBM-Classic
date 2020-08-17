@@ -19,7 +19,7 @@ local specWarnChainBolt			= mod:NewSpecialWarningInterrupt(11085, "HasInterrupt"
 
 local timerMegavoltCD			= mod:NewAITimer(180, 11082, nil, nil, nil, 4, nil, DBM_CORE_L.INTERRUPT_ICON)
 local timerChainBoltCD			= mod:NewAITimer(180, 11085, nil, nil, nil, 4, nil, DBM_CORE_L.INTERRUPT_ICON)
-local timerShockCD				= mod:NewAITimer(180, 11084, nil, "Tank|Healer", nil, 5, nil, DBM_CORE_L.TANK_ICON)
+local timerShockCD				= mod:NewAITimer(180, 11084, nil, "Tank|Healer", 2, 5, nil, DBM_CORE_L.TANK_ICON)
 
 function mod:OnCombatStart(delay)
 	timerMegavoltCD:Start(1-delay)

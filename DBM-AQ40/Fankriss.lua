@@ -12,13 +12,13 @@ mod:RegisterEventsInCombat(
 )
 
 local warnEntangle 		= mod:NewTargetAnnounce(1121, 2)
-local warnWound			= mod:NewStackAnnounce(25646, 3, nil, "Tank", 2)
+local warnWound			= mod:NewStackAnnounce(25646, 3, nil, "Tank", 3)
 local warnWorm			= mod:NewSpellAnnounce(25831, 3)
 
 local specWarnWound		= mod:NewSpecialWarningStack(25646, nil, 5, nil, nil, 1, 6)
 local specWarnWoundTaunt= mod:NewSpecialWarningTaunt(25646, nil, nil, nil, 1, 2)
 
-local timerWound		= mod:NewTargetTimer(20, 25646, nil, "Tank", 2, 5, nil, DBM_CORE_L.TANK_ICON)
+local timerWound		= mod:NewTargetTimer(20, 25646, nil, "Tank", 3, 5, nil, DBM_CORE_L.TANK_ICON)
 
 local yellEntangle		= mod:NewYell(1121)
 

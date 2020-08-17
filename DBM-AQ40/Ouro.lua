@@ -22,7 +22,7 @@ mod:RegisterEventsInCombat(
 --]]
 local warnSubmerge		= mod:NewAnnounce("WarnSubmerge", 3, "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendBurrow.blp")
 local warnEmerge		= mod:NewAnnounce("WarnEmerge", 3, "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendUnBurrow.blp")
-local warnSweep			= mod:NewSpellAnnounce(26103, 2, nil, "Tank", 2)
+local warnSweep			= mod:NewSpellAnnounce(26103, 2, nil, "Tank", 3)
 local warnBerserk		= mod:NewSpellAnnounce(26615, 3)
 local warnBerserkSoon	= mod:NewSoonAnnounce(26615, 2)
 
