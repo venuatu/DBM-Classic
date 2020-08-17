@@ -16,9 +16,9 @@ mod:RegisterEventsInCombat(
 )
 
 local warnSting			= mod:NewTargetNoFilterAnnounce(26180, 2, nil, "RemovePoison")
-local warnAcid			= mod:NewStackAnnounce(26050, 3, nil, "Tank", 2)
+local warnAcid			= mod:NewStackAnnounce(26050, 3, nil, "Tank", 3)
 local warnPoison		= mod:NewSpellAnnounce(26053, 3)
-local warnFrenzy		= mod:NewSpellAnnounce(26051, 2, nil, "Healer|Tank|RemoveEnrage", 3)
+local warnFrenzy		= mod:NewSpellAnnounce(26051, 2, nil, "Healer|Tank|RemoveEnrage", 4)
 local warnBerserkSoon	= mod:NewSoonAnnounce(26068, 2)
 local warnBerserk		= mod:NewSpellAnnounce(26068, 2)
 
@@ -31,7 +31,7 @@ local timerStingCD		= mod:NewCDTimer(25, 26180, nil, nil, nil, 3, nil, DBM_CORE_
 local timerPoisonCD		= mod:NewCDTimer(11, 26053, nil, nil, nil, 3)
 local timerPoison		= mod:NewBuffFadesTimer(8, 26053)
 local timerFrenzyCD		= mod:NewCDTimer(11.8, 26051, nil, false, 3, 5, nil, DBM_CORE_L.TANK_ICON..DBM_CORE_L.HEALER_ICON)--Off by default do to ridiculous variation
-local timerAcid			= mod:NewTargetTimer(30, 26050, nil, "Tank", 2, 5, nil, DBM_CORE_L.TANK_ICON)
+local timerAcid			= mod:NewTargetTimer(30, 26050, nil, "Tank", 3, 5, nil, DBM_CORE_L.TANK_ICON)
 
 mod:AddRangeFrameOption("18", nil, "-Melee")
 

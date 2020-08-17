@@ -14,7 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 25646"
 )
 
-local warnWound			= mod:NewStackAnnounce(25646, 2, nil, "Tank")
+local warnWound			= mod:NewStackAnnounce(25646, 2, nil, "Tank", 2)
 local warnSandTrap		= mod:NewTargetNoFilterAnnounce(25656, 3)
 local warnFrenzy		= mod:NewTargetNoFilterAnnounce(26527, 3)
 
@@ -23,7 +23,7 @@ local yellSandTrap		= mod:NewYell(25656)
 local specWarnWound		= mod:NewSpecialWarningStack(25646, nil, 5, nil, nil, 1, 6)
 local specWarnWoundTaunt= mod:NewSpecialWarningTaunt(25646, nil, nil, nil, 1, 2)
 
-local timerWound		= mod:NewTargetTimer(15, 25646, nil, "Tank", nil, 5, nil, DBM_CORE_L.TANK_ICON)
+local timerWound		= mod:NewTargetTimer(15, 25646, nil, "Tank", 2, 5, nil, DBM_CORE_L.TANK_ICON)
 local timerSandTrapCD	= mod:NewCDTimer(8, 25656, nil, nil, nil, 3)
 
 --mod:AddSpeedClearOption("AQ20", true)
