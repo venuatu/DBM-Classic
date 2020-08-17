@@ -117,14 +117,14 @@ L:SetOptionLocalization{
 	TimerEyeTentacle		= "다음 눈 달린 촉수 타이머 바 보기",
 	TimerClawTentacle		= "다음 갈고리 촉수 타이머 바 보기",
 	TimerGiantEyeTentacle		= "다음 눈 달린 거대한 촉수 타이머 바 보기",
-	TimerGiantClawTentacle		= "다음 거대한 발톱 촉수 타이머 바 보기", 
+	TimerGiantClawTentacle		= "다음 거대한 발톱 촉수 타이머 바 보기",
 	TimerWeakened			= "보스 약화 지속시간 타이머 바 보기",
 	RangeFrame				= "거리 창 보기 (10m)"
 }
 L:SetMiscLocalization{
 	Stomach		= "쑨의 뱃속",
 	Eye			= "쑨의 눈",
-	FleshTent	= "식인 촉수",--Localized so it shows on frame in users language, not senders 
+	FleshTent	= "식인 촉수",--Localized so it shows on frame in users language, not senders
 	Weakened 	= "약해집니다!",
 	NotValid	= "안퀴40 레이드를 일부만 클리어 했습니다. 부차적인 네임드가 %s마리 남아있습니다."
 }
