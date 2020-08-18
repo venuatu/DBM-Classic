@@ -40,6 +40,8 @@ local timerWeakened				= mod:NewTimer(45, "TimerWeakened", 28598)
 
 mod:AddRangeFrameOption("10")
 mod:AddSetIconOption("SetIconOnEyeBeam", 26134, true, false, {1})
+--mod:AddInfoFrameOption(nil, true)
+
 local firstBossMod = DBM:GetModByName("AQ40Trash")
 
 local COMMS = {	CTHUN = "C", TENTACLES = "T", CREATE = "C", UPDATE = "U", REMOVE = "R" }
@@ -155,7 +157,7 @@ function mod:UNIT_DIED(args)
 		self:UnscheduleMethod("DarkGlare")
 	elseif cid == 15802 then -- Flesh Tentacle
 		local spawnUid = DBM:GetSpawnIdFromGUID(args.destGUID)
-		if self.fleshTentacles[spawnUid] then
+		if self.vb.fleshTentacles[spawnUid] then
 			self:SendSync(COMMS.TENTACLES, COMMS.REMOVE, spawnUid)
 		end
 	end
@@ -269,7 +271,7 @@ function mod:UNIT_HEALTH(uid)
 	if self.vb.phase ~= 2 then return end
 
 	if self:GetUnitCreatureId(uid) == 15802 then -- 15802 Flesh Tentacle
-		local spawnUid = self:GetSpawnIdFromGUID(UnitGUID(uid))
+		local spawnUid = DBM:GetSpawnIdFromGUID(UnitGUID(uid))
 		if not spawnUid or spawnUid == "" then return end
 		if not self.vb.fleshTentacles[spawnUid] then
 			self:SendSync(COMMS.TENTACLES, COMMS.CREATE, spawnUid, UnitHealth(uid), UnitHealthMax(uid))
