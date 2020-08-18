@@ -40,17 +40,18 @@ local timerWeakened				= mod:NewTimer(45, "TimerWeakened", 28598)
 
 mod:AddRangeFrameOption("10")
 mod:AddSetIconOption("SetIconOnEyeBeam", 26134, true, false, {1})
---mod:AddInfoFrameOption(nil, true)
+mod:AddInfoFrameOption(nil, true)
 
 local firstBossMod = DBM:GetModByName("AQ40Trash")
 
 local COMMS = {	CTHUN = "C", TENTACLES = "T", CREATE = "C", UPDATE = "U", REMOVE = "R" }
 
 mod.vb.phase = 1
-mod.vb.fleshTentacles = {}
+local fleshTentacles = {}
 
 function mod:OnCombatStart(delay)
 	self.vb.phase = 1
+	table.wipe(fleshTentacles)
 	timerClawTentacle:Start(9-delay) -- Combatlog told me, the first Claw Tentacle spawn in 00:00:09, but need more test.
 	timerEyeTentacle:Start(45-delay)
 	timerDarkGlareCD:Start(48-delay)
@@ -157,7 +158,7 @@ function mod:UNIT_DIED(args)
 		self:UnscheduleMethod("DarkGlare")
 	elseif cid == 15802 then -- Flesh Tentacle
 		local spawnUid = DBM:GetSpawnIdFromGUID(args.destGUID)
-		if self.vb.fleshTentacles[spawnUid] then
+		if fleshTentacles[spawnUid] then
 			self:SendSync(COMMS.TENTACLES, COMMS.REMOVE, spawnUid)
 		end
 	end
@@ -174,7 +175,7 @@ do
 	local function updateInfoFrame()
 		table.wipe(lines)
 		table.wipe(sortedLines)
-		for _,v in pairs(mod.vb.fleshTentacles) do
+		for _,v in pairs(fleshTentacles) do
 			addLine(v:GetName(), tostring(v:GetPercentage()).."%%")
 		end
 		return lines, sortedLines
@@ -221,7 +222,7 @@ do
 			timerGiantClawTentacle:Start(55) -- Renew Giant Claw Tentacle Spawn Timer, After C'Thun be Weakened
 			timerGiantEyeTentacle:Start(85) -- Renew Giant Eye Tentacle Spawn Timer, After C'Thun be Weakened
 
-			self.vb.fleshTentacles = {}
+			fleshTentacles = {}
 			if self.Options.InfoFrame then
 				DBM.InfoFrame:Hide()
 			end
@@ -236,19 +237,19 @@ do
 				if health == 0 or maxHealth == 0 then return end
 				if health > maxHealth then return end
 
-				if not self.vb.fleshTentacles[spawnUid] then
-					self.vb.fleshTentacles[spawnUid] = ResourceTracker.new(L.FleshTent, maxHealth)
+				if not fleshTentacles[spawnUid] then
+					fleshTentacles[spawnUid] = ResourceTracker.new(L.FleshTent, maxHealth)
 				end
-				self.vb.fleshTentacles[spawnUid]:Update(health)
+				fleshTentacles[spawnUid]:Update(health)
 			elseif (event == COMMS.UPDATE) and health then
 				health = tonumber(health)
 				if not health then return end
-				if self.vb.fleshTentacles[spawnUid] then
-					self.vb.fleshTentacles[spawnUid]:Update(health)
+				if fleshTentacles[spawnUid] then
+					fleshTentacles[spawnUid]:Update(health)
 				end
 			elseif (event == COMMS.REMOVE) then
-				if self.vb.fleshTentacles[spawnUid] then
-					self.vb.fleshTentacles[spawnUid] = nil
+				if fleshTentacles[spawnUid] then
+					fleshTentacles[spawnUid] = nil
 				end
 			else
 				return
@@ -273,10 +274,10 @@ function mod:UNIT_HEALTH(uid)
 	if self:GetUnitCreatureId(uid) == 15802 then -- 15802 Flesh Tentacle
 		local spawnUid = DBM:GetSpawnIdFromGUID(UnitGUID(uid))
 		if not spawnUid or spawnUid == "" then return end
-		if not self.vb.fleshTentacles[spawnUid] then
+		if not fleshTentacles[spawnUid] then
 			self:SendSync(COMMS.TENTACLES, COMMS.CREATE, spawnUid, UnitHealth(uid), UnitHealthMax(uid))
 		else
-			local current = self.vb.fleshTentacles[spawnUid]
+			local current = fleshTentacles[spawnUid]
 			local step
 			if current:GetPercentage() > 33 then
 				step = 5
