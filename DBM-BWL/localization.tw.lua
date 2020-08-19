@@ -145,8 +145,9 @@ L:SetGeneralLocalization{
 	name = "奈法利安"
 }
 L:SetWarningLocalization{
-	WarnAddsLeft		= "剩下 %d 擊殺",
-	WarnClassCall		= "%s 點名"
+	WarnAddsLeft		= "剩下%d擊殺",
+	WarnClassCall		= "%s點名",
+	specwarnClassCall    = "你中了職業點名！"
 }
 L:SetTimerLocalization{
 	TimerClassCall		= "%s 點名結束"
@@ -154,7 +155,8 @@ L:SetTimerLocalization{
 L:SetOptionLocalization{
 	TimerClassCall		= "為職業點名持續時間顯示計時器",
 	WarnAddsLeft		= "提示離第二階段開始剩多少擊殺",
-	WarnClassCall		= "提示職業點名"
+	WarnClassCall		= "提示職業點名",
+	specwarnClassCall	= "特別警告：當你中了職業點名時"
 }
 L:SetMiscLocalization{
 	YellP1		= "讓賽事開始吧！",
