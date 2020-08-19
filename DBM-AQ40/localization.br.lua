@@ -116,6 +116,9 @@ L:SetOptionLocalization{
 	WarnGiantClawTentacle	= "Exibir aviso para Tentáculo de Garra Gigante",
 	SpecWarnWeakened		= "Exibir aviso especial quando o chefe enfraquece",
 	TimerEyeTentacle		= "Exibir cronômetro para o próximo Tentóculo",
+	TimerClawTentacle		= "Exibir cronômetro para o próximo Tentáculo de Garra",
+	TimerGiantEyeTentacle	= "Exibir cronômetro para o próximo Tentóculo Gigante",
+	TimerGiantClawTentacle	= "Exibir cronômetro para o próximo Tentáculo de Garra Gigante",
 	TimerWeakened			= "Exibir cronômetro para duração mais fraca do chefe",
 	RangeFrame				= "Exibir quadro de alcance (10 m)"
 }
