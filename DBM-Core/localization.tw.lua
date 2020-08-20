@@ -616,11 +616,11 @@ L.LDB_CAT_GENERAL		= "一般"
 L.LDB_ENABLE_BOSS_MOD	= "啟用首領模組"
 
 --Localizers, do not copy entire table, follow same guidelines as other tables, overwrite each entry with L.WORLD_BUFFS.hordeOny = "stuff" for example.
-L.WORLD_BUFFS.hordeOny						= " 部落的人民，奧格瑪的城民，來吧，聚集到一起歡慶部落英雄的誕生。"
-L.WORLD_BUFFS.allianceOny						= "聯盟的人民們，黑石領主已經被!@#掉了！"
-L.WORLD_BUFFS.hordeNef						= "奈法利安被!@#掉了！奧格瑪的人們"
-L.WORLD_BUFFS.allianceNef						= "聯盟的人民們，黑石領主已經被!@#掉了！"
+L.WORLD_BUFFS.hordeOny						= "部落的人民，奧格瑪的城民，來吧，聚集到一起歡慶部落英雄的誕生。"
+L.WORLD_BUFFS.allianceOny						= "聯盟的人民們，黑石領主已經被" -- this is a repeat of the nefarian quote, need to get the onyxia quote
+L.WORLD_BUFFS.hordeNef						= "奈法利安被!@#掉了！奧格瑪的人們" -- this is probably not correct (need to get rid of @#)
+L.WORLD_BUFFS.allianceNef						= "聯盟的人民們，黑石領主已經被!"
 L.WORLD_BUFFS.zgHeart							= "只差最後一步，我們就可以擺脫靈魂掠奪者的威脅了……"
 L.WORLD_BUFFS.zgHeartBooty					= "靈魂掠奪者血神已經被打敗了！我們不再有危險了！"
 L.WORLD_BUFFS.zgHeartYojamba					= "開始儀式，我的僕從們。我們必須把哈卡完全打回扭曲虛空中！"
-L.WORLD_BUFFS.rendHead						= "那個假的酋長，雷德·黑手，已經倒下了！ "
+L.WORLD_BUFFS.rendHead						= "那個假的酋長，雷德·黑手，已經倒下了！"
