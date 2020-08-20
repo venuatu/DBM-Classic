@@ -4,8 +4,8 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(15589, 15727)
 mod:SetEncounterID(717)
-mod:SetHotfixNoticeRev(20200817000000)--2020, 8, 17
-mod:SetMinSyncRevision(20200817000000)--2020, 8, 17
+mod:SetHotfixNoticeRev(20200820000000)--2020, 8, 17
+mod:SetMinSyncRevision(20200820000000)--2020, 8, 17
 mod:SetUsedIcons(1)
 
 mod:RegisterCombat("combat")
@@ -43,8 +43,6 @@ mod:AddSetIconOption("SetIconOnEyeBeam", 26134, true, false, {1})
 mod:AddInfoFrameOption(nil, true)
 
 local firstBossMod = DBM:GetModByName("AQ40Trash")
-
-local COMMS = {	CTHUN = "C", TENTACLES = "T", CREATE = "C", UPDATE = "U", REMOVE = "R" }
 
 mod.vb.phase = 1
 local fleshTentacles = {}
@@ -140,7 +138,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if msg == L.Weakened or msg:find(L.Weakened) then
-		self:SendSync(COMMS.CTHUN, COMMS.UPDATE)
+		self:SendSync("Weakened")
 	end
 end
 
@@ -159,7 +157,7 @@ function mod:UNIT_DIED(args)
 	elseif cid == 15802 then -- Flesh Tentacle
 		local spawnUid = DBM:GetSpawnIdFromGUID(args.destGUID)
 		if fleshTentacles[spawnUid] then
-			self:SendSync(COMMS.TENTACLES, COMMS.REMOVE, spawnUid)
+			self:SendSync("Tentacles", "Remove", spawnUid)
 		end
 	end
 end
@@ -212,7 +210,7 @@ do
 
 	function mod:OnSync(msg, event, spawnUid, health, maxHealth)
 		if not self:IsInCombat() then return end
-		if msg == COMMS.CTHUN and event == COMMS.UPDATE then
+		if msg == "Weakened" then
 			specWarnWeakened:Show()
 			specWarnWeakened:Play("targetchange")
 			timerEyeTentacle:Stop() -- Stop Eye Tentacle Timer, casused by C'Thun be Weakened
@@ -226,11 +224,10 @@ do
 			if self.Options.InfoFrame then
 				DBM.InfoFrame:Hide()
 			end
-
-		elseif (msg == COMMS.TENTACLES) and spawnUid then
+		elseif (msg == "Tentacles") and spawnUid then
 			spawnUid = tonumber(spawnUid)
 			if not spawnUid then return end
-			if (event == COMMS.CREATE) and maxHealth and health then
+			if (event == "Create") and maxHealth and health then
 				health = tonumber(health) or 0
 				maxHealth = tonumber(maxHealth) or 0
 
@@ -241,20 +238,19 @@ do
 					fleshTentacles[spawnUid] = ResourceTracker.new(L.FleshTent, maxHealth)
 				end
 				fleshTentacles[spawnUid]:Update(health)
-			elseif (event == COMMS.UPDATE) and health then
+			elseif (event == "Update") and health then
 				health = tonumber(health)
 				if not health then return end
 				if fleshTentacles[spawnUid] then
 					fleshTentacles[spawnUid]:Update(health)
 				end
-			elseif (event == COMMS.REMOVE) then
+			elseif (event == "Remove") then
 				if fleshTentacles[spawnUid] then
 					fleshTentacles[spawnUid] = nil
 				end
 			else
 				return
 			end
-
 			if self.Options.InfoFrame then
 				if not DBM.InfoFrame:IsShown() then
 					DBM.InfoFrame:SetHeader(L.Stomach)
@@ -275,7 +271,7 @@ function mod:UNIT_HEALTH(uid)
 		local spawnUid = DBM:GetSpawnIdFromGUID(UnitGUID(uid))
 		if not spawnUid or spawnUid == "" then return end
 		if not fleshTentacles[spawnUid] then
-			self:SendSync(COMMS.TENTACLES, COMMS.CREATE, spawnUid, UnitHealth(uid), UnitHealthMax(uid))
+			self:SendSync("Tentacles", "Create", spawnUid, UnitHealth(uid), UnitHealthMax(uid))
 		else
 			local current = fleshTentacles[spawnUid]
 			local step
@@ -289,7 +285,7 @@ function mod:UNIT_HEALTH(uid)
 
 			local health = UnitHealth(uid)
 			if current:CalculatePercentageChange(health) >= step then
-				self:SendSync(COMMS.TENTACLES, COMMS.UPDATE, spawnUid, tostring(health))
+				self:SendSync("Tentacles", "Update", spawnUid, tostring(health))
 			end
 		end
 	end
