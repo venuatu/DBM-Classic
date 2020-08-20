@@ -51,20 +51,20 @@ L:SetGeneralLocalization{
 	name = "Viscidus"
 }
 L:SetWarningLocalization{
-	WarnFreeze	= "Einfrieren: %d/3",
+	WarnFreeze	= "Eingefroren: %d/3",
 	WarnShatter	= "Zerspringen: %d/3"
 }
 L:SetOptionLocalization{
-	WarnFreeze	= "Verkünde Einfrieren Status",
+	WarnFreeze	= "Verkünde Eingefroren Status",
 	WarnShatter	= "Verkünde Zerspringen Status"
 }
 L:SetMiscLocalization{
-	Slow	= "wird langsamer",
-	Freezing= "friert ein",
-	Frozen	= "ist tiefgefroren",
-	Phase4 	= "geht die Puste aus",
-	Phase5 	= "ist kurz davor, zu zerspringen",
-	Phase6 	= "Explodes." --translate (trigger)
+	Slow	= "wird langsamer!",
+	Freezing= "friert ein!",
+	Frozen	= "ist tiefgefroren!",
+	Phase4 	= "geht die Puste aus!",
+	Phase5 	= "ist kurz davor, zu zerspringen!",
+	Phase6 	= "explodiert!"
 }
 -------------
 -- Huhuran --
