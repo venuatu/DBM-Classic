@@ -51,11 +51,11 @@ L:SetGeneralLocalization{
 	name = "Viscidus"
 }
 L:SetWarningLocalization{
-	WarnFreeze	= "Congelar: %d/3",
+	WarnFreeze	= "Congelación: %d/3",
 	WarnShatter	= "Hacerse añicos: %d/3"
 }
 L:SetOptionLocalization{
-	WarnFreeze	= "Anunciar congelar",
+	WarnFreeze	= "Anunciar congelación",
 	WarnShatter	= "Anunciar hacerse añicos"
 }
 L:SetMiscLocalization{
@@ -64,7 +64,7 @@ L:SetMiscLocalization{
 	Frozen	= "no se puede mover!",
 	Phase4 	= "comienza a desmoronarse!",
 	Phase5 	= "parece a punto de hacerse añicos!",
-	Phase6 	= "explota"--Might want to double check this, since no further messages appeared after the previous one.
+	Phase6 	= "explota!"
 }
 -------------
 -- Huhuran --
