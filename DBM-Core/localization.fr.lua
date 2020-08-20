@@ -442,4 +442,4 @@ L.WORLD_BUFFS.allianceNef	= "Citoyens de l'Alliance, le seigneur du clan Blackro
 L.WORLD_BUFFS.zgHeart		= "Il ne reste plus qu'une étape avant que prenne fin la menace de l'Écorcheur d'âmes"
 L.WORLD_BUFFS.zgHeartBooty	= "Le Dieu sanglant, l'Écorcheur d'âmes, a été vaincu ! Nous ne sommes plus menacés !"
 L.WORLD_BUFFS.zgHeartYojamba	= "Commencez le rituel, mes serviteurs. Nous devons renvoyer le cœur d'Hakkar dans le vide !"
-L.WORLD_BUFFS.rendHead		= "The false Warchief, Rend Blackhand, has fallen!"
+L.WORLD_BUFFS.rendHead		= "Le faux chef Rend Blackhand est tombé !"
