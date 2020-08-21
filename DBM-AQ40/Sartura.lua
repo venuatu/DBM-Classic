@@ -29,7 +29,7 @@ do
 	local Whirlwind, Enrage = DBM:GetSpellInfo(26083), DBM:GetSpellInfo(8269)
 	function mod:SPELL_CAST_SUCCESS(args)
 		--if args:IsSpellID(26083) and self:AntiSpam() then--26084
-		if args.spellName == Whirlwind and args:IsSrcTypeHostile() and self:AntiSpam() then--26084
+		if args.spellName == Whirlwind and args:IsSrcTypeHostile() and self:AntiSpam(4, 1) then--26084
 			if self:CheckInterruptFilter(args.sourceGUID, true) and self.Options.SpecWarn26083run then
 				specWarnWhirlwind:Show()
 				specWarnWhirlwind:Play("justrun")
