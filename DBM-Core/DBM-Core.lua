@@ -8780,7 +8780,7 @@ do
 					self.Options.WarningX = xOfs
 					self.Options.WarningY = yOfs
 					self:Schedule(15, moveEnd, self)
-					self.Bars:CreateBar(15, L.MOVE_WARNING_BAR)
+					self.Bars:CreateBar(15, L.MOVE_WARNING_BAR, 136106)
 				end)
 			end
 			if anchorFrame:IsShown() then
@@ -8790,7 +8790,7 @@ do
 				anchorFrame.ticker = anchorFrame.ticker or C_TimerNewTicker(5, function() self:AddWarning(L.MOVE_WARNING_MESSAGE) end)
 				self:AddWarning(L.MOVE_WARNING_MESSAGE)
 				self:Schedule(15, moveEnd, self)
-				self.Bars:CreateBar(15, L.MOVE_WARNING_BAR)
+				self.Bars:CreateBar(15, L.MOVE_WARNING_BAR, 136106)
 				frame:Show()
 				frame:SetFrameStrata("TOOLTIP")
 				frame:SetAlpha(1)
@@ -9443,7 +9443,7 @@ do
 					self.Options.SpecialWarningX = xOfs
 					self.Options.SpecialWarningY = yOfs
 					self:Schedule(15, moveEnd, self)
-					self.Bars:CreateBar(15, L.MOVE_SPECIAL_WARNING_BAR)
+					self.Bars:CreateBar(15, L.MOVE_SPECIAL_WARNING_BAR, 136106)
 				end)
 			end
 			if anchorFrame:IsShown() then
@@ -9454,7 +9454,7 @@ do
 				DBM:AddSpecialWarning(L.MOVE_SPECIAL_WARNING_TEXT)
 				DBM:AddSpecialWarning(L.MOVE_SPECIAL_WARNING_TEXT)
 				self:Schedule(15, moveEnd, self)
-				self.Bars:CreateBar(15, L.MOVE_SPECIAL_WARNING_BAR)
+				self.Bars:CreateBar(15, L.MOVE_SPECIAL_WARNING_BAR, 136106)
 				frame:Show()
 				frame:SetFrameStrata("TOOLTIP")
 				frame:SetAlpha(1)
