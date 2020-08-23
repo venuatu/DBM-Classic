@@ -156,138 +156,70 @@ function mod:UNIT_DIED(args)
 		self:UnscheduleMethod("DarkGlare")
 	elseif cid == 15802 then -- Flesh Tentacle
 		local spawnUid = DBM:GetSpawnIdFromGUID(args.destGUID)
-		if fleshTentacles[spawnUid] then
-			self:SendSync("Tentacles", "Remove", spawnUid)
-		end
+		self:SendSync("Stomach", spawnUid, "0")
 	end
 end
 
-do
+function mod:UpdateInfoFrame()
+	if not self.Options.InfoFrame then return end
 	local lines = {}
-	local sortedLines = {}
-	local function addLine(key, value)
-		-- sort by insertion order
-		lines[key] = value
-		sortedLines[#sortedLines + 1] = key
+	local nLines = 0
+	for uid, pct in pairs(fleshTentacles) do
+		lines[tostring(uid).."*"..L.FleshTent] = tostring(pct) .. '%'
+		nLines = nLines + 1
 	end
-	local function updateInfoFrame()
-		table.wipe(lines)
-		table.wipe(sortedLines)
-		for _,v in pairs(fleshTentacles) do
-			addLine(v:GetName(), tostring(v:GetPercentage()).."%%")
+	if nLines then
+		if not DBM.InfoFrame:IsShown() then
+			DBM.InfoFrame:SetHeader(L.Stomach)
+			DBM.InfoFrame:Show(2, "table", lines)
+		else
+			DBM.InfoFrame:UpdateTable(lines)
 		end
-		return lines, sortedLines
+	else
+		DBM.InfoFrame:Hide()
 	end
+end
 
-	local ResourceTracker = {}
-	ResourceTracker.__index = ResourceTracker
+function mod:OnSync(msg, spawnUid, pct)
+	if not self:IsInCombat() then return end
+	if msg == "Weakened" then
+		specWarnWeakened:Show()
+		specWarnWeakened:Play("targetchange")
+		timerEyeTentacle:Stop() -- Stop Eye Tentacle Timer, casused by C'Thun be Weakened
+		timerGiantClawTentacle:Stop() -- Stop Giant Claw Tentacle Timer, casused by C'Thun be Weakened
+		timerGiantEyeTentacle:Stop() -- Stop Giant Eye Tentacle Timer, casused by C'Thun be Weakened
+		timerWeakened:Start() -- It was forgotten.
+		timerEyeTentacle:Start(83) -- 53+30
+		timerGiantClawTentacle:Start(53) -- Renew Giant Claw Tentacle Spawn Timer, After C'Thun be Weakened, 54->53
+		timerGiantEyeTentacle:Start(83.7) -- Renew Giant Eye Tentacle Spawn Timer, After C'Thun be Weakened, A litter later than Eye Tentacles Spawn.(0.7s)
 
-	function ResourceTracker.new(name, max)
-		local self = setmetatable({}, ResourceTracker)
-		self.name = tostring(name) or ""
-		self.value = tonumber(max) or 0
-		self.percentage = 100
-		self.max = self.value
-		return self
-	end
-
-	function ResourceTracker:GetName()
-		return self.name
-	end
-
-	function ResourceTracker:Update(value)
-		self.value = tonumber(value) or 0
-		self.percentage = math.abs(math.floor(self.value/self.max))
-	end
-
-	function ResourceTracker:GetPercentage()
-		return self.percentage
-	 end
-
-	function ResourceTracker:CalculatePercentageChange(value)
-		return self.percentage - math.abs(math.floor((tonumber(value) or 0)/self.max))
-	end
-
-	function mod:OnSync(msg, event, spawnUid, health, maxHealth)
-		if not self:IsInCombat() then return end
-		if msg == "Weakened" then
-			specWarnWeakened:Show()
-			specWarnWeakened:Play("targetchange")
-			timerEyeTentacle:Stop() -- Stop Eye Tentacle Timer, casused by C'Thun be Weakened
-			timerGiantClawTentacle:Stop() -- Stop Giant Claw Tentacle Timer, casused by C'Thun be Weakened
-			timerGiantEyeTentacle:Stop() -- Stop Giant Eye Tentacle Timer, casused by C'Thun be Weakened
-			timerWeakened:Start() -- It was forgotten.
-			timerEyeTentacle:Start(83) -- 53+30
-			timerGiantClawTentacle:Start(53) -- Renew Giant Claw Tentacle Spawn Timer, After C'Thun be Weakened, 54->53
-			timerGiantEyeTentacle:Start(83.7) -- Renew Giant Eye Tentacle Spawn Timer, After C'Thun be Weakened, A litter later than Eye Tentacles Spawn.(0.7s)
-
-			fleshTentacles = {}
-			if self.Options.InfoFrame then
-				DBM.InfoFrame:Hide()
-			end
-		elseif (msg == "Tentacles") and spawnUid then
-			spawnUid = tonumber(spawnUid)
-			if not spawnUid then return end
-			if (event == "Create") and maxHealth and health then
-				health = tonumber(health) or 0
-				maxHealth = tonumber(maxHealth) or 0
-
-				if health == 0 or maxHealth == 0 then return end
-				if health > maxHealth then return end
-
-				if not fleshTentacles[spawnUid] then
-					fleshTentacles[spawnUid] = ResourceTracker.new(L.FleshTent, maxHealth)
-				end
-				fleshTentacles[spawnUid]:Update(health)
-			elseif (event == "Update") and health then
-				health = tonumber(health)
-				if not health then return end
-				if fleshTentacles[spawnUid] then
-					fleshTentacles[spawnUid]:Update(health)
-				end
-			elseif (event == "Remove") then
-				if fleshTentacles[spawnUid] then
-					fleshTentacles[spawnUid] = nil
-				end
-			else
-				return
-			end
-			if self.Options.InfoFrame then
-				if not DBM.InfoFrame:IsShown() then
-					DBM.InfoFrame:SetHeader(L.Stomach)
-					DBM.InfoFrame:Show(2, "function", updateInfoFrame, false, false, true)
-				else
-					DBM.InfoFrame:Update()
-				end
-			end
-		end
+		table.wipe(fleshTentacles)
+		self:UpdateInfoFrame()
+	elseif (msg == "Stomach") then
+		fleshTentacles[spawnUid] = pct
+		self:UpdateInfoFrame()
 	end
 end
 
 function mod:UNIT_HEALTH(uid)
-	if not self:IsInCombat() then return end
 	if self.vb.phase ~= 2 then return end
 
 	if self:GetUnitCreatureId(uid) == 15802 then -- 15802 Flesh Tentacle
 		local spawnUid = DBM:GetSpawnIdFromGUID(UnitGUID(uid))
 		if not spawnUid or spawnUid == "" then return end
-		if not fleshTentacles[spawnUid] then
-			self:SendSync("Tentacles", "Create", spawnUid, UnitHealth(uid), UnitHealthMax(uid))
+		local pct = tonumber(fleshTentacles[spawnUid] or '105')
+		local step
+		if pct > 33 then
+			step = 5
+		elseif pct > 10 then
+			step = 3
 		else
-			local current = fleshTentacles[spawnUid]
-			local step
-			if current:GetPercentage() > 33 then
-				step = 5
-			elseif current:GetPercentage() > 10 then
-				step = 3
-			else
-				step = 1
-			end
+			step = 1
+		end
 
-			local health = UnitHealth(uid)
-			if current:CalculatePercentageChange(health) >= step then
-				self:SendSync("Tentacles", "Update", spawnUid, tostring(health))
-			end
+		local newPct = math.floor(UnitHealth(uid) / UnitHealthMax(uid) * 100)
+		if (pct - newPct) >= step then
+			self:SendSync("Stomach", spawnUid, tostring(newPct))
 		end
 	end
 end
