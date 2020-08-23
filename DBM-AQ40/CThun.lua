@@ -4,8 +4,8 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(15589, 15727)
 mod:SetEncounterID(717)
-mod:SetHotfixNoticeRev(20200820000000)--2020, 8, 17
-mod:SetMinSyncRevision(20200820000000)--2020, 8, 17
+mod:SetHotfixNoticeRev(20200823000000)--2020, 8, 23
+mod:SetMinSyncRevision(20200820000000)--2020, 8, 20
 mod:SetUsedIcons(1)
 
 mod:RegisterCombat("combat")
@@ -165,7 +165,7 @@ function mod:UpdateInfoFrame()
 	local lines = {}
 	local nLines = 0
 	for uid, pct in pairs(fleshTentacles) do
-		lines[tostring(uid).."*"..L.FleshTent] = tostring(pct) .. '%'
+		lines[tostring(uid).."*"..L.FleshTent] = pct .. '%'
 		nLines = nLines + 1
 	end
 	if nLines then
@@ -195,7 +195,7 @@ function mod:OnSync(msg, spawnUid, pct)
 
 		table.wipe(fleshTentacles)
 		self:UpdateInfoFrame()
-	elseif (msg == "Stomach") then
+	elseif (msg == "Stomach") and spawnUid and pct then
 		fleshTentacles[spawnUid] = pct
 		self:UpdateInfoFrame()
 	end
