@@ -167,8 +167,16 @@ L.RANGERADAR_IN_RANGE_TEXT	= "%d joueurs à portée"
 L.RANGERADAR_IN_RANGE_TEXTONE= "%s (%0.1fm)"--One target
 
 L.INFOFRAME_SHOW_SELF		= "Toujours afficher votre puissance"		-- Always show your own power value even if you are below the threshold
-
-L.LFG_INVITE						= "Invitation RdG"
+L.INFOFRAME_SETLINES		= "Définir les lignes maximales"
+L.INFOFRAME_SETCOLS			= "Définir les colonnes maximales"
+L.INFOFRAME_LINESDEFAULT	= "Définir par mod"
+L.INFOFRAME_LINES_TO		= "%d lignes"
+L.INFOFRAME_COLS_TO			= "%d colonnes"
+L.INFOFRAME_POWER			= "Puissance"
+L.INFOFRAME_AGGRO			= "Aggro"
+L.INFOFRAME_MAIN			= "Principal:"--Main power
+L.INFOFRAME_ALT				= "Secondaire:"--Alternate Power
+L.LFG_INVITE				= "Invitation RdG"
 
 L.SLASHCMD_HELP				= {
 	"Commandes slash disponibles :",
@@ -442,4 +450,4 @@ L.WORLD_BUFFS.allianceNef	= "Citoyens de l'Alliance, le seigneur du clan Blackro
 L.WORLD_BUFFS.zgHeart		= "Il ne reste plus qu'une étape avant que prenne fin la menace de l'Écorcheur d'âmes"
 L.WORLD_BUFFS.zgHeartBooty	= "Le Dieu sanglant, l'Écorcheur d'âmes, a été vaincu ! Nous ne sommes plus menacés !"
 L.WORLD_BUFFS.zgHeartYojamba	= "Commencez le rituel, mes serviteurs. Nous devons renvoyer le cœur d'Hakkar dans le vide !"
-L.WORLD_BUFFS.rendHead		= "The false Warchief, Rend Blackhand, has fallen!"
+L.WORLD_BUFFS.rendHead		= "Le faux chef Rend Blackhand est tombé !"

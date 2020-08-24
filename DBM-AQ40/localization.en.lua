@@ -122,7 +122,7 @@ L:SetOptionLocalization{
 	RangeFrame				= "Show range frame (10)"
 }
 L:SetMiscLocalization{
-	Stomach		= "Stomach of C'Thun",
+	Stomach		= "Stomach",
 	Eye			= "Eye of C'Thun",
 	FleshTent	= "Flesh Tentacle",--Localized so it shows on frame in users language, not senders
 	Weakened 	= "weaken",

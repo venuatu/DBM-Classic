@@ -97,22 +97,35 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "Tentacule oculaire",
+	WarnClawTentacle		= "Tentacule griffu",
+	WarnGiantEyeTentacle	= "Tentacule oculaire géant",
+	WarnGiantClawTentacle	= "Tentacule griffu géant",
 	SpecWarnWeakened		= "C'Thun est affaibli !"
 }
 L:SetTimerLocalization{
 	TimerEyeTentacle		= "Prochain Tentacule oculaire",
+	TimerClawTentacle		= "Prochain Tentacule griffu",
+	TimerGiantEyeTentacle	= "Prochain Tentacule oculaire géant",
+	TimerGiantClawTentacle	= "Prochain Tentacule griffu géant",
 	TimerWeakened			= "Affaibli terminé"
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Afficher l'avertissement pour Tentacule oculaire",
+	WarnClawTentacle		= "Afficher l'avertissement pour Tentacule griffu",
+	WarnGiantEyeTentacle	= "Afficher l'avertissement pour Tentacule oculaire géant",
+	WarnGiantClawTentacle	= "Afficher l'avertissement pour Tentacule griffu géant",
 	SpecWarnWeakened		= "Afficher un avertissement spécial lorsque le boss s'affaiblit",
 	TimerEyeTentacle		= "Afficher le timer pour le prochain Tentacule oculaire",
+	TimerClawTentacle		= "Afficher le timer pour le prochain Tentacule griffu",
+	TimerGiantEyeTentacle	= "Afficher le timer pour le prochain Tentacule oculaire géant",
+	TimerGiantClawTentacle	= "Afficher le timer pour le prochain Tentacule griffu géant",
 	TimerWeakened			= "Afficher le timer pour la durée d'affaiblissement du boss",
 	RangeFrame				= "Afficher le cadre de portée (10 m)"
 }
 L:SetMiscLocalization{
-	Stomach		= "Ctomach de C'Thun",
-	Eye			= "Œil de C'Thun",
+	Stomach		= "Estomac de C'Thun",
+	Eye			= "Oeil de C'Thun",
+	FleshTent	= "Tentacule de chair",
 	Weakened 	= "affaibli",
 	NotValid	= "AQ40 partiellement effacé. %s bosses optionnels restent."
 }

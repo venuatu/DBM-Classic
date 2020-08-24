@@ -210,12 +210,14 @@ L.RANGECHECK_IN_RANGE_TEXT	= "%d a distancia"--Text based doesn't need (%dyd), e
 L.RANGERADAR_IN_RANGE_TEXTONE= "%s (%0.1fm)"--One target
 
 L.INFOFRAME_SHOW_SELF		= "Mostrar siempre tu información"		-- Always show your own power value even if you are below the threshold
-L.INFOFRAME_SETLINES			= "Líneas máximas"
-L.INFOFRAME_LINESDEFAULT		= "Por defecto"
-L.INFOFRAME_LINES_TO			= "%d"
+L.INFOFRAME_SETLINES		= "Líneas máximas"
+L.INFOFRAME_SETCOLS			= "Columnas máximas"
+L.INFOFRAME_LINESDEFAULT	= "Por defecto"
+L.INFOFRAME_LINES_TO		= "%d líneas"
+L.INFOFRAME_COLS_TO			= "%d columnas"
 L.INFOFRAME_POWER			= "Recurso"
 L.INFOFRAME_AGGRO			= "Amenaza"
-L.INFOFRAME_MAIN				= "Principal:"--Main power
+L.INFOFRAME_MAIN			= "Principal:"--Main power
 L.INFOFRAME_ALT				= "Secundario:"--Alternate Power
 
 L.LFG_INVITE						= "Invitación del buscador"
@@ -602,7 +604,7 @@ L.LDB_ENABLE_BOSS_MOD	= "Habilitar módulo"
 
 L.WORLD_BUFFS.hordeOny		= "Miembros de la Horda, ciudadanos de Orgrimmar, vengan y reúnanse para homenajear un hecho heroico"
 L.WORLD_BUFFS.allianceOny	= "Ciudadanos y aliados de Ventormenta, en el día de hoy, hemos hecho historia."
-L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"
+L.WORLD_BUFFS.hordeNef		= "¡NEFARIAN HA SIDO ASESINADO! Ciudadanos de Orgrimmar"
 L.WORLD_BUFFS.allianceNef	= "¡Ciudadanos de la Alianza, el Señor de Roca Negra está muerto!"
 L.WORLD_BUFFS.zgHeart		= "Ahora, solo un paso más para poder librarnos de la amenaza del Cazador de Almas"
 L.WORLD_BUFFS.zgHeartBooty	= "¡El Dios de la Sangre, el Cazador de Almas, ha sido derrotado! ¡Ya no corremos peligro!"
