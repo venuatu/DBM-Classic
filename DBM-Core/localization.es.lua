@@ -210,12 +210,14 @@ L.RANGECHECK_IN_RANGE_TEXT	= "%d a distancia"--Text based doesn't need (%dyd), e
 L.RANGERADAR_IN_RANGE_TEXTONE= "%s (%0.1fm)"--One target
 
 L.INFOFRAME_SHOW_SELF		= "Mostrar siempre tu información"		-- Always show your own power value even if you are below the threshold
-L.INFOFRAME_SETLINES			= "Líneas máximas"
-L.INFOFRAME_LINESDEFAULT		= "Por defecto"
-L.INFOFRAME_LINES_TO			= "%d"
+L.INFOFRAME_SETLINES		= "Líneas máximas"
+L.INFOFRAME_SETCOLS			= "Columnas máximas"
+L.INFOFRAME_LINESDEFAULT	= "Por defecto"
+L.INFOFRAME_LINES_TO		= "%d líneas"
+L.INFOFRAME_COLS_TO			= "%d columnas"
 L.INFOFRAME_POWER			= "Recurso"
 L.INFOFRAME_AGGRO			= "Amenaza"
-L.INFOFRAME_MAIN				= "Principal:"--Main power
+L.INFOFRAME_MAIN			= "Principal:"--Main power
 L.INFOFRAME_ALT				= "Secundario:"--Alternate Power
 
 L.LFG_INVITE						= "Invitación del buscador"
