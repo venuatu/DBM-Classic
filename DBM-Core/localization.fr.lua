@@ -167,8 +167,16 @@ L.RANGERADAR_IN_RANGE_TEXT	= "%d joueurs à portée"
 L.RANGERADAR_IN_RANGE_TEXTONE= "%s (%0.1fm)"--One target
 
 L.INFOFRAME_SHOW_SELF		= "Toujours afficher votre puissance"		-- Always show your own power value even if you are below the threshold
-
-L.LFG_INVITE						= "Invitation RdG"
+L.INFOFRAME_SETLINES		= "Définir les lignes maximales"
+L.INFOFRAME_SETCOLS			= "Définir les colonnes maximales"
+L.INFOFRAME_LINESDEFAULT	= "Définir par mod"
+L.INFOFRAME_LINES_TO		= "%d lignes"
+L.INFOFRAME_COLS_TO			= "%d colonnes"
+L.INFOFRAME_POWER			= "Puissance"
+L.INFOFRAME_AGGRO			= "Aggro"
+L.INFOFRAME_MAIN			= "Principal:"--Main power
+L.INFOFRAME_ALT				= "Secondaire:"--Alternate Power
+L.LFG_INVITE				= "Invitation RdG"
 
 L.SLASHCMD_HELP				= {
 	"Commandes slash disponibles :",
