@@ -205,8 +205,10 @@ L.RANGERADAR_IN_RANGE_TEXTONE	= "%s (%0.1fm)"--One target
 
 L.INFOFRAME_SHOW_SELF		= "내 자원 항상 보기"		-- Always show your own power value even if you are below the threshold
 L.INFOFRAME_SETLINES			= "최대 줄 갯수 지정"
+L.INFOFRAME_SETCOLS					= "최대 열 갯수 지정"
 L.INFOFRAME_LINESDEFAULT		= "모드 기본값"
 L.INFOFRAME_LINES_TO			= "줄 %d개"
+L.INFOFRAME_COLS_TO					= "열 %d개"
 L.INFOFRAME_POWER			= "기력"
 L.INFOFRAME_AGGRO			= "어그로"
 L.INFOFRAME_MAIN				= "주 기력:"--Main power

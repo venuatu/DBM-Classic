@@ -122,7 +122,7 @@ L:SetOptionLocalization{
 	RangeFrame				= "거리 창 보기 (10m)"
 }
 L:SetMiscLocalization{
-	Stomach		= "쑨의 뱃속",
+	Stomach		= "뱃속",
 	Eye			= "쑨의 눈",
 	FleshTent	= "식인 촉수",--Localized so it shows on frame in users language, not senders
 	Weakened 	= "약해집니다!",
