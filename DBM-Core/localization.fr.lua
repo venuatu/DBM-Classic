@@ -445,7 +445,7 @@ L.LAG_FOOTER                 = "Pas de réponse: %s"
 
 L.WORLD_BUFFS.hordeOny		= "People of the Horde, citizens of Orgrimmar, come, gather round and celebrate a hero of the Horde"
 L.WORLD_BUFFS.allianceOny	= "Citoyens et alliés de Stormwind, ce jour est historique."
-L.WORLD_BUFFS.hordeNef		= "NEFARIAN IS SLAIN! People of Orgrimmar"
+L.WORLD_BUFFS.hordeNef		= "NEFARIAN A ÉTÉ TUÉ ! Peuple d'Orgrimmar"
 L.WORLD_BUFFS.allianceNef	= "Citoyens de l'Alliance, le seigneur du clan Blackrock a été tué !"
 L.WORLD_BUFFS.zgHeart		= "Il ne reste plus qu'une étape avant que prenne fin la menace de l'Écorcheur d'âmes"
 L.WORLD_BUFFS.zgHeartBooty	= "Le Dieu sanglant, l'Écorcheur d'âmes, a été vaincu ! Nous ne sommes plus menacés !"
