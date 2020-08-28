@@ -443,7 +443,7 @@ L.LAG_HEADER                 = "Deadly Boss Mods - Résultats sur la latence"
 L.LAG_ENTRY                  = "%s: délai monde [%d ms] / délai domicile [%d ms]"
 L.LAG_FOOTER                 = "Pas de réponse: %s"
 
-L.WORLD_BUFFS.hordeOny		= "People of the Horde, citizens of Orgrimmar, come, gather round and celebrate a hero of the Horde"
+L.WORLD_BUFFS.hordeOny		= "Peuple de la Horde, citoyens d’Orgrimmar, venez, rassemblez-vous et célébrez un héros de la Horde"
 L.WORLD_BUFFS.allianceOny	= "Citoyens et alliés de Stormwind, ce jour est historique."
 L.WORLD_BUFFS.hordeNef		= "NEFARIAN A ÉTÉ TUÉ ! Peuple d'Orgrimmar"
 L.WORLD_BUFFS.allianceNef	= "Citoyens de l'Alliance, le seigneur du clan Blackrock a été tué !"
