@@ -3,8 +3,11 @@
 if not DBM_CORE_L then DBM_CORE_L = {} end
 
 local L = DBM_CORE_L
+L.DEADLY_BOSS_MODS					= "Deadly Boss Mods"
+L.DBM								= "DBM"
 
 L.HOW_TO_USE_MOD					= "Bienvenue sur DBM. Tapez /dbm help pour une liste des commandes supportées. Pour accédez aux options, tapez /dbm dans la fenêtre de discussion pour commencer la configuration. Chargez des zones spécifiques manuellement pour configurer tous les paramètres spécifiques aux boss selon vos envies. DBM essaie de le faire pour vous en analysant votre spécialisation au premier lancement, mais nous savons que de toute façon certaines personnes souhaitant activer d'autres options."
+L.SILENT_REMINDER					= "Rappel : " .. L.DBM .. " est toujours en mode silencieux."
 
 L.LOAD_MOD_ERROR				= "Erreur lors du chargement des modules %s: %s"
 L.LOAD_MOD_SUCCESS			= "Modules '%s' chargés. Pour plus d'options, tapez /dbm ou /dbm help dans la fenêtre de discussion."
@@ -13,10 +16,21 @@ L.LOAD_GUI_ERROR				= "Impossible de charger l'interface: %s"
 L.LOAD_GUI_COMBAT            = "GUI ne peut pas se charger initialement en combat. GUI sera chargé après le combat. Une fois le GUI chargé, vous pourrez le charger en combat." --load?reload?change?
 L.BAD_LOAD                   = "DBM a détecté une erreur de chargement du mod de l'instance car vous êtes en combat. Dès que vous sortez de combat veuillez entrer /console reloadui le plus vite possible."
 L.LOAD_MOD_VER_MISMATCH		= "%s n'a pas pu être chargé car votre DBM-Core ne remplit pas les conditions. Il vous faut une version plus récente."
+L.LOAD_MOD_EXP_MISMATCH				= "%s n'a pas pu être chargé car il est conçu pour une extension WoW qui n'est actuellement pas disponible. Lorsque l'extension sera disponible, ce mod fonctionnera automatiquement."
+L.LOAD_MOD_TOC_MISMATCH				= "%s n'a pas pu être chargé car il n'est pas conçu pour WoW Classic. Vous avez probablement installé une version retail d'un module. Supprimez ce module et n'utilisez que des modules complémentaires conçus pour Classic World of Warcraft"
+L.LOAD_MOD_DISABLED					= "%s est installé mais actuellement désactivé. Ce mod ne sera chargé que si vous l'activez."
+L.LOAD_MOD_DISABLED_PLURAL			= "%s sont installés mais actuellement désactivés. Ces mods ne seront chargés que si vous les activez."
 
-L.DYNAMIC_DIFFICULTY_CLUMP   = "DBM a désactivé la vérification du nombre de joueurs à portée sur ce combat pour cause de manque d'information sur le nombre de joueurs requis regroupés pour votre taille de raid."
-L.DYNAMIC_ADD_COUNT          = "DBM a désactivé les alertes de décompte d'adds en vie sur ce combat pour cause de manque d'information du nombre d'adds apparaissant pour votre taille de raid."
-L.DYNAMIC_MULTIPLE           = "DBM a désactivé plusieurs fonctionnalités sur ce combat pour cause de manque d'informations sur certains mécanismes pour votre taille de raid  ."
+L.COPY_URL_DIALOG					= "Copier le lien"
+
+--Post Patch 7.1
+L.NO_RANGE							= "Le radar de distance ne peut pas être utilisé dans les instances. Cadre de plage de texte hérité utilisé à la place"
+L.NO_ARROW							= "La flèche ne peut pas être utilisée dans les instances"
+L.NO_HUD							= "HUDMap ne peut pas être utilisée dans les instances"
+
+L.DYNAMIC_DIFFICULTY_CLUMP   = L.DBM .. " a désactivé la vérification du nombre de joueurs à portée sur ce combat pour cause de manque d'information sur le nombre de joueurs requis regroupés pour votre taille de raid."
+L.DYNAMIC_ADD_COUNT          = L.DBM .. " a désactivé les alertes de décompte d'adds en vie sur ce combat pour cause de manque d'information du nombre d'adds apparaissant pour votre taille de raid."
+L.DYNAMIC_MULTIPLE           = L.DBM .. " a désactivé plusieurs fonctionnalités sur ce combat pour cause de manque d'informations sur certains mécanismes pour votre taille de raid  ."
 
 L.LOOT_SPEC_REMINDER         = "Votre spécialisation actuelle est %s. Votre choix de loot actuel est %s."
 
@@ -24,22 +38,29 @@ L.BIGWIGS_ICON_CONFLICT      = "DBM a détecté que vous avez activé vos icône
 
 L.MOD_AVAILABLE				= "%s est disponible pour ce contenu. Vous pouvez trouver sur |HDBM:forums|h|cff3588ffdeadlybossmods.com|r ou sur Curse. Ce message ne s'affichera qu'une fois."
 
-L.COMBAT_STARTED				= "%s engagé. Bonne chance et amusez-vous bien ! :)";
+L.COMBAT_STARTED			= "%s engagé. Bonne chance et amusez-vous bien ! :)";
 L.COMBAT_STARTED_IN_PROGRESS = "Vous êtes engagé dans un combat en cours contre %s. Bonne chance et amusez-vous bien ! :)"
 L.GUILD_COMBAT_STARTED		= "%s a été engagé par la guilde"
 L.BOSS_DOWN					= "%s vaincu après %s !"
-L.BOSS_DOWN_I                = "%s vaincu! Vous avez un total de %d victoires."
+L.BOSS_DOWN_I               = "%s vaincu! Vous avez un total de %d victoires."
 L.BOSS_DOWN_L				= "%s vaincu après %s ! Votre dernier temps était de %s et votre record de %s. Vous l'avez tué au total %d fois."
 L.BOSS_DOWN_NR				= "%s vaincu après %s ! C'est un nouveau record ! (l'ancien record était de %s). Vous l'avez tué au total %d fois."
-L.GUILD_BOSS_DOWN			= "%s a été vaincu par la guilde en %s!"
+L.RAID_DOWN					= "%s vaincu après %s !"
+L.RAID_DOWN_L				= "%s vaincu après %s ! Votre dégagement le plus rapide a pris %s."
+L.RAID_DOWN_NR				= "%s vaincu après %s ! C'est un nouveau record ! (l'ancien record était de %s)."
+L.GUILD_BOSS_DOWN			= "%s a été vaincu par la guilde en %s !"
 L.COMBAT_ENDED_AT			= "Combat face à %s (%s) terminé après %s."
 L.COMBAT_ENDED_AT_LONG		= "Combat face à %s (%s) terminé après %s. Vous cumulez un total de %d wipes dans cette difficulté."
 L.GUILD_COMBAT_ENDED_AT		= "La guilde a wipe sur %s (%s) après %s."
-L.COMBAT_STATE_RECOVERED		= "%s a été engagé il y a %s, récupération des délais..."
-L.TRANSCRIPTOR_LOG_START     = "Début du log de Transcriptor."
-L.TRANSCRIPTOR_LOG_END       = "Fin du log de Transcriptor."
+L.COMBAT_STATE_RECOVERED	= "%s a été engagé il y a %s, récupération des délais..."
+L.TRANSCRIPTOR_LOG_START    = "Début du log de Transcriptor."
+L.TRANSCRIPTOR_LOG_END      = "Fin du log de Transcriptor."
 
---L.COMBAT_STARTED_AI_TIMER
+L.MOVIE_SKIPPED				= L.DBM .. " a tenté de sauter une cinématique automatiquement."
+
+L.AFK_WARNING				= "Vous êtes absent et en combat (%d pour cent de santé restante), vous tirez une alerte sonore. Si vous n'êtes pas absent, effacez votre drapeau absent ou désactivez cette option dans les fonctionnalités supplémentaires"
+
+L.COMBAT_STARTED_AI_TIMER	= "Mon processeur est un processeur de réseau neuronal; un ordinateur d'apprentissage. (Ce combat utilisera la nouvelle fonction AI de minuterie pour générer des approximations de minuterie)"
 
 L.PROFILE_NOT_FOUND			= "<DBM> Votre profile actuel est corrompu. DBM va charger le profil par défaut."
 L.PROFILE_CREATED			= "'%s' profil créé."
@@ -77,11 +98,13 @@ L.NOTESHAREERRORALREADYOPEN	= "Vous ne pouvez pas ouvrir le lien de partage d'un
 
 L.ALLMOD_DEFAULT_LOADED		= "Les options par défaut pour tous les mods de cette instances ont été chargés."
 L.ALLMOD_STATS_RESETED		= "Toutes les stats de tous les mods ont été réinitialisés."
-L.MOD_DEFAULT_LOADED			= "Les options par défaut pour ce combat ont été chargés."
+L.MOD_DEFAULT_LOADED		= "Les options par défaut pour ce combat ont été chargés."
+L.SOUNDKIT_MIGRATION		= "Un ou plusieurs de vos sons d'avertissement/d'avertissement spécial ont été réinitialisés aux valeurs par défaut en raison de l'incompatibilité avec le patch 8.2 et les versions ultérieures (le son doit résider dans le dossier d'interface pour être lu par chemin, ou utiliser SoundKit ID)"
 
-L.WORLDBOSS_ENGAGED          = "%s a probablement été engagé sur votre royaume à %s de vie. (Envoyé par %s)"
-L.WORLDBOSS_DEFEATED         = "%s a probablement été tué sur votre royaume (Envoyé par %s)."
-
+L.WORLDBOSS_ENGAGED         = "%s a probablement été engagé sur votre royaume à %s de vie. (Envoyé par %s)"
+L.WORLDBOSS_DEFEATED        = "%s a probablement été tué sur votre royaume (Envoyé par %s)."
+L.WORLDBUFF_STARTED			= "%s a commencé sur votre royaume depuis la faction de %s (Envoyé par %s)."
+-- continue here
 L.TIMER_FORMAT_SECS			= "%.2f |4seconde:secondes;"
 L.TIMER_FORMAT_MINS			= "%d |4minute:minutes;"
 L.TIMER_FORMAT				= "%d |4minute:minutes; et %.2f |4seconde:secondes;"
