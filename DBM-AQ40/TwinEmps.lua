@@ -19,7 +19,7 @@ local warnExplodeBug		= mod:NewSpellAnnounce(804, 2, nil, false)
 local warnMutateBug			= mod:NewSpellAnnounce(802, 2, nil, false)
 
 local specWarnStrike		= mod:NewSpecialWarningDefensive(26613, nil, nil, nil, 1, 2)
-local specWarnGTFO			= mod:NewSpecialWarningGTFO(26613, nil, nil, nil, 8, 2)
+local specWarnGTFO			= mod:NewSpecialWarningGTFO(26607, nil, nil, nil, 8, 2)
 
 local timerTeleport			= mod:NewCDTimer(29.2, 800, nil, nil, nil, 6, nil, nil, true, 1, 4)--29.2-40.2
 local timerExplodeBugCD		= mod:NewCDTimer(4.9, 804, nil, false, nil, 1)--4.9-9
