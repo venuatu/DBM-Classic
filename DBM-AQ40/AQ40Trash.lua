@@ -132,7 +132,7 @@ do-- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash
 	local warnPlague                    = mod:NewTargetNoFilterAnnounce(22997, 2)
 	local specWarnPlague                = mod:NewSpecialWarningMoveAway(22997, nil, nil, nil, 1, 2)
 	local yellPlague                    = mod:NewYell(22997)
-	local specWarnExplode               = mod:NewSpecialWarningRun(25698, false, nil, 2, 4, 2)
+	local specWarnExplode               = mod:NewSpecialWarningRun(25698, "Melee", nil, 3, 4, 2)
 	local warnCauseInsanity             = mod:NewTargetNoFilterAnnounce(26079, 2)
 
 	local Plague = DBM:GetSpellInfo(22997)
