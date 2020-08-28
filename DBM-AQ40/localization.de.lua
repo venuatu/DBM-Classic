@@ -123,10 +123,10 @@ L:SetOptionLocalization{
 	RangeFrame				= "Zeige Abstandsfenster (10m)"
 }
 L:SetMiscLocalization{
-	Stomach		= "Magen von C'Thun",
+	Stomach		= "Magen",
 	Eye			= "Auge von C'Thun",
 	FleshTent	= "Fleischtentakel",
-	Weakened 	= "C'Thun ist geschwächt!",
+	Weakened 	= "ist geschwächt!",
 	NotValid	= "AQ40 teilweise gelöscht. % s optionale Bosse bleiben erhalten."
 }
 ----------------
