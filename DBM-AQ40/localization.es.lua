@@ -97,7 +97,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "Tentáculo ocular",
-	WarnClawTentacle		= "Tentáculo Garral",
+	WarnClawTentacle2		= "Tentáculo Garral",
 	WarnGiantEyeTentacle	= "Tentáculo ocular gigante",
 	WarnGiantClawTentacle	= "Tentáculo garral gigante",
 	WarnWeakened			= "C'Thun débil",
@@ -112,7 +112,7 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Mostrar aviso cuando aparezca un Tentáculo ocular",
-	WarnClawTentacle		= "Mostrar aviso cuando aparezca un Tentáculo Garral",
+	WarnClawTentacle2		= "Mostrar aviso cuando aparezca un Tentáculo Garral",
 	WarnGiantEyeTentacle	= "Mostrar aviso cuando aparezca un Tentáculo ocular gigante",
 	WarnGiantClawTentacle	= "Mostrar aviso cuando aparezca un Tentáculo garral gigante",
 	WarnWeakened			= "Mostrar aviso cuando C'Thun se vuelva débil",

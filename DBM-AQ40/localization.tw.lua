@@ -97,7 +97,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "眼球觸鬚",
-	WarnClawTentacle		= "利爪觸鬚",
+	WarnClawTentacle2		= "利爪觸鬚",
 	WarnGiantEyeTentacle	= "巨型眼球觸鬚",
 	WarnGiantClawTentacle	= "巨型利爪觸鬚",
 	WarnWeakened			= "克蘇恩變得虛弱了"
@@ -111,7 +111,7 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "為眼球觸鬚顯示警告",
-	WarnClawTentacle		= "為利爪觸鬚顯示警告",
+	WarnClawTentacle2		= "為利爪觸鬚顯示警告",
 	WarnGiantEyeTentacle	= "為巨型眼球觸鬚顯示警告",
 	WarnGiantClawTentacle	= "為巨型利爪觸鬚顯示警告",
 	SpecWarnWeakened		= "當首領虛弱時顯示特別警告",

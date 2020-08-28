@@ -97,7 +97,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "Tentóculo",
-	WarnClawTentacle		= "Tentáculo de Garra",
+	WarnClawTentacle2		= "Tentáculo de Garra",
 	WarnGiantEyeTentacle	= "Tentóculo Gigante",
 	WarnGiantClawTentacle	= "Tentáculo de Garra Gigante",
 	SpecWarnWeakened		= "C'Thun enfraquecido!"
@@ -111,7 +111,7 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Exibir aviso para Tentóculo",
-	WarnClawTentacle		= "Exibir aviso para Tentáculo de Garra",
+	WarnClawTentacle2		= "Exibir aviso para Tentáculo de Garra",
 	WarnGiantEyeTentacle	= "Exibir aviso para Tentóculo Gigante",
 	WarnGiantClawTentacle	= "Exibir aviso para Tentáculo de Garra Gigante",
 	SpecWarnWeakened		= "Exibir aviso especial quando o chefe enfraquece",

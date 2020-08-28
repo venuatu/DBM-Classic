@@ -97,7 +97,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "Tentacule oculaire",
-	WarnClawTentacle		= "Tentacule griffu",
+	WarnClawTentacle2		= "Tentacule griffu",
 	WarnGiantEyeTentacle	= "Tentacule oculaire géant",
 	WarnGiantClawTentacle	= "Tentacule griffu géant",
 	SpecWarnWeakened		= "C'Thun est affaibli !"
@@ -111,7 +111,7 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Afficher l'avertissement pour Tentacule oculaire",
-	WarnClawTentacle		= "Afficher l'avertissement pour Tentacule griffu",
+	WarnClawTentacle2		= "Afficher l'avertissement pour Tentacule griffu",
 	WarnGiantEyeTentacle	= "Afficher l'avertissement pour Tentacule oculaire géant",
 	WarnGiantClawTentacle	= "Afficher l'avertissement pour Tentacule griffu géant",
 	SpecWarnWeakened		= "Afficher un avertissement spécial lorsque le boss s'affaiblit",

@@ -20,7 +20,7 @@ mod:RegisterEventsInCombat(
 )
 
 local warnEyeTentacle			= mod:NewAnnounce("WarnEyeTentacle", 2, 126)
-local warnClawTentacle			= mod:NewAnnounce("WarnClawTentacle", 2, 26391)
+local warnClawTentacle			= mod:NewAnnounce("WarnClawTentacle2", 2, 26391, false)
 local warnGiantEyeTentacle		= mod:NewAnnounce("WarnGiantEyeTentacle", 3, 126)
 local warnGiantClawTentacle		= mod:NewAnnounce("WarnGiantClawTentacle", 3, 26391)
 local warnPhase2				= mod:NewPhaseAnnounce(2)
