@@ -51,7 +51,7 @@ do
 			else
 				warnStrike:Show(args.destName)
 			end
-		elseif args.spellName == UnbalancingStrike and args:IsPlayer() and args:IsSrcTypeHostile() then
+		elseif args.spellName == Blizzard and args:IsPlayer() and args:IsSrcTypeHostile() then
 			specWarnGTFO:Show(args.spellName)
 			specWarnGTFO:Play("watchfeet")
 		end
