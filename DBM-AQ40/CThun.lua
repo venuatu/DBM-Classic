@@ -185,12 +185,12 @@ function mod:OnSync(msg, spawnUid, pct)
 	if msg == "Weakened" then
 		specWarnWeakened:Show()
 		specWarnWeakened:Play("targetchange")
-		timerEyeTentacle:Stop() -- Stop Eye Tentacle Timer, casused by C'Thun be Weakened
-		timerGiantClawTentacle:Stop() -- Stop Giant Claw Tentacle Timer, casused by C'Thun be Weakened
-		timerGiantEyeTentacle:Stop() -- Stop Giant Eye Tentacle Timer, casused by C'Thun be Weakened
-		timerWeakened:Start() -- It was forgotten.
+		timerEyeTentacle:Stop()
+		timerGiantClawTentacle:Stop()
+		timerGiantEyeTentacle:Stop()
+		timerWeakened:Start()
 		timerEyeTentacle:Start(83) -- 53+30
-		timerGiantClawTentacle:Start(53) -- Renew Giant Claw Tentacle Spawn Timer, After C'Thun be Weakened, 54->53
+		timerGiantClawTentacle:Start(53) -- Renew Giant Claw Tentacle Spawn Timer, After C'Thun be Weakened
 		timerGiantEyeTentacle:Start(83.7) -- Renew Giant Eye Tentacle Spawn Timer, After C'Thun be Weakened, A litter later than Eye Tentacles Spawn.(0.7s)
 
 		table.wipe(fleshTentacles)
