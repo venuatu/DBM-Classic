@@ -125,7 +125,7 @@ L:SetOptionLocalization{
 	RangeFrame				= "Mostrar marco de distancia (10 m)"
 }
 L:SetMiscLocalization{
-	Stomach		= "Estómago de C'Thun",
+	Stomach		= "Estómago",
 	Eye			= "Ojo de C'Thun",
 	FleshTent	= "Tentáculo de carne",
 	Weakened 	= "está débil!",
