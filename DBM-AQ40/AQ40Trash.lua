@@ -14,11 +14,10 @@ mod:RegisterEvents(
 	"SPELL_MISSED"
 )
 
-mod:AddRangeFrameOption(10, 22997)
-
 --TODO, meteor those big guys use, maybe some other stuff
 --local specWarnPrimalRampage			= mod:NewSpecialWarningDodge(198379, "Melee", nil, nil, 1, 2)
 
+mod:AddRangeFrameOption(10, 22997)
 mod:AddSpeedClearOption("AQ40", true)
 
 --Speed Clear variables
@@ -130,10 +129,11 @@ end
 
 do-- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
 	local warnPlague                    = mod:NewTargetNoFilterAnnounce(22997, 2)
+	local warnCauseInsanity             = mod:NewTargetNoFilterAnnounce(26079, 2)
+
 	local specWarnPlague                = mod:NewSpecialWarningMoveAway(22997, nil, nil, nil, 1, 2)
 	local yellPlague                    = mod:NewYell(22997)
 	local specWarnExplode               = mod:NewSpecialWarningRun(25698, "Melee", nil, 3, 4, 2)
-	local warnCauseInsanity             = mod:NewTargetNoFilterAnnounce(26079, 2)
 
 	local Plague = DBM:GetSpellInfo(22997)
 	local Explode = DBM:GetSpellInfo(25698)
@@ -170,9 +170,6 @@ do-- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash
 end
 
 do-- Anubisath Reflect - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
-	local ShadowFrostReflect 			= DBM:GetSpellInfo(19595)
-	local FireArcaneReflect 			= DBM:GetSpellInfo(13022)
-
 	local specWarnShadowFrostReflect    = mod:NewSpecialWarningReflect(19595, nil, nil, nil, 1, 2)
 	local specWarnFireArcaneReflect     = mod:NewSpecialWarningReflect(13022, nil, nil, nil, 1, 2)
 
