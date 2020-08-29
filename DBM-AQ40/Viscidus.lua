@@ -27,7 +27,6 @@ local timerFrozen				= mod:NewBuffActiveTimer(30, 25937, nil, nil, nil, 6)
 
 mod:AddInfoFrameOption(nil, true)
 
-local twipe = table.wipe
 local updateInfoFrame
 
 local creatureIDCache = {}
