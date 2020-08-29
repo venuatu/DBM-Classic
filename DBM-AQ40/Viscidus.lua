@@ -37,7 +37,7 @@ local creatureIDCache = {}
 local hits = 200
 
 local function BossVisible(self)
-	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
+	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() and DBM.Options.DebugMode then
 		self:RegisterShortTermEvents(
 			"RANGE_DAMAGE",
 			"SPELL_DAMAGE",
@@ -108,6 +108,9 @@ do
 	end
 
 	-- function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, amount)
+	--Current bugs. It's tracking too many invalid physical hits. Only Melee hits should count, yellow hits do not. not even sure RANGED hunter hits count.
+	--Currently not tracking frost wands. You can determine the wand damage school with the RANGE_DAMAGE CLEU event. The 17th parameter will give it to you.
+	--Currently not tracking "Chilled" effect from Icy Chill enchant, which is confirmed to count
 	function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, _, _, spellSchool)
 		local creatureID = creatureIDCache[destGUID]
 		if creatureID == nil then
