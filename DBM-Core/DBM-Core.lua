@@ -72,8 +72,8 @@ end
 
 DBM = {
 	Revision = parseCurseDate("@project-date-integer@"),
-	DisplayVersion = "1.13.58 alpha", -- the string that is shown as version
-	ReleaseRevision = releaseDate(2020, 8, 18) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
+	DisplayVersion = "1.13.59 alpha", -- the string that is shown as version
+	ReleaseRevision = releaseDate(2020, 8, 29) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 }
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
 
@@ -2749,12 +2749,12 @@ do
 
 		function dataBroker.OnClick(self, button)
 			if IsShiftKeyDown() then return end
-			if IsAltKeyDown() and button == "RightButton" then
-				DBM.Options.SilentMode = DBM.Options.SilentMode == false and true or false
-				DBM:AddMsg(L.SILENTMODE_IS .. (DBM.Options.SilentMode and "ON" or "OFF"))
-			else
+--			if IsAltKeyDown() and button == "RightButton" then
+--				DBM.Options.SilentMode = DBM.Options.SilentMode == false and true or false
+--				DBM:AddMsg(L.SILENTMODE_IS .. (DBM.Options.SilentMode and "ON" or "OFF"))
+--			else
 				DBM:LoadGUI()
-			end
+--			end
 		end
 
 		function dataBroker.OnTooltipShow(GameTooltip)
@@ -2763,7 +2763,7 @@ do
 			GameTooltip:AddLine(" ")
 			GameTooltip:AddLine(L.MINIMAP_TOOLTIP_FOOTER, RAID_CLASS_COLORS.MAGE.r, RAID_CLASS_COLORS.MAGE.g, RAID_CLASS_COLORS.MAGE.b, 1)
 			GameTooltip:AddLine(L.LDB_TOOLTIP_HELP1, RAID_CLASS_COLORS.MAGE.r, RAID_CLASS_COLORS.MAGE.g, RAID_CLASS_COLORS.MAGE.b)
-			GameTooltip:AddLine(L.LDB_TOOLTIP_HELP2, RAID_CLASS_COLORS.MAGE.r, RAID_CLASS_COLORS.MAGE.g, RAID_CLASS_COLORS.MAGE.b)
+--			GameTooltip:AddLine(L.LDB_TOOLTIP_HELP2, RAID_CLASS_COLORS.MAGE.r, RAID_CLASS_COLORS.MAGE.g, RAID_CLASS_COLORS.MAGE.b)
 		end
 	end
 

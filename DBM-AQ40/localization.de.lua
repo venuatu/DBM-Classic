@@ -97,7 +97,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "Augententakel erscheinen",
-	WarnClawTentacle		= "Klauententakel erscheinen",
+	WarnClawTentacle2		= "Klauententakel erscheinen",
 	WarnGiantEyeTentacle	= "Riesiges Augententakel erscheinen",
 	WarnGiantClawTentacle	= "Riesiges Klauententakel erscheinen",
 	SpecWarnWeakened		= "C'Thun ist geschwächt!"
@@ -111,7 +111,7 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Zeige Warnung, wenn Augententakel erscheinen",
-	WarnClawTentacle		= "Zeige Warnung, wenn Klauententakel erscheinen",
+	WarnClawTentacle2		= "Zeige Warnung, wenn Klauententakel erscheinen",
 	WarnGiantEyeTentacle	= "Zeige Warnung, wenn Riesiges Augententakel erscheinen",
 	WarnGiantClawTentacle	= "Zeige Warnung, wenn Riesiges Klauententakel erscheinen",
 	SpecWarnWeakened		= "Spezialwarnung, wenn C'Thun geschwächt ist",
@@ -123,10 +123,10 @@ L:SetOptionLocalization{
 	RangeFrame				= "Zeige Abstandsfenster (10m)"
 }
 L:SetMiscLocalization{
-	Stomach		= "Magen von C'Thun",
+	Stomach		= "Magen",
 	Eye			= "Auge von C'Thun",
 	FleshTent	= "Fleischtentakel",
-	Weakened 	= "C'Thun ist geschwächt!",
+	Weakened 	= "ist geschwächt!",
 	NotValid	= "AQ40 teilweise gelöscht. % s optionale Bosse bleiben erhalten."
 }
 ----------------

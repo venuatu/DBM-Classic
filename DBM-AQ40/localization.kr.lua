@@ -110,7 +110,7 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "눈 달린 촉수 경고 보기",
-	WarnClawTentacle		= "갈고리 촉수 경고 보기",
+	WarnClawTentacle2		= "갈고리 촉수 경고 보기",
 	WarnGiantEyeTentacle		= "눈 달린 거대한 촉수 경고 보기",
 	WarnGiantClawTentacle		= "거대한 발톱 촉수 경고 보기",
 	SpecWarnWeakened		= "보스 약화시 특수 경고 보기",

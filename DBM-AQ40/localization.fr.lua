@@ -97,7 +97,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "Tentacule oculaire",
-	WarnClawTentacle		= "Tentacule griffu",
+	WarnClawTentacle2		= "Tentacule griffu",
 	WarnGiantEyeTentacle	= "Tentacule oculaire géant",
 	WarnGiantClawTentacle	= "Tentacule griffu géant",
 	SpecWarnWeakened		= "C'Thun est affaibli !"
@@ -107,11 +107,11 @@ L:SetTimerLocalization{
 	TimerClawTentacle		= "Prochain Tentacule griffu",
 	TimerGiantEyeTentacle	= "Prochain Tentacule oculaire géant",
 	TimerGiantClawTentacle	= "Prochain Tentacule griffu géant",
-	TimerWeakened			= "Affaibli terminé"
+	TimerWeakened			= "Faiblesse terminé"
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Afficher l'avertissement pour Tentacule oculaire",
-	WarnClawTentacle		= "Afficher l'avertissement pour Tentacule griffu",
+	WarnClawTentacle2		= "Afficher l'avertissement pour Tentacule griffu",
 	WarnGiantEyeTentacle	= "Afficher l'avertissement pour Tentacule oculaire géant",
 	WarnGiantClawTentacle	= "Afficher l'avertissement pour Tentacule griffu géant",
 	SpecWarnWeakened		= "Afficher un avertissement spécial lorsque le boss s'affaiblit",
@@ -123,10 +123,10 @@ L:SetOptionLocalization{
 	RangeFrame				= "Afficher le cadre de portée (10 m)"
 }
 L:SetMiscLocalization{
-	Stomach		= "Estomac de C'Thun",
+	Stomach		= "Estomac",
 	Eye			= "Oeil de C'Thun",
 	FleshTent	= "Tentacule de chair",
-	Weakened 	= "affaibli",
+	Weakened 	= "est affaibli !",
 	NotValid	= "AQ40 partiellement effacé. %s bosses optionnels restent."
 }
 ----------------
