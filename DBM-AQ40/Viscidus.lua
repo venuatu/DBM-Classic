@@ -27,14 +27,14 @@ local timerFrozen				= mod:NewBuffActiveTimer(30, 25937, nil, nil, nil, 6)
 
 mod:AddInfoFrameOption(nil, true)
 
+mod.vb.Frozen = false
+mod.vb.volleyCount = 0
+
 local twipe = table.wipe
 local updateInfoFrame
 
 local creatureIDCache = {}
 local hits = 200
-
-mod.vb.Frozen = false
-mod.vb.volleyCount = 0
 
 local function BossVisible(self)
 	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then

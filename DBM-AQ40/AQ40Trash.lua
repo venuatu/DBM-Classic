@@ -153,7 +153,7 @@ do
 			if self.Options.FastestClear3 and self.Options.SpeedClearTimer then
 				--Custom bar creation that's bound to core, not mod, so timer doesn't stop when mod stops it's own timers
 				local adjustment = GetServerTime() - self.vb.firstEngageTime
-				DBM.Bars:CreateBar(self.Options.FastestClear3 - adjustment, DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
+				DBM.Bars:CreateBar(self.Options.FastestClear3 - adjustment, DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT, 136106)
 			end
 			--Unregister high CPU combat log events
 			self:UnregisterShortTermEvents()
