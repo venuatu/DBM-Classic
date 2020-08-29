@@ -5,7 +5,7 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(15299)
 mod:SetEncounterID(713)
 mod:SetModelID(15686)
-mod:SetHotfixNoticeRev(20200828000000)--2020, 8, 28
+mod:SetHotfixNoticeRev(20200829000000)--2020, 8, 29
 mod:SetMinSyncRevision(20200828000000)--2020, 8, 28
 
 mod:RegisterCombat("combat")
@@ -37,7 +37,7 @@ local creatureIDCache = {}
 local hits = 200
 
 local function BossVisible(self)
-	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() and DBM.Options.DebugMode then
+	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
 		self:RegisterShortTermEvents(
 			"RANGE_DAMAGE",
 			"SPELL_DAMAGE",
@@ -108,9 +108,7 @@ do
 	end
 
 	-- function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, amount)
-	--Current bugs. It's tracking too many invalid physical hits. Only Melee hits should count, yellow hits do not. not even sure RANGED hunter hits count.
-	--Currently not tracking frost wands. You can determine the wand damage school with the RANGE_DAMAGE CLEU event. The 17th parameter will give it to you.
-	--Currently not tracking "Chilled" effect from Icy Chill enchant, which is confirmed to count
+	local Shoot = DBM:GetSpellInfo(5019)
 	function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, _, _, spellSchool)
 		local creatureID = creatureIDCache[destGUID]
 		if creatureID == nil then
@@ -118,14 +116,29 @@ do
 			creatureIDCache[destGUID] = creatureID
 		end
 		if ((not self.vb.Frozen and spellSchool == 16) or (self.vb.Frozen and spellSchool == 1)) and creatureID == 15299 then
-				hits = hits - 1
+			hits = hits - 1
 		end
 		if self.vb.Frozen and creatureID == 15667 then
 			GlobPhase(self)-- reset on a glob hit if still in frozen mode
 		end
 	end
-	mod.RANGE_DAMAGE = mod.SPELL_DAMAGE
 	mod.SWING_DAMAGE = mod.SPELL_DAMAGE
+	function mod:RANGE_DAMAGE(_, _, _, _, destGUID, _, _, _, _, spellName, spellSchool)
+		local creatureID = creatureIDCache[destGUID]
+		if creatureID == nil then
+			creatureID = DBM:GetCIDFromGUID(destGUID)
+			creatureIDCache[destGUID] = creatureID
+		end
+		--RANGE_DAMAGE,Player-4395-00282794,"Anshlun-Whitemane",0x511,0x0,Creature-0-4400-189-11806-4542-00006BB674,"High Inquisitor Fairbanks",0x10a48,0x0,5019,"Shoot",
+		--Count all wand hits as frost, since we can't get school out of them
+		--RANGED melee hits don't count for shattering, it's left out on purpose
+		if (self.vb.Frozen and spellName == Shoot) and creatureID == 15299 then
+			hits = hits - 1
+		end
+		if self.vb.Frozen and creatureID == 15667 then
+			GlobPhase(self)-- reset on a glob hit if still in frozen mode
+		end
+	end
 end
 
 do
