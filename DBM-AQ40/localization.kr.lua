@@ -96,9 +96,9 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnEyeTentacle			= "눈 달린 촉수",
-	WarnClawTentacle2		= "갈고리 촉수",
-	TimerGiantEyeTentacle		= "눈 달린 거대한 촉수",
-	TimerGiantClawTentacle		= "거대한 발톱 촉수",
+	WarnClawTentacle		= "갈고리 촉수",
+	WarnGiantEyeTentacle		= "눈 달린 거대한 촉수",
+	WarnGiantClawTentacle		= "거대한 발톱 촉수",
 	SpecWarnWeakened		= "쑨 약화됨!"
 }
 L:SetTimerLocalization{
