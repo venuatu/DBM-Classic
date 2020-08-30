@@ -143,12 +143,41 @@ do
 	end
 	mod.SWING_MISSED = mod.SWING_DAMAGE
 
-	function mod:OnSync(msg, startTime, sender)
+	local function updateDefeatedBosses(self, encounterId)
+		if self:AntiSpam(10, encounterId) then
+			if encounterID == 710 or encounterID == 713 or encounterID == 716 or encounterID == 717 or encounterID == 714 then
+				self.vb.requiredBosses = self.vb.requiredBosses + 1
+				if self.vb.requiredBosses == 5 then
+					DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
+					if self.vb.firstEngageTime then
+						local thisTime = GetServerTime() - self.vb.firstEngageTime
+						if thisTime and thisTime > 0 then
+							if not self.Options.FastestClear3 then
+								--First clear, just show current clear time
+								DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("AQ40", DBM:strFromTime(thisTime)))
+								self.Options.FastestClear3 = thisTime
+							elseif (self.Options.FastestClear3 > thisTime) then
+								--Update record time if this clear shorter than current saved record time and show users new time, compared to old time
+								DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format("AQ40", DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
+								self.Options.FastestClear3 = thisTime
+							else
+								--Just show this clear time, and current record time (that you did NOT beat)
+								DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("AQ40", DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
+							end
+						end
+						self.vb.firstEngageTime = nil
+					end
+				end
+			end
+		end
+	end
+
+	function mod:OnSync(msg, timeOrEncounter, sender)
 		--Sync recieved with start time and ours is currently not started
 		--The reason this doesn't just check self.vb.firstEngageTime is nil, because it might not be if SendVariableInfo send it first
-		if msg == "AQ40Started" and startTime and not DBM.Bars:GetBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT) then
+		if msg == "AQ40Started" and timeOrEncounter and not DBM.Bars:GetBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT) then
 			if not self.vb.firstEngageTime then
-				self.vb.firstEngageTime = tonumber(startTime)
+				self.vb.firstEngageTime = tonumber(timeOrEncounter)
 			end
 			if self.Options.FastestClear3 and self.Options.SpeedClearTimer then
 				--Custom bar creation that's bound to core, not mod, so timer doesn't stop when mod stops it's own timers
@@ -164,6 +193,8 @@ do
 			--This is sadly still going to generate a LOT of comm traffic on zone in. upwards of 4-117 syncs, per player zone in
 			--Reviewing code, it's hard to do this in less comms, it's either don't support recovering the speed clear timer in all situations (disconnect, reloadui, zoning in late) or cause a burst of syncs :\
 			DBM:SendVariableInfo(self, sender)
+		elseif msg == "EncounterEnd" and timeOrEncounter then
+			updateDefeatedBosses(self, timeOrEncounter)--In case player misses event (ie they released or are outside the raid for that particular boss
 		end
 	end
 end
@@ -172,27 +203,7 @@ function mod:ENCOUNTER_END(encounterID, _, _, _, success)
 	if success == 0 then return end--wipe
 	--All the required bosses for the raid to be full cleared.
 	if encounterID == 710 or encounterID == 713 or encounterID == 716 or encounterID == 717 or encounterID == 714 then
-		self.vb.requiredBosses = self.vb.requiredBosses + 1
-		if self.vb.requiredBosses == 5 then
-			DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
-			if self.vb.firstEngageTime then
-				local thisTime = GetServerTime() - self.vb.firstEngageTime
-				if thisTime and thisTime > 0 then
-					if not self.Options.FastestClear3 then
-						--First clear, just show current clear time
-						DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("AQ40", DBM:strFromTime(thisTime)))
-						self.Options.FastestClear3 = thisTime
-					elseif (self.Options.FastestClear3 > thisTime) then
-						--Update record time if this clear shorter than current saved record time and show users new time, compared to old time
-						DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format("AQ40", DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
-						self.Options.FastestClear3 = thisTime
-					else
-						--Just show this clear time, and current record time (that you did NOT beat)
-						DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("AQ40", DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
-					end
-				end
-				self.vb.firstEngageTime = nil
-			end
-		end
+		updateDefeatedBosses(self, encounterID)--Still want to fire this on event because the event will always be faster than sync
+		self:SendSync("EncounterEnd", encounterID)
 	end
 end
