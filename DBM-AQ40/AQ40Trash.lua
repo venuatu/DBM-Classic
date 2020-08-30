@@ -143,9 +143,9 @@ do
 	end
 	mod.SWING_MISSED = mod.SWING_DAMAGE
 
-	local function updateDefeatedBosses(self, encounterID)
+	local function updateDefeatedBosses(self, encounterId)
 		if self:AntiSpam(10, encounterId) then
-			if encounterID == 710 or encounterID == 713 or encounterID == 716 or encounterID == 717 or encounterID == 714 then
+			if encounterId == 710 or encounterId == 713 or encounterId == 716 or encounterId == 717 or encounterId == 714 then
 				self.vb.requiredBosses = self.vb.requiredBosses + 1
 				if self.vb.requiredBosses == 5 then
 					DBM.Bars:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
@@ -198,12 +198,12 @@ do
 		end
 	end
 
-	function mod:ENCOUNTER_END(encounterID, _, _, _, success)
+	function mod:ENCOUNTER_END(encounterId, _, _, _, success)
 		if success == 0 then return end--wipe
 		--All the required bosses for the raid to be full cleared.
-		if encounterID == 710 or encounterID == 713 or encounterID == 716 or encounterID == 717 or encounterID == 714 then
-			updateDefeatedBosses(self, encounterID)--Still want to fire this on event because the event will always be faster than sync
-			self:SendSync("EncounterEnd", encounterID)
+		if encounterId == 710 or encounterId == 713 or encounterId == 716 or encounterId == 717 or encounterId == 714 then
+			updateDefeatedBosses(self, encounterId)--Still want to fire this on event because the event will always be faster than sync
+			self:SendSync("EncounterEnd", encounterId)
 		end
 	end
 end
