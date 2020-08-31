@@ -430,24 +430,41 @@ L.AUTO_SPEC_WARN_OPTIONS.gtfo 			= "Afficher une alerte spéciale à sortir du s
 L.AUTO_SPEC_WARN_OPTIONS.adds			= "Afficher une alerte spéciale à changer de cible pour les serviteurs entrants"
 L.AUTO_SPEC_WARN_OPTIONS.addscustom		= "Afficher une alerte spéciale pour les serviteurs entrants"
 L.AUTO_SPEC_WARN_OPTIONS.targetchange	= "Afficher une alerte spéciale pour changements de cible prioritaires"
--- CONTINUE HERE
+
 -- Auto-generated Timer Localizations
 L.AUTO_TIMER_TEXTS.target		= "%s: >%%s<"
-L.AUTO_TIMER_TEXTS.cast		= "%s"
+L.AUTO_TIMER_TEXTS.cast			= "%s"
+L.AUTO_TIMER_TEXTS.castshort	= "%s "--if short timers enabled, cast and next are same timer text, this is a conflict. the space resolves it
+L.AUTO_TIMER_TEXTS.castcount	= "%s (%%s)"
+L.AUTO_TIMER_TEXTS.castcountshort	= "%s (%%s) "--Resolve short timer conflict with next timers
+L.AUTO_TIMER_TEXTS.castsource	= "%s: %%s"
 L.AUTO_TIMER_TEXTS.active		= "%s se termine" --Buff/Debuff/event on boss,
 L.AUTO_TIMER_TEXTS.fades		= "%s se dissipe" --Buff/Debuff on players,
 L.AUTO_TIMER_TEXTS.ai			= "%s AI"
 L.AUTO_TIMER_TEXTS.cd			= "Rech. %s"
+L.AUTO_TIMER_TEXTS.cdshort		= "~%s"
 L.AUTO_TIMER_TEXTS.cdcount		= "Rech. %s (%%s)"
-L.AUTO_TIMER_TEXTS.cdsource	= "Rech. %s: >%%s<"
-L.AUTO_TIMER_TEXTS.cdspecial	= "CD d'abilité spéciale"
-L.AUTO_TIMER_TEXTS.next		= "Proch. %s"
+L.AUTO_TIMER_TEXTS.cdcountshort	= "~%s (%%s)"
+L.AUTO_TIMER_TEXTS.cdsource		= "Rech. %s: >%%s<"
+L.AUTO_TIMER_TEXTS.cdsourceshort	= "~%s: >%%s<"
+L.AUTO_TIMER_TEXTS.cdspecial	= "Rech. d'abilité spéciale"
+L.AUTO_TIMER_TEXTS.cdspecialshort	= "~Spéciale"
+L.AUTO_TIMER_TEXTS.next			= "Proch. %s"
+L.AUTO_TIMER_TEXTS.nextshort	= "%s"
 L.AUTO_TIMER_TEXTS.nextcount	= "Proch. %s (%%s)"
+L.AUTO_TIMER_TEXTS.nextcountshort	= "%s (%%s)"
 L.AUTO_TIMER_TEXTS.nextsource	= "Proch. %s: >%%s<"
+L.AUTO_TIMER_TEXTS.nextsourceshort	= "%s: %%s"
 L.AUTO_TIMER_TEXTS.nextspecial	= "Abilité spéciale suivante"
+L.AUTO_TIMER_TEXTS.nextspecialshort	= "Spéciale"
 L.AUTO_TIMER_TEXTS.achievement	= "%s"
+L.AUTO_TIMER_TEXTS.stageshort	= "Phase"
 L.AUTO_TIMER_TEXTS.stage		= "Phase Suivante"
-
+L.AUTO_TIMER_TEXTS.adds			= "Serviteurs entrants"
+L.AUTO_TIMER_TEXTS.addscustom	= "Serviteurs entrants (%%s)"
+L.AUTO_TIMER_TEXTS.addscustomshort	= "Serviteurs (%%s)"
+L.AUTO_TIMER_TEXTS.roleplay		= "Jeu de rôle"
+-- CONTINUE HERE
 L.AUTO_TIMER_OPTIONS.target		= "Durée d'affaiblissement de $spell:%s"
 L.AUTO_TIMER_OPTIONS.cast		= "Durée d'incantation de $spell:%s"
 L.AUTO_TIMER_OPTIONS.active		= "Durée d'activité de $spell:%s"
@@ -463,7 +480,7 @@ L.AUTO_TIMER_OPTIONS.nextsource	= "Délai avant le prochain $spell:%s"
 L.AUTO_TIMER_OPTIONS.nextspecial	= "Afficher le timer de l'abilité spéciale suivante"
 L.AUTO_TIMER_OPTIONS.achievement	= "Délai pour réussir %s"
 L.AUTO_TIMER_OPTIONS.stage		= "Afficher le timer de la phase suivante"
-L.AUTO_TIMER_OPTIONS.roleplay	= "Afficher le timer de la durée du roleplay"--This does need localizing though.
+L.AUTO_TIMER_OPTIONS.roleplay	= "Afficher le timer de la durée du jeu de rôle"--This does need localizing though.
 
 L.AUTO_ICONS_OPTION_TEXT			= "Placer des icônes sur les cibles de $spell:%s"
 L.AUTO_ICONS_OPTION_TEXT2        = "Placer des icônes sur $spell:%s"
