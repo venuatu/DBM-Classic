@@ -68,7 +68,7 @@ do
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg, _, _, _, target)
-	if (msg:find(L.PursueEmote) or msg = L.PursueEmote) and target then
+	if (msg:find(L.PursueEmote) or msg == L.PursueEmote) and target then
 		target = DBM:GetUnitFullName(target)
 		if target == UnitName("player") then
 			specWarnPursue:Show()
