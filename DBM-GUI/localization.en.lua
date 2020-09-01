@@ -156,6 +156,9 @@ L.Area_ChatAlerts			= "Additional Alert Options"
 L.WorldBossAlert			= "Show alert message when world bosses might have been engaged on your realm by guildies or friends"
 L.WorldBuffAlert			= "Show alert message and timer when world buff RP has been started on your realm"
 
+L.Area_BugAlerts			= "Bug Reporting Alert Options"
+L.BadTimerAlert				= "Show chat message when DBM detects a bad timer with at least 2 seconds of incorrectness"
+
 -- Tab: Barsetup
 L.BarSetup					= "Timers"
 L.BarTexture				= "Bar texture"

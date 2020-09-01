@@ -295,6 +295,7 @@ DBM.DefaultOptions = {
 	DebugLevel = 1,
 	WorldBossAlert = true,
 	WorldBuffAlert = true,
+	BadTimerAlert = false,
 	AutoAcceptFriendInvite = false,
 	AutoAcceptGuildInvite = false,
 	FakeBWVersion = false,
@@ -10172,14 +10173,18 @@ do
 		if not self.option or self.mod.Options[self.option] then
 			if self.type and (self.type == "cdcount" or self.type == "nextcount") and not self.allowdouble then--remove previous timer.
 				for i = #self.startedTimers, 1, -1 do
-					if DBM.Options.DebugMode and DBM.Options.DebugLevel > 1 then
+					if DBM.Options.BadTimerAlert or DBM.Options.DebugMode and DBM.Options.DebugLevel > 1 then
 						local bar = DBM.Bars:GetBar(self.startedTimers[i])
 						if bar then
 							local remaining = ("%.1f"):format(bar.timer)
 							local ttext = _G[bar.frame:GetName().."BarName"]:GetText() or ""
 							ttext = ttext.."("..self.id..")"
 							if bar.timer > 0.2 then
-								DBM:Debug("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining, 2)
+								if DBM.Options.BadTimerAlert and bar.timer >= 2 then--If greater than 2 seconds off, report this out of debug mode to all users
+									AddMsg("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining..". Please report this bug", 2)
+								else
+									DBM:Debug("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining, 2)
+								end
 							end
 						end
 					end
@@ -10241,7 +10246,7 @@ do
 					end
 				end
 			end
-			if DBM.Options.DebugMode and DBM.Options.DebugLevel > 1 then
+			if DBM.Options.BadTimerAlert or DBM.Options.DebugMode and DBM.Options.DebugLevel > 1 then
 				if not self.type or (self.type ~= "target" and self.type ~= "active" and self.type ~= "fades" and self.type ~= "ai") then
 					local bar = DBM.Bars:GetBar(id)
 					if bar then
@@ -10249,7 +10254,11 @@ do
 						local ttext = _G[bar.frame:GetName().."BarName"]:GetText() or ""
 						ttext = ttext.."("..self.id..")"
 						if bar.timer > 0.2 then
-							DBM:Debug("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining, 2)
+							if DBM.Options.BadTimerAlert and bar.timer >= 3 then--If greater than 2 seconds off, report this out of debug mode to all users
+								AddMsg("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining..". Please report this bug", 2)
+							else
+								DBM:Debug("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining, 2)
+							end
 						end
 					end
 				end
@@ -10284,7 +10293,7 @@ do
 			msg = msg:gsub(">.-<", stripServerName)
 			bar:SetText(msg, self.inlineIcon)
 			--ID: Internal DBM timer ID
-			--msg: Timer Text
+			--msg: Timer Text (Do not use msg has an event trigger, it varies language to language or based on user timer options. Use this to DISPLAY only (such as timer replacement UI). use spellId field 99% of time
 			--timer: Raw timer value (number).
 			--Icon: Texture Path for Icon
 			--type: Timer type (Cooldowns: cd, cdcount, nextcount, nextsource, cdspecial, nextspecial, stage, ai. Durations: target, active, fades, roleplay. Casting: cast)
