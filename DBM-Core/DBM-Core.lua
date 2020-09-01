@@ -10254,7 +10254,7 @@ do
 						local ttext = _G[bar.frame:GetName().."BarName"]:GetText() or ""
 						ttext = ttext.."("..self.id..")"
 						if bar.timer > 0.2 then
-							if DBM.Options.BadTimerAlert and bar.timer >= 3 then--If greater than 2 seconds off, report this out of debug mode to all users
+							if DBM.Options.BadTimerAlert and bar.timer >= 2 then--If greater than 2 seconds off, report this out of debug mode to all users
 								AddMsg("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining..". Please report this bug", 2)
 							else
 								DBM:Debug("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining, 2)
