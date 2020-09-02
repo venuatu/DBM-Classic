@@ -129,14 +129,28 @@ do
 			creatureID = DBM:GetCIDFromGUID(destGUID)
 			creatureIDCache[destGUID] = creatureID
 		end
-		if ((not self.vb.Frozen and frostSpellSchools[spellSchool]) or (self.vb.Frozen and spellSchool == 1)) and creatureID == 15299 then
+		if not self.vb.Frozen and frostSpellSchools[spellSchool] and creatureID == 15299 then
 			hits = hits - 1
 		end
 		if self.vb.Frozen and creatureID == 15667 then
 			GlobPhase(self)-- reset on a glob hit if still in frozen mode
 		end
 	end
-	mod.SWING_DAMAGE = mod.SPELL_DAMAGE
+
+	function mod:SWING_DAMAGE(_, _, _, _, destGUID, _, _, _, _, _, spellSchool)
+		local creatureID = creatureIDCache[destGUID]
+		if creatureID == nil then
+			creatureID = DBM:GetCIDFromGUID(destGUID)
+			creatureIDCache[destGUID] = creatureID
+		end
+		--Only count melee swings
+		if self.vb.Frozen and spellSchool == 1 and creatureID == 15299 then
+			hits = hits - 1
+		end
+		if self.vb.Frozen and creatureID == 15667 then
+			GlobPhase(self)-- reset on a glob hit if still in frozen mode
+		end
+	end
 
 	function mod:RANGE_DAMAGE(_, _, _, _, destGUID, _, _, _, _, spellName)
 		local creatureID = creatureIDCache[destGUID]
