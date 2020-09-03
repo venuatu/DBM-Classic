@@ -18,3 +18,4 @@ generalExtraAlerts:CreateCheckButton(L.WorldBuffAlert, true, nil, "WorldBuffAler
 
 local generalBugsAlerts = generalWarningPanel:CreateArea(L.Area_BugAlerts)
 generalBugsAlerts:CreateCheckButton(L.BadTimerAlert, true, nil, "BadTimerAlert")
+generalBugsAlerts:CreateCheckButton(L.BadIDAlert, true, nil, "BadIDAlert")

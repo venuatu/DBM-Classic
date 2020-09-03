@@ -296,6 +296,7 @@ DBM.DefaultOptions = {
 	WorldBossAlert = true,
 	WorldBuffAlert = true,
 	BadTimerAlert = false,
+	BadIDAlert = false,
 	AutoAcceptFriendInvite = false,
 	AutoAcceptGuildInvite = false,
 	FakeBWVersion = false,
@@ -6550,7 +6551,15 @@ end
 --Future proofing EJ_GetSectionInfo compat layer to make it easier updatable.
 function DBM:EJ_GetSectionInfo(sectionID)
 	return "EJ_GetSectionInfo"
---	local info = EJ_GetSectionInfo(sectionID);
+--	local info = EJ_GetSectionInfo(sectionID)
+--	if not info then
+--		if DBM.Options.BadIDAlert then
+--			AddMsg("|cffff0000Invalid call to EJ_GetSectionInfo for sectionID: |r"..sectionID..". Please report this bug")
+--		else
+--			DBM:Debug("|cffff0000Invalid call to EJ_GetSectionInfo for sectionID: |r"..sectionID)
+--		end
+--		return nil
+--	end
 --	local flag1, flag2, flag3, flag4;
 --	local flags = GetSectionIconFlags(sectionID);
 --	if flags then
@@ -6563,7 +6572,11 @@ end
 function DBM:GetSpellInfo(spellId)
 	local name, rank, icon, castingTime, minRange, maxRange, returnedSpellId  = GetSpellInfo(spellId)
 	if not returnedSpellId then--Bad request all together
-		DBM:Debug("|cffff0000Invalid call to GetSpellInfo for spellID: |r"..spellId)
+		if DBM.Options.BadIDAlert then
+			AddMsg("|cffff0000Invalid call to GetSpellInfo for spellID: |r"..spellId..". Please report this bug")
+		else
+			DBM:Debug("|cffff0000Invalid call to GetSpellInfo for spellID: |r"..spellId)
+		end
 		return nil
 	else--Good request, return now
 		return name, rank, icon, castingTime, minRange, maxRange, returnedSpellId
