@@ -71,8 +71,7 @@ do
 				DBM.Nameplate:Show(true, args.destGUID, 804, 135826, 4)
 			end
 			for i = 1, 40 do
-				local UnitID = "nameplate"..i
-				local GUID = UnitGUID(UnitID)
+				local GUID = UnitGUID("nameplate"..i)
 				if GUID and GUID == args.destGUID then--Bug is in nameplate range
 					specWarnExplodeBug:Show()
 					specWarnExplodeBug:Play("runaway")
