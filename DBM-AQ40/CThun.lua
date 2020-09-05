@@ -191,7 +191,8 @@ do
 			end
 			if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
 				DBM.InfoFrame:SetHeader(L.Stomach)
-				DBM.InfoFrame:Show(9, "function", updateInfoFrame, false, false)
+				DBM.InfoFrame:Show(42, "function", updateInfoFrame, false, false)
+				DBM.InfoFrame:SetColumns(1)
 			end
 		end
 	end
