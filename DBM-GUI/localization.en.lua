@@ -157,7 +157,7 @@ L.WorldBossAlert			= "Show alert message when world bosses might have been engag
 L.WorldBuffAlert			= "Show alert message and timer when world buff RP has been started on your realm"
 
 L.Area_BugAlerts			= "Bug Reporting Alert Options"
-L.BadTimerAlert				= "Show chat message when DBM detects a bad timer with at least 2 seconds of incorrectness"
+L.BadTimerAlert				= "Show chat message when DBM detects a bad timer with at least 1 second of incorrectness"
 L.BadIDAlert				= "Show chat message when DBM detects an invalid spell or journal ID in use"
 
 -- Tab: Barsetup
