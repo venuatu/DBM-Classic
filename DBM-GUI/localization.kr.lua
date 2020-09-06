@@ -153,6 +153,10 @@ L.Area_ChatAlerts			= "텍스트 알림 설정"
 L.WorldBossAlert			= "현재 서버에서 친구나 길드원이 필드 보스 전투를 시작하면 메시지 표시 (전송자가 연합 서버라면 부정확합니다)"
 L.WorldBuffAlert			= "서버에서 월드 버프 대사가 시작될 때 알림 메시지와 타이머 표시"
 
+L.Area_BugAlerts			= "버그 제보 알림 설정"
+L.BadTimerAlert				= "DBM이 최소 1초 이상 맞지 않는 불량 타이머를 감지했을 때 대화창에 메시지 표시"
+L.BadIDAlert				= "DBM에 쓰이는 주문이나 도감 ID가 잘못됐을 때 대화창에 메시지 표시"
+
 -- Tab: Barsetup
 L.BarSetup  				= "타이머"
 L.BarTexture 				= "바 텍스쳐"
