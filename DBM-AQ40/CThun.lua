@@ -118,8 +118,12 @@ function mod:OnCombatEnd(wipe, isSecondRun)
 end
 
 function mod:DarkGlare()
-	specWarnDarkGlare:Show()
-	specWarnDarkGlare:Play("laserrun")--Or "watchstep" ?
+	--ghost check, because if someone releases during encounter, this loop continues until they zone back in
+	--We don't want to spam dark glare warnings while they are a ghost outside running back on a wipe
+	if not UnitIsDeadOrGhost("player") then
+		specWarnDarkGlare:Show()
+		specWarnDarkGlare:Play("laserrun")--Or "watchstep" ?
+	end
 	timerDarkGlare:Start()
 	timerDarkGlareCD:Start()
 	self:ScheduleMethod(86, "DarkGlare")
@@ -187,7 +191,8 @@ do
 			end
 			if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
 				DBM.InfoFrame:SetHeader(L.Stomach)
-				DBM.InfoFrame:Show(5, "function", updateInfoFrame, false, false)
+				DBM.InfoFrame:Show(42, "function", updateInfoFrame, false, false)
+				DBM.InfoFrame:SetColumns(1)
 			end
 		end
 	end
