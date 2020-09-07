@@ -82,7 +82,7 @@ resetbutton:SetScript("OnClick", function()
 	DBM:RepositionFrames()
 end)
 
-local modelarea = DBM_GUI_Frame:CreateArea(L.ModelOptions)
+local modelarea = coreoptions:CreateArea(L.ModelOptions)
 
 modelarea:CreateCheckButton(L.EnableModels, true, nil, "EnableModels")
 
@@ -106,7 +106,7 @@ end)
 ModelSoundDropDown:SetPoint("TOPLEFT", modelarea.frame, "TOPLEFT", 0, -50)
 ModelSoundDropDown.myheight = 40
 
-local resizeOptions = DBM_GUI_Frame:CreateArea(L.ResizeOptions)
+local resizeOptions = coreoptions:CreateArea(L.ResizeOptions)
 
 local optionsFrame = _G["DBM_GUI_OptionsFrame"]
 
