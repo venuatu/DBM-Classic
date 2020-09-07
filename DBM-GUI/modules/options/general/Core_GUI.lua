@@ -1,5 +1,8 @@
 local L = DBM_GUI_L
-local generaloptions = DBM_GUI_Frame:CreateArea(L.General)
+
+local coreoptions = DBM_GUI.Cat_General:CreateNewPanel(L.Core_GUI, "option")
+
+local generaloptions = coreoptions:CreateArea(L.General)
 
 local MiniMapIcon = generaloptions:CreateCheckButton(L.EnableMiniMapIcon, true)
 MiniMapIcon:SetScript("OnClick", function(self)
