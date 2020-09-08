@@ -23,7 +23,6 @@ L.OTabPlugins	            = "核心插件"
 L.OTabOptions	            = "选项"
 L.OTabAbout		            = "关于"
 
-L.TabCategory_Options	 	= "综合设置"
 L.TabCategory_BFA	 		= "争霸艾泽拉斯"
 L.TabCategory_LEG	 		= "军团再临"
 L.TabCategory_WOD	 		= "德拉诺之王"
