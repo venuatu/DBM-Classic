@@ -169,7 +169,6 @@ L.UPDATEREMINDER_HEADER_ALPHA	    = "您正在使用Alpha的" .. L.DEADLY_BOSS_M
 L.UPDATEREMINDER_FOOTER			    = "按下 " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  "复制下载地址到剪切板。"
 L.UPDATEREMINDER_FOOTER_GENERIC	    = "按下 " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  "复制链接到剪切板。"
 L.UPDATEREMINDER_DISABLE			= "警告：你的" .. L.DEADLY_BOSS_MODS .. "已经过期太久，它已被强制禁用，直到你更新。这是为了确保它不会导致你或其他团队成员出错。"
---L.UPDATEREMINDER_NODISABLE		    = "警告：你的" .. L.DEADLY_BOSS_MODS .. "已经过期太久，此消息过了某些指标后不能被禁用，直到你更新。"
 L.UPDATEREMINDER_HOTFIX			    = "你的" .. L.DEADLY_BOSS_MODS .. "版本会在这首领战斗中有问题。最新版的" .. L.DBM .. "已经修复了这个问题。"
 L.UPDATEREMINDER_HOTFIX_ALPHA	    = "你的" .. L.DEADLY_BOSS_MODS .. "版本会在这首领战斗中有问题。最新版的" .. L.DBM .. "（或Alpha版本）已经修复了这个问题。"
 L.UPDATEREMINDER_MAJORPATCH		    = "你的" .. L.DEADLY_BOSS_MODS .. "已经过期,它已被禁用,直到你更新.这是为了确保它不会导致你或其他团队成员出错.这次更新是一个非常重要的补丁,请确保你得到的是最新版."
