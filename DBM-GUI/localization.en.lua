@@ -16,7 +16,6 @@ L.OTabPlugins	= "Core Plugins"
 L.OTabOptions	= GAMEOPTIONS_MENU
 L.OTabAbout		= "About"
 
-L.TabCategory_Options	 	= "General Options"
 L.TabCategory_BFA	 		= "Battle for Azeroth"
 L.TabCategory_LEG	 		= "Legion"
 L.TabCategory_WOD	 		= "Warlords of Draenor"
@@ -60,6 +59,9 @@ L.Statistic_BestRank		= "Best Rank:"--Maybe not get used, not sure yet, localize
 
 -- Tab: General Options
 L.TabCategory_Options	 	= "General Options"
+L.Area_BasicSetup			= "Initial DBM Setup Tips"
+L.Area_ModulesForYou		= "What DBM modules are right for you?"
+L.Area_ProfilesSetup		= "DBM Profiles usage guide"
 -- Panel: Core & GUI
 L.Core_GUI 					= "Core & GUI"
 L.General 					= "General DBM Core Options"
@@ -139,6 +141,9 @@ L.SelectModProfileDelete	= "Delete mod settings for"
 
 -- Tab: Alerts
 L.TabCategory_Alerts	 	= "Alerts"
+L.Area_SpecAnnounceConfig	= "Special Announce visuals and sound guide"
+L.Area_SpecAnnounceNotes	= "Special Announce Notes guide"
+L.Area_VoicePackInfo		= "Information on DBM Voice Packs"
 -- Panel: Raidwarning
 L.Tab_RaidWarning 			= "Announcements"
 L.RaidWarning_Header		= "Announce Options"
@@ -243,6 +248,7 @@ L.Area_EventSoundsFilters	= "Event Sound Filter Conditions"
 
 -- Tab: Timers
 L.TabCategory_Timers		= "Timers"
+L.Area_ColorBytype			= "Color bars by type guide"
 -- Panel: Color by Type
 L.Panel_ColorByType	 		= "Color by Type"
 L.AreaTitle_BarColors		= "Bar Colors by timer type"
@@ -319,6 +325,8 @@ L.FadeBar					= "Fade timers for out of range abilities"
 
 -- Tab: Global Disables & Filters
 L.TabCategory_Filters	 	= "Global Disables & Filters"
+L.Area_DBMFiltersSetup		= "DBM Filters guide"
+L.Area_BlizzFiltersSetup	= "Blizzard Filters guide"
 -- Panel: DBM Features
 L.Panel_SpamFilter			= "DBM Features"
 L.Area_SpamFilter_Anounces	= "Announce Global Disable & Filter Options"
@@ -395,6 +403,7 @@ L.DisableGuildStatus 		= "Disable progression messages from being sent to guild 
 
 -- Tab: Frames & Integrations
 L.TabCategory_Frames		= "Frames & Integrations"
+L.Area_NamelateInfo			= "DBM Nameplate Auras Info"
 -- Panel: InfoFrame
 L.Panel_InfoFrame			= "Infoframe"
 
