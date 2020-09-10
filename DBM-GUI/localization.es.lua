@@ -81,6 +81,11 @@ L.ModelSoundOptions			= "Sonido"
 L.ModelSoundShort			= "Corto"
 L.ModelSoundLong			= "Duración grande"
 
+L.ResizeOptions			 	= "Opciones de redimensionamiento"
+L.Button_ResetWindowSize	= "Restablecer el tamaño de la ventana"
+L.Editbox_WindowWidth		= "Anchura de la ventana"
+L.Editbox_WindowHeight		= "Altura de la ventana"
+
 L.Button_RangeFrame			= "Mostrar/ocultar\nmarco de distancia"
 L.Button_InfoFrame			= "Mostrar/ocultar\nmarco de información"
 L.Button_TestBars			= "Comprobar barras"
@@ -146,7 +151,7 @@ L.Area_NamelateInfo			= "Información sobre las Auras de la placa identificativa
 L.Panel_InfoFrame			= "Marco de información"
 
 -- Panel: Range
-L.Panel_Range				= "Marco de alcance"
+L.Panel_Range				= "Marco de distancia"
 
 -- Panel: Nameplate
 L.Panel_Nameplates			= "Placas identificativas"
@@ -370,6 +375,10 @@ L.Area_ChatAlerts			= "Opciones de alertas de texto"
 --L.CheckGear				= "Mostrar mensaje de alerta al iniciar un encuentro cuando tu nivel de equipo sea como mínimo 40 niveles menor que el de tu inventario o no tengas equipada un arma principal"
 L.WorldBossAlert			= "Mostrar mensaje de alerta cuando un amigo o miembro de hermandad inicie un encuentro contra un jefe de mundo (impreciso si el jugador en combate está en otro reino)"
 L.WorldBuffAlert			= "Mostrar mensaje de alerta y el temporizador cuando se haya iniciado buff mundial en tu reino"
+
+L.Area_BugAlerts			= "Opciones de alerta de informes de errores"
+L.BadTimerAlert				= "Mostrar mensaje de chat cuando DBM detecta un temporizador incorrecto con al menos 1 segundo de error"
+L.BadIDAlert				= "Mostrar mensaje de chat cuando DBM detecta un hechizo o ID de diario no válido en uso"
 --
 L.Area_SoundAlerts			= "Opciones de alertas de sonido e iluminación del icono del juego"
 L.LFDEnhance				= "Reproducir sonido de comprobación de banda e iluminar icono del juego para avisos del buscador de mazmorra/banda/grupo y campos de batalla por el canal de audio general o de diálogo (en otras palabras, reproduce el sonido aunque el canal de efectos de sonido esté desactivado, y en general suena más alto)"
@@ -420,6 +429,10 @@ L.SelectModProfileCopyNote	= "Copiar notas de"
 L.SelectModProfileDelete	= "Borrar configuración de"
 
 -- Misc
+L.Area_General				= "General"
+L.Area_Position				= "Posición"
+L.Area_Style				= "Estilo"
+
 L.FontType					= "Fuente"
 L.FontStyle					= "Contorno"
 L.FontColor					= "Texto"
