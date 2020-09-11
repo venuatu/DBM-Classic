@@ -200,16 +200,24 @@ function mod:OnSync(msg, count)
 	if msg == "Shatter" and count then
 		count = tonumber(count)
 		warnShatter:Show(count)
---		if count == 3 then
+		if count == 1 then
+			hits = math.min(hits, 100)-- 50/150
+		elseif count == 2 then
+			hits = math.min(hits, 50)-- 100/150
+--		elseif count == 3 then
 --			timerFrozen:Stop()
---		end
+		end
 	elseif msg == "Freeze" and count then
 		count = tonumber(count)
 		warnFreeze:Show(count)
-		if count == 3 then
+		if count == 1 then
+			hits = math.min(hits, 100)-- 100/200
+		elseif count == 2 then
+			hits = math.min(hits, 50)-- 150/200
+		elseif count == 3 then
 			timerFrozen:Start()
 			timerPoisonBoltVolleyCD:Stop()
-			hits = 75
+			hits = 150
 			self.vb.Frozen = true
 		end
 		BossVisible(self)
