@@ -13,6 +13,7 @@ mod:RegisterCombat("combat")
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS 25991 25896",
 	"SPELL_AURA_APPLIED 25989",
+	"UNIT_DIED",
 	"CHAT_MSG_MONSTER_EMOTE"
 )
 
@@ -29,6 +30,7 @@ mod:AddInfoFrameOption(nil, true)
 
 mod.vb.Frozen = false
 mod.vb.volleyCount = 0
+mod.vb.globsDead = 0
 
 local twipe = table.wipe
 local updateInfoFrame
@@ -51,6 +53,7 @@ end
 function mod:OnCombatStart(delay)
 	self.vb.Frozen = false
 	self.vb.volleyCount = 0
+	self.vb.globsDead = 0
 	timerPoisonBoltVolleyCD:Start(12.9, 1)
 	hits = 200
 	twipe(creatureIDCache)
@@ -77,6 +80,17 @@ do
 		sortedLines[1] = key
 
 		return lines, sortedLines
+	end
+end
+
+function mod:UNIT_DIED(args)
+	local cid = DBM:GetCIDFromGUID(args.destGUID)
+	if cid == 15667 then-- if all the globs are dead we'll never catch the rejoin cast
+		self.vb.globsDead = self.vb.globsDead + 1
+
+		if self.vb.globsDead >= 19 then
+			BossVisible(self)
+		end
 	end
 end
 
