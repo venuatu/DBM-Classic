@@ -35,7 +35,7 @@ local twipe = table.wipe
 local updateInfoFrame
 
 local NeededFrostHits		= 200
-local NeededPhysicalHits	= 75
+local NeededPhysicalHits	= 150
 local creatureIDCache		= {}
 local hits					= NeededFrostHits
 
@@ -155,13 +155,21 @@ function mod:OnSync(msg, count)
 	if msg == "Shatter" and count then
 		count = tonumber(count)
 		warnShatter:Show(count)
---		if count == 3 then
+		if count == 1 then
+			hits = math.min(hits, 100)
+		elseif count == 2 then
+			hits = math.min(hits, 50)
+		elseif count == 3 then
 --			timerFrozen:Stop()
---		end
+		end
 	elseif msg == "Freeze" and count then
 		count = tonumber(count)
 		warnFreeze:Show(count)
-		if count == 3 then
+		if count == 1 then
+			hits = math.min(hits, 100)
+		elseif count == 2 then
+			hits = math.min(hits, 50)
+		elseif count == 3 then
 			timerFrozen:Start()
 			timerPoisonBoltVolleyCD:Stop()
 			hits = NeededPhysicalHits
