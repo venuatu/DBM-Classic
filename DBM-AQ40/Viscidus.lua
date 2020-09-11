@@ -16,6 +16,7 @@ mod:RegisterEventsInCombat(
 	"RANGE_DAMAGE",
 	"SPELL_DAMAGE",
 	"SWING_DAMAGE",
+	"UNIT_DIED",
 	"CHAT_MSG_MONSTER_EMOTE"
 )
 
@@ -41,10 +42,12 @@ local hits					= NeededFrostHits
 
 mod.vb.Frozen = false
 mod.vb.volleyCount = 0
+mod.vb.globsDead = 0
 
 function mod:OnCombatStart(delay)
 	self.vb.Frozen = false
 	self.vb.volleyCount = 0
+	self.vb.globsDead = 0
 	timerPoisonBoltVolleyCD:Start(12.9, 1)
 	hits = NeededFrostHits
 	table.wipe(creatureIDCache)
@@ -62,6 +65,17 @@ function mod:BossVisible()
 	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
 		DBM.InfoFrame:SetHeader(L.HitsRemain)
 		DBM.InfoFrame:Show(1, "function", updateInfoFrame, false, false)
+	end
+end
+
+function mod:UNIT_DIED(args)
+	local cid = DBM:GetCIDFromGUID(args.destGUID)
+	if cid == 15667 then-- if all the globs are dead we'll never catch the rejoin cast
+		self.vb.globsDead = self.vb.globsDead + 1
+
+		if self.vb.globsDead >= 19 then
+			self:BossVisible()
+		end
 	end
 end
 
