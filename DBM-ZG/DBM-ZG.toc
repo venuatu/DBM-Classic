@@ -20,6 +20,8 @@
 ## X-DBM-Mod-Has-Single-Format: 1
 ## X-DBM-Mod-Sort: 11
 ## X-DBM-Mod-MapID: 309
+## X-DBM-Mod-MinCoreRevision: 12473
+## X-DBM-Mod-MinExpansion: 0
 localization.en.lua
 localization.de.lua
 localization.es.lua
