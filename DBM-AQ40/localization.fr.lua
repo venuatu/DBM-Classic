@@ -68,7 +68,7 @@ L:SetMiscLocalization{
 
 	HitsRemain	= "Touche restante",
 	Frost		= "Givre",
-	Physical	= "Physique"	
+	Physical	= "Physique"
 }
 -------------
 -- Huhuran --
