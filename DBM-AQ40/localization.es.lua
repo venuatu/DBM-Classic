@@ -64,7 +64,11 @@ L:SetMiscLocalization{
 	Frozen	= "no se puede mover!",
 	Phase4 	= "comienza a desmoronarse!",
 	Phase5 	= "parece a punto de hacerse añicos!",
-	Phase6 	= "explota!"
+	Phase6 	= "explota!",
+
+	HitsRemain	= "Golpes restantes",
+	Frost		= "Escarcha",
+	Physical	= "Daño físico"
 }
 -------------
 -- Huhuran --
