@@ -65,7 +65,6 @@ L:SetMiscLocalization{
 	Phase4 	= "begins to crack",
 	Phase5 	= "looks ready to shatter",
 	Phase6 	= "Explodes.",
-	
 	HitsRemain	= "Acertos restantes",
 	Frost		= "Gelo",
 	Physical	= "Dano físico"
