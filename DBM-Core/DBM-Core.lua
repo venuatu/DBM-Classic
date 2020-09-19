@@ -1366,13 +1366,13 @@ do
 			if GetAddOnEnableState(playerName, "DBM-SpellTimers") >= 1 then
 				local version = GetAddOnMetadata("DBM-SpellTimers", "Version") or "r0"
 				version = tonumber(string.sub(version, 2, 4)) or 0
-				if version < 122 then
+				if version < 122 and not self.Options.DebugMode then
 					self:Disable(true)
 					self:Schedule(15, infniteLoopNotice, self, L.OUTDATEDSPELLTIMERS)
 					return
 				end
 			end
-			if GetAddOnEnableState(playerName, "DBM-RaidLeadTools") >= 1 then
+			if GetAddOnEnableState(playerName, "DBM-RaidLeadTools") >= 1 and not self.Options.DebugMode then
 				self:Disable(true)
 				self:Schedule(15, infniteLoopNotice, self, L.OUTDATEDRLT)
 				return
@@ -1420,17 +1420,17 @@ do
 								sort			= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Sort") or mhuge) or mhuge,
 								type			= GetAddOnMetadata(i, "X-DBM-Mod-Type") or "OTHER",
 								category		= GetAddOnMetadata(i, "X-DBM-Mod-Category") or "Other",
-								optionsTab		= GetAddOnMetadata(i, "X-DBM-Mod-OptionsTab"),
+								statTypes		= GetAddOnMetadata(i, "X-DBM-StatTypes") or "",
 								name			= GetAddOnMetadata(i, "X-DBM-Mod-Name") or GetRealZoneText(tonumber(mapIdTable[1])) or L.UNKNOWN,
 								mapId			= mapIdTable,
 								subTabs			= GetAddOnMetadata(i, "X-DBM-Mod-SubCategoriesID") and {strsplit(",", GetAddOnMetadata(i, "X-DBM-Mod-SubCategoriesID"))} or GetAddOnMetadata(i, "X-DBM-Mod-SubCategories") and {strsplit(",", GetAddOnMetadata(i, "X-DBM-Mod-SubCategories"))},
-								oneFormat		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-Single-Format") or 0) == 1,
-								hasLFR			= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-LFR") or 0) == 1,
-								hasChallenge	= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-Challenge") or 0) == 1,
-								noHeroic		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-No-Heroic") or 0) == 1,
+								oneFormat		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-Single-Format") or 0) == 1, -- Deprecated
+								hasLFR			= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-LFR") or 0) == 1, -- Deprecated
+								hasChallenge	= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-Challenge") or 0) == 1, -- Deprecated
+								noHeroic		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-No-Heroic") or 0) == 1, -- Deprecated
+								hasMythic		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-Mythic") or 0) == 1, -- Deprecated
+								hasTimeWalker	= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-TimeWalker") or 0) == 1, -- Deprecated
 								noStatistics	= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-No-Statistics") or 0) == 1,
-								hasMythic		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-Mythic") or 0) == 1,
-								hasTimeWalker	= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Has-TimeWalker") or 0) == 1,
 								isWorldBoss		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-World-Boss") or 0) == 1,
 								isExpedition	= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-Expedition") or 0) == 1,
 								minRevision		= tonumber(GetAddOnMetadata(i, "X-DBM-Mod-MinCoreRevision") or 0),
@@ -2687,12 +2687,12 @@ do
 		if GetAddOnEnableState(playerName, "DBM-SpellTimers") >= 1 then
 			local version = GetAddOnMetadata("DBM-SpellTimers", "Version") or "r0"
 			version = tonumber(string.sub(version, 2, 4)) or 0
-			if version < 122 then
+			if version < 122 and not self.Options.DebugMode then
 				self:AddMsg(L.OUTDATEDSPELLTIMERS)
 				return
 			end
 		end
-		if GetAddOnEnableState(playerName, "DBM-RaidLeadTools") >= 1 then
+		if GetAddOnEnableState(playerName, "DBM-RaidLeadTools") >= 1 and not self.Options.DebugMode then
 			self:AddMsg(L.OUTDATEDRLT)
 			return
 		end
@@ -3184,26 +3184,27 @@ end
 --Player/Item
 ----<type>:<realmID>:<dbID>
 function DBM:GetCIDFromGUID(guid)
-	local type, _, playerdbID, _, _, cid, creationbits = strsplit("-", guid or "")
-	if type and (type == "Creature" or type == "Vehicle" or type == "Pet") then
+	local guidType, _, playerdbID, _, _, cid, _ = strsplit("-", guid or "")
+	if guidType and (guidType == "Creature" or guidType == "Vehicle" or guidType == "Pet") then
 		return tonumber(cid)
-	elseif type and (type == "Player" or type == "Item") then
+	elseif type and (guidType == "Player" or guidType == "Item") then
 		return tonumber(playerdbID)
 	end
 	return 0
 end
 
-function DBM:GetSpawnIdFromGUID(guid)
-	local type, _, playerdbID, _, _, cid, creationbits = strsplit("-", guid or "")
-	if type and (type == "Creature" or type == "Vehicle" or type == "Pet") then
-		return tostring(creationbits)
+function DBM:IsNonPlayableGUID(guid)
+	if type(guid) == "number" then return false end
+	local guidType = strsplit("-", guid or "")
+	if guidType and (guidType == "Creature" or guidType == "Vehicle" or guidType == "NPC") then--To determine, add pet or not?
+		return true
 	end
-	return ""
+	return false
 end
 
 function DBM:IsCreatureGUID(guid)
-	local type = strsplit("-", guid or "")
-	if type and (type == "Creature" or type == "Vehicle") then--To determine, add pet or not?
+	local guidType = strsplit("-", guid or "")
+	if guidType and (guidType == "Creature" or guidType == "Vehicle") then--To determine, add pet or not?
 		return true
 	end
 	return false
@@ -6566,10 +6567,12 @@ end
 function DBM:GetSpellInfo(spellId)
 	local name, rank, icon, castingTime, minRange, maxRange, returnedSpellId  = GetSpellInfo(spellId)
 	if not returnedSpellId then--Bad request all together
-		if DBM.Options.BadIDAlert then
-			self:AddMsg("|cffff0000Invalid call to GetSpellInfo for spellID: |r"..spellId..". Please report this bug")
-		else
-			self:Debug("|cffff0000Invalid call to GetSpellInfo for spellID: |r"..spellId)
+		if spellId > 4 then
+			if self.Options.BadIDAlert then
+				self:AddMsg("|cffff0000Invalid call to GetSpellInfo for spellID: |r"..spellId..". Please report this bug")
+			else
+				self:Debug("|cffff0000Invalid call to GetSpellInfo for spellID: |r"..spellId)
+			end
 		end
 		return nil
 	else--Good request, return now
@@ -10190,10 +10193,11 @@ do
 							local ttext = _G[bar.frame:GetName().."BarName"]:GetText() or ""
 							ttext = ttext.."("..self.id..")"
 							if bar.timer > 0.2 then
+								local phaseText = self.mod.vb.phase and " ("..SCENARIO_STAGE:format(self.mod.vb.phase)..")" or ""
 								if DBM.Options.BadTimerAlert and bar.timer > 1 then--If greater than 1 seconds off, report this out of debug mode to all users
-									DBM:AddMsg("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining..". Please report this bug", 2)
+									DBM:AddMsg("Timer "..ttext..phaseText.. " refreshed before expired. Remaining time is : "..remaining..". Please report this bug", 2)
 								else
-									DBM:Debug("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining, 2)
+									DBM:Debug("Timer "..ttext..phaseText.. " refreshed before expired. Remaining time is : "..remaining, 2)
 								end
 							end
 						end
@@ -10264,10 +10268,11 @@ do
 						local ttext = _G[bar.frame:GetName().."BarName"]:GetText() or ""
 						ttext = ttext.."("..self.id..")"
 						if bar.timer > 0.2 then
+							local phaseText = self.mod.vb.phase and " ("..SCENARIO_STAGE:format(self.mod.vb.phase)..")" or ""
 							if DBM.Options.BadTimerAlert and bar.timer > 1 then--If greater than 1 seconds off, report this out of debug mode to all users
-								DBM:AddMsg("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining..". Please report this bug", 2)
+								DBM:AddMsg("Timer "..ttext..phaseText.. " refreshed before expired. Remaining time is : "..remaining..". Please report this bug", 2)
 							else
-								DBM:Debug("Timer "..ttext.. " refreshed before expired. Remaining time is : "..remaining, 2)
+								DBM:Debug("Timer "..ttext..phaseText.. " refreshed before expired. Remaining time is : "..remaining, 2)
 							end
 						end
 					end
@@ -10313,7 +10318,16 @@ do
 			--Keep: true or nil, whether or not to keep bar on screen when it expires (if true, timer should be retained until an actual TimerStop occurs or a new TimerStart with same barId happens (in which case you replace bar with new one)
 			--fade: true or nil, whether or not to fade a bar (set alpha to usersetting/2)
 			--spellName: Sent so users can use a spell name instead of spellId, if they choose. Mostly to be more classic wow friendly, spellID is still preferred method (even for classic)
-			fireEvent("DBM_TimerStart", id, msg, timer, self.icon, self.type, self.spellId, colorId, self.mod.id, self.keep, self.fade, self.name)
+			local guid
+			if select("#", ...) > 0 then--If timer has args
+				for i = 1, select("#", ...) do
+					local v = select(i, ...)
+					if DBM:IsNonPlayableGUID(v) then--Then scan them for a mob guid
+						guid = v--If found, guid will be passed in DBM_TimerStart callback
+					end
+				end
+			end
+			fireEvent("DBM_TimerStart", id, msg, timer, self.icon, self.type, self.spellId, colorId, self.mod.id, self.keep, self.fade, self.name, guid)
 			tinsert(self.startedTimers, id)
 			if not self.keep then--Don't ever remove startedTimers on a schedule, if it's a keep timer
 				self.mod:Unschedule(removeEntry, self.startedTimers, id)
@@ -10416,7 +10430,14 @@ do
 			local id = self.id..pformat((("\t%s"):rep(select("#", ...))), ...)
 			for i = #self.startedTimers, 1, -1 do
 				if self.startedTimers[i] == id then
-					fireEvent("DBM_TimerStop", id)
+					local guid
+					for j = 1, select("#", ...) do
+						local v = select(j, ...)
+						if DBM:IsNonPlayableGUID(v) then--Then scan them for a mob guid
+							guid = v--If found, guid will be passed in DBM_TimerStart callback
+						end
+					end
+					fireEvent("DBM_TimerStop", id, guid)
 					DBM.Bars:CancelBar(id)
 					DBM:Unschedule(playCountSound, id)--Unschedule countdown by timerId
 					tremove(self.startedTimers, i)
@@ -11865,8 +11886,8 @@ function bossModPrototype:SetModelRotation(r)
 	self.modelRotation = r
 end
 
-function bossModPrototype:SetModelMoveSpeed(v)
-	self.modelMoveSpeed = v
+function bossModPrototype:SetModelSequence(v)
+	self.modelSequence = v
 end
 
 function bossModPrototype:SetModelID(id)
@@ -11876,14 +11897,6 @@ end
 function bossModPrototype:SetModelSound(long, short)--PlaySoundFile prototype for model viewer, long is long sound, short is a short clip, configurable in UI, both sound paths defined in boss mods.
 	self.modelSoundLong = long
 	self.modelSoundShort = short
-end
-
-function bossModPrototype:EnableModel()
-	self.modelEnabled = true
-end
-
-function bossModPrototype:DisableModel()
-	self.modelEnabled = nil
 end
 
 --------------------
