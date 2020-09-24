@@ -2670,6 +2670,118 @@ function DBM:ShowPizzaInfo(id, sender)
 	end
 end
 
+------------------
+--  Hyperlinks  --
+------------------
+do
+	local ignore, cancel
+	local popuplevel = 0
+	local function showPopupConfirmIgnore(ignore, cancel)
+		local popup = CreateFrame("Frame", "DBMHyperLinks", UIParent, DBM:IsAlpha() and "BackdropTemplate")
+		popup.backdropInfo = {
+			bgFile		= "Interface\\DialogFrame\\UI-DialogBox-Background-Dark", -- 312922
+			edgeFile	= "Interface\\DialogFrame\\UI-DialogBox-Border", -- 131072
+			tile		= true,
+			tileSize	= 16,
+			edgeSize	= 16,
+			insets		= { left = 1, right = 1, top = 1, bottom = 1 }
+		}
+		if not DBM:IsAlpha() then
+			popup:SetBackdrop(popup.backdropInfo)
+		else
+			popup:ApplyBackdrop()
+		end
+		popup:SetSize(500, 80)
+		popup:SetPoint("TOP", UIParent, "TOP", 0, -200)
+		popup:SetFrameStrata("DIALOG")
+		popup:SetFrameLevel(popuplevel)
+		popuplevel = popuplevel + 1
+
+		local text = popup:CreateFontString()
+		text:SetFontObject(ChatFontNormal)
+		text:SetWidth(470)
+		text:SetWordWrap(true)
+		text:SetPoint("TOP", popup, "TOP", 0, -15)
+		text:SetText(L.PIZZA_CONFIRM_IGNORE:format(ignore))
+
+		local accept = CreateFrame("Button", nil, popup)
+		accept:SetNormalTexture(130763)--"Interface\\Buttons\\UI-DialogBox-Button-Up"
+		accept:SetPushedTexture(130761)--"Interface\\Buttons\\UI-DialogBox-Button-Down"
+		accept:SetHighlightTexture(130762, "ADD")--"Interface\\Buttons\\UI-DialogBox-Button-Highlight"
+		accept:SetSize(128, 35)
+		accept:SetPoint("BOTTOM", popup, "BOTTOM", -75, 0)
+		accept:SetScript("OnClick", function(f) DBM:AddToPizzaIgnore(ignore) DBM.Bars:CancelBar(cancel) f:GetParent():Hide() end)
+
+		local atext = accept:CreateFontString()
+		atext:SetFontObject(ChatFontNormal)
+		atext:SetPoint("CENTER", accept, "CENTER", 0, 5)
+		atext:SetText(YES)
+
+		local decline = CreateFrame("Button", nil, popup)
+		decline:SetNormalTexture(130763)--"Interface\\Buttons\\UI-DialogBox-Button-Up"
+		decline:SetPushedTexture(130761)--"Interface\\Buttons\\UI-DialogBox-Button-Down"
+		decline:SetHighlightTexture(130762, "ADD")--"Interface\\Buttons\\UI-DialogBox-Button-Highlight"
+		decline:SetSize(128, 35)
+		decline:SetPoint("BOTTOM", popup, "BOTTOM", 75, 0)
+		decline:SetScript("OnClick", function(f) f:GetParent():Hide() end)
+
+		local dtext = decline:CreateFontString()
+		dtext:SetFontObject(ChatFontNormal)
+		dtext:SetPoint("CENTER", decline, "CENTER", 0, 5)
+		dtext:SetText(NO)
+		PlaySound(850)
+	end
+
+	local function linkHook(self, link, string, button, ...)
+		local linkType, arg1, arg2, arg3, arg4, arg5, arg6 = strsplit(":", link)
+		if linkType ~= "DBM" then
+			return
+		end
+		if arg1 == "cancel" then
+			DBM.Bars:CancelBar(link:match("DBM:cancel:(.+):nil$"))
+		elseif arg1 == "ignore" then
+			cancel = link:match("DBM:ignore:(.+):[^%s:]+$")
+			ignore = link:match(":([^:]+)$")
+			showPopupConfirmIgnore(ignore, cancel)
+		elseif arg1 == "update" then
+			DBM:ShowUpdateReminder(arg2, arg3) -- displayVersion, revision
+--		elseif arg1 == "forumsnews" then
+--			DBM:ShowUpdateReminder(nil, nil, DBM_FORUMS_COPY_URL_DIALOG_NEWS, "https://discord.gg/DF5mffk")
+--		elseif arg1 == "forums" then
+--			DBM:ShowUpdateReminder(nil, nil, DBM_FORUMS_COPY_URL_DIALOG)
+		elseif arg1 == "showRaidIdResults" then
+			DBM:ShowRaidIDRequestResults()
+		elseif arg1 == "noteshare" then
+			local mod = DBM:GetModByName(arg2 or "")
+			if mod then
+				DBM:ShowNoteEditor(mod, arg3, arg4, arg5, arg6)--modvar, ability, text, sender
+			else--Should not happen, since mod was verified before getting this far, but just in case
+				DBM:Debug("Bad note share, mod not valid")
+			end
+		end
+	end
+--	local frame = _G[tostring(DBM.Options.ChatFrame)]
+--	frame = frame and frame:IsShown() and frame or DEFAULT_CHAT_FRAME
+	DEFAULT_CHAT_FRAME:HookScript("OnHyperlinkClick", linkHook) -- handles the weird case that the default chat frame is not one of the normal chat frames (3rd party chat frames or whatever causes this)
+	local i = 1
+	while _G["ChatFrame" .. i] do
+		if _G["ChatFrame" .. i] ~= DEFAULT_CHAT_FRAME then
+			_G["ChatFrame" .. i]:HookScript("OnHyperlinkClick", linkHook)
+		end
+		i = i + 1
+	end
+end
+
+do
+	local old = ItemRefTooltip.SetHyperlink -- we have to hook this function since the default ChatFrame code assumes that all links except for player and channel links are valid arguments for this function
+	function ItemRefTooltip:SetHyperlink(link, ...)
+		if link and link:sub(0, 4) == "DBM:" then
+			return
+		end
+		return old(self, link, ...)
+	end
+end
+
 -----------------
 --  GUI Stuff  --
 -----------------
@@ -4203,7 +4315,8 @@ do
 		if mod and modvar and text and text ~= "" then
 			if DBM:AntiSpam(5, modvar) then--Don't allow calling same note more than once per 5 seconds
 				DBM:AddMsg(L.NOTE_SHARE_SUCCESS:format(sender, abilityName))
-				DBM:ShowNoteEditor(mod, modvar, ability, text, sender)
+				DBM:AddMsg(("|HDBM:noteshare:%s:%s:%s:%s:%s|h|cff3588ff[%s]|r|h"):format(modid, modvar, ability, text, sender, L.NOTE_SHARE_LINK))
+				--DBM:ShowNoteEditor(mod, modvar, ability, text, sender)
 			else
 				DBM:Debug(sender.." is attempting to send too many notes so notes are being throttled")
 			end
@@ -6394,7 +6507,7 @@ end
 --Only 1, 9, and 148 used in classic, but this fork of DBM will be used for BC and wrath remakes as well, which will use a lot more, or even classic+ if it happens
 function DBM:GetCurrentInstanceDifficulty()
 	local _, instanceType, difficulty, difficultyName, _, _, _, _, instanceGroupSize = GetInstanceInfo()
-	if difficulty == 0 or (difficulty == 1 and instanceType == "none") then--draenor field returns 1, causing world boss mod bug.
+	if difficulty == 0 or difficulty == 172 or (difficulty == 1 and instanceType == "none") then--draenor field returns 1, causing world boss mod bug.
 		return "worldboss", RAID_INFO_WORLD_BOSS.." - ", difficulty, instanceGroupSize
 	elseif difficulty == 1 then--5 man Normal Dungeon
 		return "normal5", difficultyName.." - ", difficulty, instanceGroupSize
@@ -6449,6 +6562,10 @@ function DBM:GetCurrentInstanceDifficulty()
 		return "normal20", difficultyName.." - ",difficulty, instanceGroupSize
 	elseif difficulty == 149 then--Heroic BfA Warfront
 		return "heroicwarfront", difficultyName.." - ",difficulty, instanceGroupSize
+	elseif difficulty == 152 or difficulty == 167 then--Visions of Nzoth (bfa), Torghast (shadowlands)
+		return "progressivechallenges", difficultyName.." - ",difficulty, instanceGroupSize, 0
+	elseif difficulty == 153 then---Teaming BfA? Island expedition
+		return "teamingisland", difficultyName.." - ",difficulty, instanceGroupSize, 0
 	else--failsafe
 		return "normal", "", difficulty, instanceGroupSize
 	end
