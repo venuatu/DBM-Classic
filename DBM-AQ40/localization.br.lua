@@ -103,14 +103,14 @@ L:SetWarningLocalization{
 	WarnClawTentacle2		= "Tentáculo de Garra",
 	WarnGiantEyeTentacle	= "Tentóculo Gigante",
 	WarnGiantClawTentacle	= "Tentáculo de Garra Gigante",
-	SpecWarnWeakened		= "C'Thun enfraquecido!"
+	SpecWarnWeakened		= "C'Thun enfraquece!"
 }
 L:SetTimerLocalization{
 	TimerEyeTentacle		= "Próximo Tentóculo",
 	TimerClawTentacle		= "Próximo Tentáculo de Garra",
 	TimerGiantEyeTentacle	= "Próximo Tentóculo Gigante",
 	TimerGiantClawTentacle	= "Próximo Tentáculo de Garra Gigante",
-	TimerWeakened			= "Enfraquecido acaba"
+	TimerWeakened			= "Enfraquece acaba"
 }
 L:SetOptionLocalization{
 	WarnEyeTentacle			= "Exibir aviso para Tentóculo",
@@ -129,7 +129,7 @@ L:SetMiscLocalization{
 	Stomach		= "Estômago",
 	Eye			= "Olho de C'Thun",
 	FleshTent	= "Tentáculo de Carne",
-	Weakened 	= "enfraquecido",
+	Weakened 	= "enfraquece!",
 	NotValid	= "AQ40 parcialmente limpo. %s chefes opcionais permanecem."
 }
 ----------------
@@ -138,7 +138,7 @@ L:SetMiscLocalization{
 L = DBM:GetModLocalization("Ouro")
 
 L:SetGeneralLocalization{
-	name = "Ouro"
+	name = "Ouroboros"
 }
 L:SetWarningLocalization{
 	WarnSubmerge		= "Submersão",
