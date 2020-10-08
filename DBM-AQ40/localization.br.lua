@@ -52,19 +52,19 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnFreeze	= "Congelamento: %d/3",
-	WarnShatter	= "Shatter: %d/3"
+	WarnShatter	= "Estilhaçar: %d/3"
 }
 L:SetOptionLocalization{
 	WarnFreeze	= "Anunciar status de congelamento",
-	WarnShatter	= "Announce Shatter status" -- check when I have phase5 emote
+	WarnShatter	= "Anunciar status de estilhaçar"
 }
 L:SetMiscLocalization{
-	Slow	= "begins to slow",
-	Freezing= "is freezing up",
-	Frozen	= "is frozen solid",
-	Phase4 	= "begins to crack",
-	Phase5 	= "looks ready to shatter",
-	Phase6 	= "Explodes.",
+	Slow	= "começa a ficar lento!",
+	Freezing= "está congelando!",
+	Frozen	= "está totalmente congelado!",
+	Phase4 	= "começa a rachar!",
+	Phase5 	= "parece estar a ponto de se estilhaçar!",
+	Phase6 	= "explode!",
 	HitsRemain	= "Acertos restantes",
 	Frost		= "Gelo",
 	Physical	= "Dano físico"
