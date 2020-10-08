@@ -104,7 +104,6 @@ L:SetWarningLocalization{
 	WarnClawTentacle2		= "Tentáculo Garral",
 	WarnGiantEyeTentacle	= "Tentáculo ocular gigante",
 	WarnGiantClawTentacle	= "Tentáculo garral gigante",
-	WarnWeakened			= "C'Thun débil",
 	SpecWarnWeakened		= "¡C'Thun está débil!"
 }
 L:SetTimerLocalization{
