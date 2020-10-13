@@ -2677,7 +2677,7 @@ do
 	local ignore, cancel
 	local popuplevel = 0
 	local function showPopupConfirmIgnore(ignore, cancel)
-		local popup = CreateFrame("Frame", "DBMHyperLinks", UIParent, DBM:IsAlpha() and "BackdropTemplate")
+		local popup = CreateFrame("Frame", "DBMHyperLinks", UIParent)
 		popup.backdropInfo = {
 			bgFile		= "Interface\\DialogFrame\\UI-DialogBox-Background-Dark", -- 312922
 			edgeFile	= "Interface\\DialogFrame\\UI-DialogBox-Border", -- 131072
@@ -2686,11 +2686,7 @@ do
 			edgeSize	= 16,
 			insets		= { left = 1, right = 1, top = 1, bottom = 1 }
 		}
-		if not DBM:IsAlpha() then
-			popup:SetBackdrop(popup.backdropInfo)
-		else
-			popup:ApplyBackdrop()
-		end
+		popup:SetBackdrop(popup.backdropInfo)
 		popup:SetSize(500, 80)
 		popup:SetPoint("TOP", UIParent, "TOP", 0, -200)
 		popup:SetFrameStrata("DIALOG")
