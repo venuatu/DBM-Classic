@@ -222,10 +222,6 @@ L:SetWarningLocalization({
 	WarningChargeNotChanged	= "Sua polaridade não mudou"
 })
 
-L:SetOptionCatLocalization({
-	Arrows	= "Setas"
-})
-
 --------------------------
 -- Instructor Razuvious --
 --------------------------
