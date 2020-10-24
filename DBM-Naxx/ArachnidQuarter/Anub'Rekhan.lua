@@ -18,7 +18,7 @@ local warningLocustFaded	= mod:NewFadesAnnounce(28785, 1)
 
 local specialWarningLocust	= mod:NewSpecialWarningSpell(28785, nil, nil, nil, 2, 2)
 
-local timerLocustIn			= mod:NewCDTimer(80, 28785, nil, nil, nil, 6)
+local timerLocustIn			= mod:NewCDTimer(80, 28785, nil, nil, nil, 6)-- 80-104
 local timerLocustFade 		= mod:NewBuffActiveTimer(26, 28785, nil, nil, nil, 6)
 
 function mod:OnCombatStart(delay)

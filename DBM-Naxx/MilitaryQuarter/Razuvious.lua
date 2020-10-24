@@ -17,7 +17,7 @@ local warnShoutNow		= mod:NewSpellAnnounce(29107, 1)
 local warnShoutSoon		= mod:NewSoonAnnounce(29107, 3)
 local warnShieldWall	= mod:NewAnnounce("WarningShieldWallSoon", 3, 29061)
 
-local timerShout		= mod:NewCDTimer(26, 29107, nil, nil, nil, 2)--26 in classic, 16 in wrath
+local timerShout		= mod:NewCDTimer(25.8, 29107, nil, nil, nil, 2)-- 25.87-25.96 in classic, 16 in wrath
 local timerTaunt		= mod:NewCDTimer(60, 29060, nil, nil, nil, 5, nil, DBM_CORE_L.TANK_ICON)
 local timerShieldWall	= mod:NewBuffFadesTimer(20, 29061, nil, nil, nil, 5, nil, DBM_CORE_L.TANK_ICON)
 

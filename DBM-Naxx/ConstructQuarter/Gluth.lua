@@ -16,7 +16,7 @@ local warnDecimateSoon	= mod:NewSoonAnnounce(28374, 2)
 local warnDecimateNow	= mod:NewSpellAnnounce(28374, 3)
 
 local enrageTimer		= mod:NewBerserkTimer(420)
-local timerDecimate		= mod:NewCDTimer(104, 28374, nil, nil, nil, 2)
+local timerDecimate		= mod:NewCDTimer(120, 28374, nil, nil, nil, 2)--120-182
 
 function mod:OnCombatStart(delay)
 	enrageTimer:Start(420 - delay)
@@ -35,5 +35,3 @@ do
 		end
 	end
 end
-
-
