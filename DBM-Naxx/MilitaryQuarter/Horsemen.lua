@@ -20,11 +20,11 @@ local warnMeteor				= mod:NewSpellAnnounce(28884, 4)
 
 local specWarnMarkOnPlayer		= mod:NewSpecialWarning("SpecialWarningMarkOnPlayer", nil, nil, nil, 1, 6)
 
-local timerMarkCD				= mod:NewCDTimer(12, 28835, nil, nil, nil, 3)
+local timerMarkCD				= mod:NewCDTimer(12.9, 28835, nil, nil, nil, 3)-- 12.9
 
 
 function mod:OnCombatStart(delay)
-	--timerMarkCD:Start()
+	timerMarkCD:Start(20.9 - delay)-- 20.98-21.44
 	--warnMarkSoon:Schedule(7)
 end
 
@@ -59,4 +59,3 @@ do
 		end
 	end
 end
-
