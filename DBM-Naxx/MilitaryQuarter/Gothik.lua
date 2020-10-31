@@ -60,7 +60,7 @@ end
 function mod:NextWave()
 	self.vb.wave = self.vb.wave + 1
 	warnWaveNow:Show(self.vb.wave, getWaveString(self.vb.wave))
-	local next = waves[self.vb.wave].next
+	local next = wavesClassic[self.vb.wave].next
 	if next then
 		timerWave:Start(next, self.vb.wave + 1)
 		warnWaveSoon:Schedule(next - 3, self.vb.wave + 1, getWaveString(self.vb.wave + 1))
