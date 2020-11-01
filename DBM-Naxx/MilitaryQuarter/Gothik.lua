@@ -48,9 +48,9 @@ local wavesClassic = {
 
 local function getWaveString(wave)
 	local waveInfo = wavesClassic[wave]
-	if #waveInfo == 2 then--Shouldn't this be 3?
+	if #waveInfo == 2 then
 		return L.WarningWave1:format(unpack(waveInfo))
-	elseif #waveInfo == 4 then--Shouldn't this be 5?
+	elseif #waveInfo == 4 then
 		return L.WarningWave2:format(unpack(waveInfo))
 	elseif #waveInfo == 6 then
 		return L.WarningWave3:format(unpack(waveInfo))
