@@ -25,7 +25,30 @@ local timerWave			= mod:NewTimer(20, "TimerWave", "135974", nil, nil, 1)
 mod.vb.wave = 0
 
 --TODO, actual wave info and timer verification, this is Naxx25 data
+
 local wavesClassic = {
+	{3, L.Trainee, next = 20},
+	{3, L.Trainee, next = 20},
+	{3, L.Trainee, next = 10},
+	{2, L.Knight, next = 10},
+	{3, L.Trainee, next = 15},
+	{2, L.Knight, next = 5},
+	{3, L.Trainee, next = 20},
+	{2, L.Knight, 3, L.Trainee, next = 10},
+	{1, L.Rider, next = 10},
+	{3, L.Trainee, next = 5},
+	{2, L.Knight, next = 15},
+	{1, L.Rider, 3, L.Trainee, next = 10},
+	{2, L.Knight, next = 10},
+	{3, L.Trainee, next = 10},
+	{1, L.Rider, next = 5},
+	{2, L.Knight, next = 5},
+	{3, L.Trainee, next = 20},
+	{1, L.Rider, 2, L.Knight, 3, L.Trainee},
+}
+
+--[[
+local wavesWrath25 = {
 	{3, L.Trainee, next = 20},
 	{3, L.Trainee, next = 20},
 	{3, L.Trainee, next = 10},
@@ -45,6 +68,7 @@ local wavesClassic = {
 	{1, L.Rider, 3, L.Trainee, next = 20},
 	{1, L.Rider, 2, L.Knight, 3, L.Trainee},
 }
+--]]
 
 local function getWaveString(wave)
 	local waveInfo = wavesClassic[wave]
@@ -72,10 +96,10 @@ function mod:OnCombatStart(delay)
 	self.vb.wave = 0
 	timerPhase2:Start()
 	warnPhase2:Schedule(270)
-	timerWave:Start(25, self.vb.wave + 1)
-	warnWaveSoon:Schedule(22, self.vb.wave + 1, getWaveString(self.vb.wave + 1))
-	self:ScheduleMethod(25, "NextWave")
-	DBM:AddMsg("Add timers/spawn names are probably not correct, as they are from Naxx 25. You can help correct this by sharing well angled videos of mobs spawning in that show the SPAWNING (not running in from a blind spot)")
+	timerWave:Start(27, self.vb.wave + 1)
+	warnWaveSoon:Schedule(24, self.vb.wave + 1, getWaveString(self.vb.wave + 1))
+	self:ScheduleMethod(27, "NextWave")
+--	DBM:AddMsg("Add timers/spawn names are probably not correct, as they are from Naxx 25. You can help correct this by sharing well angled videos of mobs spawning in that show the SPAWNING (not running in from a blind spot)")
 end
 
 function mod:UNIT_DIED(args)
