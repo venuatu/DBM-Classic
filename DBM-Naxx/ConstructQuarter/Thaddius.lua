@@ -14,6 +14,7 @@ mod:RegisterEventsInCombat(
 	"UNIT_AURA player"
 )
 
+--TODO, UNIT_AURA might not work in classic? I didn't see any warnings on stream. May have to just do UnitDebuff() on self when cast finishes
 local warnShiftSoon			= mod:NewPreWarnAnnounce(28089, 5, 3)
 local warnShiftCasting		= mod:NewCastAnnounce(28089, 4)
 local warnChargeChanged		= mod:NewSpecialWarning("WarningChargeChanged")
