@@ -56,7 +56,7 @@ do
 
 	function mod:SPELL_AURA_REMOVED(args)
 		--if args:IsSpellID(28785, 54021) and args.auraType == "BUFF" then
-		if args.spellName == LocustSwarm and args.auraType == "BUFF" then
+		if args.spellName == LocustSwarm and args:IsDestTypeHostile() then--Want it removing from boss, not players, without ID we check hostility of affected unit
 			warningLocustFaded:Show()
 			timerLocustIn:Start()
 			warningLocustSoon:Schedule(62)
