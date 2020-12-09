@@ -309,6 +309,7 @@ DBM.DefaultOptions = {
 	ShortTimerText = true,
 	ChatFrame = "DEFAULT_CHAT_FRAME",
 	CoreSavedRevision = 1,
+	SilentMode = false,
 }
 
 DBM.Bars = DBT:New()
