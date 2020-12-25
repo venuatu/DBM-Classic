@@ -59,6 +59,12 @@ local function AnnounceChainsTargets(self)
 end
 
 local function AnnounceBlastTargets(self)
+	if self.Options.SetIconOnFrostTomb then
+		for i = #frostBlastTargets, 1, -1 do
+			self:SetIcon(frostBlastTargets[i], 8 - i, 4.5)
+			frostBlastTargets[i] = nil
+		end
+	end
 	if self.Options.SpecWarn27808target then
 		specWarnBlast:Show(table.concat(frostBlastTargets, "< >"))
 		specWarnBlast:Play("healall")
@@ -66,12 +72,6 @@ local function AnnounceBlastTargets(self)
 		warnBlastTargets:Show(table.concat(frostBlastTargets, "< >"))
 	end
 	timerfrostBlast:Start(3.5)
-	if self.Options.SetIconOnFrostTomb then
-		for i = #frostBlastTargets, 1, -1 do
-			self:SetIcon(frostBlastTargets[i], 8 - i, 4.5)
-			frostBlastTargets[i] = nil
-		end
-	end
 end
 
 local function RangeToggle(show)
