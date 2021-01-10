@@ -50,13 +50,6 @@ mod.vb.phase = 1
 mod.vb.warnedAdds = false
 mod.vb.MCIcon = 1
 local frostBlastTargets = {}
-local chainsTargets = {}
-
-local function AnnounceChainsTargets(self)
-	warnChainsTargets:Show(table.concat(chainsTargets, "< >"))
-	table.wipe(chainsTargets)
-	self.vb.MCIcon = 1
-end
 
 local function AnnounceBlastTargets(self)
 	if self.Options.SetIconOnFrostTomb then
@@ -64,12 +57,6 @@ local function AnnounceBlastTargets(self)
 			self:SetIcon(frostBlastTargets[i], 8 - i, 4.5)
 			frostBlastTargets[i] = nil
 		end
-	end
-	if self.Options.SpecWarn27808target then
-		specWarnBlast:Show(table.concat(frostBlastTargets, "< >"))
-		specWarnBlast:Play("healall")
-	else
-		warnBlastTargets:Show(table.concat(frostBlastTargets, "< >"))
 	end
 	timerfrostBlast:Start(3.5)
 end
@@ -84,7 +71,6 @@ end
 
 function mod:OnCombatStart(delay)
 	self.vb.phase = 1
-	table.wipe(chainsTargets)
 	table.wipe(frostBlastTargets)
 	self.vb.warnedAdds = false
 	self.vb.MCIcon = 1
@@ -124,6 +110,12 @@ do
 			table.insert(frostBlastTargets, args.destName)
 			self:Unschedule(AnnounceBlastTargets)
 			self:Schedule(0.5, AnnounceBlastTargets, self)
+			if self.Options.SpecWarn27808target then
+				specWarnBlast:CombinedShow(0.5, args.destName)
+				specWarnBlast:ScheduleVoice(0.5, "healall")
+			else
+				warnBlastTargets:CombinedShow(0.5, args.destName)
+			end
 		--elseif args.spellId == 27819 then -- Mana Bomb
 		elseif args.spellName == ManaBomb then
 			if self.Options.SetIconOnManaBomb then
@@ -138,20 +130,15 @@ do
 			end
 		--elseif args.spellId == 28410 then -- Chains of Kel'Thuzad
 		elseif args.spellName == ChainsofKT then
-			chainsTargets[#chainsTargets + 1] = args.destName
---			if self:AntiSpam() then
+			if self:AntiSpam() then
+				self.vb.MCIcon = 1
 				--timerMCCD:Start(60)--60 seconds?
---			end
+			end
 			if self.Options.SetIconOnMC then
 				self:SetIcon(args.destName, self.vb.MCIcon)
 			end
 			self.vb.MCIcon = self.vb.MCIcon + 1
-			self:Unschedule(AnnounceChainsTargets)
-			if #chainsTargets >= 5 then--Not sure max targets on 40 man but def more than 3, looked like 5
-				AnnounceChainsTargets(self)
-			else
-				self:Schedule(1.0, AnnounceChainsTargets, self)
-			end
+			warnChainsTargets:CombinedShow(1, args.destName)
 		end
 	end
 
