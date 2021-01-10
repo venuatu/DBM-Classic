@@ -139,9 +139,9 @@ do
 		--elseif args.spellId == 28410 then -- Chains of Kel'Thuzad
 		elseif args.spellName == ChainsofKT then
 			chainsTargets[#chainsTargets + 1] = args.destName
-			if self:AntiSpam() then
+--			if self:AntiSpam() then
 				--timerMCCD:Start(60)--60 seconds?
-			end
+--			end
 			if self.Options.SetIconOnMC then
 				self:SetIcon(args.destName, self.vb.MCIcon)
 			end
