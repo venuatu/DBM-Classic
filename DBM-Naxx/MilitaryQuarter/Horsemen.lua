@@ -25,7 +25,7 @@ local specWarnMarkOnPlayer		= mod:NewSpecialWarning("SpecialWarningMarkOnPlayer"
 local specWarnVoidZone			= mod:NewSpecialWarningYou(28863, nil, nil, nil, 1, 2)
 local yellVoidZone				= mod:NewYell(28863)
 
-local timerMarkCD				= mod:NewCDCountTimer(12.9, 28835, nil, nil, nil, 3)-- 12.9
+local timerMarkCD				= mod:NewTimer(12.9, "timerMark", "28835", nil, nil, 3)-- 12.9
 local timerMeteorCD				= mod:NewCDTimer(12.9, 28884, nil, nil, nil, 3)-- 12.9-14.6
 local timerVoidZoneCD			= mod:NewCDTimer(12.9, 28863, nil, nil, nil, 3)-- 12.9-16
 local timerHolyWrathCD			= mod:NewCDTimer(11.3, 28883, nil, nil, nil, 3)-- 11.3-14.5
@@ -49,7 +49,7 @@ do
 		if (args.spellName == MarkofKorthazz or args.spellName == MarkofBlaumeux or args.spellName == MarkofMorgraine or args.spellName == MarkofZeliek) and self:AntiSpam(5) then
 			self.vb.markCount = self.vb.markCount + 1
 			timerMarkCD:Start(nil, self.vb.markCount+1)
-			warnMarkSoon:Schedule(8)
+			warnMarkSoon:Schedule(9.9, self.vb.markCount+1)
 		elseif args.spellName == voidZone then
 			timerVoidZoneCD:Start()
 			if args:IsPlayer() then
