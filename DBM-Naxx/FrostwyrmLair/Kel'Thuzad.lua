@@ -77,7 +77,7 @@ function mod:OnCombatStart(delay)
 	specwarnP2Soon:Schedule(320-delay)
 	timerPhase2:Start()
 	warnPhase2:Schedule(330)
-	if self.Options.ShowRange then
+	if self.Options.RangeFrame then
 		self:Schedule(330-delay, RangeToggle, true)
 	end
 end
