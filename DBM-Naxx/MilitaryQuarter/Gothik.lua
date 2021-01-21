@@ -66,12 +66,12 @@ do
 		twipe(sortedLines)
 		for name, cid in pairs(liveMobNames) do
 			if mobCounts[cid] then
-				addLine(tostring(cid) .. '*' .. mobNames[cid] or name, tostring(mobCounts[cid]))
+				addLine(tostring(cid) .. '*' .. (mobNames[cid] or name), tostring(mobCounts[cid]))
 			end
 		end
 		for name, cid in pairs(undeadMobNames) do
 			if mobCounts[cid] then
-				addLine(tostring(cid) .. '*' .. mobNames[cid] or name, tostring(mobCounts[cid]))
+				addLine(tostring(cid) .. '*' .. (mobNames[cid] or name), tostring(mobCounts[cid]))
 			end
 		end
 		return lines, sortedLines
