@@ -85,8 +85,7 @@ function mod:OnCombatStart(delay)
 	local startTime = GetTime()
 	local numHeals = 0
 	table.wipe(hadCorrupted)
-	for i = 1, 40 do
-		local unit = "raid" .. tostring(i)
+	for unit in DBM:GetGroupMembers() do
 		local _, cls = UnitClass(unit)
 		if cls == "DRUID" or cls == "PALADIN" or cls == "PRIEST" or cls == "SHAMAN" then
 			hadCorrupted[UnitName(unit)] = startTime
