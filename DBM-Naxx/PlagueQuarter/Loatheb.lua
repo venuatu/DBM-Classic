@@ -37,11 +37,9 @@ local hadCorrupted	= {}
 
 local updateInfoFrame
 do
-	local twipe, tsort = table.wipe, table.sort
-	local lines = {}
-	local sortedLines = {}
-	local corruptKeys = {}
-	local durToName = {}
+	local ipairs, pairs, tostring = ipairs, pairs, tostring
+	local mfloor, mmax, tinsert, tsort, twipe = math.floor, math.max, table.insert, table.sort, table.wipe
+	local lines, sortedLines, corruptKeys, durToName = {}, {}, {}, {}
 	local function addLine(key, value)
 		-- sort by insertion order
 		lines[key] = value
@@ -54,20 +52,17 @@ do
 
 		local refreshTime = GetTime()
 
-		for name, last in pairs(hadCorrupted) do
-			if last then
-				table.insert(corruptKeys, name)
-			end
+		for name, _ in pairs(hadCorrupted) do
+			tinsert(corruptKeys, name)
 		end
 		if mod.Options.CorruptedSorting == "Duration" then
-			table.sort(corruptKeys, function (a, b) return (hadCorrupted[a] or refreshTime) > (hadCorrupted[b] or refreshTime) end)
+			tsort(corruptKeys, function (a, b) return (hadCorrupted[a] or refreshTime) > (hadCorrupted[b] or refreshTime) end)
 		else
-			table.sort(corruptKeys)
+			tsort(corruptKeys)
 		end
 
 		for _, name in ipairs(corruptKeys) do
-			local durLeft = floor(max(hadCorrupted[name] - refreshTime, 0))
-			addLine(name, tostring(durLeft))
+			addLine(name, tostring(mfloor(mmax(hadCorrupted[name] - refreshTime, 0))))
 		end
 
 		return lines, sortedLines
@@ -83,19 +78,16 @@ function mod:OnCombatStart(delay)
 	timerDoom:Start(130 - delay, self.vb.doomCounter + 1)
 
 	local startTime = GetTime()
-	local numHeals = 0
 	table.wipe(hadCorrupted)
 	for unit in DBM:GetGroupMembers() do
 		local _, cls = UnitClass(unit)
 		if cls == "DRUID" or cls == "PALADIN" or cls == "PRIEST" or cls == "SHAMAN" then
 			hadCorrupted[UnitName(unit)] = startTime
-			numHeals = numHeals + 1
 		end
 	end
 	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
-		local CorruptedMind = DBM:GetSpellInfo(29184)
-		DBM.InfoFrame:SetHeader(CorruptedMind)
-		DBM.InfoFrame:Show(numHeals + 1, "function", updateInfoFrame, false, false)
+		DBM.InfoFrame:SetHeader(DBM:GetSpellInfo(29184))
+		DBM.InfoFrame:Show(40, "function", updateInfoFrame, false, false)
 		DBM.InfoFrame:SetColumns(2)
 	end
 end
