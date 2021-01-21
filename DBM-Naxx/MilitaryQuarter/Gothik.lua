@@ -164,7 +164,7 @@ function mod:OnCombatStart(delay)
 
 	if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
 		DBM.InfoFrame:SetHeader(DBM_CORE_L.ADDS)
-		DBM.InfoFrame:Show(6, "function", updateInfoFrame, false, false)
+		DBM.InfoFrame:Show(8, "function", updateInfoFrame, false, false)
 		DBM.InfoFrame:SetColumns(1)
 	end
 --	DBM:AddMsg("Add timers/spawn names are probably not correct, as they are from Naxx 25. You can help correct this by sharing well angled videos of mobs spawning in that show the SPAWNING (not running in from a blind spot)")
