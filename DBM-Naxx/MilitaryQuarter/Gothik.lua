@@ -54,9 +54,8 @@ local mobNames = {}
 
 local updateInfoFrame
 do
-	local twipe, tsort = table.wipe, table.sort
-	local lines = {}
-	local sortedLines = {}
+	local tostring, twipe = tostring, table.wipe
+	local lines, sortedLines = {}, {}
 	local function addLine(key, value)
 		-- sort by insertion order
 		lines[key] = value
@@ -65,16 +64,14 @@ do
 	updateInfoFrame = function()
 		twipe(lines)
 		twipe(sortedLines)
-		for Lname, cid in pairs(liveMobNames) do
-			local name = mobNames[cid] or Lname
+		for name, cid in pairs(liveMobNames) do
 			if mobCounts[cid] then
-				addLine(tostring(cid) .. '*' .. name, tostring(mobCounts[cid]))
+				addLine(tostring(cid) .. '*' .. mobNames[cid] or name, tostring(mobCounts[cid]))
 			end
 		end
-		for Lname, cid in pairs(undeadMobNames) do
-			local name = mobNames[cid] or Lname
+		for name, cid in pairs(undeadMobNames) do
 			if mobCounts[cid] then
-				addLine(tostring(cid) .. '*' .. name, tostring(mobCounts[cid]))
+				addLine(tostring(cid) .. '*' .. mobNames[cid] or name, tostring(mobCounts[cid]))
 			end
 		end
 		return lines, sortedLines
@@ -192,7 +189,7 @@ function mod:UNIT_DIED(args)
 		mobCounts[undeadId] = (mobCounts[undeadId] or 0) + 1
 		mobNames[cid] = args.destName
 		if cid == 16126 then
-			-- when a rider dies it spawns a rider 16150 and a horse 16149
+			-- When a rider dies it spawns a rider 16150 and a horse 16149
 			mobCounts[16149] = (mobCounts[16149] or 0) + 1
 		end
 	elseif undeadMobIds[cid] then
