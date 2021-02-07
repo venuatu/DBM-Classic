@@ -41,14 +41,15 @@ local timerfrostBlast		= mod:NewBuffActiveTimer(4, 27808, nil, nil, nil, 5, nil,
 --local timerMCCD			= mod:NewCDTimer(90, 28410, nil, nil, nil, 3)--actually 60 second cdish but its easier to do it this way for the first one.
 local timerPhase2			= mod:NewTimer(330, "TimerPhase2", "136116", nil, nil, 6)
 
-mod:AddSetIconOption("SetIconOnMC2", 28410, false, false, {1, 2, 3})
+mod:AddSetIconOption("SetIconOnMC2", 28410, false, false, {1, 2, 3, 4, 5})
 mod:AddSetIconOption("SetIconOnManaBomb", 27819, false, false, {8})
 mod:AddSetIconOption("SetIconOnFrostTomb2", 27808, false, false, {1, 2, 3, 4, 5, 6, 7, 8})
 mod:AddRangeFrameOption(10, 27819)
 
 mod.vb.phase = 1
 mod.vb.warnedAdds = false
-mod.vb.MCIcon = 1
+mod.vb.MCIcon1 = 1
+mod.vb.MCIcon2 = 5
 local frostBlastTargets = {}
 
 local function AnnounceBlastTargets(self)
@@ -73,7 +74,8 @@ function mod:OnCombatStart(delay)
 	self.vb.phase = 1
 	table.wipe(frostBlastTargets)
 	self.vb.warnedAdds = false
-	self.vb.MCIcon = 1
+	self.vb.MCIcon1 = 1
+	self.vb.MCIcon2 = 5
 	specwarnP2Soon:Schedule(320-delay)
 	timerPhase2:Start()
 	warnPhase2:Schedule(330)
@@ -131,13 +133,20 @@ do
 		--elseif args.spellId == 28410 then -- Chains of Kel'Thuzad
 		elseif args.spellName == ChainsofKT then
 			if self:AntiSpam() then
-				self.vb.MCIcon = 1
+				self.vb.MCIcon1 = 1
+				self.vb.MCIcon2 = 5
 				--timerMCCD:Start(60)--60 seconds?
 			end
 			if self.Options.SetIconOnMC2 then
-				self:SetIcon(args.destName, self.vb.MCIcon)
+				local _, _, group = GetRaidRosterInfo(UnitInRaid(args.destName))
+				if group % 2 == 1 then
+					self:SetIcon(args.destName, self.vb.MCIcon1)
+					self.vb.MCIcon1 = self.vb.MCIcon1 + 1
+				else
+					self:SetIcon(args.destName, self.vb.MCIcon2)
+					self.vb.MCIcon2 = self.vb.MCIcon2 - 1
+				end
 			end
-			self.vb.MCIcon = self.vb.MCIcon + 1
 			warnChainsTargets:CombinedShow(1, args.destName)
 		end
 	end
