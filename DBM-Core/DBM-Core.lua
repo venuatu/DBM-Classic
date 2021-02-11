@@ -5901,7 +5901,7 @@ do
 	local tooltipsHidden = false
 	--Delayed Guild Combat sync object so we allow time for RL to disable them
 	local function delayedGCSync(modId, difficultyIndex, name, thisTime, wipeHP)
-		if not statusGuildDisabled then
+		if not statusGuildDisabled and updateNotificationDisplayed == 0 then
 			if thisTime then--Wipe event
 				SendAddonMessage("D4C", "GCE\t"..modId.."\t7\t1\t"..thisTime.."\t"..difficultyIndex.."\t"..name.."\t"..wipeHP, "GUILD")
 			else
