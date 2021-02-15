@@ -32,7 +32,8 @@ local warnChainsTargets		= mod:NewTargetNoFilterAnnounce(28410, 4)
 local specwarnP2Soon		= mod:NewSpecialWarning("specwarnP2Soon")
 local specWarnManaBomb		= mod:NewSpecialWarningMoveAway(27819, nil, nil, nil, 1, 2)
 local specWarnBlast			= mod:NewSpecialWarningTarget(27808, "Healer", nil, nil, 1, 2)
-local specWarnFissureYou	= mod:NewSpecialWarningYou(27810, nil, nil, nil, 1, 2)
+local specWarnFissureYou	= mod:NewSpecialWarningYou(27810, nil, nil, nil, 3, 2)
+local specWarnFissureNear	= mod:NewSpecialWarningTarget(27810, nil, nil, nil, 3, 2)
 local yellManaBomb			= mod:NewShortYell(27819)
 local yellFissure			= mod:NewYell(27810)
 
@@ -101,6 +102,9 @@ do
 				specWarnFissureYou:Show()
 				specWarnFissureYou:Play("targetyou")
 				yellFissure:Yell()
+			elseif self:CheckNearby(8, args.destName) then
+				specWarnFissureNear:Show(args.destName)
+				specWarnFissureNear:Play("watchfeet")
 			else
 				warnFissure:Show(args.destName)
 				warnFissure:Play("watchstep")
